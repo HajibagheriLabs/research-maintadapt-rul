@@ -11,7 +11,52 @@ saved per engine against running to failure and against a fixed maintenance sche
 
 ## Results
 
-TBD — filled in as each stage of the pipeline is run.
+Every number below is produced by the `make` targets and read from `reports/`; ± is the standard
+deviation over five seeds. Sections marked TBD have not been run yet.
+
+### Maintenance cost
+
+TBD: produced by `make eval` (`reports/decision_analysis.md`).
+
+### Remaining-useful-life models
+
+Scored at the last observed cycle of every official test engine, against truth capped at 125
+cycles (see [DECISIONS.md](DECISIONS.md)).
+
+Test RMSE in cycles:
+
+| model | FD001 | FD002 | FD003 | FD004 |
+|---|---|---|---|---|
+| Ridge, rolling features | 14.99 ± 0.00 | 15.96 ± 0.00 | 16.29 ± 0.00 | 18.53 ± 0.00 |
+| XGBoost, rolling features | 12.14 ± 0.09 | 12.60 ± 0.05 | 12.49 ± 0.18 | 13.49 ± 0.10 |
+
+NASA score, summed over test engines, where late predictions cost more than early ones:
+
+| model | FD001 | FD002 | FD003 | FD004 |
+|---|---|---|---|---|
+| Ridge, rolling features | 347 ± 0 | 1179 ± 0 | 508 ± 0 | 1596 ± 0 |
+| XGBoost, rolling features | 214 ± 5 | 690 ± 12 | 262 ± 10 | 819 ± 21 |
+
+XGBoost beats ridge on every subset, by 2.9 to 5.0 cycles of RMSE, and roughly halves the NASA
+score. Ridge is deterministic given the split, so its spread across seeds is zero.
+
+Normalising each sensor within its operating regime is what makes the multi-regime subsets
+tractable (XGBoost, same settings):
+
+| subset | normalisation | RMSE | NASA score |
+|---|---|---|---|
+| FD002 | condition-aware | 12.60 ± 0.05 | 690 ± 12 |
+| FD002 | global | 15.91 ± 0.13 | 1257 ± 31 |
+| FD004 | condition-aware | 13.49 ± 0.10 | 819 ± 21 |
+| FD004 | global | 17.39 ± 0.09 | 1713 ± 58 |
+
+### Transfer between operating regimes
+
+TBD: produced by `make train` (`reports/transfer.csv`).
+
+### Prediction intervals
+
+TBD: produced by `make eval` (`reports/uncertainty.csv`).
 
 ## Setup
 

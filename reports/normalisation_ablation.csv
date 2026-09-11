@@ -1,0 +1,5 @@
+subset,normalisation,rmse_mean,rmse_std,nasa_score_mean,nasa_score_std,n_seeds
+FD002,condition-aware,12.598,0.048,690.171,12.069,5
+FD002,global,15.908,0.131,1257.282,30.978,5
+FD004,condition-aware,13.492,0.105,818.92,20.522,5
+FD004,global,17.387,0.088,1712.677,58.24,5
