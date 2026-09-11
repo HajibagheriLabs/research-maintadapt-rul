@@ -1,0 +1,5 @@
+subset,train_units,val_units,test_units,train_file_rows,test_file_rows,lifetime_min,lifetime_median,lifetime_max,test_observed_min,test_observed_median,test_observed_max,test_rul_min,test_rul_median,test_rul_max,test_rul_above_cap,operating_conditions,sensors_kept,sensors_dropped
+FD001,80,20,100,20631,13096,128,199.0,362,31,133.5,303,7,86.0,145,11,1,14,s1 s5 s6 s10 s16 s18 s19
+FD002,208,52,259,53759,33991,128,199.0,378,21,132.0,367,6,80.0,194,57,6,14,s1 s5 s6 s10 s16 s18 s19
+FD003,80,20,100,24720,16596,145,220.5,525,38,148.0,475,6,77.5,145,15,1,16,s1 s5 s16 s18 s19
+FD004,199,50,248,61249,41214,128,234.0,543,19,153.5,486,6,88.0,195,67,6,15,s1 s5 s10 s16 s18 s19

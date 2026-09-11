@@ -1,0 +1,85 @@
+subset,sensor,min_modal_share,max_modal_share,dropped,reason,spearman_rul
+FD001,sensor_1,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_2,0.0094,0.0094,False,,-0.643
+FD001,sensor_3,0.0014,0.0014,False,,-0.617
+FD001,sensor_4,0.0011,0.0011,False,,-0.716
+FD001,sensor_5,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_6,0.9787,0.9787,True,one value covers 97.9% of readings in some condition,
+FD001,sensor_7,0.0057,0.0057,False,,0.693
+FD001,sensor_8,0.0558,0.0558,False,,-0.599
+FD001,sensor_9,0.0009,0.0009,False,,-0.289
+FD001,sensor_10,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_11,0.0162,0.0162,False,,-0.73
+FD001,sensor_12,0.0071,0.0071,False,,0.707
+FD001,sensor_13,0.0563,0.0563,False,,-0.594
+FD001,sensor_14,0.0009,0.0009,False,,-0.164
+FD001,sensor_15,0.0018,0.0018,False,,-0.68
+FD001,sensor_16,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_17,0.2573,0.2573,False,,-0.645
+FD001,sensor_18,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_19,1.0,1.0,True,constant in every operating condition,
+FD001,sensor_20,0.0235,0.0235,False,,0.667
+FD001,sensor_21,0.0011,0.0011,False,,0.669
+FD002,sensor_1,1.0,1.0,True,constant in every operating condition,
+FD002,sensor_2,0.0105,0.0159,False,,-0.595
+FD002,sensor_3,0.0015,0.0019,False,,-0.581
+FD002,sensor_4,0.0014,0.0017,False,,-0.69
+FD002,sensor_5,1.0,1.0,True,constant in every operating condition,
+FD002,sensor_6,0.584,0.9835,True,one value covers 98.3% of readings in some condition,
+FD002,sensor_7,0.0073,0.0124,False,,0.479
+FD002,sensor_8,0.0217,0.057,False,,-0.39
+FD002,sensor_9,0.001,0.0017,False,,-0.297
+FD002,sensor_10,0.7734,1.0,True,constant in 1 of 6 operating conditions,
+FD002,sensor_11,0.0179,0.0226,False,,-0.721
+FD002,sensor_12,0.0076,0.0138,False,,0.503
+FD002,sensor_13,0.0209,0.0577,False,,-0.39
+FD002,sensor_14,0.0009,0.0015,False,,-0.168
+FD002,sensor_15,0.0021,0.0029,False,,-0.678
+FD002,sensor_16,0.7876,1.0,True,constant in 5 of 6 operating conditions,
+FD002,sensor_17,0.2699,0.3101,False,,-0.606
+FD002,sensor_18,1.0,1.0,True,constant in every operating condition,
+FD002,sensor_19,1.0,1.0,True,constant in every operating condition,
+FD002,sensor_20,0.0258,0.0389,False,,0.46
+FD002,sensor_21,0.0014,0.0018,False,,0.451
+FD003,sensor_1,1.0,1.0,True,constant in every operating condition,
+FD003,sensor_2,0.0093,0.0093,False,,-0.622
+FD003,sensor_3,0.0012,0.0012,False,,-0.642
+FD003,sensor_4,0.001,0.001,False,,-0.697
+FD003,sensor_5,1.0,1.0,True,constant in every operating condition,
+FD003,sensor_6,0.493,0.493,False,,-0.147
+FD003,sensor_7,0.0038,0.0038,False,,-0.061
+FD003,sensor_8,0.0456,0.0456,False,,-0.699
+FD003,sensor_9,0.0008,0.0008,False,,-0.587
+FD003,sensor_10,0.8777,0.8777,False,,-0.461
+FD003,sensor_11,0.0169,0.0169,False,,-0.725
+FD003,sensor_12,0.0038,0.0038,False,,-0.069
+FD003,sensor_13,0.0454,0.0454,False,,-0.701
+FD003,sensor_14,0.001,0.001,False,,-0.494
+FD003,sensor_15,0.0013,0.0013,False,,-0.045
+FD003,sensor_16,1.0,1.0,True,constant in every operating condition,
+FD003,sensor_17,0.2462,0.2462,False,,-0.668
+FD003,sensor_18,1.0,1.0,True,constant in every operating condition,
+FD003,sensor_19,1.0,1.0,True,constant in every operating condition,
+FD003,sensor_20,0.0188,0.0188,False,,0.058
+FD003,sensor_21,0.0008,0.0008,False,,0.057
+FD004,sensor_1,1.0,1.0,True,constant in every operating condition,
+FD004,sensor_2,0.0092,0.0127,False,,-0.545
+FD004,sensor_3,0.0014,0.0018,False,,-0.612
+FD004,sensor_4,0.0011,0.0015,False,,-0.674
+FD004,sensor_5,1.0,1.0,True,constant in every operating condition,
+FD004,sensor_6,0.3557,0.5594,False,,-0.208
+FD004,sensor_7,0.0049,0.0084,False,,-0.111
+FD004,sensor_8,0.026,0.0463,False,,-0.523
+FD004,sensor_9,0.001,0.0014,False,,-0.515
+FD004,sensor_10,0.654,0.9658,True,one value covers 96.6% of readings in some condition,
+FD004,sensor_11,0.0155,0.018,False,,-0.709
+FD004,sensor_12,0.0045,0.01,False,,-0.12
+FD004,sensor_13,0.0252,0.0461,False,,-0.523
+FD004,sensor_14,0.001,0.0015,False,,-0.414
+FD004,sensor_15,0.0016,0.0019,False,,-0.124
+FD004,sensor_16,0.8358,1.0,True,constant in 4 of 6 operating conditions,
+FD004,sensor_17,0.2316,0.2578,False,,-0.628
+FD004,sensor_18,1.0,1.0,True,constant in every operating condition,
+FD004,sensor_19,1.0,1.0,True,constant in every operating condition,
+FD004,sensor_20,0.0179,0.036,False,,0.061
+FD004,sensor_21,0.0011,0.0021,False,,0.068
