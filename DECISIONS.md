@@ -77,3 +77,33 @@ and it is reported that way rather than hidden.
 
 **MLflow on SQLite.** MLflow 3 no longer develops its plain-file backend, so runs are logged to
 `mlruns/mlflow.db` inside the same gitignored folder.
+
+## Sequence models
+
+**Same protocol as the baselines.** The TCN and LSTM see the same engines, splits,
+condition-aware normalisation, capped target, seeds and test protocol (the last observed cycle of
+each official test engine) as ridge and XGBoost. Their inputs are the normalised raw sensor
+readings rather than the engineered rolling features, so the comparison asks whether a network can
+learn those features for itself.
+
+**Windows of 30 cycles, padded with the first reading.** Each prediction reads the 30 cycles
+ending at that cycle; 30 matches the shortest FD001 test history. Shorter histories, down to 21
+cycles in FD002 and 19 in FD004, are left-padded by repeating the engine's first reading, the best
+available estimate of an engine that was still healthy.
+
+**Architectures fixed in advance, not tuned.** TCN: four residual blocks of causal dilated
+convolutions (dilations 1, 2, 4 and 8, kernel 3, 64 channels), a receptive field of 61 cycles that
+covers the window. LSTM: two layers of 64 units. Both use dropout 0.2, which the uncertainty study
+reuses for MC dropout, Adam on the squared error of RUL/125, and early stopping on validation RMSE
+with a patience of 15 epochs. Neither network was tuned: tuning only the deep models would bias the
+comparison against the baselines, which were not tuned beyond a small ridge penalty grid either.
+
+**Classical versus deep: XGBoost wins on every subset.** On per-seed test RMSE the TCN trails
+XGBoost by 2.55, 1.75, 1.93 and 2.65 cycles on FD001 to FD004 and the LSTM by 2.38, 2.08, 1.17 and
+1.76; every gap is significant under a Welch t-test (p ≤ 0.03, `reports/deep_vs_xgboost.csv`). The
+closest call is the LSTM on FD003 (p = 0.025). The deep models' spread across seeds is 2 to 7 times
+XGBoost's, so part of their deficit is instability rather than bias. Two caveats keep this from
+being a verdict on deep learning for RUL in general: neither network was tuned, and seed variance
+only captures training randomness, not how the ranking would move on a different set of test
+engines. What it does show is that rolling features with gradient boosting are a demanding
+baseline, and a deep model has to earn its extra complexity here rather than be assumed to.
