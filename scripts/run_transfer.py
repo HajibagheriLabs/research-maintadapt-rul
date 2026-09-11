@@ -57,7 +57,7 @@ def plot_budget_curves(
     )
     for ax, target in zip(axes[0], targets, strict=True):
         rows = summary[summary["target"] == target]
-        for colour, arm in zip(SERIES, ARMS, strict=True):
+        for colour, arm in zip(SERIES, ARMS, strict=False):
             curve = rows[rows["condition"] == arm].sort_values("budget")
             x, mean, std = curve["budget"] * 100, curve["rmse_mean"], curve["rmse_std"]
             ax.plot(x, mean, marker="o", markersize=6, color=colour, label=arm)
