@@ -59,3 +59,12 @@ sequence:
     max_epochs: 100
     patience: 15
     grad_clip: 1.0
+
+transfer:
+  source: FD001
+  targets: [FD003, FD004]
+  # the sequence model with the lower FD001 validation RMSE, chosen before any transfer run
+  model: lstm
+  budgets: [0.1, 0.25, 0.5, 1.0]
+  # a third of the from-scratch rate, so fine-tuning adjusts source features rather than erasing them
+  finetune_lr: 0.0003

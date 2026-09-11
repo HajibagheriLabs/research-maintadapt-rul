@@ -137,6 +137,29 @@ class SequenceConfig:
 
 
 @dataclass(frozen=True)
+class TransferConfig:
+    source: str
+    targets: list[str]
+    model: str
+    budgets: list[float]
+    finetune_lr: float
+
+    def __post_init__(self) -> None:
+        names = {self.source, *self.targets}
+        if not self.targets or not names <= set(SUBSETS) or self.source in self.targets:
+            raise ValueError(
+                f"transfer needs a source and distinct targets from {SUBSETS}"
+            )
+        if self.model not in ("tcn", "lstm"):
+            raise ValueError(f"transfer.model must be tcn or lstm, got {self.model}")
+        # the full budget is what yields the plain target-only and fine-tuned conditions
+        if 1.0 not in self.budgets or not all(0.0 < b <= 1.0 for b in self.budgets):
+            raise ValueError(
+                f"transfer.budgets must lie in (0, 1] and include 1.0, got {self.budgets}"
+            )
+
+
+@dataclass(frozen=True)
 class Config:
     seeds: list[int]
     paths: PathsConfig
@@ -145,6 +168,7 @@ class Config:
     features: FeaturesConfig
     baselines: BaselinesConfig
     sequence: SequenceConfig
+    transfer: TransferConfig
 
     def __post_init__(self) -> None:
         if len(self.seeds) < 5 or len(set(self.seeds)) != len(self.seeds):
