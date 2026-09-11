@@ -1,0 +1,1009 @@
+subset,policy,threshold,test_cost_mean,test_cost_std,val_cost_mean,val_cost_std,n_seeds
+FD001,alarm on predicted RUL,0.0,61.7744,1.2941,57.2591,0.4416,5
+FD001,alarm on predicted RUL,1.0,56.4356,1.8892,54.5353,0.7422,5
+FD001,alarm on predicted RUL,2.0,53.5464,1.6302,51.559,0.6874,5
+FD001,alarm on predicted RUL,3.0,49.0911,0.5169,49.1634,0.3912,5
+FD001,alarm on predicted RUL,4.0,46.4861,0.7986,47.4441,0.3205,5
+FD001,alarm on predicted RUL,5.0,43.5116,1.1379,46.2693,0.2635,5
+FD001,alarm on predicted RUL,6.0,40.7682,1.5426,45.3477,0.338,5
+FD001,alarm on predicted RUL,7.0,36.6685,2.3,44.5818,0.2841,5
+FD001,alarm on predicted RUL,8.0,33.8022,2.4224,44.1242,0.2686,5
+FD001,alarm on predicted RUL,9.0,30.987,1.2401,43.5332,0.142,5
+FD001,alarm on predicted RUL,10.0,29.1957,1.4257,43.2705,0.2557,5
+FD001,alarm on predicted RUL,11.0,28.0397,1.4494,42.9924,0.1152,5
+FD001,alarm on predicted RUL,12.0,27.1041,0.426,42.8509,0.1384,5
+FD001,alarm on predicted RUL,13.0,26.8148,0.4817,42.9265,0.1379,5
+FD001,alarm on predicted RUL,14.0,26.6589,0.5587,43.0513,0.1822,5
+FD001,alarm on predicted RUL,15.0,26.7246,0.8402,43.2413,0.1723,5
+FD001,alarm on predicted RUL,16.0,25.2985,0.9148,43.3825,0.1572,5
+FD001,alarm on predicted RUL,17.0,25.4687,0.8894,43.6555,0.2526,5
+FD001,alarm on predicted RUL,18.0,25.4142,1.6586,43.99,0.194,5
+FD001,alarm on predicted RUL,19.0,24.9701,1.0461,44.5299,0.2092,5
+FD001,alarm on predicted RUL,20.0,24.6602,0.6828,45.0816,0.284,5
+FD001,alarm on predicted RUL,21.0,24.9527,0.8273,45.7543,0.2594,5
+FD001,alarm on predicted RUL,22.0,25.1094,0.95,46.503,0.1379,5
+FD001,alarm on predicted RUL,23.0,25.5076,0.0747,47.2935,0.0662,5
+FD001,alarm on predicted RUL,24.0,26.4343,0.3612,48.0778,0.0604,5
+FD001,alarm on predicted RUL,25.0,27.0655,0.6841,49.0755,0.0957,5
+FD001,alarm on predicted RUL,26.0,28.0016,0.4932,50.0597,0.0928,5
+FD001,alarm on predicted RUL,27.0,28.9533,0.2565,50.9503,0.1138,5
+FD001,alarm on predicted RUL,28.0,29.8368,0.4496,51.8602,0.1488,5
+FD001,alarm on predicted RUL,29.0,30.7037,0.6462,52.6642,0.0597,5
+FD001,alarm on predicted RUL,30.0,31.4588,0.541,53.5708,0.0749,5
+FD001,alarm on predicted RUL,31.0,31.9941,0.184,54.5931,0.0815,5
+FD001,alarm on predicted RUL,32.0,32.8964,0.2061,55.5902,0.1105,5
+FD001,alarm on predicted RUL,33.0,33.7981,0.2225,56.6757,0.139,5
+FD001,alarm on predicted RUL,34.0,34.6984,0.1942,57.6068,0.0955,5
+FD001,alarm on predicted RUL,35.0,35.6724,0.1967,58.5516,0.0624,5
+FD001,alarm on predicted RUL,36.0,36.5944,0.1116,59.5088,0.0154,5
+FD001,alarm on predicted RUL,37.0,37.6059,0.252,60.3957,0.0324,5
+FD001,alarm on predicted RUL,38.0,38.5859,0.3429,61.2529,0.0223,5
+FD001,alarm on predicted RUL,39.0,39.6645,0.4452,62.2706,0.0821,5
+FD001,alarm on predicted RUL,40.0,40.5645,0.4075,63.1984,0.065,5
+FD001,alarm on predicted RUL,41.0,41.5999,0.1774,64.1234,0.0978,5
+FD001,alarm on predicted RUL,42.0,42.6299,0.1787,65.0952,0.0638,5
+FD001,alarm on predicted RUL,43.0,43.6765,0.2831,66.0797,0.1433,5
+FD001,alarm on predicted RUL,44.0,44.73,0.1979,66.9817,0.1643,5
+FD001,alarm on predicted RUL,45.0,45.7538,0.2532,68.0969,0.2906,5
+FD001,alarm on predicted RUL,46.0,46.7909,0.3818,69.0103,0.2115,5
+FD001,alarm on predicted RUL,47.0,47.8328,0.3768,70.0468,0.1274,5
+FD001,alarm on predicted RUL,48.0,48.8951,0.3308,71.1116,0.211,5
+FD001,alarm on predicted RUL,49.0,50.032,0.2448,72.0109,0.2159,5
+FD001,alarm on predicted RUL,50.0,51.078,0.1838,73.0034,0.1669,5
+FD001,alarm on predicted RUL,51.0,51.9947,0.2164,73.9708,0.2556,5
+FD001,alarm on predicted RUL,52.0,52.9805,0.2439,75.0537,0.2056,5
+FD001,alarm on predicted RUL,53.0,53.9506,0.1735,75.9842,0.0879,5
+FD001,alarm on predicted RUL,54.0,54.926,0.2594,77.0526,0.1765,5
+FD001,alarm on predicted RUL,55.0,55.864,0.2146,78.1462,0.2141,5
+FD001,alarm on predicted RUL,56.0,56.944,0.3235,79.3036,0.1318,5
+FD001,alarm on predicted RUL,57.0,57.9432,0.2269,80.2831,0.2081,5
+FD001,alarm on predicted RUL,58.0,58.9724,0.366,81.2549,0.2834,5
+FD001,alarm on predicted RUL,59.0,59.9561,0.2684,82.3371,0.1525,5
+FD001,alarm on predicted RUL,60.0,60.9823,0.3453,83.2429,0.09,5
+FD001,alarm on predicted RUL,61.0,62.1246,0.2809,84.817,0.3221,5
+FD001,alarm on predicted RUL,62.0,63.1931,0.3974,85.9685,0.2447,5
+FD001,alarm on predicted RUL,63.0,64.5914,0.5412,86.9117,0.217,5
+FD001,alarm on predicted RUL,64.0,65.5015,0.412,87.8268,0.1699,5
+FD001,alarm on predicted RUL,65.0,66.4596,0.3667,88.8532,0.258,5
+FD001,alarm on predicted RUL,66.0,67.3216,0.2182,89.9883,0.2717,5
+FD001,alarm on predicted RUL,67.0,68.2675,0.3398,90.9004,0.2288,5
+FD001,alarm on predicted RUL,68.0,69.2419,0.2331,92.1132,0.2582,5
+FD001,alarm on predicted RUL,69.0,70.6049,0.2609,93.6108,0.5138,5
+FD001,alarm on predicted RUL,70.0,71.6313,0.1029,94.6892,0.8103,5
+FD001,alarm on predicted RUL,71.0,72.7274,0.1456,96.0818,0.6368,5
+FD001,alarm on predicted RUL,72.0,73.7495,0.1681,97.3748,0.9554,5
+FD001,alarm on predicted RUL,73.0,74.7935,0.2237,98.4423,1.0475,5
+FD001,alarm on predicted RUL,74.0,76.4699,0.3107,99.8336,0.5776,5
+FD001,alarm on predicted RUL,75.0,77.4191,0.5287,101.1023,0.7663,5
+FD001,alarm on predicted RUL,76.0,78.848,0.7083,103.1533,0.8237,5
+FD001,alarm on predicted RUL,77.0,79.9915,0.7407,104.8506,0.6456,5
+FD001,alarm on predicted RUL,78.0,81.2571,0.518,105.8262,0.5742,5
+FD001,alarm on predicted RUL,79.0,82.5164,0.2984,107.2759,0.2373,5
+FD001,alarm on predicted RUL,80.0,83.9435,0.203,107.9961,0.2397,5
+FD001,alarm on predicted RUL,81.0,85.6257,0.3625,108.6571,0.219,5
+FD001,alarm on predicted RUL,82.0,87.612,0.4703,109.5958,0.1835,5
+FD001,alarm on predicted RUL,83.0,89.1521,0.5154,110.8988,0.5211,5
+FD001,alarm on predicted RUL,84.0,90.2896,0.4378,111.9679,0.6338,5
+FD001,alarm on predicted RUL,85.0,91.6844,0.5373,114.4626,0.6845,5
+FD001,alarm on predicted RUL,86.0,93.3409,0.2162,115.8287,0.5443,5
+FD001,alarm on predicted RUL,87.0,94.8208,0.5125,117.7755,0.5959,5
+FD001,alarm on predicted RUL,88.0,96.1871,0.9168,118.4353,0.5657,5
+FD001,alarm on predicted RUL,89.0,97.6677,0.4231,120.5487,0.5444,5
+FD001,alarm on predicted RUL,90.0,99.1973,0.9761,121.5308,0.6114,5
+FD001,alarm on predicted RUL,91.0,100.7871,0.8585,122.5072,0.3371,5
+FD001,alarm on predicted RUL,92.0,102.6891,0.77,123.8047,0.47,5
+FD001,alarm on predicted RUL,93.0,104.2271,0.7539,125.2219,0.7876,5
+FD001,alarm on predicted RUL,94.0,105.4273,0.4377,127.2234,1.4895,5
+FD001,alarm on predicted RUL,95.0,106.5317,0.2907,128.7754,1.8396,5
+FD001,alarm on predicted RUL,96.0,107.6807,0.3716,129.8769,1.571,5
+FD001,alarm on predicted RUL,97.0,109.5421,0.8193,131.2532,1.3926,5
+FD001,alarm on predicted RUL,98.0,111.1186,0.7205,132.7306,1.0451,5
+FD001,alarm on predicted RUL,99.0,112.8842,0.5604,135.6163,2.2411,5
+FD001,alarm on predicted RUL,100.0,115.3337,0.3432,138.7566,0.9039,5
+FD001,alarm on predicted RUL,101.0,117.1507,0.647,141.4265,1.2131,5
+FD001,alarm on predicted RUL,102.0,119.4606,0.5957,143.1472,2.544,5
+FD001,alarm on predicted RUL,103.0,121.202,1.0938,144.7863,2.0532,5
+FD001,alarm on predicted RUL,104.0,122.8538,1.507,147.1642,1.5209,5
+FD001,alarm on predicted RUL,105.0,124.9706,1.0699,150.4676,1.5894,5
+FD001,alarm on predicted RUL,106.0,126.9856,1.0724,152.5584,1.8391,5
+FD001,alarm on predicted RUL,107.0,129.872,1.0783,156.483,1.2757,5
+FD001,alarm on predicted RUL,108.0,133.1019,0.8673,158.4204,1.6982,5
+FD001,alarm on predicted RUL,109.0,136.1184,0.8466,159.3867,1.6648,5
+FD001,alarm on predicted RUL,110.0,139.3876,0.5098,161.222,1.317,5
+FD001,alarm on predicted RUL,111.0,142.4192,0.6704,164.2201,1.8529,5
+FD001,alarm on predicted RUL,112.0,145.6549,1.4184,166.0126,1.9722,5
+FD001,alarm on predicted RUL,113.0,148.3272,1.1749,168.0147,2.092,5
+FD001,alarm on predicted RUL,114.0,151.6534,0.5524,172.4253,2.7711,5
+FD001,alarm on predicted RUL,115.0,155.3471,1.0701,175.7272,2.3474,5
+FD001,alarm on predicted RUL,116.0,158.4948,0.8211,179.6485,2.6753,5
+FD001,alarm on predicted RUL,117.0,162.918,1.2055,183.5609,2.9716,5
+FD001,alarm on predicted RUL,118.0,166.9307,1.7233,188.5842,2.7879,5
+FD001,alarm on predicted RUL,119.0,172.3582,0.4024,193.6795,2.6025,5
+FD001,alarm on predicted RUL,120.0,177.5648,0.9696,197.1933,1.0675,5
+FD001,alarm on predicted RUL,121.0,183.036,1.1057,201.8141,1.1384,5
+FD001,alarm on predicted RUL,122.0,188.66,1.097,204.8482,0.6771,5
+FD001,alarm on predicted RUL,123.0,193.768,1.0421,206.0856,0.4386,5
+FD001,alarm on predicted RUL,124.0,198.776,0.6702,207.9446,0.4559,5
+FD001,alarm on predicted RUL,125.0,205.48,0.0,214.7,0.0,5
+FD001,alarm on lower interval bound,0.0,31.2549,0.7166,44.2811,0.3011,5
+FD001,alarm on lower interval bound,1.0,28.5355,0.8338,42.7169,0.1577,5
+FD001,alarm on lower interval bound,2.0,26.0532,0.6725,42.3604,0.2134,5
+FD001,alarm on lower interval bound,3.0,24.0077,1.9259,42.5272,0.2182,5
+FD001,alarm on lower interval bound,4.0,23.3794,1.1484,42.9847,0.1796,5
+FD001,alarm on lower interval bound,5.0,23.3662,0.9626,43.5801,0.2417,5
+FD001,alarm on lower interval bound,6.0,23.7643,0.3566,44.3515,0.2184,5
+FD001,alarm on lower interval bound,7.0,24.3635,0.2229,45.1844,0.2579,5
+FD001,alarm on lower interval bound,8.0,25.359,0.2355,46.0446,0.3148,5
+FD001,alarm on lower interval bound,9.0,26.3455,0.2347,46.971,0.3093,5
+FD001,alarm on lower interval bound,10.0,27.3356,0.2359,47.9514,0.3178,5
+FD001,alarm on lower interval bound,11.0,28.3503,0.2211,48.9021,0.2854,5
+FD001,alarm on lower interval bound,12.0,29.3552,0.2568,49.9039,0.2983,5
+FD001,alarm on lower interval bound,13.0,30.3957,0.2321,50.9015,0.305,5
+FD001,alarm on lower interval bound,14.0,31.4414,0.2096,51.9129,0.3185,5
+FD001,alarm on lower interval bound,15.0,32.4789,0.2391,53.0041,0.3133,5
+FD001,alarm on lower interval bound,16.0,33.4564,0.2301,53.9888,0.2918,5
+FD001,alarm on lower interval bound,17.0,34.4105,0.2424,55.0074,0.3,5
+FD001,alarm on lower interval bound,18.0,35.4526,0.2352,56.0174,0.3111,5
+FD001,alarm on lower interval bound,19.0,36.4461,0.229,57.0242,0.3109,5
+FD001,alarm on lower interval bound,20.0,37.4365,0.2721,58.1473,0.2824,5
+FD001,alarm on lower interval bound,21.0,38.4796,0.316,59.3768,0.32,5
+FD001,alarm on lower interval bound,22.0,39.7081,0.2774,60.37,0.299,5
+FD001,alarm on lower interval bound,23.0,40.7339,0.2444,61.361,0.3159,5
+FD001,alarm on lower interval bound,24.0,41.7214,0.2379,62.3972,0.2927,5
+FD001,alarm on lower interval bound,25.0,42.8546,0.2489,63.4004,0.3143,5
+FD001,alarm on lower interval bound,26.0,43.9125,0.2684,64.4571,0.342,5
+FD001,alarm on lower interval bound,27.0,44.9596,0.2165,65.5189,0.2892,5
+FD001,alarm on lower interval bound,28.0,45.9455,0.2436,66.6104,0.4042,5
+FD001,alarm on lower interval bound,29.0,46.9392,0.2031,67.6589,0.3558,5
+FD001,alarm on lower interval bound,30.0,47.8892,0.2384,68.6598,0.3256,5
+FD001,alarm on lower interval bound,31.0,48.8692,0.2252,69.7635,0.3333,5
+FD001,alarm on lower interval bound,32.0,49.8335,0.2418,70.7251,0.3132,5
+FD001,alarm on lower interval bound,33.0,50.8122,0.3291,71.73,0.3838,5
+FD001,alarm on lower interval bound,34.0,51.9101,0.255,72.8051,0.2845,5
+FD001,alarm on lower interval bound,35.0,52.8896,0.2724,74.1456,0.3588,5
+FD001,alarm on lower interval bound,36.0,53.86,0.2612,75.3784,0.3952,5
+FD001,alarm on lower interval bound,37.0,54.8467,0.3218,76.3658,0.2888,5
+FD001,alarm on lower interval bound,38.0,55.9206,0.333,77.472,0.3488,5
+FD001,alarm on lower interval bound,39.0,57.0649,0.3929,78.5294,0.2983,5
+FD001,alarm on lower interval bound,40.0,58.4069,0.3971,79.4424,0.3116,5
+FD001,alarm on lower interval bound,41.0,59.5895,0.2811,80.3815,0.3499,5
+FD001,alarm on lower interval bound,42.0,60.9629,0.1527,81.4737,0.4244,5
+FD001,alarm on lower interval bound,43.0,62.2356,0.1046,82.596,0.352,5
+FD001,alarm on lower interval bound,44.0,63.3572,0.2586,83.6285,0.4379,5
+FD001,alarm on lower interval bound,45.0,64.6351,0.2521,84.5905,0.3191,5
+FD001,alarm on lower interval bound,46.0,65.7142,0.1851,85.862,0.5182,5
+FD001,alarm on lower interval bound,47.0,66.8293,0.1757,87.1683,0.6229,5
+FD001,alarm on lower interval bound,48.0,67.9735,0.2767,88.8232,0.5105,5
+FD001,alarm on lower interval bound,49.0,69.126,0.3355,90.6971,0.3795,5
+FD001,alarm on lower interval bound,50.0,70.338,0.3605,92.4475,0.1955,5
+FD001,alarm on lower interval bound,51.0,71.54,0.448,93.8839,0.4951,5
+FD001,alarm on lower interval bound,52.0,72.7036,0.2799,94.9269,0.5115,5
+FD001,alarm on lower interval bound,53.0,73.9287,0.4154,95.9388,0.4205,5
+FD001,alarm on lower interval bound,54.0,75.2115,0.3536,97.1095,0.5747,5
+FD001,alarm on lower interval bound,55.0,76.8494,0.6984,99.0026,0.5519,5
+FD001,alarm on lower interval bound,56.0,78.4614,0.239,100.1378,1.0263,5
+FD001,alarm on lower interval bound,57.0,80.9328,0.6375,101.8132,0.4635,5
+FD001,alarm on lower interval bound,58.0,82.7544,0.4278,103.3918,0.8242,5
+FD001,alarm on lower interval bound,59.0,84.9237,1.0331,105.1372,0.5279,5
+FD001,alarm on lower interval bound,60.0,87.1084,0.7846,106.8664,0.4346,5
+FD001,alarm on lower interval bound,61.0,89.3183,0.8338,109.8951,0.9337,5
+FD001,alarm on lower interval bound,62.0,91.3999,0.6229,111.4691,0.8594,5
+FD001,alarm on lower interval bound,63.0,92.7406,0.5192,113.3127,0.4079,5
+FD001,alarm on lower interval bound,64.0,94.4025,0.5669,114.7881,0.3489,5
+FD001,alarm on lower interval bound,65.0,95.7838,0.7892,116.1058,0.7397,5
+FD001,alarm on lower interval bound,66.0,97.9279,0.6862,117.8861,0.9265,5
+FD001,alarm on lower interval bound,67.0,99.4216,0.4306,119.1053,1.0885,5
+FD001,alarm on lower interval bound,68.0,101.4636,0.2234,121.5445,1.0765,5
+FD001,alarm on lower interval bound,69.0,102.8642,0.2779,124.571,1.2315,5
+FD001,alarm on lower interval bound,70.0,104.585,0.3299,126.4333,1.4971,5
+FD001,alarm on lower interval bound,71.0,106.287,0.2318,127.9361,0.8655,5
+FD001,alarm on lower interval bound,72.0,107.886,0.3131,129.1194,0.6523,5
+FD001,alarm on lower interval bound,73.0,109.313,0.3767,130.552,0.674,5
+FD001,alarm on lower interval bound,74.0,111.067,0.6968,131.8136,0.8809,5
+FD001,alarm on lower interval bound,75.0,112.8301,0.5264,133.2202,0.5327,5
+FD001,alarm on lower interval bound,76.0,114.2607,0.4522,134.5917,0.7226,5
+FD001,alarm on lower interval bound,77.0,115.8362,0.5094,135.9256,0.7266,5
+FD001,alarm on lower interval bound,78.0,117.4588,0.579,137.2725,0.7141,5
+FD001,alarm on lower interval bound,79.0,119.8057,0.9232,138.1869,0.4842,5
+FD001,alarm on lower interval bound,80.0,121.5107,0.6803,139.409,0.46,5
+FD001,alarm on lower interval bound,81.0,123.1117,0.3765,140.5406,0.584,5
+FD001,alarm on lower interval bound,82.0,125.1086,0.197,141.9532,0.5097,5
+FD001,alarm on lower interval bound,83.0,126.9874,0.5558,143.8608,0.8386,5
+FD001,alarm on lower interval bound,84.0,128.9115,1.1414,145.4345,0.5836,5
+FD001,alarm on lower interval bound,85.0,130.5672,0.9711,146.909,0.8827,5
+FD001,alarm on lower interval bound,86.0,132.2103,0.99,149.012,1.0664,5
+FD001,alarm on lower interval bound,87.0,134.6751,0.9872,150.4059,1.5608,5
+FD001,alarm on lower interval bound,88.0,136.1638,1.3168,151.9234,1.2251,5
+FD001,alarm on lower interval bound,89.0,138.1113,0.9166,153.5547,1.2062,5
+FD001,alarm on lower interval bound,90.0,139.7623,1.0254,155.2134,1.6056,5
+FD001,alarm on lower interval bound,91.0,141.5572,0.8951,158.3341,2.1208,5
+FD001,alarm on lower interval bound,92.0,143.1059,0.8832,160.7104,2.3568,5
+FD001,alarm on lower interval bound,93.0,144.6444,0.7198,162.1539,2.2813,5
+FD001,alarm on lower interval bound,94.0,145.9265,0.8573,163.6209,2.4652,5
+FD001,alarm on lower interval bound,95.0,147.2688,0.689,164.9578,2.2871,5
+FD001,alarm on lower interval bound,96.0,148.7999,0.737,167.4487,3.7845,5
+FD001,alarm on lower interval bound,97.0,150.3366,1.0847,169.9952,3.0073,5
+FD001,alarm on lower interval bound,98.0,151.9351,1.1617,172.0315,2.4442,5
+FD001,alarm on lower interval bound,99.0,153.9138,1.3954,173.8372,2.4083,5
+FD001,alarm on lower interval bound,100.0,155.5337,1.5266,175.3076,1.6146,5
+FD001,alarm on lower interval bound,101.0,157.1873,1.6858,176.8103,1.9908,5
+FD001,alarm on lower interval bound,102.0,159.4239,2.1201,178.9186,2.0105,5
+FD001,alarm on lower interval bound,103.0,162.2049,2.3576,182.2893,2.4435,5
+FD001,alarm on lower interval bound,104.0,165.0018,2.6857,185.0259,2.3921,5
+FD001,alarm on lower interval bound,105.0,167.4565,2.3643,186.9775,2.2393,5
+FD001,alarm on lower interval bound,106.0,169.7773,1.5384,189.4454,2.7961,5
+FD001,alarm on lower interval bound,107.0,172.9128,1.903,192.0947,2.5995,5
+FD001,alarm on lower interval bound,108.0,175.7924,2.7136,193.7776,2.6495,5
+FD001,alarm on lower interval bound,109.0,178.2634,2.6622,196.071,2.9157,5
+FD001,alarm on lower interval bound,110.0,180.6936,2.5347,198.1411,3.7294,5
+FD001,alarm on lower interval bound,111.0,182.9069,1.946,201.0367,2.6429,5
+FD001,alarm on lower interval bound,112.0,185.4284,1.7898,203.2003,1.9331,5
+FD001,alarm on lower interval bound,113.0,188.098,1.8959,205.2703,2.4345,5
+FD001,alarm on lower interval bound,114.0,190.518,2.0632,206.6431,1.5542,5
+FD001,alarm on lower interval bound,115.0,193.474,1.7362,207.123,1.3205,5
+FD001,alarm on lower interval bound,116.0,195.988,1.5366,207.9573,1.4229,5
+FD001,alarm on lower interval bound,117.0,198.68,1.3459,212.0269,2.5052,5
+FD001,alarm on lower interval bound,118.0,201.016,0.7129,212.616,1.582,5
+FD001,alarm on lower interval bound,119.0,202.84,0.686,213.5357,0.7975,5
+FD001,alarm on lower interval bound,120.0,203.766,0.302,213.9628,0.0757,5
+FD001,alarm on lower interval bound,121.0,204.242,0.3474,214.0356,0.0417,5
+FD001,alarm on lower interval bound,122.0,204.676,0.1869,214.1677,0.0757,5
+FD001,alarm on lower interval bound,123.0,204.958,0.0642,214.3191,0.0272,5
+FD001,alarm on lower interval bound,124.0,205.192,0.0277,214.4104,0.082,5
+FD001,alarm on lower interval bound,125.0,205.48,0.0,214.7,0.0,5
+FD002,alarm on predicted RUL,0.0,53.4344,0.2837,63.092,0.1916,5
+FD002,alarm on predicted RUL,1.0,50.0259,1.1744,60.6829,0.1895,5
+FD002,alarm on predicted RUL,2.0,47.4245,1.2124,58.5316,0.2216,5
+FD002,alarm on predicted RUL,3.0,44.8549,0.7185,56.4531,0.2103,5
+FD002,alarm on predicted RUL,4.0,42.4124,0.7024,54.6811,0.1984,5
+FD002,alarm on predicted RUL,5.0,39.8268,0.5773,53.2469,0.1271,5
+FD002,alarm on predicted RUL,6.0,38.8208,0.2674,52.1105,0.2121,5
+FD002,alarm on predicted RUL,7.0,38.1335,0.5452,51.1856,0.1604,5
+FD002,alarm on predicted RUL,8.0,37.3887,0.5262,50.5096,0.0967,5
+FD002,alarm on predicted RUL,9.0,37.1529,0.8029,49.8194,0.1216,5
+FD002,alarm on predicted RUL,10.0,36.9116,0.2822,49.2409,0.0613,5
+FD002,alarm on predicted RUL,11.0,36.35,0.4925,48.7068,0.0919,5
+FD002,alarm on predicted RUL,12.0,36.3884,0.2844,48.2487,0.08,5
+FD002,alarm on predicted RUL,13.0,35.9472,0.4366,47.9075,0.1059,5
+FD002,alarm on predicted RUL,14.0,35.0016,0.3259,47.7375,0.1041,5
+FD002,alarm on predicted RUL,15.0,35.4087,0.2244,47.5567,0.133,5
+FD002,alarm on predicted RUL,16.0,35.5513,0.3866,47.3704,0.1197,5
+FD002,alarm on predicted RUL,17.0,35.8791,0.248,47.2196,0.0965,5
+FD002,alarm on predicted RUL,18.0,35.7953,0.269,47.1308,0.1164,5
+FD002,alarm on predicted RUL,19.0,36.0255,0.4617,47.0721,0.0778,5
+FD002,alarm on predicted RUL,20.0,36.4773,0.2495,47.092,0.1029,5
+FD002,alarm on predicted RUL,21.0,36.8711,0.2256,47.1027,0.0832,5
+FD002,alarm on predicted RUL,22.0,37.076,0.3838,47.011,0.1034,5
+FD002,alarm on predicted RUL,23.0,37.4592,0.458,47.0632,0.093,5
+FD002,alarm on predicted RUL,24.0,37.2028,0.1708,47.2866,0.0691,5
+FD002,alarm on predicted RUL,25.0,37.2371,0.3633,47.431,0.1112,5
+FD002,alarm on predicted RUL,26.0,38.0593,0.3834,47.6918,0.102,5
+FD002,alarm on predicted RUL,27.0,38.3653,0.3319,48.0231,0.1223,5
+FD002,alarm on predicted RUL,28.0,38.9843,0.3214,48.3282,0.0864,5
+FD002,alarm on predicted RUL,29.0,39.8806,0.3098,48.6355,0.0572,5
+FD002,alarm on predicted RUL,30.0,40.6192,0.2092,48.9837,0.0939,5
+FD002,alarm on predicted RUL,31.0,41.3238,0.4519,49.2816,0.127,5
+FD002,alarm on predicted RUL,32.0,41.9872,0.1635,49.7509,0.1229,5
+FD002,alarm on predicted RUL,33.0,42.4172,0.164,50.2331,0.0762,5
+FD002,alarm on predicted RUL,34.0,42.9937,0.2367,50.7899,0.1324,5
+FD002,alarm on predicted RUL,35.0,43.8249,0.1356,51.5211,0.106,5
+FD002,alarm on predicted RUL,36.0,44.4585,0.1093,52.0796,0.0916,5
+FD002,alarm on predicted RUL,37.0,45.4085,0.0685,52.7329,0.2126,5
+FD002,alarm on predicted RUL,38.0,46.4718,0.1394,53.4099,0.1708,5
+FD002,alarm on predicted RUL,39.0,47.4998,0.1771,54.1168,0.1298,5
+FD002,alarm on predicted RUL,40.0,48.275,0.3102,54.938,0.2113,5
+FD002,alarm on predicted RUL,41.0,49.2291,0.2912,55.7918,0.1186,5
+FD002,alarm on predicted RUL,42.0,50.2482,0.2294,56.687,0.1134,5
+FD002,alarm on predicted RUL,43.0,51.3242,0.1681,57.5524,0.1095,5
+FD002,alarm on predicted RUL,44.0,52.414,0.1461,58.4353,0.0616,5
+FD002,alarm on predicted RUL,45.0,53.4484,0.2183,59.2993,0.1492,5
+FD002,alarm on predicted RUL,46.0,54.4557,0.1247,60.161,0.1493,5
+FD002,alarm on predicted RUL,47.0,55.5258,0.0549,60.9433,0.1897,5
+FD002,alarm on predicted RUL,48.0,56.6042,0.1222,61.8288,0.185,5
+FD002,alarm on predicted RUL,49.0,57.6355,0.1183,62.783,0.1242,5
+FD002,alarm on predicted RUL,50.0,58.7372,0.1067,63.8006,0.2926,5
+FD002,alarm on predicted RUL,51.0,59.7535,0.0968,64.7399,0.3321,5
+FD002,alarm on predicted RUL,52.0,60.8013,0.1659,65.6678,0.283,5
+FD002,alarm on predicted RUL,53.0,61.7582,0.1833,66.5117,0.2564,5
+FD002,alarm on predicted RUL,54.0,62.7702,0.1762,67.4105,0.1307,5
+FD002,alarm on predicted RUL,55.0,63.8431,0.1917,68.3899,0.1418,5
+FD002,alarm on predicted RUL,56.0,64.9284,0.2585,69.2899,0.0563,5
+FD002,alarm on predicted RUL,57.0,65.927,0.1982,70.161,0.0533,5
+FD002,alarm on predicted RUL,58.0,66.9626,0.1633,71.1265,0.1356,5
+FD002,alarm on predicted RUL,59.0,68.0304,0.1285,72.2257,0.3357,5
+FD002,alarm on predicted RUL,60.0,69.1432,0.1905,73.2791,0.3024,5
+FD002,alarm on predicted RUL,61.0,70.2324,0.2949,74.508,0.411,5
+FD002,alarm on predicted RUL,62.0,71.4026,0.3307,75.605,0.2217,5
+FD002,alarm on predicted RUL,63.0,72.4418,0.2955,76.8583,0.3192,5
+FD002,alarm on predicted RUL,64.0,73.7474,0.1431,78.0616,0.4718,5
+FD002,alarm on predicted RUL,65.0,74.989,0.2638,79.0218,0.34,5
+FD002,alarm on predicted RUL,66.0,76.3674,0.2977,80.0765,0.2803,5
+FD002,alarm on predicted RUL,67.0,77.6068,0.2145,81.1774,0.3706,5
+FD002,alarm on predicted RUL,68.0,78.9158,0.189,82.574,0.5519,5
+FD002,alarm on predicted RUL,69.0,80.2858,0.315,83.6651,0.4458,5
+FD002,alarm on predicted RUL,70.0,81.5396,0.2582,84.8069,0.2355,5
+FD002,alarm on predicted RUL,71.0,82.6821,0.298,85.9329,0.3964,5
+FD002,alarm on predicted RUL,72.0,83.7746,0.1568,87.0197,0.1963,5
+FD002,alarm on predicted RUL,73.0,84.9699,0.226,88.3034,0.3843,5
+FD002,alarm on predicted RUL,74.0,86.171,0.174,89.3614,0.2763,5
+FD002,alarm on predicted RUL,75.0,87.1973,0.2244,90.5079,0.4835,5
+FD002,alarm on predicted RUL,76.0,88.4582,0.2684,91.8905,0.6503,5
+FD002,alarm on predicted RUL,77.0,89.985,0.2225,92.9376,0.4151,5
+FD002,alarm on predicted RUL,78.0,91.1867,0.2604,94.0545,0.3573,5
+FD002,alarm on predicted RUL,79.0,92.422,0.2981,95.2194,0.3354,5
+FD002,alarm on predicted RUL,80.0,93.6691,0.236,96.1541,0.425,5
+FD002,alarm on predicted RUL,81.0,94.8766,0.1949,97.5276,0.1879,5
+FD002,alarm on predicted RUL,82.0,96.0914,0.2496,98.6118,0.2211,5
+FD002,alarm on predicted RUL,83.0,97.4165,0.6167,99.4892,0.2505,5
+FD002,alarm on predicted RUL,84.0,98.9414,0.378,100.4797,0.1908,5
+FD002,alarm on predicted RUL,85.0,100.5368,0.4878,101.2965,0.0788,5
+FD002,alarm on predicted RUL,86.0,101.7012,0.5933,102.1745,0.1317,5
+FD002,alarm on predicted RUL,87.0,102.952,0.5832,103.2011,0.258,5
+FD002,alarm on predicted RUL,88.0,104.2975,0.3032,104.0386,0.2055,5
+FD002,alarm on predicted RUL,89.0,105.8109,0.3072,105.0177,0.3156,5
+FD002,alarm on predicted RUL,90.0,106.8593,0.2818,106.114,0.3155,5
+FD002,alarm on predicted RUL,91.0,107.9387,0.23,107.2921,0.3043,5
+FD002,alarm on predicted RUL,92.0,109.2252,0.2393,108.4079,0.4497,5
+FD002,alarm on predicted RUL,93.0,110.4279,0.2251,109.4419,0.3768,5
+FD002,alarm on predicted RUL,94.0,111.5465,0.253,110.5271,0.1236,5
+FD002,alarm on predicted RUL,95.0,112.6527,0.294,111.4332,0.2012,5
+FD002,alarm on predicted RUL,96.0,113.8939,0.4524,112.395,0.1824,5
+FD002,alarm on predicted RUL,97.0,115.1095,0.4653,113.3544,0.1309,5
+FD002,alarm on predicted RUL,98.0,116.6877,0.4503,114.3795,0.323,5
+FD002,alarm on predicted RUL,99.0,117.9636,0.5115,115.7034,0.5364,5
+FD002,alarm on predicted RUL,100.0,119.511,0.2226,117.3112,0.5745,5
+FD002,alarm on predicted RUL,101.0,121.0268,0.298,118.935,0.2636,5
+FD002,alarm on predicted RUL,102.0,122.6041,0.3762,120.5247,0.4352,5
+FD002,alarm on predicted RUL,103.0,123.9021,0.4509,122.3486,0.7689,5
+FD002,alarm on predicted RUL,104.0,126.1767,0.4944,124.0598,0.6451,5
+FD002,alarm on predicted RUL,105.0,128.2357,0.6627,125.8571,0.3147,5
+FD002,alarm on predicted RUL,106.0,130.5455,0.5447,127.7602,0.9121,5
+FD002,alarm on predicted RUL,107.0,133.3245,0.4135,130.0734,1.3727,5
+FD002,alarm on predicted RUL,108.0,135.5386,0.4053,132.8101,0.9943,5
+FD002,alarm on predicted RUL,109.0,137.9082,0.6131,135.1239,0.8107,5
+FD002,alarm on predicted RUL,110.0,140.1624,0.4553,138.0327,0.7398,5
+FD002,alarm on predicted RUL,111.0,142.9296,0.8922,139.931,0.6511,5
+FD002,alarm on predicted RUL,112.0,146.3014,0.6008,142.377,0.487,5
+FD002,alarm on predicted RUL,113.0,149.2671,0.502,145.2176,0.4218,5
+FD002,alarm on predicted RUL,114.0,152.3767,0.4637,147.582,0.6402,5
+FD002,alarm on predicted RUL,115.0,155.9444,0.6909,150.3996,1.2168,5
+FD002,alarm on predicted RUL,116.0,159.6566,0.5537,153.8785,1.241,5
+FD002,alarm on predicted RUL,117.0,163.645,0.717,157.038,1.654,5
+FD002,alarm on predicted RUL,118.0,168.6004,0.6166,161.93,2.1372,5
+FD002,alarm on predicted RUL,119.0,173.7538,0.6153,166.2652,1.5126,5
+FD002,alarm on predicted RUL,120.0,179.4992,0.5892,170.6965,0.6758,5
+FD002,alarm on predicted RUL,121.0,185.9933,0.6782,175.3876,1.2993,5
+FD002,alarm on predicted RUL,122.0,192.1519,0.8611,180.8729,1.5612,5
+FD002,alarm on predicted RUL,123.0,198.7996,0.5813,186.3478,0.5503,5
+FD002,alarm on predicted RUL,124.0,205.284,0.4958,192.1336,0.9695,5
+FD002,alarm on predicted RUL,125.0,211.4247,0.0,198.1731,0.0,5
+FD002,alarm on lower interval bound,0.0,34.4423,0.5038,44.2864,0.2396,5
+FD002,alarm on lower interval bound,1.0,33.9203,0.3405,43.1639,0.1457,5
+FD002,alarm on lower interval bound,2.0,33.7891,0.4579,42.6373,0.2108,5
+FD002,alarm on lower interval bound,3.0,34.3488,0.4621,42.3506,0.2479,5
+FD002,alarm on lower interval bound,4.0,34.7641,0.6605,42.2825,0.1827,5
+FD002,alarm on lower interval bound,5.0,35.2042,0.5128,42.4219,0.0993,5
+FD002,alarm on lower interval bound,6.0,35.9799,0.3836,42.7246,0.1297,5
+FD002,alarm on lower interval bound,7.0,36.6033,0.364,43.0966,0.1484,5
+FD002,alarm on lower interval bound,8.0,37.3564,0.3903,43.5302,0.1553,5
+FD002,alarm on lower interval bound,9.0,38.1107,0.3987,44.0232,0.1592,5
+FD002,alarm on lower interval bound,10.0,38.7666,0.409,44.68,0.116,5
+FD002,alarm on lower interval bound,11.0,39.6286,0.3248,45.3336,0.1344,5
+FD002,alarm on lower interval bound,12.0,40.2838,0.3402,45.9868,0.1484,5
+FD002,alarm on lower interval bound,13.0,41.2911,0.3373,46.663,0.1704,5
+FD002,alarm on lower interval bound,14.0,42.2892,0.3492,47.2814,0.1441,5
+FD002,alarm on lower interval bound,15.0,43.3655,0.3408,47.9303,0.1648,5
+FD002,alarm on lower interval bound,16.0,44.2567,0.6122,48.5589,0.1343,5
+FD002,alarm on lower interval bound,17.0,45.0037,0.4281,49.2441,0.099,5
+FD002,alarm on lower interval bound,18.0,45.8294,0.359,50.0095,0.0781,5
+FD002,alarm on lower interval bound,19.0,46.8748,0.3025,50.8844,0.0915,5
+FD002,alarm on lower interval bound,20.0,47.9859,0.287,51.7619,0.1413,5
+FD002,alarm on lower interval bound,21.0,48.8758,0.4664,52.712,0.2481,5
+FD002,alarm on lower interval bound,22.0,49.7891,0.3682,53.6505,0.3069,5
+FD002,alarm on lower interval bound,23.0,50.8059,0.3061,54.6565,0.2667,5
+FD002,alarm on lower interval bound,24.0,51.9134,0.2972,55.5589,0.2662,5
+FD002,alarm on lower interval bound,25.0,53.1002,0.3297,56.6101,0.2313,5
+FD002,alarm on lower interval bound,26.0,54.2113,0.2664,57.7045,0.2506,5
+FD002,alarm on lower interval bound,27.0,55.4651,0.3276,58.7681,0.1998,5
+FD002,alarm on lower interval bound,28.0,56.6019,0.2619,59.8057,0.1944,5
+FD002,alarm on lower interval bound,29.0,57.7202,0.3637,60.8708,0.1905,5
+FD002,alarm on lower interval bound,30.0,58.8956,0.3371,61.9864,0.2052,5
+FD002,alarm on lower interval bound,31.0,60.2119,0.3044,63.0602,0.2596,5
+FD002,alarm on lower interval bound,32.0,61.3986,0.3614,64.1321,0.2852,5
+FD002,alarm on lower interval bound,33.0,62.7382,0.4094,65.2159,0.2378,5
+FD002,alarm on lower interval bound,34.0,64.1255,0.3647,66.354,0.2187,5
+FD002,alarm on lower interval bound,35.0,65.5624,0.5272,67.4676,0.2694,5
+FD002,alarm on lower interval bound,36.0,66.8768,0.4648,68.713,0.3065,5
+FD002,alarm on lower interval bound,37.0,68.2473,0.4583,69.9131,0.2114,5
+FD002,alarm on lower interval bound,38.0,69.4393,0.3825,71.0546,0.247,5
+FD002,alarm on lower interval bound,39.0,70.6076,0.4319,72.0722,0.2072,5
+FD002,alarm on lower interval bound,40.0,72.0006,0.3053,73.2979,0.2717,5
+FD002,alarm on lower interval bound,41.0,73.3632,0.2605,74.5858,0.2641,5
+FD002,alarm on lower interval bound,42.0,74.9441,0.5081,75.7517,0.2752,5
+FD002,alarm on lower interval bound,43.0,76.6469,0.403,77.1068,0.3273,5
+FD002,alarm on lower interval bound,44.0,77.9868,0.3598,78.5201,0.3069,5
+FD002,alarm on lower interval bound,45.0,79.3097,0.3874,80.0189,0.2442,5
+FD002,alarm on lower interval bound,46.0,81.0305,0.3037,81.5695,0.3846,5
+FD002,alarm on lower interval bound,47.0,82.7646,0.1363,83.0181,0.4121,5
+FD002,alarm on lower interval bound,48.0,84.1968,0.2522,84.5933,0.4051,5
+FD002,alarm on lower interval bound,49.0,86.1195,0.2829,85.8524,0.2997,5
+FD002,alarm on lower interval bound,50.0,87.9643,0.2932,87.1487,0.4223,5
+FD002,alarm on lower interval bound,51.0,89.5947,0.3054,88.457,0.3703,5
+FD002,alarm on lower interval bound,52.0,91.1624,0.1236,89.9008,0.3639,5
+FD002,alarm on lower interval bound,53.0,92.8831,0.346,91.1489,0.3681,5
+FD002,alarm on lower interval bound,54.0,94.8893,0.4703,92.5387,0.2209,5
+FD002,alarm on lower interval bound,55.0,96.7169,0.5143,94.0529,0.4278,5
+FD002,alarm on lower interval bound,56.0,98.5294,0.653,95.3318,0.4046,5
+FD002,alarm on lower interval bound,57.0,100.2968,0.3882,96.4052,0.4907,5
+FD002,alarm on lower interval bound,58.0,101.9883,0.2699,98.1242,0.4457,5
+FD002,alarm on lower interval bound,59.0,103.4777,0.4455,99.5018,0.3651,5
+FD002,alarm on lower interval bound,60.0,105.196,0.5861,100.9076,0.4586,5
+FD002,alarm on lower interval bound,61.0,106.8993,0.5359,102.128,0.3786,5
+FD002,alarm on lower interval bound,62.0,108.3876,0.6302,103.1853,0.3523,5
+FD002,alarm on lower interval bound,63.0,109.962,0.7696,104.7988,0.8035,5
+FD002,alarm on lower interval bound,64.0,111.5494,0.7287,106.223,0.7693,5
+FD002,alarm on lower interval bound,65.0,113.1314,0.68,108.2752,0.6759,5
+FD002,alarm on lower interval bound,66.0,114.7936,1.029,109.7492,0.694,5
+FD002,alarm on lower interval bound,67.0,116.4088,0.986,111.1747,0.4682,5
+FD002,alarm on lower interval bound,68.0,118.161,1.0124,112.5092,0.4201,5
+FD002,alarm on lower interval bound,69.0,119.8667,0.731,113.6095,0.49,5
+FD002,alarm on lower interval bound,70.0,121.4154,0.6334,114.8947,0.4232,5
+FD002,alarm on lower interval bound,71.0,122.788,0.8222,116.4532,0.4351,5
+FD002,alarm on lower interval bound,72.0,124.3618,0.7798,117.7511,0.3076,5
+FD002,alarm on lower interval bound,73.0,125.8084,0.866,119.0662,0.4621,5
+FD002,alarm on lower interval bound,74.0,127.2559,0.9593,120.2344,0.6382,5
+FD002,alarm on lower interval bound,75.0,129.1324,0.9823,121.5542,0.4011,5
+FD002,alarm on lower interval bound,76.0,130.8609,1.1164,122.7965,0.6619,5
+FD002,alarm on lower interval bound,77.0,132.748,1.35,124.0833,0.7557,5
+FD002,alarm on lower interval bound,78.0,134.3853,1.5643,125.452,0.6535,5
+FD002,alarm on lower interval bound,79.0,136.0657,1.4745,126.7318,0.6613,5
+FD002,alarm on lower interval bound,80.0,137.5762,1.4424,128.0372,0.6645,5
+FD002,alarm on lower interval bound,81.0,138.9892,1.3798,129.2872,0.6107,5
+FD002,alarm on lower interval bound,82.0,140.2496,1.3282,130.6918,0.553,5
+FD002,alarm on lower interval bound,83.0,141.6573,1.2355,131.7687,0.5372,5
+FD002,alarm on lower interval bound,84.0,142.9894,1.0263,133.05,0.5028,5
+FD002,alarm on lower interval bound,85.0,144.0404,0.9525,134.3137,0.7198,5
+FD002,alarm on lower interval bound,86.0,145.119,0.891,135.4032,0.6661,5
+FD002,alarm on lower interval bound,87.0,146.1648,0.7671,136.7716,0.6432,5
+FD002,alarm on lower interval bound,88.0,147.3766,0.564,138.0137,0.3279,5
+FD002,alarm on lower interval bound,89.0,148.5628,0.5318,138.9345,0.2468,5
+FD002,alarm on lower interval bound,90.0,149.9276,0.5598,139.7977,0.2732,5
+FD002,alarm on lower interval bound,91.0,151.0677,0.5635,140.7854,0.3453,5
+FD002,alarm on lower interval bound,92.0,152.2575,0.4854,141.7093,0.3572,5
+FD002,alarm on lower interval bound,93.0,153.4343,0.6095,142.6863,0.2892,5
+FD002,alarm on lower interval bound,94.0,154.7388,0.6232,143.7804,0.5147,5
+FD002,alarm on lower interval bound,95.0,156.1182,0.5723,144.8279,0.5686,5
+FD002,alarm on lower interval bound,96.0,157.5508,0.7646,146.1044,0.5634,5
+FD002,alarm on lower interval bound,97.0,159.2712,0.683,147.7674,0.9911,5
+FD002,alarm on lower interval bound,98.0,160.852,0.7698,149.3437,0.9361,5
+FD002,alarm on lower interval bound,99.0,162.4219,0.6034,150.8513,0.859,5
+FD002,alarm on lower interval bound,100.0,163.9685,0.4106,152.5944,1.233,5
+FD002,alarm on lower interval bound,101.0,165.9087,0.4462,154.6635,1.5916,5
+FD002,alarm on lower interval bound,102.0,167.6335,0.6478,157.1976,0.784,5
+FD002,alarm on lower interval bound,103.0,169.6967,0.8768,159.3986,1.0611,5
+FD002,alarm on lower interval bound,104.0,171.5863,0.8976,160.9591,0.8801,5
+FD002,alarm on lower interval bound,105.0,174.0468,0.8341,162.3605,0.2405,5
+FD002,alarm on lower interval bound,106.0,176.2078,0.8618,163.9411,0.7148,5
+FD002,alarm on lower interval bound,107.0,178.5698,0.9275,165.7549,0.4542,5
+FD002,alarm on lower interval bound,108.0,180.6487,1.3613,167.8716,1.144,5
+FD002,alarm on lower interval bound,109.0,183.171,1.0724,170.0596,1.318,5
+FD002,alarm on lower interval bound,110.0,185.5527,1.1585,172.6375,1.4207,5
+FD002,alarm on lower interval bound,111.0,188.1026,1.4063,174.2548,1.2545,5
+FD002,alarm on lower interval bound,112.0,190.6729,1.3602,176.5334,1.4256,5
+FD002,alarm on lower interval bound,113.0,193.076,1.2465,178.6171,1.9794,5
+FD002,alarm on lower interval bound,114.0,195.5173,1.4025,181.9059,2.6699,5
+FD002,alarm on lower interval bound,115.0,198.2642,1.3605,184.9598,1.8147,5
+FD002,alarm on lower interval bound,116.0,200.9342,1.3963,188.6647,2.2623,5
+FD002,alarm on lower interval bound,117.0,203.5315,1.5654,191.381,0.8153,5
+FD002,alarm on lower interval bound,118.0,205.6994,1.1858,193.1256,0.6818,5
+FD002,alarm on lower interval bound,119.0,207.649,0.477,194.3892,0.8032,5
+FD002,alarm on lower interval bound,120.0,208.8921,0.2226,195.2299,0.3088,5
+FD002,alarm on lower interval bound,121.0,209.6116,0.2364,196.3188,0.2341,5
+FD002,alarm on lower interval bound,122.0,210.3753,0.0975,197.1557,0.1873,5
+FD002,alarm on lower interval bound,123.0,210.8988,0.0699,197.6571,0.1165,5
+FD002,alarm on lower interval bound,124.0,211.2015,0.0084,197.9549,0.0289,5
+FD002,alarm on lower interval bound,125.0,211.4247,0.0,198.1731,0.0,5
+FD003,alarm on predicted RUL,0.0,61.5583,2.0375,72.9229,0.3034,5
+FD003,alarm on predicted RUL,1.0,53.8345,2.1962,69.7523,0.466,5
+FD003,alarm on predicted RUL,2.0,47.7871,1.9456,67.2269,0.3746,5
+FD003,alarm on predicted RUL,3.0,42.9973,1.5243,65.0103,0.4192,5
+FD003,alarm on predicted RUL,4.0,39.8462,1.4682,63.1585,0.3866,5
+FD003,alarm on predicted RUL,5.0,38.5256,1.1187,61.8467,0.6478,5
+FD003,alarm on predicted RUL,6.0,37.0215,0.5956,60.994,0.4898,5
+FD003,alarm on predicted RUL,7.0,36.1258,0.8995,60.4943,0.4054,5
+FD003,alarm on predicted RUL,8.0,34.0586,0.7081,60.1868,0.3113,5
+FD003,alarm on predicted RUL,9.0,33.85,0.6789,59.981,0.2337,5
+FD003,alarm on predicted RUL,10.0,32.8244,0.8284,59.9879,0.1715,5
+FD003,alarm on predicted RUL,11.0,31.8224,1.1247,59.9486,0.2215,5
+FD003,alarm on predicted RUL,12.0,31.505,1.2564,60.1126,0.3214,5
+FD003,alarm on predicted RUL,13.0,31.7212,0.8345,60.2813,0.2417,5
+FD003,alarm on predicted RUL,14.0,31.5489,1.2698,60.6378,0.2257,5
+FD003,alarm on predicted RUL,15.0,30.9662,0.7973,60.945,0.2723,5
+FD003,alarm on predicted RUL,16.0,30.9847,0.5467,61.2011,0.1898,5
+FD003,alarm on predicted RUL,17.0,29.6174,1.2637,61.6976,0.2354,5
+FD003,alarm on predicted RUL,18.0,28.9217,1.1331,62.0132,0.2044,5
+FD003,alarm on predicted RUL,19.0,28.6137,1.1082,62.323,0.1322,5
+FD003,alarm on predicted RUL,20.0,28.5314,1.4327,62.6913,0.1816,5
+FD003,alarm on predicted RUL,21.0,28.4428,0.5759,63.0416,0.0584,5
+FD003,alarm on predicted RUL,22.0,28.4423,0.6089,63.5062,0.1276,5
+FD003,alarm on predicted RUL,23.0,28.8032,1.1081,63.9735,0.094,5
+FD003,alarm on predicted RUL,24.0,29.1355,0.856,64.4004,0.0493,5
+FD003,alarm on predicted RUL,25.0,29.5107,0.5878,64.8743,0.1422,5
+FD003,alarm on predicted RUL,26.0,30.3984,0.6782,65.385,0.1566,5
+FD003,alarm on predicted RUL,27.0,31.0021,0.7424,66.0239,0.2252,5
+FD003,alarm on predicted RUL,28.0,31.7913,0.88,66.6696,0.1994,5
+FD003,alarm on predicted RUL,29.0,32.7393,0.841,67.244,0.2037,5
+FD003,alarm on predicted RUL,30.0,32.9678,0.6978,68.0129,0.2295,5
+FD003,alarm on predicted RUL,31.0,33.3835,0.648,68.8284,0.2631,5
+FD003,alarm on predicted RUL,32.0,34.0077,0.1138,69.7265,0.0833,5
+FD003,alarm on predicted RUL,33.0,34.9937,0.1657,70.5698,0.167,5
+FD003,alarm on predicted RUL,34.0,35.6009,0.5102,71.5794,0.2487,5
+FD003,alarm on predicted RUL,35.0,36.1446,0.9235,72.4503,0.1485,5
+FD003,alarm on predicted RUL,36.0,36.2675,0.5998,73.3919,0.2968,5
+FD003,alarm on predicted RUL,37.0,36.8105,0.0975,74.0495,0.2933,5
+FD003,alarm on predicted RUL,38.0,37.7625,0.1035,74.902,0.2547,5
+FD003,alarm on predicted RUL,39.0,38.7525,0.1921,75.7013,0.1907,5
+FD003,alarm on predicted RUL,40.0,39.7669,0.1426,76.5918,0.1349,5
+FD003,alarm on predicted RUL,41.0,40.7522,0.0954,77.5248,0.0877,5
+FD003,alarm on predicted RUL,42.0,41.7024,0.1708,78.392,0.1778,5
+FD003,alarm on predicted RUL,43.0,42.7246,0.1588,79.3114,0.1476,5
+FD003,alarm on predicted RUL,44.0,43.7834,0.1768,80.4123,0.1644,5
+FD003,alarm on predicted RUL,45.0,44.7875,0.0473,81.3466,0.2022,5
+FD003,alarm on predicted RUL,46.0,45.8439,0.0173,82.4568,0.1307,5
+FD003,alarm on predicted RUL,47.0,46.8739,0.1488,83.3579,0.0876,5
+FD003,alarm on predicted RUL,48.0,47.8679,0.125,84.2574,0.1861,5
+FD003,alarm on predicted RUL,49.0,48.9655,0.1786,85.3009,0.1749,5
+FD003,alarm on predicted RUL,50.0,50.2373,0.3405,86.1729,0.2017,5
+FD003,alarm on predicted RUL,51.0,51.3526,0.2342,87.0463,0.2119,5
+FD003,alarm on predicted RUL,52.0,52.5882,0.2058,87.9628,0.1796,5
+FD003,alarm on predicted RUL,53.0,53.7379,0.082,88.9377,0.043,5
+FD003,alarm on predicted RUL,54.0,54.6994,0.2064,89.8361,0.1413,5
+FD003,alarm on predicted RUL,55.0,55.7585,0.2332,90.6379,0.1281,5
+FD003,alarm on predicted RUL,56.0,56.7374,0.1785,91.5594,0.1682,5
+FD003,alarm on predicted RUL,57.0,57.6666,0.1859,92.3899,0.1423,5
+FD003,alarm on predicted RUL,58.0,58.567,0.1728,93.2303,0.1023,5
+FD003,alarm on predicted RUL,59.0,59.5292,0.2349,94.0646,0.0441,5
+FD003,alarm on predicted RUL,60.0,60.4937,0.2462,94.8743,0.0686,5
+FD003,alarm on predicted RUL,61.0,61.474,0.3483,95.7664,0.0742,5
+FD003,alarm on predicted RUL,62.0,62.6506,0.263,96.6947,0.1763,5
+FD003,alarm on predicted RUL,63.0,63.661,0.1261,97.7698,0.2019,5
+FD003,alarm on predicted RUL,64.0,64.6347,0.2005,98.7692,0.4249,5
+FD003,alarm on predicted RUL,65.0,65.562,0.0741,99.6938,0.5354,5
+FD003,alarm on predicted RUL,66.0,66.377,0.0847,100.8755,0.7708,5
+FD003,alarm on predicted RUL,67.0,67.3596,0.1683,102.0376,0.652,5
+FD003,alarm on predicted RUL,68.0,68.5142,0.3047,103.2537,0.5702,5
+FD003,alarm on predicted RUL,69.0,69.6428,0.5757,104.2946,0.5001,5
+FD003,alarm on predicted RUL,70.0,70.6917,0.5228,105.3184,0.509,5
+FD003,alarm on predicted RUL,71.0,71.9404,0.4571,106.3197,0.5296,5
+FD003,alarm on predicted RUL,72.0,73.2521,0.3794,107.2421,0.4761,5
+FD003,alarm on predicted RUL,73.0,74.2729,0.2845,108.3868,0.4224,5
+FD003,alarm on predicted RUL,74.0,75.3402,0.1452,109.4049,0.4775,5
+FD003,alarm on predicted RUL,75.0,76.3183,0.2513,110.6194,0.4144,5
+FD003,alarm on predicted RUL,76.0,77.2692,0.3734,112.0473,0.5314,5
+FD003,alarm on predicted RUL,77.0,78.5626,0.1206,113.4327,0.4639,5
+FD003,alarm on predicted RUL,78.0,79.513,0.0921,114.4966,0.4175,5
+FD003,alarm on predicted RUL,79.0,80.8472,0.429,115.3722,0.3886,5
+FD003,alarm on predicted RUL,80.0,81.8961,0.6553,116.4622,0.204,5
+FD003,alarm on predicted RUL,81.0,83.4489,0.8558,117.5517,0.3436,5
+FD003,alarm on predicted RUL,82.0,84.8503,0.8021,118.4146,0.3559,5
+FD003,alarm on predicted RUL,83.0,85.9683,0.8663,119.3998,0.469,5
+FD003,alarm on predicted RUL,84.0,87.2634,0.6124,120.3995,0.5439,5
+FD003,alarm on predicted RUL,85.0,88.2218,0.5712,121.3628,0.4785,5
+FD003,alarm on predicted RUL,86.0,89.3438,0.6615,122.3133,0.2327,5
+FD003,alarm on predicted RUL,87.0,90.9553,0.7797,123.3956,0.4304,5
+FD003,alarm on predicted RUL,88.0,92.3275,0.7243,124.5111,0.5757,5
+FD003,alarm on predicted RUL,89.0,93.4723,0.6839,125.7786,0.2042,5
+FD003,alarm on predicted RUL,90.0,94.7725,0.5722,126.7736,0.2492,5
+FD003,alarm on predicted RUL,91.0,96.2505,0.3632,127.7059,0.3034,5
+FD003,alarm on predicted RUL,92.0,97.1477,0.4518,128.8788,0.506,5
+FD003,alarm on predicted RUL,93.0,98.9422,0.2612,129.919,0.5077,5
+FD003,alarm on predicted RUL,94.0,99.9147,0.2193,130.9371,0.5714,5
+FD003,alarm on predicted RUL,95.0,101.147,0.2224,131.914,0.2389,5
+FD003,alarm on predicted RUL,96.0,102.6927,0.6384,132.7722,0.1172,5
+FD003,alarm on predicted RUL,97.0,103.9163,0.5093,133.7818,0.154,5
+FD003,alarm on predicted RUL,98.0,105.3583,0.8297,135.0766,0.6421,5
+FD003,alarm on predicted RUL,99.0,107.0955,0.9137,136.4154,0.6197,5
+FD003,alarm on predicted RUL,100.0,108.4567,0.6447,137.3989,0.687,5
+FD003,alarm on predicted RUL,101.0,109.9015,0.6205,138.6213,0.67,5
+FD003,alarm on predicted RUL,102.0,111.7994,0.5491,139.8638,0.3077,5
+FD003,alarm on predicted RUL,103.0,113.6361,0.8422,143.0405,1.9222,5
+FD003,alarm on predicted RUL,104.0,115.3659,0.4958,144.7715,1.8626,5
+FD003,alarm on predicted RUL,105.0,117.1127,0.8599,149.0481,3.1621,5
+FD003,alarm on predicted RUL,106.0,118.7107,0.7306,150.8031,2.7396,5
+FD003,alarm on predicted RUL,107.0,120.3802,0.6232,152.6148,1.944,5
+FD003,alarm on predicted RUL,108.0,123.5877,0.7828,155.7439,1.1838,5
+FD003,alarm on predicted RUL,109.0,125.7949,1.4091,158.8444,2.7377,5
+FD003,alarm on predicted RUL,110.0,130.3603,1.1437,160.2466,2.2997,5
+FD003,alarm on predicted RUL,111.0,133.5104,0.8877,162.898,2.733,5
+FD003,alarm on predicted RUL,112.0,135.9368,1.447,165.5211,2.2363,5
+FD003,alarm on predicted RUL,113.0,138.5617,0.8254,167.4483,2.5048,5
+FD003,alarm on predicted RUL,114.0,142.6031,1.9316,169.5299,1.8467,5
+FD003,alarm on predicted RUL,115.0,148.7819,3.1978,174.1474,2.7308,5
+FD003,alarm on predicted RUL,116.0,152.3072,2.877,177.8776,3.3829,5
+FD003,alarm on predicted RUL,117.0,161.8928,3.9759,191.1355,6.0988,5
+FD003,alarm on predicted RUL,118.0,174.1247,3.8511,200.9826,6.3056,5
+FD003,alarm on predicted RUL,119.0,185.0208,2.722,210.2453,4.8993,5
+FD003,alarm on predicted RUL,120.0,197.2177,1.2192,216.0041,4.0926,5
+FD003,alarm on predicted RUL,121.0,208.8303,1.8705,228.5391,4.0477,5
+FD003,alarm on predicted RUL,122.0,220.1727,1.3353,235.0327,1.758,5
+FD003,alarm on predicted RUL,123.0,229.806,0.2959,242.7729,2.4215,5
+FD003,alarm on predicted RUL,124.0,235.216,0.4918,248.0141,0.29,5
+FD003,alarm on predicted RUL,125.0,240.28,0.0,249.7,0.0,5
+FD003,alarm on lower interval bound,0.0,30.5525,2.2403,59.0216,0.4059,5
+FD003,alarm on lower interval bound,1.0,28.1981,1.8348,57.7206,0.2715,5
+FD003,alarm on lower interval bound,2.0,25.8743,1.7787,57.3719,0.3206,5
+FD003,alarm on lower interval bound,3.0,24.7749,0.5941,57.4303,0.2303,5
+FD003,alarm on lower interval bound,4.0,23.294,0.8724,57.5295,0.1561,5
+FD003,alarm on lower interval bound,5.0,22.6274,1.1205,57.8825,0.1133,5
+FD003,alarm on lower interval bound,6.0,22.1806,0.6055,58.297,0.2123,5
+FD003,alarm on lower interval bound,7.0,22.1317,0.604,58.6752,0.2048,5
+FD003,alarm on lower interval bound,8.0,22.534,0.2507,59.1,0.1748,5
+FD003,alarm on lower interval bound,9.0,23.4898,0.2417,59.6733,0.1222,5
+FD003,alarm on lower interval bound,10.0,24.5335,0.2262,60.3327,0.0992,5
+FD003,alarm on lower interval bound,11.0,25.5679,0.2322,61.036,0.1128,5
+FD003,alarm on lower interval bound,12.0,26.5531,0.2272,61.7773,0.0707,5
+FD003,alarm on lower interval bound,13.0,27.4913,0.2404,62.5259,0.1491,5
+FD003,alarm on lower interval bound,14.0,28.3067,0.6431,63.3481,0.184,5
+FD003,alarm on lower interval bound,15.0,29.0605,0.6293,64.1644,0.1478,5
+FD003,alarm on lower interval bound,16.0,29.8425,0.6206,64.9924,0.1795,5
+FD003,alarm on lower interval bound,17.0,30.6784,0.4563,65.8788,0.2391,5
+FD003,alarm on lower interval bound,18.0,31.4394,0.2184,66.7875,0.2629,5
+FD003,alarm on lower interval bound,19.0,32.4481,0.2237,67.7174,0.282,5
+FD003,alarm on lower interval bound,20.0,33.4156,0.2403,68.967,0.2621,5
+FD003,alarm on lower interval bound,21.0,34.4162,0.2549,70.1007,0.2324,5
+FD003,alarm on lower interval bound,22.0,35.4592,0.2463,71.1394,0.2498,5
+FD003,alarm on lower interval bound,23.0,36.4045,0.2308,72.1781,0.2127,5
+FD003,alarm on lower interval bound,24.0,37.4486,0.2308,73.2629,0.2529,5
+FD003,alarm on lower interval bound,25.0,38.459,0.2716,74.3436,0.2738,5
+FD003,alarm on lower interval bound,26.0,39.5329,0.282,75.3596,0.2361,5
+FD003,alarm on lower interval bound,27.0,40.6141,0.2106,76.4025,0.2542,5
+FD003,alarm on lower interval bound,28.0,41.6399,0.1807,77.4,0.2643,5
+FD003,alarm on lower interval bound,29.0,42.6799,0.2342,78.3414,0.2633,5
+FD003,alarm on lower interval bound,30.0,43.7079,0.2116,79.3665,0.2282,5
+FD003,alarm on lower interval bound,31.0,44.7099,0.2086,80.3608,0.2348,5
+FD003,alarm on lower interval bound,32.0,45.6459,0.1722,81.3236,0.2501,5
+FD003,alarm on lower interval bound,33.0,46.1294,0.7004,82.2696,0.1811,5
+FD003,alarm on lower interval bound,34.0,46.7527,0.1843,83.5053,0.2926,5
+FD003,alarm on lower interval bound,35.0,47.858,0.2322,84.7959,0.3668,5
+FD003,alarm on lower interval bound,36.0,48.9668,0.2235,86.1094,0.1851,5
+FD003,alarm on lower interval bound,37.0,49.9753,0.2255,87.1556,0.2483,5
+FD003,alarm on lower interval bound,38.0,51.0231,0.2118,88.1348,0.261,5
+FD003,alarm on lower interval bound,39.0,52.0365,0.2185,89.1286,0.2439,5
+FD003,alarm on lower interval bound,40.0,53.176,0.1847,90.0987,0.2299,5
+FD003,alarm on lower interval bound,41.0,54.372,0.1498,91.0147,0.2689,5
+FD003,alarm on lower interval bound,42.0,55.6533,0.258,92.0445,0.2452,5
+FD003,alarm on lower interval bound,43.0,56.6894,0.1233,93.2565,0.0973,5
+FD003,alarm on lower interval bound,44.0,57.7514,0.2166,94.3424,0.2458,5
+FD003,alarm on lower interval bound,45.0,58.9068,0.2356,95.4009,0.3037,5
+FD003,alarm on lower interval bound,46.0,59.916,0.175,96.4406,0.3789,5
+FD003,alarm on lower interval bound,47.0,61.0581,0.2742,97.6751,0.4857,5
+FD003,alarm on lower interval bound,48.0,62.2652,0.1365,98.8624,0.4184,5
+FD003,alarm on lower interval bound,49.0,63.3627,0.1802,99.8449,0.4508,5
+FD003,alarm on lower interval bound,50.0,64.5086,0.2188,100.9573,0.2347,5
+FD003,alarm on lower interval bound,51.0,65.6271,0.1466,102.0428,0.2708,5
+FD003,alarm on lower interval bound,52.0,66.8281,0.2583,103.0965,0.2444,5
+FD003,alarm on lower interval bound,53.0,67.9441,0.309,104.3897,0.4942,5
+FD003,alarm on lower interval bound,54.0,69.2592,0.2892,105.4936,0.622,5
+FD003,alarm on lower interval bound,55.0,70.4028,0.3689,106.7602,0.3838,5
+FD003,alarm on lower interval bound,56.0,71.792,0.3162,107.8784,0.4229,5
+FD003,alarm on lower interval bound,57.0,72.8424,0.3639,109.0013,0.4216,5
+FD003,alarm on lower interval bound,58.0,74.3411,0.4192,109.9171,0.4621,5
+FD003,alarm on lower interval bound,59.0,75.7276,0.3771,110.9014,0.2996,5
+FD003,alarm on lower interval bound,60.0,77.1207,0.4537,111.8331,0.3203,5
+FD003,alarm on lower interval bound,61.0,78.3441,0.5061,112.9046,0.4397,5
+FD003,alarm on lower interval bound,62.0,79.8802,0.7457,114.0065,0.4096,5
+FD003,alarm on lower interval bound,63.0,81.4351,0.9318,115.3979,0.5965,5
+FD003,alarm on lower interval bound,64.0,83.0514,1.0149,116.5846,0.5065,5
+FD003,alarm on lower interval bound,65.0,84.6473,1.247,117.8468,0.6715,5
+FD003,alarm on lower interval bound,66.0,86.3605,0.8298,118.8382,0.6852,5
+FD003,alarm on lower interval bound,67.0,88.2177,1.1974,119.8159,0.4917,5
+FD003,alarm on lower interval bound,68.0,89.6123,1.008,120.7329,0.3698,5
+FD003,alarm on lower interval bound,69.0,91.3532,0.9092,121.66,0.4048,5
+FD003,alarm on lower interval bound,70.0,92.614,0.7917,122.9817,0.3673,5
+FD003,alarm on lower interval bound,71.0,94.0314,1.0596,124.6053,0.4345,5
+FD003,alarm on lower interval bound,72.0,95.4007,0.7476,126.0119,0.6159,5
+FD003,alarm on lower interval bound,73.0,96.836,0.8377,127.332,0.5384,5
+FD003,alarm on lower interval bound,74.0,97.98,0.8096,129.0965,0.7184,5
+FD003,alarm on lower interval bound,75.0,99.2706,0.908,130.3879,0.7273,5
+FD003,alarm on lower interval bound,76.0,100.9136,1.2574,131.386,0.5563,5
+FD003,alarm on lower interval bound,77.0,102.8446,1.68,135.1389,6.3249,5
+FD003,alarm on lower interval bound,78.0,105.244,2.5366,136.1891,6.661,5
+FD003,alarm on lower interval bound,79.0,107.8734,4.3712,138.1094,6.1871,5
+FD003,alarm on lower interval bound,80.0,110.3663,6.2947,144.125,7.6885,5
+FD003,alarm on lower interval bound,81.0,113.9394,8.2177,148.6904,6.176,5
+FD003,alarm on lower interval bound,82.0,120.2494,10.7123,151.2041,6.1353,5
+FD003,alarm on lower interval bound,83.0,124.1834,13.1161,156.0381,4.1851,5
+FD003,alarm on lower interval bound,84.0,131.8357,14.2653,160.3179,4.1083,5
+FD003,alarm on lower interval bound,85.0,138.5705,16.0584,163.3976,4.1834,5
+FD003,alarm on lower interval bound,86.0,146.7971,15.5661,168.0212,5.1915,5
+FD003,alarm on lower interval bound,87.0,154.2039,16.8238,172.025,8.1132,5
+FD003,alarm on lower interval bound,88.0,161.0973,15.017,178.1118,13.3132,5
+FD003,alarm on lower interval bound,89.0,168.7081,16.0778,183.7135,16.8058,5
+FD003,alarm on lower interval bound,90.0,174.1012,16.6978,187.7987,17.7364,5
+FD003,alarm on lower interval bound,91.0,179.7095,14.8746,192.0167,16.3553,5
+FD003,alarm on lower interval bound,92.0,185.5202,12.8911,197.4252,14.5717,5
+FD003,alarm on lower interval bound,93.0,191.3066,11.3126,203.9038,16.6314,5
+FD003,alarm on lower interval bound,94.0,197.7956,11.4602,209.8458,15.6273,5
+FD003,alarm on lower interval bound,95.0,202.704,8.4999,213.1731,12.4195,5
+FD003,alarm on lower interval bound,96.0,206.3385,7.7166,214.5023,13.4315,5
+FD003,alarm on lower interval bound,97.0,208.9406,6.2385,218.8463,11.5209,5
+FD003,alarm on lower interval bound,98.0,212.4715,4.9768,221.6138,10.6867,5
+FD003,alarm on lower interval bound,99.0,214.8544,5.4198,224.2899,8.7852,5
+FD003,alarm on lower interval bound,100.0,217.2887,5.0007,230.2544,6.5276,5
+FD003,alarm on lower interval bound,101.0,218.7884,3.9312,237.8738,3.523,5
+FD003,alarm on lower interval bound,102.0,220.4844,3.314,239.4563,2.1931,5
+FD003,alarm on lower interval bound,103.0,221.7144,2.902,240.8084,2.7883,5
+FD003,alarm on lower interval bound,104.0,222.6844,2.9357,241.6073,1.6883,5
+FD003,alarm on lower interval bound,105.0,224.2528,2.261,242.3065,1.4182,5
+FD003,alarm on lower interval bound,106.0,225.8108,1.7065,242.3852,1.2839,5
+FD003,alarm on lower interval bound,107.0,226.7682,1.1798,244.1183,2.4378,5
+FD003,alarm on lower interval bound,108.0,228.8836,1.2402,246.299,2.9104,5
+FD003,alarm on lower interval bound,109.0,230.1896,1.5917,246.4779,2.8925,5
+FD003,alarm on lower interval bound,110.0,232.09,2.0929,247.0503,2.1593,5
+FD003,alarm on lower interval bound,111.0,233.462,1.9626,247.8972,1.7517,5
+FD003,alarm on lower interval bound,112.0,234.906,2.3879,247.9892,1.6365,5
+FD003,alarm on lower interval bound,113.0,236.424,1.4731,248.7854,0.0715,5
+FD003,alarm on lower interval bound,114.0,237.37,1.7001,248.8676,0.0976,5
+FD003,alarm on lower interval bound,115.0,238.686,0.334,248.9496,0.0895,5
+FD003,alarm on lower interval bound,116.0,238.88,0.3889,248.9816,0.0822,5
+FD003,alarm on lower interval bound,117.0,239.286,0.1262,249.0632,0.0573,5
+FD003,alarm on lower interval bound,118.0,239.38,0.0886,249.1746,0.1037,5
+FD003,alarm on lower interval bound,119.0,239.51,0.0436,249.206,0.1081,5
+FD003,alarm on lower interval bound,120.0,239.602,0.063,249.2968,0.0864,5
+FD003,alarm on lower interval bound,121.0,239.71,0.0122,249.3178,0.0668,5
+FD003,alarm on lower interval bound,122.0,239.768,0.0148,249.3488,0.0001,5
+FD003,alarm on lower interval bound,123.0,239.834,0.0182,249.3597,0.0222,5
+FD003,alarm on lower interval bound,124.0,239.908,0.0164,249.4802,0.0569,5
+FD003,alarm on lower interval bound,125.0,240.28,0.0,249.7,0.0,5
+FD004,alarm on predicted RUL,0.0,57.7136,1.7218,73.13,0.4517,5
+FD004,alarm on predicted RUL,1.0,54.6296,1.9388,71.4,0.3992,5
+FD004,alarm on predicted RUL,2.0,53.0637,0.8575,69.9579,0.5464,5
+FD004,alarm on predicted RUL,3.0,50.8639,0.7328,68.5879,0.4578,5
+FD004,alarm on predicted RUL,4.0,48.3024,1.2735,67.3678,0.1272,5
+FD004,alarm on predicted RUL,5.0,45.6175,1.1959,66.2078,0.1696,5
+FD004,alarm on predicted RUL,6.0,43.6908,1.2058,65.22,0.1097,5
+FD004,alarm on predicted RUL,7.0,42.2727,1.2658,64.3924,0.0566,5
+FD004,alarm on predicted RUL,8.0,41.6887,0.4287,63.749,0.1399,5
+FD004,alarm on predicted RUL,9.0,40.332,0.215,63.2839,0.1651,5
+FD004,alarm on predicted RUL,10.0,39.5528,0.1953,62.9511,0.1996,5
+FD004,alarm on predicted RUL,11.0,39.3554,0.3789,62.6949,0.1506,5
+FD004,alarm on predicted RUL,12.0,38.9798,0.5318,62.5439,0.1513,5
+FD004,alarm on predicted RUL,13.0,39.1985,0.3649,62.5024,0.0939,5
+FD004,alarm on predicted RUL,14.0,39.4158,0.2786,62.4487,0.0937,5
+FD004,alarm on predicted RUL,15.0,39.4723,0.435,62.5062,0.1174,5
+FD004,alarm on predicted RUL,16.0,39.3736,0.6156,62.6039,0.1631,5
+FD004,alarm on predicted RUL,17.0,39.3566,0.2322,62.8341,0.1331,5
+FD004,alarm on predicted RUL,18.0,39.195,0.8645,63.1879,0.0697,5
+FD004,alarm on predicted RUL,19.0,38.3617,0.4058,63.5012,0.0781,5
+FD004,alarm on predicted RUL,20.0,38.5269,0.4599,63.8812,0.0781,5
+FD004,alarm on predicted RUL,21.0,38.393,0.389,64.3011,0.1152,5
+FD004,alarm on predicted RUL,22.0,38.7192,0.3051,64.8067,0.092,5
+FD004,alarm on predicted RUL,23.0,38.7039,0.6987,65.2409,0.07,5
+FD004,alarm on predicted RUL,24.0,39.2511,0.5084,65.806,0.0612,5
+FD004,alarm on predicted RUL,25.0,39.5694,0.3146,66.3616,0.0763,5
+FD004,alarm on predicted RUL,26.0,39.9203,0.3114,66.9996,0.0787,5
+FD004,alarm on predicted RUL,27.0,40.4196,0.4374,67.6401,0.0534,5
+FD004,alarm on predicted RUL,28.0,41.1006,0.4503,68.2896,0.0909,5
+FD004,alarm on predicted RUL,29.0,41.843,0.2446,68.9938,0.0733,5
+FD004,alarm on predicted RUL,30.0,42.5367,0.2562,69.7166,0.0707,5
+FD004,alarm on predicted RUL,31.0,43.3374,0.3767,70.4036,0.0804,5
+FD004,alarm on predicted RUL,32.0,43.8416,0.2282,71.1116,0.0889,5
+FD004,alarm on predicted RUL,33.0,44.1991,0.3466,71.8851,0.0801,5
+FD004,alarm on predicted RUL,34.0,45.06,0.1841,72.6939,0.0457,5
+FD004,alarm on predicted RUL,35.0,46.0197,0.1571,73.577,0.1061,5
+FD004,alarm on predicted RUL,36.0,46.9093,0.0752,74.4994,0.158,5
+FD004,alarm on predicted RUL,37.0,47.8786,0.1027,75.3534,0.1372,5
+FD004,alarm on predicted RUL,38.0,48.8642,0.033,76.2535,0.2147,5
+FD004,alarm on predicted RUL,39.0,49.8813,0.0557,77.2439,0.1173,5
+FD004,alarm on predicted RUL,40.0,50.9113,0.1096,78.1314,0.0269,5
+FD004,alarm on predicted RUL,41.0,51.8219,0.0923,79.0756,0.0663,5
+FD004,alarm on predicted RUL,42.0,52.7167,0.0412,79.965,0.1447,5
+FD004,alarm on predicted RUL,43.0,53.6965,0.0901,80.8554,0.1312,5
+FD004,alarm on predicted RUL,44.0,54.6921,0.1797,81.7873,0.1147,5
+FD004,alarm on predicted RUL,45.0,55.4097,0.262,82.8599,0.0869,5
+FD004,alarm on predicted RUL,46.0,56.3591,0.17,83.8405,0.1072,5
+FD004,alarm on predicted RUL,47.0,57.383,0.1188,84.8144,0.0677,5
+FD004,alarm on predicted RUL,48.0,58.394,0.152,85.8343,0.1658,5
+FD004,alarm on predicted RUL,49.0,59.3724,0.1258,86.8631,0.0912,5
+FD004,alarm on predicted RUL,50.0,60.2448,0.133,87.8131,0.1404,5
+FD004,alarm on predicted RUL,51.0,61.2923,0.1614,88.7565,0.1441,5
+FD004,alarm on predicted RUL,52.0,62.2715,0.0672,89.819,0.2167,5
+FD004,alarm on predicted RUL,53.0,63.2371,0.1603,90.7816,0.1621,5
+FD004,alarm on predicted RUL,54.0,64.1523,0.1189,91.9225,0.1362,5
+FD004,alarm on predicted RUL,55.0,65.1333,0.0685,92.9098,0.0886,5
+FD004,alarm on predicted RUL,56.0,66.0849,0.1359,93.86,0.043,5
+FD004,alarm on predicted RUL,57.0,67.0091,0.1294,94.8711,0.1283,5
+FD004,alarm on predicted RUL,58.0,68.0215,0.1794,95.8441,0.2172,5
+FD004,alarm on predicted RUL,59.0,69.0407,0.1006,96.79,0.1531,5
+FD004,alarm on predicted RUL,60.0,70.0943,0.2005,97.8884,0.219,5
+FD004,alarm on predicted RUL,61.0,71.1413,0.1207,98.8037,0.1829,5
+FD004,alarm on predicted RUL,62.0,72.1413,0.1661,99.9378,0.2505,5
+FD004,alarm on predicted RUL,63.0,73.1677,0.1526,100.9676,0.1425,5
+FD004,alarm on predicted RUL,64.0,74.2659,0.2022,102.0233,0.2023,5
+FD004,alarm on predicted RUL,65.0,75.383,0.2907,103.1327,0.3476,5
+FD004,alarm on predicted RUL,66.0,76.4973,0.2369,104.3237,0.0936,5
+FD004,alarm on predicted RUL,67.0,77.5565,0.227,105.4239,0.1975,5
+FD004,alarm on predicted RUL,68.0,78.6811,0.2335,106.3486,0.1105,5
+FD004,alarm on predicted RUL,69.0,79.7767,0.1848,107.3162,0.273,5
+FD004,alarm on predicted RUL,70.0,81.0897,0.3061,108.4611,0.1702,5
+FD004,alarm on predicted RUL,71.0,82.2017,0.2758,109.5648,0.2201,5
+FD004,alarm on predicted RUL,72.0,83.2708,0.2556,110.7889,0.5435,5
+FD004,alarm on predicted RUL,73.0,84.5705,0.2329,111.9054,0.5641,5
+FD004,alarm on predicted RUL,74.0,85.83,0.2949,113.17,0.5194,5
+FD004,alarm on predicted RUL,75.0,86.9909,0.2899,114.3138,0.305,5
+FD004,alarm on predicted RUL,76.0,88.0212,0.386,115.4825,0.1416,5
+FD004,alarm on predicted RUL,77.0,89.1305,0.2593,116.5812,0.2405,5
+FD004,alarm on predicted RUL,78.0,90.3152,0.131,117.7368,0.2707,5
+FD004,alarm on predicted RUL,79.0,91.4701,0.3591,118.9171,0.3333,5
+FD004,alarm on predicted RUL,80.0,92.9698,0.124,120.0633,0.1839,5
+FD004,alarm on predicted RUL,81.0,94.4799,0.2446,121.064,0.2158,5
+FD004,alarm on predicted RUL,82.0,95.8444,0.2894,122.0511,0.1703,5
+FD004,alarm on predicted RUL,83.0,97.1101,0.2628,123.1423,0.1277,5
+FD004,alarm on predicted RUL,84.0,98.3171,0.1392,124.3107,0.2606,5
+FD004,alarm on predicted RUL,85.0,99.7764,0.2352,125.5224,0.307,5
+FD004,alarm on predicted RUL,86.0,100.8705,0.241,126.6801,0.2499,5
+FD004,alarm on predicted RUL,87.0,102.2238,0.2846,127.8718,0.3432,5
+FD004,alarm on predicted RUL,88.0,103.5552,0.2044,129.1657,0.3766,5
+FD004,alarm on predicted RUL,89.0,105.1339,0.2089,130.1565,0.402,5
+FD004,alarm on predicted RUL,90.0,106.5382,0.2003,131.8245,0.4574,5
+FD004,alarm on predicted RUL,91.0,107.9506,0.3072,132.8857,0.6891,5
+FD004,alarm on predicted RUL,92.0,109.2039,0.4828,134.7421,0.7043,5
+FD004,alarm on predicted RUL,93.0,110.6502,0.5377,136.6125,0.3594,5
+FD004,alarm on predicted RUL,94.0,112.2939,0.399,137.8559,0.4561,5
+FD004,alarm on predicted RUL,95.0,113.7805,0.1942,139.5781,0.1838,5
+FD004,alarm on predicted RUL,96.0,115.3987,0.28,141.5234,0.7499,5
+FD004,alarm on predicted RUL,97.0,116.9014,0.5172,142.8288,0.6417,5
+FD004,alarm on predicted RUL,98.0,118.6815,0.167,143.8662,0.6474,5
+FD004,alarm on predicted RUL,99.0,120.7682,0.4805,145.7786,0.5611,5
+FD004,alarm on predicted RUL,100.0,122.2736,0.5068,147.7182,1.2999,5
+FD004,alarm on predicted RUL,101.0,124.1468,0.6722,150.2276,0.8062,5
+FD004,alarm on predicted RUL,102.0,125.8754,0.5234,151.9006,0.5185,5
+FD004,alarm on predicted RUL,103.0,127.842,0.5107,153.3675,0.7551,5
+FD004,alarm on predicted RUL,104.0,130.3355,0.5477,155.7698,1.1514,5
+FD004,alarm on predicted RUL,105.0,132.526,0.5754,158.0701,1.0905,5
+FD004,alarm on predicted RUL,106.0,134.4398,0.7575,161.0122,0.5859,5
+FD004,alarm on predicted RUL,107.0,137.066,0.4554,164.0815,1.5422,5
+FD004,alarm on predicted RUL,108.0,139.805,0.4,166.7302,1.3977,5
+FD004,alarm on predicted RUL,109.0,143.155,0.5212,168.8834,1.8824,5
+FD004,alarm on predicted RUL,110.0,146.9064,1.6021,171.4495,2.6189,5
+FD004,alarm on predicted RUL,111.0,151.0553,2.0309,174.1202,2.5142,5
+FD004,alarm on predicted RUL,112.0,157.4739,1.4525,176.7767,2.9368,5
+FD004,alarm on predicted RUL,113.0,163.5751,1.7205,181.5553,2.2168,5
+FD004,alarm on predicted RUL,114.0,169.3795,0.9492,187.41,3.159,5
+FD004,alarm on predicted RUL,115.0,174.8999,0.7803,192.982,3.9553,5
+FD004,alarm on predicted RUL,116.0,182.2664,1.5723,199.6687,4.0163,5
+FD004,alarm on predicted RUL,117.0,190.7895,2.1894,206.2957,5.7589,5
+FD004,alarm on predicted RUL,118.0,199.1038,2.5649,211.9564,4.9243,5
+FD004,alarm on predicted RUL,119.0,208.2243,2.3619,219.6235,3.5508,5
+FD004,alarm on predicted RUL,120.0,217.9754,2.5171,226.0608,2.0868,5
+FD004,alarm on predicted RUL,121.0,227.5039,2.4764,231.8855,2.6558,5
+FD004,alarm on predicted RUL,122.0,236.1229,1.9761,238.2477,2.5051,5
+FD004,alarm on predicted RUL,123.0,242.9028,1.0357,245.3957,2.2997,5
+FD004,alarm on predicted RUL,124.0,248.0452,0.4327,249.3802,0.5516,5
+FD004,alarm on predicted RUL,125.0,251.7379,0.0,252.02,0.0,5
+FD004,alarm on lower interval bound,0.0,38.8742,0.5597,59.7827,0.1061,5
+FD004,alarm on lower interval bound,1.0,37.0807,0.7481,58.9864,0.1256,5
+FD004,alarm on lower interval bound,2.0,36.1184,0.6097,58.7089,0.1037,5
+FD004,alarm on lower interval bound,3.0,35.3482,0.2819,58.8614,0.0959,5
+FD004,alarm on lower interval bound,4.0,34.6756,0.4004,59.1004,0.128,5
+FD004,alarm on lower interval bound,5.0,34.7426,0.3877,59.5573,0.1571,5
+FD004,alarm on lower interval bound,6.0,34.9762,0.8597,60.1643,0.1489,5
+FD004,alarm on lower interval bound,7.0,35.3746,0.4923,60.8115,0.1636,5
+FD004,alarm on lower interval bound,8.0,35.4869,0.5411,61.5217,0.1159,5
+FD004,alarm on lower interval bound,9.0,35.8248,0.5658,62.3178,0.1343,5
+FD004,alarm on lower interval bound,10.0,36.5718,0.3815,63.1395,0.1174,5
+FD004,alarm on lower interval bound,11.0,37.3199,0.1704,63.9626,0.148,5
+FD004,alarm on lower interval bound,12.0,38.3574,0.1673,64.8,0.1593,5
+FD004,alarm on lower interval bound,13.0,39.1845,0.3676,65.6315,0.1679,5
+FD004,alarm on lower interval bound,14.0,39.8615,0.2189,66.5107,0.1929,5
+FD004,alarm on lower interval bound,15.0,40.7218,0.1377,67.3956,0.2021,5
+FD004,alarm on lower interval bound,16.0,41.598,0.1757,68.2745,0.1659,5
+FD004,alarm on lower interval bound,17.0,42.6265,0.181,69.2081,0.2031,5
+FD004,alarm on lower interval bound,18.0,43.6381,0.2152,70.1327,0.2196,5
+FD004,alarm on lower interval bound,19.0,44.6444,0.1828,71.1744,0.1957,5
+FD004,alarm on lower interval bound,20.0,45.6806,0.1759,72.1739,0.1757,5
+FD004,alarm on lower interval bound,21.0,46.7418,0.2051,73.1316,0.1819,5
+FD004,alarm on lower interval bound,22.0,47.8984,0.2721,74.0792,0.2008,5
+FD004,alarm on lower interval bound,23.0,49.1183,0.2317,75.0559,0.2173,5
+FD004,alarm on lower interval bound,24.0,50.1581,0.1996,76.0753,0.2175,5
+FD004,alarm on lower interval bound,25.0,51.0389,0.2379,77.1122,0.1981,5
+FD004,alarm on lower interval bound,26.0,51.9025,0.2116,78.149,0.1944,5
+FD004,alarm on lower interval bound,27.0,52.8711,0.1568,79.1683,0.1968,5
+FD004,alarm on lower interval bound,28.0,53.906,0.1636,80.143,0.1875,5
+FD004,alarm on lower interval bound,29.0,54.9916,0.1905,81.1876,0.2084,5
+FD004,alarm on lower interval bound,30.0,56.1347,0.1492,82.2807,0.2063,5
+FD004,alarm on lower interval bound,31.0,57.2719,0.1319,83.2684,0.209,5
+FD004,alarm on lower interval bound,32.0,58.3927,0.2256,84.3386,0.2183,5
+FD004,alarm on lower interval bound,33.0,59.4867,0.225,85.4235,0.2159,5
+FD004,alarm on lower interval bound,34.0,60.5277,0.1855,86.5064,0.2203,5
+FD004,alarm on lower interval bound,35.0,61.6094,0.1551,87.6458,0.2434,5
+FD004,alarm on lower interval bound,36.0,62.7084,0.2476,88.8832,0.3562,5
+FD004,alarm on lower interval bound,37.0,63.7222,0.1952,90.0465,0.3097,5
+FD004,alarm on lower interval bound,38.0,64.8657,0.3206,91.1911,0.2562,5
+FD004,alarm on lower interval bound,39.0,66.2238,0.3802,92.1859,0.2475,5
+FD004,alarm on lower interval bound,40.0,67.4387,0.3209,93.184,0.2723,5
+FD004,alarm on lower interval bound,41.0,68.6743,0.2672,94.2867,0.3213,5
+FD004,alarm on lower interval bound,42.0,69.7909,0.3414,95.6629,0.3128,5
+FD004,alarm on lower interval bound,43.0,71.1236,0.2772,96.8933,0.3924,5
+FD004,alarm on lower interval bound,44.0,72.3568,0.3355,98.3093,0.2033,5
+FD004,alarm on lower interval bound,45.0,73.6998,0.3472,99.538,0.1959,5
+FD004,alarm on lower interval bound,46.0,74.9426,0.2478,100.7191,0.437,5
+FD004,alarm on lower interval bound,47.0,76.0723,0.2104,102.1548,0.4408,5
+FD004,alarm on lower interval bound,48.0,77.1874,0.2989,103.4473,0.4203,5
+FD004,alarm on lower interval bound,49.0,78.4773,0.2074,104.6027,0.2784,5
+FD004,alarm on lower interval bound,50.0,79.8593,0.2094,106.0035,0.523,5
+FD004,alarm on lower interval bound,51.0,81.3791,0.4454,107.3363,0.5027,5
+FD004,alarm on lower interval bound,52.0,82.9551,0.2969,108.7536,0.4241,5
+FD004,alarm on lower interval bound,53.0,84.3167,0.2165,110.1421,0.1943,5
+FD004,alarm on lower interval bound,54.0,85.4835,0.2411,111.6192,0.3951,5
+FD004,alarm on lower interval bound,55.0,86.7754,0.2047,113.1231,0.4335,5
+FD004,alarm on lower interval bound,56.0,88.1521,0.1995,114.4617,0.2583,5
+FD004,alarm on lower interval bound,57.0,89.5596,0.4064,115.6525,0.3178,5
+FD004,alarm on lower interval bound,58.0,91.3234,0.3222,116.8824,0.2878,5
+FD004,alarm on lower interval bound,59.0,92.893,0.2656,118.2977,0.3378,5
+FD004,alarm on lower interval bound,60.0,94.2538,0.2069,119.4627,0.2524,5
+FD004,alarm on lower interval bound,61.0,95.6992,0.2509,120.6656,0.2924,5
+FD004,alarm on lower interval bound,62.0,96.9757,0.3314,122.1472,0.2795,5
+FD004,alarm on lower interval bound,63.0,98.4527,0.2847,123.6576,0.2866,5
+FD004,alarm on lower interval bound,64.0,100.1707,0.2579,125.0871,0.557,5
+FD004,alarm on lower interval bound,65.0,101.7544,0.4494,126.7971,0.17,5
+FD004,alarm on lower interval bound,66.0,103.277,0.4096,128.1122,0.2037,5
+FD004,alarm on lower interval bound,67.0,104.7263,0.5896,129.7563,0.369,5
+FD004,alarm on lower interval bound,68.0,106.2268,0.4592,130.8894,0.2943,5
+FD004,alarm on lower interval bound,69.0,107.7192,0.2067,132.1582,0.2511,5
+FD004,alarm on lower interval bound,70.0,108.9196,0.196,133.4311,0.3407,5
+FD004,alarm on lower interval bound,71.0,110.0852,0.3364,135.3657,0.7577,5
+FD004,alarm on lower interval bound,72.0,111.7446,0.2749,137.7354,1.5201,5
+FD004,alarm on lower interval bound,73.0,113.4413,0.5186,139.5542,1.2226,5
+FD004,alarm on lower interval bound,74.0,114.8805,0.3373,141.5731,0.8964,5
+FD004,alarm on lower interval bound,75.0,116.5984,0.2916,143.3384,0.6613,5
+FD004,alarm on lower interval bound,76.0,117.9204,0.368,144.88,0.4233,5
+FD004,alarm on lower interval bound,77.0,119.5232,0.3221,146.335,0.3854,5
+FD004,alarm on lower interval bound,78.0,121.2877,0.4286,147.7255,0.5898,5
+FD004,alarm on lower interval bound,79.0,123.1499,0.5532,148.7688,0.4435,5
+FD004,alarm on lower interval bound,80.0,125.0095,0.3747,149.9202,0.6836,5
+FD004,alarm on lower interval bound,81.0,126.6924,0.1879,151.6187,0.9017,5
+FD004,alarm on lower interval bound,82.0,127.9991,0.224,153.0442,0.8875,5
+FD004,alarm on lower interval bound,83.0,129.6326,0.7365,154.2603,0.7428,5
+FD004,alarm on lower interval bound,84.0,131.0857,0.6536,155.5605,0.4854,5
+FD004,alarm on lower interval bound,85.0,132.9069,0.558,156.5748,0.5456,5
+FD004,alarm on lower interval bound,86.0,134.6981,0.6006,158.3106,0.5056,5
+FD004,alarm on lower interval bound,87.0,137.0252,1.3062,159.3382,0.5263,5
+FD004,alarm on lower interval bound,88.0,139.8516,1.1841,160.8611,0.3034,5
+FD004,alarm on lower interval bound,89.0,142.7725,1.3253,162.2766,0.6757,5
+FD004,alarm on lower interval bound,90.0,145.4931,1.5714,164.4463,1.1781,5
+FD004,alarm on lower interval bound,91.0,148.7295,0.9907,166.351,1.4211,5
+FD004,alarm on lower interval bound,92.0,152.2128,1.4176,168.7789,1.4148,5
+FD004,alarm on lower interval bound,93.0,155.8891,0.6547,171.3989,1.9772,5
+FD004,alarm on lower interval bound,94.0,159.7008,1.1245,173.9511,1.6366,5
+FD004,alarm on lower interval bound,95.0,163.2021,0.9899,176.8814,1.1712,5
+FD004,alarm on lower interval bound,96.0,166.7973,0.5223,179.1465,0.5712,5
+FD004,alarm on lower interval bound,97.0,170.3942,0.774,181.6755,1.3674,5
+FD004,alarm on lower interval bound,98.0,173.0471,0.9266,183.789,1.586,5
+FD004,alarm on lower interval bound,99.0,176.6282,1.1769,185.7773,0.6195,5
+FD004,alarm on lower interval bound,100.0,179.2554,1.274,187.9652,0.4051,5
+FD004,alarm on lower interval bound,101.0,182.2904,0.9564,189.1553,0.2626,5
+FD004,alarm on lower interval bound,102.0,185.6077,1.1017,190.7063,0.847,5
+FD004,alarm on lower interval bound,103.0,189.4388,1.4529,192.8099,1.9793,5
+FD004,alarm on lower interval bound,104.0,193.151,1.5063,195.1984,2.6897,5
+FD004,alarm on lower interval bound,105.0,197.3407,1.0555,199.6007,2.8822,5
+FD004,alarm on lower interval bound,106.0,202.1535,2.0906,204.586,4.539,5
+FD004,alarm on lower interval bound,107.0,205.7148,1.9196,209.0489,4.5773,5
+FD004,alarm on lower interval bound,108.0,209.5329,2.2616,213.1257,3.5058,5
+FD004,alarm on lower interval bound,109.0,213.5819,2.1209,218.7327,3.0236,5
+FD004,alarm on lower interval bound,110.0,217.4748,1.7401,223.7789,3.1311,5
+FD004,alarm on lower interval bound,111.0,221.8111,2.2046,228.4119,2.7729,5
+FD004,alarm on lower interval bound,112.0,226.4745,2.4628,232.8631,2.5554,5
+FD004,alarm on lower interval bound,113.0,230.5957,2.3998,235.5885,2.1243,5
+FD004,alarm on lower interval bound,114.0,234.4692,2.2488,238.1934,1.9739,5
+FD004,alarm on lower interval bound,115.0,238.3096,1.8935,241.4256,2.606,5
+FD004,alarm on lower interval bound,116.0,241.6562,1.8535,244.147,1.5367,5
+FD004,alarm on lower interval bound,117.0,244.9403,1.1459,246.3022,0.6644,5
+FD004,alarm on lower interval bound,118.0,247.0411,0.8791,248.391,1.038,5
+FD004,alarm on lower interval bound,119.0,248.9242,0.3553,249.8679,0.6866,5
+FD004,alarm on lower interval bound,120.0,250.0895,0.1851,250.6362,0.2936,5
+FD004,alarm on lower interval bound,121.0,250.604,0.1388,251.0809,0.1482,5
+FD004,alarm on lower interval bound,122.0,251.0185,0.0514,251.3671,0.0764,5
+FD004,alarm on lower interval bound,123.0,251.2621,0.0239,251.5521,0.0335,5
+FD004,alarm on lower interval bound,124.0,251.4919,0.0193,251.8083,0.0538,5
+FD004,alarm on lower interval bound,125.0,251.7379,0.0,252.02,0.0,5
