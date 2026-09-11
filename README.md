@@ -20,8 +20,10 @@ TBD
 ## Data
 
 The C-MAPSS turbofan degradation data (Saxena et al., PHM 2008) is not redistributed here. Download
-it from the NASA Prognostics Center of Excellence data repository, or the Kaggle mirror
-`behrad3d/nasa-cmaps`, and place the twelve text files under `data/raw/CMAPSS/`:
+data set 6, "Turbofan Engine Degradation Simulation", from the
+[NASA Prognostics Center of Excellence data set repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/)
+(or the Kaggle mirror `behrad3d/nasa-cmaps`), unzip it, and place the twelve text files under
+`data/raw/CMAPSS/`:
 
 ```
 data/raw/CMAPSS/train_FD001.txt   test_FD001.txt   RUL_FD001.txt
