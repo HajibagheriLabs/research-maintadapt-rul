@@ -88,10 +88,16 @@ def deep_versus_xgboost(reports: Path, normalisation: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def p_label(p_value: float) -> str:
+    return "p < 0.001" if p_value < 0.001 else f"p = {p_value:.3f}"
+
+
 def transfer_table(path: Path, source: str) -> pd.DataFrame:
     table = pd.read_csv(path)
+    runs = pd.read_csv(path.with_name("transfer_per_seed.csv"))
     pairs = zip(table["rmse_mean"], table["rmse_std"], strict=True)
     table["rmse"] = [cell(m, s, 2) for m, s in pairs]
+    gain = "gain from fine-tuning (Welch)"
     rows = []
     for target, group in table.groupby("target", sort=True):
         zero = group.loc[group["condition"] == "source-only", "rmse"].iloc[0]
@@ -101,6 +107,7 @@ def transfer_table(path: Path, source: str) -> pd.DataFrame:
                 "target engines used": "none",
                 "trained from scratch": "",
                 f"fine-tuned from {source}": "",
+                gain: "",
                 f"{source} model, zero-shot": zero,
             }
         )
@@ -108,12 +115,17 @@ def transfer_table(path: Path, source: str) -> pd.DataFrame:
         for budget, by_budget in trained.groupby("budget", sort=True):
             arms = by_budget.set_index("condition")
             engines = int(arms["target_units"].iloc[0])
+            here = runs[(runs["target"] == target) & np.isclose(runs["budget"], budget)]
+            scratch = here.loc[here["condition"] == "target-only", "rmse"]
+            tuned = here.loc[here["condition"] == "fine-tuned", "rmse"]
+            p_value = float(ttest_ind(tuned, scratch, equal_var=False).pvalue)
             rows.append(
                 {
                     "target": target,
                     "target engines used": f"{engines} ({budget:.0%})",
                     "trained from scratch": arms.loc["target-only", "rmse"],
                     f"fine-tuned from {source}": arms.loc["fine-tuned", "rmse"],
+                    gain: f"{scratch.mean() - tuned.mean():+.2f} ({p_label(p_value)})",
                     f"{source} model, zero-shot": "",
                 }
             )
