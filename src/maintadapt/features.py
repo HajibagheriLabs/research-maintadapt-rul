@@ -95,3 +95,57 @@ def prepare_subset(
         conditions=conditions,
         normaliser=normaliser,
     )
+
+
+def rolling_features(
+    frame: pd.DataFrame, sensors: list[str], windows: list[int]
+) -> pd.DataFrame:
+    """Trailing mean, std and least-squares slope per sensor and window, never looking ahead."""
+    order = frame[["unit_id", "cycle"]]
+    if not order.equals(order.sort_values(["unit_id", "cycle"])):
+        raise ValueError("frame must be sorted by unit_id then cycle")
+    x = frame[sensors].to_numpy(dtype=float)
+    t = frame["cycle"].to_numpy(dtype=float)[:, None]
+    unit = frame["unit_id"].to_numpy()
+    row = np.arange(len(frame))
+    position = frame.groupby("unit_id", sort=False).cumcount().to_numpy()
+    # running sums restart for every engine, so no engine's history can touch another's
+    running = [
+        pd.DataFrame(v).groupby(unit, sort=False).cumsum().to_numpy()
+        for v in (x, x * x, t, t * t, t * x)
+    ]
+    columns = {}
+    for window in windows:
+        n = np.minimum(position + 1, window)[:, None].astype(float)
+        trimmed = (position >= window)[:, None]
+        before = np.maximum(row - window, 0)
+        s_x, s_xx, s_t, s_tt, s_tx = (
+            r - np.where(trimmed, r[before], 0.0) for r in running
+        )
+        mean = s_x / n
+        std = np.sqrt(np.clip(s_xx / n - mean**2, 0.0, None))
+        denom = n * s_tt - s_t**2
+        # a single observation has no trend yet, so its slope is reported as flat
+        slope = np.divide(
+            n * s_tx - s_t * s_x, denom, out=np.zeros_like(x), where=denom > 0
+        )
+        for j, sensor in enumerate(sensors):
+            columns[f"{sensor}_mean_{window}"] = mean[:, j]
+            columns[f"{sensor}_std_{window}"] = std[:, j]
+            columns[f"{sensor}_slope_{window}"] = slope[:, j]
+    return pd.DataFrame(columns, index=frame.index)
+
+
+def build_features(
+    frame: pd.DataFrame, sensors: list[str], windows: list[int], include_cycle: bool
+) -> pd.DataFrame:
+    """Model inputs per row: current readings, their rolling statistics and optionally age."""
+    parts = [frame[sensors], rolling_features(frame, sensors, windows)]
+    if include_cycle:
+        parts.insert(0, frame[["cycle"]].astype(float))
+    return pd.concat(parts, axis=1)
+
+
+def last_cycle(frame: pd.DataFrame) -> pd.Series:
+    """Boolean mask of each unit's final observed row, where test predictions are scored."""
+    return frame["cycle"] == frame.groupby("unit_id")["cycle"].transform("max")
