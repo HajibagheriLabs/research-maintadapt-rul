@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maintadapt"
+version = "0.1.0"
+description = "Remaining-useful-life prediction on NASA C-MAPSS, framed as a maintenance decision problem"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "HajibagheriLabs" }]
+dependencies = [
+    "matplotlib~=3.11.0",
+    "mlflow~=3.16.0",
+    "numpy~=2.4.0",
+    "pandas~=3.0.0",
+    "pyyaml~=6.0.0",
+    "scikit-learn~=1.9.0",
+    "torch~=2.11.0",
+    "xgboost~=3.2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest~=9.1.0", "ruff~=0.16.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
