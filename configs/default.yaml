@@ -36,3 +36,26 @@ baselines:
     subsample: 0.8
     colsample_bytree: 0.6
     early_stopping_rounds: 100
+
+sequence:
+  models: [tcn, lstm]
+  # matches the shortest FD001 test history; shorter histories are padded with the first reading
+  window: 30
+  dropout: 0.2
+  # cuda when a GPU is visible, otherwise cpu
+  device: auto
+  tcn:
+    channels: 64
+    kernel_size: 3
+    # receptive field 1 + 2 * (3 - 1) * (1 + 2 + 4 + 8) = 61 cycles covers the whole window
+    dilations: [1, 2, 4, 8]
+  lstm:
+    hidden: 64
+    layers: 2
+  training:
+    batch_size: 256
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 100
+    patience: 15
+    grad_clip: 1.0

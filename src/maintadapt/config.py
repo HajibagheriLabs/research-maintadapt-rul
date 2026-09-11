@@ -87,6 +87,56 @@ class BaselinesConfig:
 
 
 @dataclass(frozen=True)
+class TCNConfig:
+    channels: int
+    kernel_size: int
+    dilations: list[int]
+
+
+@dataclass(frozen=True)
+class LSTMConfig:
+    hidden: int
+    layers: int
+
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    batch_size: int
+    lr: float
+    weight_decay: float
+    max_epochs: int
+    patience: int
+    grad_clip: float
+
+
+@dataclass(frozen=True)
+class SequenceConfig:
+    models: list[str]
+    window: int
+    dropout: float
+    device: str
+    tcn: TCNConfig
+    lstm: LSTMConfig
+    training: TrainingConfig
+
+    def __post_init__(self) -> None:
+        if not self.models or not set(self.models) <= {"tcn", "lstm"}:
+            raise ValueError(
+                f"sequence.models must name tcn and/or lstm, got {self.models}"
+            )
+        if self.window < 2:
+            raise ValueError(
+                f"sequence.window must span two or more cycles, got {self.window}"
+            )
+        if not 0.0 <= self.dropout < 1.0:
+            raise ValueError(f"sequence.dropout must lie in [0, 1), got {self.dropout}")
+        if self.device not in ("auto", "cpu", "cuda"):
+            raise ValueError(
+                f"sequence.device must be auto, cpu or cuda, got {self.device}"
+            )
+
+
+@dataclass(frozen=True)
 class Config:
     seeds: list[int]
     paths: PathsConfig
@@ -94,6 +144,7 @@ class Config:
     evaluation: EvaluationConfig
     features: FeaturesConfig
     baselines: BaselinesConfig
+    sequence: SequenceConfig
 
     def __post_init__(self) -> None:
         if len(self.seeds) < 5 or len(set(self.seeds)) != len(self.seeds):
