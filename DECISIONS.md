@@ -107,3 +107,74 @@ being a verdict on deep learning for RUL in general: neither network was tuned, 
 only captures training randomness, not how the ranking would move on a different set of test
 engines. What it does show is that rolling features with gradient boosting are a demanding
 baseline, and a deep model has to earn its extra complexity here rather than be assumed to.
+
+## Transfer between regimes
+
+**Source FD001, targets FD003 and FD004.** FD001 has one operating regime and one fault mode.
+FD003 keeps the single regime but adds a second fault mode (fan degradation); FD004 adds both the
+second fault mode and six regimes. The two targets separate the effect of a new failure mechanism
+from that of new operating conditions.
+
+**One shared input set.** A network trained on FD001 can only read the sensors FD001 kept, so all
+three subsets use the sensors that survive screening in every one of them. Each subset is
+normalised with its own training engines' statistics, per regime for FD004. That uses target sensor
+readings but no target labels, so the zero-shot condition never sees a target RUL.
+
+**Model chosen before any transfer run.** The transfer study uses the LSTM, which had the lower
+FD001 validation RMSE in the sequence study: 12.95 against 14.66 for the TCN, averaged over five
+seeds (`val_rmse` in `reports/sequence_per_seed.csv`). The choice used validation engines only; no
+test result was consulted.
+
+**Four conditions, five seeds each.** Source-only applies the FD001 model to the target's test
+engines unchanged. Target-only trains from scratch on the target. Fine-tuned starts from the FD001
+model of the same seed and updates every weight at a learning rate of 0.0003, a third of the
+from-scratch rate, so the source features are adjusted rather than overwritten. Target-only and
+fine-tuned are also run on 10%, 25% and 50% of the target's training engines. Budgets are drawn
+per seed and nested, so a larger budget only ever adds engines and the curve compares like with
+like. Every condition early-stops on the full target validation set; a real low-data project would
+have fewer validation engines as well, which this setup does not model, but it treats both arms the
+same way.
+
+## Uncertainty
+
+**Quantile regression for XGBoost.** One booster trained with XGBoost's quantile loss predicts the
+2.5th to 97.5th percentiles needed for central 50%, 80%, 90% and 95% intervals. Quantiles are
+sorted per prediction, because quantiles fitted together can still cross.
+
+**MC dropout for the sequence models.** The trained TCN and LSTM are each run 100 times with
+dropout left on, and the spread of the draws gives the interval. MC dropout only captures model
+uncertainty, not the noise in the data, so it was expected to under-cover; reporting it shows by
+how much.
+
+**Coverage measured on test engines, plus a conformal correction.** Coverage is the share of test
+engines whose capped true RUL falls inside the interval. Neither method guarantees its nominal
+level, so every interval is also widened by split conformal calibration: the margin is the
+ceil((n + 1) * level)-th smallest nonconformity score over validation rows, which guarantees the
+nominal coverage when calibration and test points are exchangeable. They are not quite: validation
+rows cover every cycle of validation engines, test points are the last observed cycle of test
+engines. The tables report the coverage actually achieved, raw and calibrated.
+
+## Maintenance decision
+
+**Two-parameter cost model.** An unplanned failure costs C_f. Maintenance before failure costs C_p
+for every cycle of remaining life thrown away. Only the ratio C_f / C_p matters, and it has units
+of cycles: a failure costs as much as discarding that many cycles of healthy life. The headline
+uses 100 cycles, about half the median FD001 lifetime; the sensitivity analysis spans 10 to 1,000.
+
+**Alarm policy replayed cycle by cycle.** An engine is serviced at the first cycle whose predicted
+RUL is at or below the threshold. Validation engines run to failure, so their full histories are
+replayed and the threshold with the lowest expected cost per engine is chosen on them. Test engines
+stop before failure; for those the policy keeps its last booking, with service due when the last
+available prediction reaches the threshold, and the engine fails if its true remaining life runs
+out first. That is pessimistic for the predictive policy, since a real operator keeps predicting
+and later predictions are sharper.
+
+**References.** Run to failure costs C_f per engine by definition. The fixed schedule services every
+engine at one age, tuned on training-engine lifetimes to minimise expected cost at the same ratio.
+
+**Point prediction or interval bound.** The interval-aware variant alarms when the lower bound of
+the calibrated 90% interval reaches the threshold, which pulls uncertain engines earlier. Both
+variants have their thresholds tuned on validation engines, so the comparison is fair.
+
+**Predictions from XGBoost.** The policy runs on XGBoost, the most accurate model on every subset,
+with its quantile model supplying the interval bound.
