@@ -26,6 +26,8 @@ class DataConfig:
     rul_cap: int
     val_fraction: float
     split_seed: int
+    n_conditions: dict[str, int]
+    max_modal_share: float
 
     def __post_init__(self) -> None:
         if not self.subsets or not set(self.subsets) <= set(SUBSETS):
@@ -37,6 +39,15 @@ class DataConfig:
         if not 0.0 < self.val_fraction < 1.0:
             raise ValueError(
                 f"data.val_fraction must lie in (0, 1), got {self.val_fraction}"
+            )
+        missing = sorted(set(self.subsets) - set(self.n_conditions))
+        if missing or min(self.n_conditions.values()) < 1:
+            raise ValueError(
+                f"data.n_conditions needs a positive count per subset, missing {missing}"
+            )
+        if not 0.5 < self.max_modal_share <= 1.0:
+            raise ValueError(
+                f"data.max_modal_share must lie in (0.5, 1], got {self.max_modal_share}"
             )
 
 

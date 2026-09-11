@@ -17,6 +17,22 @@ TBD — filled in as each stage of the pipeline is run.
 
 TBD
 
+## Data
+
+The C-MAPSS turbofan degradation data (Saxena et al., PHM 2008) is not redistributed here. Download
+it from the NASA Prognostics Center of Excellence data repository, or the Kaggle mirror
+`behrad3d/nasa-cmaps`, and place the twelve text files under `data/raw/CMAPSS/`:
+
+```
+data/raw/CMAPSS/train_FD001.txt   test_FD001.txt   RUL_FD001.txt
+data/raw/CMAPSS/train_FD002.txt   test_FD002.txt   RUL_FD002.txt
+data/raw/CMAPSS/train_FD003.txt   test_FD003.txt   RUL_FD003.txt
+data/raw/CMAPSS/train_FD004.txt   test_FD004.txt   RUL_FD004.txt
+```
+
+`make data` checks the files, writes the unit-level train/validation splits to
+`configs/splits.json`, and produces the dataset report in `reports/`.
+
 ## Usage
 
 TBD

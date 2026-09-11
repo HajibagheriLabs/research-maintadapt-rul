@@ -12,3 +12,7 @@ data:
   rul_cap: 125
   val_fraction: 0.2
   split_seed: 42
+  # flight regimes documented for C-MAPSS: sea level only, or six altitude/Mach/throttle points
+  n_conditions: {FD001: 1, FD002: 6, FD003: 1, FD004: 6}
+  # a sensor stuck on one value for this share of readings in any regime cannot show a trend
+  max_modal_share: 0.95
