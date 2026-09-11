@@ -135,6 +135,20 @@ like. Every condition early-stops on the full target validation set; a real low-
 have fewer validation engines as well, which this setup does not model, but it treats both arms the
 same way.
 
+**Transfer outcome: a small gain that shrinks with target data, weakly supported.** Using the FD001
+model unchanged fails on both targets (test RMSE 24.65 on FD003 and 26.60 on FD004,
+`reports/transfer.csv`), worse than training from scratch on the smallest target budget. For FD003
+the likely reason is visible in `reports/sensor_screening.csv`: sensors 7, 12, 15, 20 and 21 track
+RUL strongly in FD001 (Spearman magnitude 0.67 to 0.71) but barely at all in FD003 (at most 0.07),
+most likely because the second fault mode, fan degradation, moves them differently from the HPC
+degradation FD001 was trained on. Fine-tuning beats training from scratch at every budget, by 0.9
+to 3.3 cycles on FD003 and 0.2 to 1.3 on FD004, and the gap shrinks as target data grows. With five
+seeds per condition only FD003 at 25% of the engines is significant (Welch p = 0.037). The honest
+summary: pretraining on FD001 is worth doing when only a few dozen target engines exist, adds
+little beyond half the target fleet, and never replaces target data. The target-only arm uses the
+14 sensors shared by all three subsets, so its full-budget numbers differ slightly from the
+sequence study, which gave FD003 and FD004 their own larger sensor sets.
+
 ## Uncertainty
 
 **Quantile regression for XGBoost.** One booster trained with XGBoost's quantile loss predicts the

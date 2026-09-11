@@ -86,7 +86,31 @@ tractable (XGBoost, same settings):
 
 ### Transfer between operating regimes
 
-TBD: produced by `make train` (`reports/transfer.csv`).
+An LSTM pretrained on FD001 (one regime, one fault mode) is applied to FD003 (a second fault mode)
+and FD004 (a second fault mode and six regimes): unchanged, trained from scratch on the target, or
+fine-tuned, with 10% to 100% of the target's training engines.
+
+![Test RMSE against the share of target training engines](reports/figures/transfer_budget.png)
+
+| target | target engines used | trained from scratch | fine-tuned from FD001 | gain from fine-tuning (Welch) | FD001 model, zero-shot |
+|---|---|---|---|---|---|
+| FD003 | none |  |  |  | 24.65 ± 1.54 |
+| FD003 | 8 (10%) | 22.15 ± 0.58 | 20.37 ± 1.76 | +1.79 (p = 0.085) |  |
+| FD003 | 20 (25%) | 22.06 ± 1.79 | 18.73 ± 2.33 | +3.33 (p = 0.037) |  |
+| FD003 | 40 (50%) | 18.26 ± 2.20 | 17.14 ± 0.53 | +1.12 (p = 0.324) |  |
+| FD003 | 80 (100%) | 14.88 ± 1.29 | 13.97 ± 0.66 | +0.90 (p = 0.212) |  |
+| FD004 | none |  |  |  | 26.60 ± 1.88 |
+| FD004 | 20 (10%) | 20.37 ± 1.07 | 19.09 ± 1.43 | +1.28 (p = 0.151) |  |
+| FD004 | 50 (25%) | 18.27 ± 1.25 | 17.37 ± 0.55 | +0.90 (p = 0.195) |  |
+| FD004 | 100 (50%) | 15.99 ± 0.54 | 15.57 ± 0.82 | +0.41 (p = 0.378) |  |
+| FD004 | 199 (100%) | 15.14 ± 0.23 | 14.95 ± 0.39 | +0.20 (p = 0.366) |  |
+
+Zero-shot transfer does not work: the FD001 model does worse on the target test engines than a
+model trained from scratch on just 8 FD003 engines or 20 FD004 engines. Fine-tuning is ahead of
+training from scratch at every budget on both targets, and its lead is largest at the 10% and 25%
+budgets, but with five seeds only the 25% FD003 budget clears p < 0.05 (+3.3 cycles). On FD004 the
+gain falls from +1.3 cycles at 10% to +0.2 at the full budget. From about half of the target data
+onwards, pretraining on FD001 stops mattering.
 
 ### Prediction intervals
 
