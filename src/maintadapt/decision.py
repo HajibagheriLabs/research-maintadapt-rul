@@ -25,9 +25,8 @@ class Outcomes:
 
     def cost(self, costs: CostModel) -> np.ndarray:
         """Expected cost per engine for every threshold row."""
-        per_engine = np.where(
-            self.failed, costs.failure, costs.per_cycle * self.discarded
-        )
+        # linear in the outcomes, so failure shares averaged over snapshots price correctly
+        per_engine = costs.failure * self.failed + costs.per_cycle * self.discarded
         return per_engine.mean(axis=-1)
 
 
@@ -49,11 +48,31 @@ def replay_alarms(
         if run_to_failure:
             failed[~alarmed, j] = True
             continue
-        # a history cut before failure keeps its last booking, due when that prediction reaches the threshold
+        # a history cut before failure keeps its last booking, due once that prediction hits the threshold
         delay = predicted[-1] - thresholds[~alarmed]
         late = delay > true_rul[-1]
         failed[~alarmed, j] = late
         discarded[~alarmed, j] = np.where(late, 0.0, true_rul[-1] - delay)
+    return Outcomes(failed, discarded)
+
+
+def replay_snapshots(
+    engines: Sequence[tuple[np.ndarray, np.ndarray]], thresholds: np.ndarray
+) -> Outcomes:
+    """Mean outcome per engine when its run-to-failure history is cut at every cycle in turn."""
+    failed = np.zeros((len(thresholds), len(engines)))
+    discarded = np.zeros((len(thresholds), len(engines)))
+    for j, (predicted, true_rul) in enumerate(engines):
+        crossing = -np.minimum.accumulate(predicted)
+        first = np.searchsorted(crossing, -thresholds, side="left")
+        cut = np.arange(len(predicted))
+        alarmed = first[:, None] <= cut[None, :]
+        delay = predicted[None, :] - thresholds[:, None]
+        late = ~alarmed & (delay > true_rul[None, :])
+        at_alarm = true_rul[np.minimum(first, len(predicted) - 1)][:, None]
+        kept = np.where(alarmed, at_alarm, true_rul[None, :] - delay)
+        failed[:, j] = late.mean(axis=1)
+        discarded[:, j] = np.where(late, 0.0, kept).mean(axis=1)
     return Outcomes(failed, discarded)
 
 

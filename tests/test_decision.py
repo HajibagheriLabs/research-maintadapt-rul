@@ -1,7 +1,12 @@
 import numpy as np
 import pytest
 
-from maintadapt.decision import CostModel, fixed_schedule, replay_alarms
+from maintadapt.decision import (
+    CostModel,
+    fixed_schedule,
+    replay_alarms,
+    replay_snapshots,
+)
 from maintadapt.uncertainty import conformal_margin, coverage
 
 
@@ -24,6 +29,10 @@ def test_policy_costs_match_a_hand_worked_fleet() -> None:
     truncated = (np.array([20.0, 18.0]), np.array([12.0, 10.0]))
     outcomes = replay_alarms([truncated], np.array([3.0, 10.0]), run_to_failure=False)
     assert outcomes.cost(costs).tolist() == [pytest.approx(100.0), pytest.approx(2.0)]
+
+    # engine A cut at each cycle: two cuts book too late, one on time, two alarm with 1 left
+    snapshots = replay_snapshots([engine_a], np.array([3.0]))
+    assert snapshots.cost(costs).tolist() == [pytest.approx(100.0 * 2 / 5 + 2 / 5)]
 
     # lives of 5 and 10 cycles serviced at age 6: the first fails, the second loses 4 cycles
     schedule = fixed_schedule(np.array([5.0, 10.0]), np.array([6.0]))

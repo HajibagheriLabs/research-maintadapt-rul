@@ -161,13 +161,17 @@ for every cycle of remaining life thrown away. Only the ratio C_f / C_p matters,
 of cycles: a failure costs as much as discarding that many cycles of healthy life. The headline
 uses 100 cycles, about half the median FD001 lifetime; the sensitivity analysis spans 10 to 1,000.
 
-**Alarm policy replayed cycle by cycle.** An engine is serviced at the first cycle whose predicted
-RUL is at or below the threshold. Validation engines run to failure, so their full histories are
-replayed and the threshold with the lowest expected cost per engine is chosen on them. Test engines
-stop before failure; for those the policy keeps its last booking, with service due when the last
-available prediction reaches the threshold, and the engine fails if its true remaining life runs
-out first. That is pessimistic for the predictive policy, since a real operator keeps predicting
-and later predictions are sharper.
+**Alarm policy, tuned the same way it is evaluated.** An engine is serviced at the first cycle
+whose predicted RUL is at or below the threshold. Test engines stop before failure, so for an
+engine that has not alarmed by its last observed cycle the policy keeps its last booking: service
+falls due when the last available prediction would reach the threshold, and the engine fails if its
+true remaining life runs out first. The threshold is tuned on validation engines under exactly that
+protocol: each validation history is cut at every cycle in turn, the same booking rule is applied at
+each cut, and the outcomes are averaged per engine. Replaying the validation histories in full
+instead would tune the threshold where predictions are sharpest, just before failure, and choose a
+margin far too thin for the noisier single predictions most test engines are booked on. The
+protocol is pessimistic for the predictive policy, since a real operator keeps predicting and later
+predictions are sharper.
 
 **References.** Run to failure costs C_f per engine by definition. The fixed schedule services every
 engine at one age, tuned on training-engine lifetimes to minimise expected cost at the same ratio.

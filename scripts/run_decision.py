@@ -9,7 +9,13 @@ import pandas as pd
 
 from maintadapt.config import Config, load_config
 from maintadapt.data import load_splits, load_subset
-from maintadapt.decision import CostModel, Outcomes, fixed_schedule, replay_alarms
+from maintadapt.decision import (
+    CostModel,
+    Outcomes,
+    fixed_schedule,
+    replay_alarms,
+    replay_snapshots,
+)
 from maintadapt.evaluate import summarise
 from maintadapt.plotting import INK, MUTED, SERIES, apply_style
 
@@ -84,9 +90,7 @@ def evaluate_policies(cfg: Config, predictions: pd.DataFrame, splits: dict) -> t
                 seeded[seeded["split"] == "test"],
             )
             for policy, column in POLICIES.items():
-                on_val = replay_alarms(
-                    engines(val, column), thresholds, run_to_failure=True
-                )
+                on_val = replay_snapshots(engines(val, column), thresholds)
                 on_test = replay_alarms(
                     engines(test, column), thresholds, run_to_failure=False
                 )
@@ -95,7 +99,7 @@ def evaluate_policies(cfg: Config, predictions: pd.DataFrame, splits: dict) -> t
                         failure=ratio * dec.cycle_cost, per_cycle=dec.cycle_cost
                     )
                     val_cost, test_cost = on_val.cost(costs), on_test.cost(costs)
-                    # the threshold is chosen on validation engines, never on the test fleet
+                    # tuned on validation engines cut at every cycle, never on the test fleet
                     best = int(np.argmin(val_cost))
                     rows.append(
                         {
@@ -312,13 +316,14 @@ had left. Leaving it too long risks an unplanned failure in service.
 
 ## Policy and how it is evaluated
 
-Raise a maintenance alarm the first time the predicted RUL is at or below a threshold. The
-threshold is chosen on validation engines, whose full run-to-failure histories are known, and then
-applied unchanged to the official test engines. Test histories stop before failure, so when no
-alarm has fired by the last observed cycle, maintenance is booked for the cycle at which the last
-prediction says the engine will reach the threshold; if the engine's true life runs out first, it
-fails. Predictions come from the XGBoost baseline; the interval-aware variant alarms on the lower
-end of its calibrated {cfg.uncertainty.nominal:.0%} interval instead of the point prediction.
+Raise a maintenance alarm the first time the predicted RUL is at or below a threshold. Test
+histories stop before failure, so when no alarm has fired by the last observed cycle, maintenance
+is booked for the cycle at which the last prediction says the engine will reach the threshold; if
+the engine's true life runs out first, it fails. The threshold is tuned on validation engines under
+that same rule: every validation history is cut at each cycle in turn, booked the same way, and
+scored against its known failure time. It is then applied unchanged to the official test engines.
+Predictions come from the XGBoost baseline; the interval-aware variant alarms on the lower end of
+its calibrated {cfg.uncertainty.nominal:.0%} interval instead of the point prediction.
 
 Two reference policies:
 
