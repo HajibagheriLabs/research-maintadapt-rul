@@ -52,10 +52,48 @@ class DataConfig:
 
 
 @dataclass(frozen=True)
+class EvaluationConfig:
+    cap_test_truth: bool
+
+
+@dataclass(frozen=True)
+class FeaturesConfig:
+    windows: list[int]
+    include_cycle: bool
+    condition_aware: bool
+
+    def __post_init__(self) -> None:
+        if not self.windows or min(self.windows) < 2:
+            raise ValueError(
+                f"features.windows must each span two or more cycles, got {self.windows}"
+            )
+
+
+@dataclass(frozen=True)
+class XGBoostConfig:
+    n_estimators: int
+    learning_rate: float
+    max_depth: int
+    min_child_weight: float
+    subsample: float
+    colsample_bytree: float
+    early_stopping_rounds: int
+
+
+@dataclass(frozen=True)
+class BaselinesConfig:
+    ridge_alphas: list[float]
+    xgboost: XGBoostConfig
+
+
+@dataclass(frozen=True)
 class Config:
     seeds: list[int]
     paths: PathsConfig
     data: DataConfig
+    evaluation: EvaluationConfig
+    features: FeaturesConfig
+    baselines: BaselinesConfig
 
     def __post_init__(self) -> None:
         if len(self.seeds) < 5 or len(set(self.seeds)) != len(self.seeds):

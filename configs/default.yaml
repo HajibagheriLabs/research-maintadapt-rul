@@ -16,3 +16,23 @@ data:
   n_conditions: {FD001: 1, FD002: 6, FD003: 1, FD004: 6}
   # a sensor stuck on one value for this share of readings in any regime cannot show a trend
   max_modal_share: 0.95
+
+evaluation:
+  # models learn the capped target, so their metrics use capped truth; costs use the raw truth
+  cap_test_truth: true
+
+features:
+  windows: [5, 10, 20, 30]
+  include_cycle: true
+  condition_aware: true
+
+baselines:
+  ridge_alphas: [0.1, 1.0, 10.0, 100.0, 1000.0]
+  xgboost:
+    n_estimators: 2000
+    learning_rate: 0.03
+    max_depth: 5
+    min_child_weight: 5.0
+    subsample: 0.8
+    colsample_bytree: 0.6
+    early_stopping_rounds: 100
