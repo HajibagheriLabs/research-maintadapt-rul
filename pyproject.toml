@@ -18,6 +18,7 @@ dependencies = [
     "pandas~=3.0.0",
     "pyyaml~=6.0.0",
     "scikit-learn~=1.9.0",
+    "scipy~=1.17.0",
     "torch~=2.11.0",
     "xgboost~=3.2.0",
 ]

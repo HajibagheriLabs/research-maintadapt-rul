@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
+from scipy.stats import ttest_ind
 
 from maintadapt.config import load_config
 
@@ -13,6 +14,7 @@ MODEL_NAMES = {
     "tcn": "TCN, raw windows",
     "lstm": "LSTM, raw windows",
 }
+SIGNIFICANCE = 0.05
 
 
 def cell(mean: float, std: float, digits: int) -> str:
@@ -46,6 +48,36 @@ def ablation_table(path: Path) -> pd.DataFrame:
     return table[["subset", "normalisation", "rmse", "nasa_score"]]
 
 
+def deep_versus_xgboost(reports: Path, normalisation: str) -> pd.DataFrame:
+    """Welch t-test of each deep model's per-seed test RMSE against XGBoost's."""
+    baselines = pd.read_csv(reports / "baselines_per_seed.csv")
+    baselines = baselines[baselines["normalisation"] == normalisation]
+    runs = pd.concat([baselines, pd.read_csv(reports / "sequence_per_seed.csv")])
+    rows = []
+    for subset, group in runs.groupby("subset"):
+        reference = group.loc[group["model"] == "xgboost", "rmse"]
+        for model in ("tcn", "lstm"):
+            deep = group.loc[group["model"] == model, "rmse"]
+            if deep.empty:
+                continue
+            gap = deep.mean() - reference.mean()
+            p_value = float(ttest_ind(deep, reference, equal_var=False).pvalue)
+            if p_value >= SIGNIFICANCE:
+                verdict = "no significant difference"
+            else:
+                verdict = f"{model.upper()} better" if gap < 0 else "XGBoost better"
+            rows.append(
+                {
+                    "subset": subset,
+                    "model": model.upper(),
+                    "rmse_gap_vs_xgboost": round(gap, 2),
+                    "welch_p_value": round(p_value, 4),
+                    "verdict": verdict,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/default.yaml")
@@ -69,6 +101,14 @@ def main() -> None:
         sections += [
             "## XGBoost normalisation ablation",
             markdown(ablation_table(ablation)),
+        ]
+    if (reports / "sequence_per_seed.csv").exists():
+        label = "condition-aware" if cfg.features.condition_aware else "global"
+        comparison = deep_versus_xgboost(reports, label)
+        comparison.to_csv(reports / "deep_vs_xgboost.csv", index=False)
+        sections += [
+            "## Deep models against XGBoost (Welch t-test on per-seed test RMSE)",
+            markdown(comparison),
         ]
 
     text = "\n\n".join(sections) + "\n"
