@@ -17,7 +17,7 @@ from maintadapt.decision import (
     replay_snapshots,
 )
 from maintadapt.evaluate import summarise
-from maintadapt.plotting import INK, MUTED, SERIES, apply_style
+from maintadapt.plotting import INK, INK_SECONDARY, MUTED, SERIES, apply_style
 
 POINT, LOWER = "alarm on predicted RUL", "alarm on lower interval bound"
 POLICIES = {POINT: "point", LOWER: "lower"}
@@ -148,6 +148,7 @@ def plot_cost_curves(
         here = here.set_index("policy")
         failure = here.loc[REFERENCES[0], "expected_cost_mean"]
         fixed = here.loc[REFERENCES[1], "expected_cost_mean"]
+        chosen_lines = []
         for colour, policy in zip(SERIES, POLICIES, strict=False):
             rows = curve[(curve["subset"] == name) & (curve["policy"] == policy)]
             x, mean, std = (
@@ -164,13 +165,18 @@ def plot_cost_curves(
             ax.plot(
                 [chosen], [cost], "o", markersize=8, color=colour, markeredgecolor=INK
             )
-            ax.annotate(
-                f"threshold {chosen:.0f}: {cost:.1f}",
-                (chosen, cost),
-                xytext=(6, 10),
-                textcoords="offset points",
-                fontsize=8,
-            )
+            chosen_lines.append(f"{policy}: threshold {chosen:.0f}, cost {cost:.1f}")
+        # high thresholds are always costly, so the lower right corner stays free for labels
+        ax.text(
+            0.98,
+            0.04,
+            "\n".join(chosen_lines),
+            transform=ax.transAxes,
+            ha="right",
+            va="bottom",
+            fontsize=8,
+            color=INK_SECONDARY,
+        )
         ax.axhline(
             failure, color=MUTED, linestyle="--", linewidth=1, label=REFERENCES[0]
         )
@@ -268,6 +274,22 @@ def sensitivity_table(summary: pd.DataFrame, column: str, fmt: str) -> str:
     return markdown(table.rename(columns={"cost_ratio": "failure cost (cycles)"}))
 
 
+def break_even_note(summary: pd.DataFrame) -> str:
+    """Operator warning naming the cost ratios at which the alarm loses to running to failure."""
+    losing = summary["saving_vs_run_to_failure_mean"] <= 0
+    rows = summary[(summary["policy"] == POINT) & losing]
+    if rows.empty:
+        return "The alarm beats running to failure at every cost ratio studied."
+    losses = [
+        f"{ratio:g} cycles ({', '.join(group['subset'])})"
+        for ratio, group in rows.groupby("cost_ratio", sort=True)
+    ]
+    return (
+        "Do not use the alarm when failures are cheap: it costs more than running to "
+        f"failure at a failure cost of {'; '.join(losses)}."
+    )
+
+
 def operator_note(
     cfg: Config, summary: pd.DataFrame, default: float, median_life: dict
 ) -> str:
@@ -350,6 +372,7 @@ Two reference policies:
    costs relative to a cycle of life, the earlier the alarm should fire.
 4. Add your maintenance lead time to the threshold. The model assumes an engine can be serviced in
    the cycle the alarm fires.
+5. {break_even_note(summary)}
 
 ## Sensitivity to the assumed cost ratio (alarm on predicted RUL)
 
