@@ -1,4 +1,4 @@
-"""Seeding, run directories and MLflow logging shared by the experiment scripts."""
+"""Seeding, run directories, resumable progress and MLflow logging for experiment scripts."""
 
 from __future__ import annotations
 
@@ -7,9 +7,12 @@ from pathlib import Path
 
 import mlflow
 import numpy as np
+import pandas as pd
 import torch
 
-from maintadapt.config import Config, save_config
+from maintadapt.config import Config, load_config, save_config
+
+PROGRESS = "progress.csv"
 
 
 def seed_everything(seed: int) -> None:
@@ -26,7 +29,11 @@ def start_run_dir(cfg: Config, name: str) -> Path:
     """Create runs/<name> holding the exact config used, and log to MLflow experiment `name`."""
     path = Path(cfg.paths.runs) / name
     path.mkdir(parents=True, exist_ok=True)
-    save_config(cfg, path / "config.yaml")
+    snapshot, progress = path / "config.yaml", path / PROGRESS
+    # rows recorded under another config are stale, so only an unchanged experiment resumes
+    if progress.exists() and (not snapshot.exists() or load_config(snapshot) != cfg):
+        progress.unlink()
+    save_config(cfg, snapshot)
     store = Path(cfg.paths.mlruns).resolve()
     store.mkdir(parents=True, exist_ok=True)
     # MLflow 3 freezes its plain-file backend, so runs go to SQLite inside the same folder
@@ -37,7 +44,21 @@ def start_run_dir(cfg: Config, name: str) -> Path:
     return path
 
 
-def log_run(run_name: str, params: dict, metrics: dict) -> None:
+def finished_runs(run_dir: Path) -> list[dict]:
+    """Rows already recorded in this run directory, so an interrupted experiment resumes."""
+    progress = run_dir / PROGRESS
+    return pd.read_csv(progress).to_dict("records") if progress.exists() else []
+
+
+def record_run(
+    run_dir: Path, run_name: str, row: dict, params: dict, metrics: dict
+) -> None:
+    """Persist one finished run to the progress file and to MLflow."""
+    progress = run_dir / PROGRESS
+    frame = pd.DataFrame([row])
+    if progress.exists():
+        frame = pd.concat([pd.read_csv(progress), frame], ignore_index=True)
+    frame.to_csv(progress, index=False)
     with mlflow.start_run(run_name=run_name):
         mlflow.log_params(params)
         mlflow.log_metrics(metrics)

@@ -10,7 +10,12 @@ from maintadapt.baselines import fit_ridge, fit_xgboost
 from maintadapt.config import Config, load_config
 from maintadapt.data import load_splits, load_subset
 from maintadapt.evaluate import nasa_score, rmse, summarise
-from maintadapt.experiment import log_run, seed_everything, start_run_dir
+from maintadapt.experiment import (
+    finished_runs,
+    record_run,
+    seed_everything,
+    start_run_dir,
+)
 from maintadapt.features import (
     PreparedSubset,
     build_features,
@@ -65,18 +70,30 @@ def main() -> None:
     run_dir = start_run_dir(cfg, "baselines")
     splits = load_splits(cfg.paths.splits, cfg.data.split_seed, cfg.data.val_fraction)
     reports = Path(cfg.paths.reports)
+    main_setting = cfg.features.condition_aware
 
-    rows = []
+    rows = finished_runs(run_dir)
+    done = {(r["subset"], r["model"], r["normalisation"], r["seed"]) for r in rows}
     for name in cfg.data.subsets:
-        subset = load_subset(cfg.paths.raw_dir, name, cfg.data.rul_cap)
-        main_setting = cfg.features.condition_aware
         # on multi-regime subsets, rerun XGBoost with the other normalisation as an ablation
         settings = [main_setting]
         if cfg.data.n_conditions[name] > 1:
             settings.append(not main_setting)
         for condition_aware in settings:
+            normalisation = "condition-aware" if condition_aware else "global"
+            models = (
+                ["ridge", "xgboost"] if condition_aware == main_setting else ["xgboost"]
+            )
+            todo = [
+                (seed, model)
+                for seed in cfg.seeds
+                for model in models
+                if (name, model, normalisation, seed) not in done
+            ]
+            if not todo:
+                continue
             p = prepare_subset(
-                subset,
+                load_subset(cfg.paths.raw_dir, name, cfg.data.rul_cap),
                 splits[name],
                 cfg.data.n_conditions[name],
                 cfg.data.max_modal_share,
@@ -84,36 +101,21 @@ def main() -> None:
                 condition_aware=condition_aware,
             )
             data = design(p, cfg)
-            models = (
-                ["ridge", "xgboost"] if condition_aware == main_setting else ["xgboost"]
-            )
-            normalisation = "condition-aware" if condition_aware else "global"
-            for seed in cfg.seeds:
+            for seed, model in todo:
                 seed_everything(seed)
-                for model in models:
-                    fitted, extra = fit(model, data, cfg, seed)
-                    metrics = score(fitted, data, cfg.data.rul_cap)
-                    row = {
-                        "subset": name,
-                        "model": model,
-                        "normalisation": normalisation,
-                    }
-                    rows.append({**row, "seed": seed, **metrics, **extra})
-                    params = {
-                        **row,
-                        "seed": seed,
-                        "n_features": data["train"][0].shape[1],
-                    }
-                    run_name = f"{name}-{model}-{normalisation}-seed{seed}"
-                    log_run(run_name, params | extra, metrics)
-                    print(
-                        f"{name} {model:8s} {normalisation:15s} seed {seed}: {metrics}"
-                    )
+                fitted, extra = fit(model, data, cfg, seed)
+                metrics = score(fitted, data, cfg.data.rul_cap)
+                key = {"subset": name, "model": model, "normalisation": normalisation}
+                row = {**key, "seed": seed, **metrics, **extra}
+                params = {**key, "seed": seed, "n_features": data["train"][0].shape[1]}
+                run_name = f"{name}-{model}-{normalisation}-seed{seed}"
+                record_run(run_dir, run_name, row, params | extra, metrics)
+                rows.append(row)
+                print(f"{run_name}: {metrics}")
 
-    runs = pd.DataFrame(rows)
-    runs.to_csv(run_dir / "per_seed.csv", index=False)
+    runs = pd.DataFrame(rows).sort_values(["subset", "normalisation", "model", "seed"])
     runs.round(4).to_csv(reports / "baselines_per_seed.csv", index=False)
-    main_label = "condition-aware" if cfg.features.condition_aware else "global"
+    main_label = "condition-aware" if main_setting else "global"
     main_runs = runs[runs["normalisation"] == main_label]
     summary = summarise(main_runs, ["subset", "model"], METRICS).round(3)
     summary.to_csv(reports / "baselines.csv", index=False)
