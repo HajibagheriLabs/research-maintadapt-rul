@@ -1,0 +1,9 @@
+subset,model,rmse_gap_vs_xgboost,welch_p_value,verdict
+FD001,TCN,2.55,0.0001,XGBoost better
+FD001,LSTM,2.38,0.0009,XGBoost better
+FD002,TCN,1.75,0.0001,XGBoost better
+FD002,LSTM,2.08,0.0001,XGBoost better
+FD003,TCN,1.93,0.0004,XGBoost better
+FD003,LSTM,1.17,0.0254,XGBoost better
+FD004,TCN,2.65,0.0,XGBoost better
+FD004,LSTM,1.76,0.0001,XGBoost better

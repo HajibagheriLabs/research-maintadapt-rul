@@ -29,6 +29,8 @@ Test RMSE in cycles:
 |---|---|---|---|---|
 | Ridge, rolling features | 14.99 ± 0.00 | 15.96 ± 0.00 | 16.29 ± 0.00 | 18.53 ± 0.00 |
 | XGBoost, rolling features | 12.14 ± 0.09 | 12.60 ± 0.05 | 12.49 ± 0.18 | 13.49 ± 0.10 |
+| TCN, raw windows | 14.69 ± 0.43 | 14.35 ± 0.30 | 14.42 ± 0.48 | 16.15 ± 0.23 |
+| LSTM, raw windows | 14.52 ± 0.62 | 14.68 ± 0.32 | 13.66 ± 0.77 | 15.25 ± 0.32 |
 
 NASA score, summed over test engines, where late predictions cost more than early ones:
 
@@ -36,9 +38,23 @@ NASA score, summed over test engines, where late predictions cost more than earl
 |---|---|---|---|---|
 | Ridge, rolling features | 347 ± 0 | 1179 ± 0 | 508 ± 0 | 1596 ± 0 |
 | XGBoost, rolling features | 214 ± 5 | 690 ± 12 | 262 ± 10 | 819 ± 21 |
+| TCN, raw windows | 395 ± 65 | 1059 ± 130 | 553 ± 154 | 1703 ± 213 |
+| LSTM, raw windows | 413 ± 52 | 1108 ± 194 | 436 ± 118 | 1408 ± 310 |
 
 XGBoost beats ridge on every subset, by 2.9 to 5.0 cycles of RMSE, and roughly halves the NASA
 score. Ridge is deterministic given the split, so its spread across seeds is zero.
+
+**The deep sequence models do not beat XGBoost on any subset.** Trained on raw 30-cycle windows
+under the same protocol and without tuning, the TCN and LSTM trail XGBoost by 1.2 to 2.7 cycles of
+RMSE, and every gap is significant across seeds; their seed-to-seed spread is also 2 to 7 times
+larger. Welch t-test on per-seed test RMSE (`reports/deep_vs_xgboost.csv`):
+
+| subset | TCN minus XGBoost | p | LSTM minus XGBoost | p |
+|---|---|---|---|---|
+| FD001 | +2.55 | 0.0001 | +2.38 | 0.0009 |
+| FD002 | +1.75 | 0.0001 | +2.08 | 0.0001 |
+| FD003 | +1.93 | 0.0004 | +1.17 | 0.0254 |
+| FD004 | +2.65 | < 0.0001 | +1.76 | 0.0001 |
 
 Normalising each sensor within its operating regime is what makes the multi-regime subsets
 tractable (XGBoost, same settings):
