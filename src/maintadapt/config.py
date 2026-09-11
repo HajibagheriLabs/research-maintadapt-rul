@@ -160,6 +160,43 @@ class TransferConfig:
 
 
 @dataclass(frozen=True)
+class UncertaintyConfig:
+    levels: list[float]
+    nominal: float
+    mc_samples: int
+
+    def __post_init__(self) -> None:
+        if not self.levels or not all(0.0 < level < 1.0 for level in self.levels):
+            raise ValueError(
+                f"uncertainty.levels must lie in (0, 1), got {self.levels}"
+            )
+        if self.nominal not in self.levels:
+            raise ValueError("uncertainty.nominal must be one of uncertainty.levels")
+        if self.mc_samples < 2:
+            raise ValueError("uncertainty.mc_samples needs at least two draws")
+
+
+@dataclass(frozen=True)
+class DecisionConfig:
+    failure_cost: float
+    cycle_cost: float
+    cost_ratios: list[float]
+    threshold_step: float
+
+    def __post_init__(self) -> None:
+        values = [
+            self.failure_cost,
+            self.cycle_cost,
+            self.threshold_step,
+            *self.cost_ratios,
+        ]
+        if not self.cost_ratios or min(values) <= 0:
+            raise ValueError(
+                "decision costs, cost ratios and threshold step must be positive"
+            )
+
+
+@dataclass(frozen=True)
 class Config:
     seeds: list[int]
     paths: PathsConfig
@@ -169,6 +206,8 @@ class Config:
     baselines: BaselinesConfig
     sequence: SequenceConfig
     transfer: TransferConfig
+    uncertainty: UncertaintyConfig
+    decision: DecisionConfig
 
     def __post_init__(self) -> None:
         if len(self.seeds) < 5 or len(set(self.seeds)) != len(self.seeds):

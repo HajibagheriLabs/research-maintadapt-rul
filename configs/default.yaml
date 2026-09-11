@@ -68,3 +68,16 @@ transfer:
   budgets: [0.1, 0.25, 0.5, 1.0]
   # a third of the from-scratch rate, so fine-tuning adjusts source features rather than erasing them
   finetune_lr: 0.0003
+
+uncertainty:
+  # central interval levels; coverage is reported for each and headlined at `nominal`
+  levels: [0.5, 0.8, 0.9, 0.95]
+  nominal: 0.9
+  mc_samples: 100
+
+decision:
+  # one unplanned failure costs as much as throwing away this many cycles of healthy life
+  failure_cost: 100.0
+  cycle_cost: 1.0
+  cost_ratios: [10.0, 20.0, 50.0, 100.0, 200.0, 500.0, 1000.0]
+  threshold_step: 1.0
