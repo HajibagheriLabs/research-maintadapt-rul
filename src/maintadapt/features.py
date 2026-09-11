@@ -71,6 +71,7 @@ def prepare_subset(
     seed: int,
     *,
     condition_aware: bool,
+    sensors: list[str] | None = None,
 ) -> PreparedSubset:
     """Fit regimes, sensor screening and normalisation on training units; apply everywhere."""
     is_train = subset.train["unit_id"].isin(split["train"])
@@ -81,7 +82,12 @@ def prepare_subset(
     screening = screen_sensors(
         train_rows, train_rows["condition"].to_numpy(), max_modal_share
     )
-    sensors = screening.loc[~screening["dropped"], "sensor"].tolist()
+    kept = screening.loc[~screening["dropped"], "sensor"].tolist()
+    # a network shared across subsets fixes its inputs, and each one must survive screening here
+    if sensors is not None and not set(sensors) <= set(kept):
+        dropped = sorted(set(sensors) - set(kept))
+        raise ValueError(f"{subset.name}: requested sensors {dropped} fail screening")
+    sensors = kept if sensors is None else list(sensors)
     by = "condition" if condition_aware else None
     normaliser = fit_normaliser(fleet, split["train"], sensors, by=by)
     fleet = normaliser.transform(fleet)
