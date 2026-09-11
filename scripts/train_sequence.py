@@ -9,6 +9,7 @@ from maintadapt.config import load_config
 from maintadapt.data import load_splits, load_subset
 from maintadapt.evaluate import nasa_score, rmse, summarise
 from maintadapt.experiment import (
+    exit_without_teardown,
     finished_runs,
     record_run,
     seed_everything,
@@ -96,3 +97,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    exit_without_teardown()

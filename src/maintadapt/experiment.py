@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import ctypes
 import random
+import sys
 from pathlib import Path
 
 import mlflow
@@ -62,3 +64,14 @@ def record_run(
     with mlflow.start_run(run_name=run_name):
         mlflow.log_params(params)
         mlflow.log_metrics(metrics)
+
+
+def exit_without_teardown() -> None:
+    """End a GPU script once every result is on disk and every MLflow run is closed."""
+    sys.stdout.flush()
+    sys.stderr.flush()
+    if sys.platform == "win32":
+        # CUDA libraries crash while unloading after LSTM training (0xC0000409), even via _exit
+        kernel32 = ctypes.windll.kernel32
+        kernel32.GetCurrentProcess.restype = ctypes.c_void_p
+        kernel32.TerminateProcess(ctypes.c_void_p(kernel32.GetCurrentProcess()), 0)
