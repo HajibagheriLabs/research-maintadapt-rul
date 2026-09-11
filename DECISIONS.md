@@ -40,3 +40,40 @@ FD004, are fitted on the training split and applied unchanged to validation and 
 `fit_normaliser` takes the list of training units explicitly, so statistics cannot silently be
 computed on a concatenated frame, and `test_training_statistics_ignore_appended_validation_units`
 guards the whole preparation step: regimes, sensor screening and statistics.
+
+## Features and evaluation
+
+**Rolling windows of 5, 10, 20 and 30 cycles.** Each kept sensor contributes its current normalised
+reading plus the trailing mean, standard deviation and least-squares slope over each window. Short
+windows react to recent change; long windows average out sensor noise, which is large relative to
+the degradation trend. The longest window matches the typical test history: the shortest FD001
+test engine has 31 observed cycles. Windows only look backwards, and on engines with less history
+than a window they use what exists (a single reading has zero spread and a flat slope). Running
+sums restart for every engine, so one engine's features never depend on another's data. Engine age
+in cycles is also a feature: it is known at prediction time and carries the fleet's typical
+lifetime.
+
+**Condition-aware normalisation on FD002 and FD004.** In the multi-regime subsets a raw reading
+mostly says which regime the engine is flying, not how worn it is: the six bands in
+`reports/figures/condition_normalisation.png` are regimes. Z-scoring each sensor within its regime
+removes that and leaves the degradation trend. With identical XGBoost settings it lowers test RMSE
+from 15.91 to 12.60 on FD002 and from 17.39 to 13.49 on FD004, and roughly halves the NASA score
+(`reports/normalisation_ablation.csv`). The globally normalised model also needed far more trees
+before validation stopped improving, some close to the 2,000-tree cap, so it lost despite being
+given more capacity, not less.
+
+**Scoring at the last observed cycle, against capped truth.** Every model is scored on the final
+observed cycle of each official test engine, the standard C-MAPSS protocol. Model metrics compare
+against the truth capped at 125 cycles (`evaluation.cap_test_truth`), because the models are
+trained to say "125 or more" for healthy engines; penalising them for not telling 150 from 190
+would measure the label design rather than the model. This affects 11, 57, 15 and 67 test engines
+in FD001 to FD004 (`reports/dataset_stats.csv`). The decision analysis uses the raw truth, because
+discarded life is real life whether or not the label could see it.
+
+**Ridge penalty and XGBoost stopping chosen on validation engines.** Ridge picks its penalty from a
+small grid by validation RMSE; XGBoost stops adding trees once validation RMSE has not improved for
+100 rounds. Ridge is deterministic given the split, so its standard deviation across seeds is zero,
+and it is reported that way rather than hidden.
+
+**MLflow on SQLite.** MLflow 3 no longer develops its plain-file backend, so runs are logged to
+`mlruns/mlflow.db` inside the same gitignored folder.
