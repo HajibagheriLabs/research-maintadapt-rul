@@ -168,6 +168,16 @@ nominal coverage when calibration and test points are exchangeable. They are not
 rows cover every cycle of validation engines, test points are the last observed cycle of test
 engines. The tables report the coverage actually achieved, raw and calibrated.
 
+**Coverage outcome.** XGBoost's nominal 90% interval covers 83% to 93% of test engines; the sequence
+models' MC dropout intervals cover 44% to 64%, as expected from a method that ignores the noise in
+the data (`reports/uncertainty.csv`). Conformal calibration lifts MC dropout to 81% to 94% but
+leaves XGBoost unchanged on FD001, FD003 and FD004, because its calibration margin comes out at
+zero: many validation rows are early-life cycles at the 125-cycle cap, where the interval's upper
+end sits on the cap and the nonconformity score is exactly zero. Calibrating on validation cut
+points that resemble the test engines would address that. It was deliberately not tried after the
+fact, because retuning the calibration once test coverage is known would turn the test set into a
+tuning set.
+
 ## Maintenance decision
 
 **Two-parameter cost model.** An unplanned failure costs C_f. Maintenance before failure costs C_p
@@ -196,3 +206,13 @@ variants have their thresholds tuned on validation engines, so the comparison is
 
 **Predictions from XGBoost.** The policy runs on XGBoost, the most accurate model on every subset,
 with its quantile model supplying the interval bound.
+
+**Decision outcome.** At a failure cost of 100 cycles, alarming on predicted RUL cuts expected cost
+per test engine by 61% to 73% against running to failure and by 44% to 60% against the best fixed
+schedule, and alarming on the lower bound of the calibrated interval is cheaper again on all four
+fleets (`reports/decision_analysis.csv`). The tuned margins are modest: 11 to 21 cycles of predicted
+RUL for the point alarm, and 2 to 4 for the interval alarm, whose lower bound already sits well
+below the prediction. The fixed schedule does worst on FD004, whose lifetimes vary most: it has to
+service every engine at age 225 and still loses 46% of them to failure. Prediction-driven
+maintenance stops paying when failures are cheap: at a failure cost of 10 cycles it loses to
+running to failure on every fleet, and at 20 cycles on FD002 and FD004.
