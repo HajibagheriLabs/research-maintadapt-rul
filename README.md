@@ -9,6 +9,24 @@ against what actually happened, and their predictions are turned into a cost-opt
 threshold under an explicit, openly stated cost model. The headline number is the maintenance cost
 saved per engine against running to failure and against a fixed maintenance schedule.
 
+## How it works
+
+1. **Data** (`src/maintadapt/data.py`). Parse the four C-MAPSS subsets, label every cycle with its
+   remaining useful life capped at 125, split engines (never cycles) into train and validation,
+   find the operating regimes, and drop sensors that cannot show a trend.
+2. **Features** (`features.py`). Normalise each sensor within its regime using training engines
+   only, then add trailing means, spreads and slopes over 5 to 30 cycles.
+3. **Models** (`baselines.py`, `sequence.py`). Ridge and XGBoost on the rolling features; a TCN and
+   an LSTM on 30-cycle windows of normalised readings. Same splits, seeds and test protocol for all
+   four.
+4. **Transfer** (`transfer.py`). Pretrain on the single-regime FD001 fleet, then fine-tune on FD003
+   and FD004 with 10% to 100% of their training engines.
+5. **Uncertainty** (`uncertainty.py`). Quantile-regression and MC-dropout intervals, checked for
+   coverage on the test engines and corrected by split conformal calibration.
+6. **Decision** (`decision.py`). Replay each engine's predictions against an alarm threshold, price
+   failures and discarded life, choose the threshold on validation engines, and compare the result
+   with running to failure and with a fixed maintenance schedule.
+
 ## Results
 
 Every number below is produced by the `make` targets and read from `reports/`; ± is the standard
@@ -124,6 +142,26 @@ the config is unchanged. Runs are also logged to a local MLflow store:
 ```bash
 .venv/bin/mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
 ```
+
+## Limitations
+
+- **Simulated engines.** C-MAPSS comes from a thermodynamic simulation with injected faults and
+  additive noise. Real fleets have sensor drift and dropouts, maintenance events that reset
+  degradation fully or partly, varying mission profiles, and far fewer run-to-failure histories,
+  because engines are usually removed before they fail.
+- **Assumed cost ratio.** The cost of an unplanned failure relative to a cycle of discarded life is
+  an input, not a measurement. It depends on the operator, the engine type, secondary damage and
+  spare availability. The sensitivity analysis shows how the threshold and the saving move with it,
+  but a deployment needs the operator's own figures.
+- **Simplified maintenance.** Maintenance is priced only through discarded life, is assumed to
+  restore the engine fully, and can happen in the cycle the alarm fires. Lead times, shop capacity
+  and the fixed cost of a shop visit are left out.
+- **Censored test histories.** Test engines stop before failure, so for engines without an alarm
+  the decision analysis has to extend the last prediction forward.
+- **What real fleet data would change.** Labels would be censored, which calls for survival models
+  rather than capped regression. Splits would be by time as well as by engine. Costs could be
+  estimated from maintenance records rather than assumed. The threshold would be re-tuned per fleet
+  and monitored as engines age, and interval calibration would need the same monitoring.
 
 ## License
 
