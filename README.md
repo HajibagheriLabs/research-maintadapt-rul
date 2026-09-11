@@ -15,7 +15,17 @@ TBD — filled in as each stage of the pipeline is run.
 
 ## Setup
 
-TBD
+Requires Python 3.11 and GNU make. `make setup` creates `.venv` and installs the pinned
+dependencies from `pyproject.toml`:
+
+```bash
+make setup                                                    # CPU build of PyTorch
+make setup TORCH_INDEX=https://download.pytorch.org/whl/cu128 # CUDA build of PyTorch
+```
+
+`PYTHON` selects the interpreter used to create the environment (default `python3.11`), for
+example `make setup PYTHON="py -3.11"` on Windows. A GPU is optional; only the sequence models and
+the transfer study use it.
 
 ## Data
 
@@ -37,7 +47,22 @@ data/raw/CMAPSS/train_FD004.txt   test_FD004.txt   RUL_FD004.txt
 
 ## Usage
 
-TBD
+```bash
+make data     # check the raw files, write configs/splits.json, dataset report and figures
+make train    # ridge, XGBoost, TCN and LSTM on every subset and seed, then the transfer study
+make eval     # prediction intervals and the cost-optimal maintenance policy
+make report   # reports/results.csv and the markdown tables quoted in this README
+make lint test
+```
+
+Every experiment reads `configs/default.yaml` (override with `CONFIG=...`) and writes the exact
+config it used to `runs/<experiment>/config.yaml`. Finished runs are recorded in
+`runs/<experiment>/progress.csv`, so an interrupted experiment resumes where it stopped as long as
+the config is unchanged. Runs are also logged to a local MLflow store:
+
+```bash
+.venv/bin/mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
+```
 
 ## License
 
