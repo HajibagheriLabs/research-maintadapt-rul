@@ -146,12 +146,15 @@ def train_model(
     cfg: TrainingConfig,
     cap: int,
     device: torch.device,
-    checkpoint: Path,
+    checkpoint: Path | None,
     *,
     lr: float | None = None,
     max_steps: int | None = None,
 ) -> TrainResult:
-    """Adam on the MSE of RUL/cap, keeping the epoch with the lowest validation RMSE."""
+    """Adam on the MSE of RUL/cap, keeping the epoch with the lowest validation RMSE.
+
+    With checkpoint None the best state stays in memory and nothing is written to disk.
+    """
     model.to(device)
     x_train = torch.as_tensor(train[0], dtype=torch.float32, device=device)
     y_train = torch.as_tensor(train[1] / cap, dtype=torch.float32, device=device)
@@ -182,11 +185,12 @@ def train_model(
         if stale >= cfg.patience or (max_steps is not None and steps >= max_steps):
             break
     model.load_state_dict(best_state)
-    checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(
-        {"state_dict": best_state, "epoch": best_epoch, "val_rmse": best_rmse},
-        checkpoint,
-    )
+    if checkpoint is not None:
+        checkpoint.parent.mkdir(parents=True, exist_ok=True)
+        torch.save(
+            {"state_dict": best_state, "epoch": best_epoch, "val_rmse": best_rmse},
+            checkpoint,
+        )
     return TrainResult(model, best_epoch, best_rmse, steps)
 
 
