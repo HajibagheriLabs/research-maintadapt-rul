@@ -37,9 +37,10 @@ training:
   patience: 15
   grad_clip: 1.0
   batch_size: 256
-  # null: CPU count minus two
+  # CPU threads of each ridge, k-NN or forest fit; null: half the logical CPUs
   cpu_jobs: null
-  gpu_torch_threads: 2
+  # CPU threads of each fit that runs on the GPU (XGBoost and the networks)
+  gpu_threads: 2
 
 crossfit:
   # R = 3 or 2 and the dropped configurations, set from the dry run by PREREGISTRATION.md 4.4

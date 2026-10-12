@@ -32,15 +32,16 @@ from maintadapt.research.fold_data import FoldData
 from maintadapt.research.models.registry import (
     CONTROL_FAMILIES,
     CPU_FAMILIES,
-    NEURAL_FAMILIES,
+    GPU_FAMILIES,
     FitOutput,
 )
 from maintadapt.research.models.spaces import ModelConfig, config_hash
 
+# the controls take no time, so they ride with the lighter CPU stream
 STREAMS = {
     "cpu": (*CPU_FAMILIES, *CONTROL_FAMILIES),
-    "gpu": NEURAL_FAMILIES,
-    "all": (*CPU_FAMILIES, *NEURAL_FAMILIES, *CONTROL_FAMILIES),
+    "gpu": GPU_FAMILIES,
+    "all": (*CPU_FAMILIES, *GPU_FAMILIES, *CONTROL_FAMILIES),
 }
 # PREREGISTRATION.md section 9: one retry with seed + 1000
 RETRY_OFFSET = 1000

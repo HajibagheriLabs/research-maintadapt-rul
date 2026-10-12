@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+import warnings
 from collections.abc import Callable
 from dataclasses import dataclass, fields
 from typing import Any
@@ -13,6 +14,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from threadpoolctl import threadpool_limits
 from torch import nn
 
 from maintadapt.baselines import fit_ridge, fit_xgboost
@@ -29,8 +31,10 @@ from maintadapt.research.models.networks import (
 from maintadapt.research.models.spaces import FAMILIES
 from maintadapt.sequence import LSTMRegressor, TCNRegressor, predict, train_model
 
-CPU_FAMILIES = ("ridge", "knn", "forest", "xgboost", "xgboost_raw")
 NEURAL_FAMILIES = ("mlp", "lstm", "tcn", "cnn", "transformer")
+# scikit-learn has no GPU version of these; everything else trains on the GPU when present
+CPU_FAMILIES = ("ridge", "knn", "forest")
+GPU_FAMILIES = ("xgboost", "xgboost_raw", *NEURAL_FAMILIES)
 # pipeline checks outside the pool: the capped truth itself, and the cap at every cycle
 CONTROL_FAMILIES = ("control_oracle", "control_constant")
 
@@ -142,9 +146,17 @@ def _xgboost(inputs: Inputs) -> Callable[[dict[str, Any], FoldData, _Run], _Trai
             run.seed,
             reg_lambda=params["reg_lambda"],
             n_jobs=run.threads,
+            device="cuda" if run.device.type == "cuda" else "cpu",
         )
-        # predict() then stops at the best round as well
-        return inputs, model.predict, int(model.best_iteration)
+
+        def model_predict(x: Any) -> np.ndarray:
+            # host inputs reach a GPU booster through a DMatrix; XGBoost warns about the copy
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore", message=".*mismatched devices.*")
+                # predict() stops at the best round as well
+                return model.predict(x)
+
+        return inputs, model_predict, int(model.best_iteration)
 
     return trainer
 
@@ -283,6 +295,15 @@ def check_params(family: str, params: dict[str, Any]) -> None:
         )
 
 
+def fit_threads(
+    family: str, device: torch.device, training: ResearchTrainingConfig
+) -> int:
+    """CPU threads of a fit; BLAS and OpenMP pools are held to the same number."""
+    if family in GPU_FAMILIES and device.type == "cuda":
+        return training.gpu_threads
+    return training.resolved_cpu_jobs()
+
+
 def train(
     family: str,
     params: dict[str, Any],
@@ -293,18 +314,15 @@ def train(
 ) -> Fitted:
     """Fit one configuration on inner_fit; inner_val serves early stopping only."""
     check_params(family, params)
-    neural = family in NEURAL_FAMILIES
-    if neural and device.type == "cuda":
-        threads = training.gpu_torch_threads
-    else:
-        threads = training.resolved_cpu_jobs()
-    if neural:
+    threads = fit_threads(family, device, training)
+    if family in NEURAL_FAMILIES:
         torch.set_num_threads(threads)
     seed_everything(seed)
-    inputs, model, best = TRAINERS[family](
-        params, data, _Run(seed, device, training, threads)
-    )
-    n_inputs = int(inputs(data, "inner_fit").shape[-1])
+    with threadpool_limits(limits=threads):
+        inputs, model, best = TRAINERS[family](
+            params, data, _Run(seed, device, training, threads)
+        )
+        n_inputs = int(inputs(data, "inner_fit").shape[-1])
     return Fitted(family, inputs, model, best, n_inputs)
 
 
@@ -319,7 +337,8 @@ def fit(
     """Train one configuration and predict every cycle of inner_val, outer_test and official_test."""
     start = time.perf_counter()
     fitted = train(family, params, data, seed, device, training)
-    predictions = {split: fitted.predict(data, split) for split in PREDICTED}
+    with threadpool_limits(limits=fit_threads(family, device, training)):
+        predictions = {split: fitted.predict(data, split) for split in PREDICTED}
     seconds = time.perf_counter() - start
     return FitOutput(
         predictions=predictions,

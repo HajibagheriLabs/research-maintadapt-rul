@@ -11,6 +11,7 @@ from dataclasses import replace
 from pathlib import Path
 
 import pandas as pd
+from threadpoolctl import threadpool_limits
 
 from maintadapt.data import load_subset
 from maintadapt.experiment import exit_without_teardown
@@ -34,7 +35,7 @@ from maintadapt.research.fold_data import FoldData, build_fold_data
 from maintadapt.research.folds import Fold, lifetimes, load_folds
 from maintadapt.research.models.registry import (
     CPU_FAMILIES,
-    NEURAL_FAMILIES,
+    GPU_FAMILIES,
     FitOutput,
     fit,
 )
@@ -132,29 +133,42 @@ def run_stream(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     if args.smoke:
         training = replace(training, max_epochs=SMOKE_EPOCHS)
     subsets = {}
+    families, cpu_jobs = (
+        {job.config.family for job in jobs},
+        training.resolved_cpu_jobs(),
+    )
+    gpu_threads = training.gpu_threads if device.type == "cuda" else cpu_jobs
+    # regime clustering and feature building get no more threads than the stream's fits
+    stream_threads = cpu_jobs if families - set(GPU_FAMILIES) else gpu_threads
 
     def build_data(fleet: str, repeat: int, fold: int) -> FoldData:
         if fleet not in subsets:
             subsets[fleet] = load_subset(cfg.data.raw_dir, fleet, cfg.data.cap)
-        return build_fold_data(
-            subsets[fleet],
-            folds[fleet][repeat][fold],
-            cfg.data,
-            cfg.folds.seed,
-            repeat=repeat,
-            index=fold,
-        )
+        with threadpool_limits(limits=stream_threads):
+            return build_fold_data(
+                subsets[fleet],
+                folds[fleet][repeat][fold],
+                cfg.data,
+                cfg.folds.seed,
+                repeat=repeat,
+                index=fold,
+            )
 
     def fit_job(job: Job, data: FoldData, seed: int) -> FitOutput:
         c = job.config
         return fit(c.family, c.params, data, seed, device, training)
 
     def device_for(family: str) -> str:
-        return str(device) if family in NEURAL_FAMILIES else "cpu"
+        return str(device) if family in GPU_FAMILIES else "cpu"
 
+    parts = []
+    if families & set(GPU_FAMILIES):
+        parts.append(f"XGBoost and networks on {device} with {gpu_threads} CPU threads")
+    if families - set(GPU_FAMILIES):
+        parts.append(f"ridge, k-NN and forest with {cpu_jobs} CPU threads")
     print(
         f"{args.stream} stream: {len(jobs)} fits planned in {run['root']} "
-        f"(device {device}, {training.resolved_cpu_jobs()} CPU jobs)",
+        f"({'; '.join(parts)})",
         flush=True,
     )
     counts = run_jobs(
@@ -190,7 +204,7 @@ def estimate(cfg: ResearchConfig, root: str) -> None:
         # the dry run times repeat 0, fold 0, the first entry
         measured[fleet] = per_fold[0]
     # the controls run only in the smoke test, so they take no confirmatory time
-    streams = {"cpu": CPU_FAMILIES, "gpu": NEURAL_FAMILIES}
+    streams = {"cpu": CPU_FAMILIES, "gpu": GPU_FAMILIES}
     projection = project_hours(
         records(root), streams, cfg.pool.n_configs, rows, measured, cfg.folds.n_outer
     )

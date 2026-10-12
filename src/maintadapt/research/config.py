@@ -100,9 +100,10 @@ class ResearchTrainingConfig:
     patience: int
     grad_clip: float
     batch_size: int
-    # null means the CPU count minus two, which leaves the machine responsive
+    # CPU threads of a CPU-stream fit; null means half the logical CPUs
     cpu_jobs: int | None
-    gpu_torch_threads: int
+    # CPU threads of a fit that runs on the GPU
+    gpu_threads: int
 
     def __post_init__(self) -> None:
         if self.device not in ("auto", "cpu", "cuda"):
@@ -113,7 +114,7 @@ class ResearchTrainingConfig:
             "max_epochs": self.max_epochs,
             "patience": self.patience,
             "batch_size": self.batch_size,
-            "gpu_torch_threads": self.gpu_torch_threads,
+            "gpu_threads": self.gpu_threads,
         }
         if self.cpu_jobs is not None:
             counts["cpu_jobs"] = self.cpu_jobs
@@ -124,7 +125,8 @@ class ResearchTrainingConfig:
     def resolved_cpu_jobs(self) -> int:
         if self.cpu_jobs is not None:
             return self.cpu_jobs
-        return max(1, (os.cpu_count() or 1) - 2)
+        # the runs last days next to the GPU stream, so the CPU keeps half its threads idle
+        return max(1, (os.cpu_count() or 2) // 2)
 
 
 @dataclass(frozen=True)

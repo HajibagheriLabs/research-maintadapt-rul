@@ -39,10 +39,10 @@ def test_committed_research_config_holds_the_registered_values() -> None:
     assert (cfg.stats.n_boot, cfg.stats.ci, cfg.stats.seed) == (2000, 0.95, 2026)
 
 
-def test_cpu_jobs_defaults_to_the_cpu_count_minus_two(tmp_path: Path) -> None:
+def test_cpu_jobs_defaults_to_half_the_logical_cpus(tmp_path: Path) -> None:
     raw = _raw()
     assert raw["training"]["cpu_jobs"] is None
-    expected = max(1, (os.cpu_count() or 1) - 2)
+    expected = max(1, (os.cpu_count() or 2) // 2)
     assert _load(tmp_path, raw).training.resolved_cpu_jobs() == expected
 
     raw["training"]["cpu_jobs"] = 3

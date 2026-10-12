@@ -27,7 +27,7 @@ TRAINING = ResearchTrainingConfig(
     grad_clip=1.0,
     batch_size=256,
     cpu_jobs=2,
-    gpu_torch_threads=1,
+    gpu_threads=1,
 )
 FOLD = Fold(
     inner_fit=tuple(range(1, 13)),

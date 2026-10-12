@@ -26,7 +26,7 @@ from maintadapt.research.leaderboard import (
     compare_with_legacy,
     per_seed_metrics,
 )
-from maintadapt.research.models.registry import NEURAL_FAMILIES, fit
+from maintadapt.research.models.registry import GPU_FAMILIES, fit
 from maintadapt.research.models.spaces import load_pool
 from maintadapt.sequence import resolve_device
 
@@ -99,7 +99,7 @@ def main() -> None:
                 ),
                 seed,
                 env,
-                str(device) if config.family in NEURAL_FAMILIES else "cpu",
+                str(device) if config.family in GPU_FAMILIES else "cpu",
             )
             ran += 1
             print(

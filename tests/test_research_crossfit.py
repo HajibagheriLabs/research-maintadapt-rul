@@ -18,6 +18,7 @@ from maintadapt.research.archive import (
 )
 from maintadapt.research.compute import decide_repeats, project_hours, stream_totals
 from maintadapt.research.crossfit import (
+    STREAMS,
     Job,
     control_configs,
     describe,
@@ -32,7 +33,7 @@ from maintadapt.research.leaderboard import (
     last_cycle_metrics,
     per_seed_metrics,
 )
-from maintadapt.research.models.registry import FitOutput, fit
+from maintadapt.research.models.registry import FitOutput, fit, fit_threads
 from maintadapt.research.models.spaces import FAMILY_NAMES, load_pool
 
 POOL = load_pool(ROOT / CFG.paths.pool, CFG.pool.seed, CFG.pool.n_configs)
@@ -328,3 +329,28 @@ def test_leaderboard_reads_every_finished_seed_back_from_its_files(
     assert table["seed"].tolist() == [0, 1]
     # the oracle predicts the capped truth, so it scores perfectly at the last cycle
     assert (table["rmse"] == 0.0).all() and (table["nasa_score"] == 0.0).all()
+
+
+def test_streams_put_xgboost_and_the_networks_on_the_gpu() -> None:
+    assert STREAMS["cpu"] == (
+        "ridge",
+        "knn",
+        "forest",
+        "control_oracle",
+        "control_constant",
+    )
+    assert STREAMS["gpu"] == (
+        "xgboost",
+        "xgboost_raw",
+        "mlp",
+        "lstm",
+        "tcn",
+        "cnn",
+        "transformer",
+    )
+    assert set(STREAMS["all"]) == set(FAMILY_NAMES) | set(STREAMS["cpu"])
+    # a fit on the GPU keeps gpu_threads CPU threads; without a GPU it gets cpu_jobs
+    gpu = torch.device("cuda")
+    assert fit_threads("xgboost", gpu, TRAINING) == TRAINING.gpu_threads == 1
+    assert fit_threads("xgboost", CPU, TRAINING) == TRAINING.cpu_jobs == 2
+    assert fit_threads("forest", gpu, TRAINING) == 2
