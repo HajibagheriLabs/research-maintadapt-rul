@@ -1,5 +1,34 @@
 # Decisions
 
+## Research fork
+
+**What changed.** At tag `fork-point` (commit 36c23b3) the engineering project maintadapt-rul became
+the companion repository of one pre-registered study: do the accuracy metrics RUL papers rank models
+by predict the maintenance value of the same models? The design is fixed in
+[PREREGISTRATION.md](PREREGISTRATION.md) before any confirmatory fit, and every later change to it is
+logged in [DEVIATIONS.md](DEVIATIONS.md). Research code goes in `src/maintadapt/research/`,
+`scripts/research/` and `configs/research*`. The legacy pipeline stays and computes what it computed
+at the fork; only its `make train`, `eval` and `report` targets were renamed `legacy-train`,
+`legacy-eval` and `legacy-report`, and its README moved to
+[docs/legacy/README_engineering.md](docs/legacy/README_engineering.md).
+
+**Why.** The engineering project scored models on one fixed split, on the truncated official test
+engines, with seed-only ± values, and evaluated maintenance decisions on those same truncated
+engines. That cannot say whether a model that wins on the leaderboard also wins as a maintenance
+policy. The research protocol keeps the two estimands apart: leaderboard metrics on the official test
+engines exactly as RUL papers compute them, maintenance value only on complete run-to-failure
+trajectories predicted out of fold, with uncertainty from resampling engines.
+
+**Corrections.** Three legacy claims need correcting and one needs context: the XGBoost interval
+called calibrated was not (its conformal margin was zero on three subsets), the decision analysis on
+test engines rests on an extrapolation of truncated histories, and the ± values are seed spread
+only. Details and the recomputed numbers, each with its source file, are in
+[docs/legacy/ERRATA.md](docs/legacy/ERRATA.md).
+
+## Legacy log (engineering project, tag `fork-point`)
+
+Kept verbatim below.
+
 A short log of every non-obvious choice in this repo and the reason for it. Numbers quoted here come
 from files in `reports/`, which the `make` targets regenerate.
 
