@@ -1,0 +1,238 @@
+# Frozen model pool, written by scripts/research/make_pool.py from
+# src/maintadapt/research/models/spaces.py. Do not edit by hand.
+# Configuration 0 of every family is its reference configuration.
+seed: 2026
+total: 113
+families:
+  ridge:
+    index: 0
+    inputs: rolling features, scaled
+    n_configs: 5
+    all: {}
+    space:
+      alpha: [0.1, 1.0, 10.0, 100.0, 1000.0]
+    configs:
+    - {id: ridge-00, hash: 48bf3ac658e3a84a, params: {alpha: 1.0}}
+    - {id: ridge-01, hash: d3ccf501b0076ff9, params: {alpha: 0.1}}
+    - {id: ridge-02, hash: 4979b3f4e21b91b8, params: {alpha: 10.0}}
+    - {id: ridge-03, hash: a63fede2878d7c8a, params: {alpha: 100.0}}
+    - {id: ridge-04, hash: 33ed07f459c0582f, params: {alpha: 1000.0}}
+  knn:
+    index: 1
+    inputs: rolling features, scaled
+    n_configs: 12
+    all: {}
+    space:
+      n_neighbors: [5, 10, 20, 30, 50, 100]
+      weights: [uniform, distance]
+    configs:
+    - {id: knn-00, hash: 58c886046c63fabf, params: {n_neighbors: 30, weights: uniform}}
+    - {id: knn-01, hash: 18c36a9d2f3a0f1f, params: {n_neighbors: 5, weights: uniform}}
+    - {id: knn-02, hash: 68b13cf8870261fa, params: {n_neighbors: 5, weights: distance}}
+    - {id: knn-03, hash: 615ef1668d870256, params: {n_neighbors: 10, weights: uniform}}
+    - {id: knn-04, hash: 1166eb0d9aee367d, params: {n_neighbors: 10, weights: distance}}
+    - {id: knn-05, hash: 801174ef955d760b, params: {n_neighbors: 20, weights: uniform}}
+    - {id: knn-06, hash: 0b24aace6a690d03, params: {n_neighbors: 20, weights: distance}}
+    - {id: knn-07, hash: 070b05ef4669e6fc, params: {n_neighbors: 30, weights: distance}}
+    - {id: knn-08, hash: 99298ee5a7624109, params: {n_neighbors: 50, weights: uniform}}
+    - {id: knn-09, hash: 15f16bfcb9956abb, params: {n_neighbors: 50, weights: distance}}
+    - {id: knn-10, hash: c426f193aac165d4, params: {n_neighbors: 100, weights: uniform}}
+    - {id: knn-11, hash: b843d0c235edeef2, params: {n_neighbors: 100, weights: distance}}
+  forest:
+    index: 2
+    inputs: rolling features
+    n_configs: 12
+    all: {n_estimators: 200, max_samples: 0.5}
+    space:
+      max_features: [0.1, 0.2, 0.3, 0.5]
+      min_samples_leaf: [1, 5, 10, 20]
+      max_depth: [null, 12, 20]
+    configs:
+    - {id: forest-00, hash: f3efff3ac1fda024, params: {max_features: 0.3, min_samples_leaf: 5, max_depth: null, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-01, hash: c17d8350b857ed9f, params: {max_features: 0.2, min_samples_leaf: 1, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-02, hash: 0539810da3dd382a, params: {max_features: 0.2, min_samples_leaf: 20, max_depth: null, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-03, hash: '8812619404049607', params: {max_features: 0.3, min_samples_leaf: 10, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-04, hash: 6dd3fea6174ff2a7, params: {max_features: 0.1, min_samples_leaf: 20, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-05, hash: 177832237785b53d, params: {max_features: 0.2, min_samples_leaf: 5, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-06, hash: 26749dfe52f9dfaf, params: {max_features: 0.1, min_samples_leaf: 1, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-07, hash: fa5fb16eae1e9420, params: {max_features: 0.5, min_samples_leaf: 10, max_depth: 12, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-08, hash: 9eae053d575d7160, params: {max_features: 0.5, min_samples_leaf: 5, max_depth: 20, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-09, hash: ff631f9a72972a72, params: {max_features: 0.3, min_samples_leaf: 5, max_depth: 20, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-10, hash: d024aec255710a1b, params: {max_features: 0.3, min_samples_leaf: 1, max_depth: null, n_estimators: 200, max_samples: 0.5}}
+    - {id: forest-11, hash: 05880db0ce0e82d3, params: {max_features: 0.2, min_samples_leaf: 10, max_depth: 20, n_estimators: 200, max_samples: 0.5}}
+  xgboost:
+    index: 3
+    inputs: rolling features
+    n_configs: 12
+    all: {early_stopping_rounds: 100}
+    space:
+      max_depth: [3, 4, 5, 6, 8]
+      learning_rate: log-uniform [0.01, 0.1]
+      min_child_weight: [1.0, 3.0, 5.0, 10.0, 20.0]
+      subsample: uniform [0.6, 1]
+      colsample_bytree: uniform [0.3, 1]
+      reg_lambda: log-uniform [0.1, 10]
+    other_configs: {n_estimators: 3000}
+    configs:
+    - {id: xgboost-00, hash: 4b45d8c260cc717b, params: {max_depth: 5, learning_rate: 0.03, min_child_weight: 5.0, subsample: 0.8, colsample_bytree: 0.6, reg_lambda: 1.0, n_estimators: 2000, early_stopping_rounds: 100}}
+    - {id: xgboost-01, hash: c23c0accb57b073b, params: {max_depth: 5, learning_rate: 0.0103, min_child_weight: 10.0, subsample: 0.685, colsample_bytree: 0.403, reg_lambda: 2.15, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-02, hash: 397a1b7140d06619, params: {max_depth: 6, learning_rate: 0.0131, min_child_weight: 10.0, subsample: 0.68, colsample_bytree: 0.725, reg_lambda: 2.82, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-03, hash: 533172cdbcd0fa01, params: {max_depth: 4, learning_rate: 0.0704, min_child_weight: 20.0, subsample: 0.957, colsample_bytree: 0.772, reg_lambda: 1.69, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-04, hash: 13a2fbed5f2fd590, params: {max_depth: 8, learning_rate: 0.0102, min_child_weight: 10.0, subsample: 0.886, colsample_bytree: 0.494, reg_lambda: 0.199, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-05, hash: b02198226cf163d1, params: {max_depth: 3, learning_rate: 0.0471, min_child_weight: 3.0, subsample: 0.717, colsample_bytree: 0.798, reg_lambda: 1.28, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-06, hash: 114e5a77399e00d8, params: {max_depth: 6, learning_rate: 0.0157, min_child_weight: 5.0, subsample: 0.82, colsample_bytree: 0.541, reg_lambda: 0.126, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-07, hash: 01bdfe5b6615e345, params: {max_depth: 3, learning_rate: 0.0158, min_child_weight: 20.0, subsample: 0.823, colsample_bytree: 0.712, reg_lambda: 3.7, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-08, hash: ae9637bcc277254d, params: {max_depth: 8, learning_rate: 0.0796, min_child_weight: 10.0, subsample: 0.61, colsample_bytree: 0.447, reg_lambda: 1.93, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-09, hash: 5e0791e37d1ed70e, params: {max_depth: 8, learning_rate: 0.0683, min_child_weight: 3.0, subsample: 0.768, colsample_bytree: 0.707, reg_lambda: 1.29, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-10, hash: 2704b4451d2d7ab1, params: {max_depth: 5, learning_rate: 0.032, min_child_weight: 5.0, subsample: 0.664, colsample_bytree: 0.765, reg_lambda: 6.68, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost-11, hash: cf67d019cc7d5d26, params: {max_depth: 3, learning_rate: 0.0802, min_child_weight: 3.0, subsample: 0.8, colsample_bytree: 0.561, reg_lambda: 1.39, n_estimators: 3000, early_stopping_rounds: 100}}
+  xgboost_raw:
+    index: 4
+    inputs: cycle and current readings
+    n_configs: 12
+    all: {early_stopping_rounds: 100}
+    space:
+      max_depth: [3, 4, 5, 6, 8]
+      learning_rate: log-uniform [0.01, 0.1]
+      min_child_weight: [1.0, 3.0, 5.0, 10.0, 20.0]
+      subsample: uniform [0.6, 1]
+      colsample_bytree: uniform [0.3, 1]
+      reg_lambda: log-uniform [0.1, 10]
+    other_configs: {n_estimators: 3000}
+    configs:
+    - {id: xgboost_raw-00, hash: 3126556037d3812c, params: {max_depth: 5, learning_rate: 0.03, min_child_weight: 5.0, subsample: 0.8, colsample_bytree: 0.6, reg_lambda: 1.0, n_estimators: 2000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-01, hash: b849fc2fa4751337, params: {max_depth: 4, learning_rate: 0.0111, min_child_weight: 20.0, subsample: 0.968, colsample_bytree: 0.854, reg_lambda: 1.05, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-02, hash: 7111ed86574dc321, params: {max_depth: 3, learning_rate: 0.0127, min_child_weight: 20.0, subsample: 0.621, colsample_bytree: 0.513, reg_lambda: 0.173, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-03, hash: 55a3184ebef0ae7e, params: {max_depth: 3, learning_rate: 0.0292, min_child_weight: 20.0, subsample: 0.971, colsample_bytree: 0.729, reg_lambda: 0.872, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-04, hash: 90fbb802e8baee47, params: {max_depth: 3, learning_rate: 0.0618, min_child_weight: 20.0, subsample: 0.789, colsample_bytree: 0.503, reg_lambda: 1.08, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-05, hash: eee750cda2ed9d25, params: {max_depth: 4, learning_rate: 0.014, min_child_weight: 20.0, subsample: 0.802, colsample_bytree: 0.429, reg_lambda: 4.39, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-06, hash: 8a8a778e38f8ac81, params: {max_depth: 6, learning_rate: 0.0577, min_child_weight: 5.0, subsample: 0.841, colsample_bytree: 0.712, reg_lambda: 0.109, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-07, hash: 5e4c072e2b33b2ae, params: {max_depth: 4, learning_rate: 0.0557, min_child_weight: 10.0, subsample: 0.834, colsample_bytree: 0.992, reg_lambda: 8.3, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-08, hash: ed71b8aba8825edd, params: {max_depth: 8, learning_rate: 0.0348, min_child_weight: 5.0, subsample: 0.806, colsample_bytree: 0.834, reg_lambda: 4.95, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-09, hash: d5255d00c1b9ae9d, params: {max_depth: 3, learning_rate: 0.0767, min_child_weight: 3.0, subsample: 0.865, colsample_bytree: 0.796, reg_lambda: 1.25, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-10, hash: 93bfb785eccf55cd, params: {max_depth: 3, learning_rate: 0.0264, min_child_weight: 20.0, subsample: 0.705, colsample_bytree: 0.983, reg_lambda: 0.983, n_estimators: 3000, early_stopping_rounds: 100}}
+    - {id: xgboost_raw-11, hash: 9c2dc1ac8fe28e06, params: {max_depth: 6, learning_rate: 0.0119, min_child_weight: 10.0, subsample: 0.719, colsample_bytree: 0.449, reg_lambda: 0.159, n_estimators: 3000, early_stopping_rounds: 100}}
+  mlp:
+    index: 5
+    inputs: rolling features, scaled
+    n_configs: 12
+    all: {batch_size: 256}
+    space:
+      hidden: [[64], [128, 64], [256, 128], [256, 128, 64]]
+      dropout: [0.0, 0.1, 0.2]
+      lr: log-uniform [0.0003, 0.003]
+      weight_decay: [0.0, 1.0e-05, 0.0001]
+    configs:
+    - {id: mlp-00, hash: 96b28cb025ea1697, params: {hidden: [128, 64], dropout: 0.1, lr: 0.001, weight_decay: 0.0001, batch_size: 256}}
+    - {id: mlp-01, hash: 5ce34493e58fa53b, params: {hidden: [64], dropout: 0.0, lr: 0.000374, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-02, hash: 5396b173263a0b86, params: {hidden: [128, 64], dropout: 0.0, lr: 0.000451, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-03, hash: dcc9873f5a2e4839, params: {hidden: [256, 128, 64], dropout: 0.0, lr: 0.000434, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-04, hash: 39fdf07322b79615, params: {hidden: [64], dropout: 0.1, lr: 0.00198, weight_decay: 1.0e-05, batch_size: 256}}
+    - {id: mlp-05, hash: 2239884787c1b2bf, params: {hidden: [256, 128], dropout: 0.0, lr: 0.000558, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-06, hash: 709c5efc392f1f5c, params: {hidden: [256, 128, 64], dropout: 0.0, lr: 0.00255, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-07, hash: e49fb47d2908304e, params: {hidden: [64], dropout: 0.0, lr: 0.000329, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-08, hash: 96c6ecff193e07aa, params: {hidden: [256, 128, 64], dropout: 0.2, lr: 0.00212, weight_decay: 0.0001, batch_size: 256}}
+    - {id: mlp-09, hash: 9c2f9baf41399400, params: {hidden: [64], dropout: 0.1, lr: 0.00262, weight_decay: 0.0, batch_size: 256}}
+    - {id: mlp-10, hash: 0ca24a006e143928, params: {hidden: [256, 128], dropout: 0.1, lr: 0.000391, weight_decay: 1.0e-05, batch_size: 256}}
+    - {id: mlp-11, hash: b0c3553dc6cee3a8, params: {hidden: [128, 64], dropout: 0.1, lr: 0.00212, weight_decay: 0.0, batch_size: 256}}
+  lstm:
+    index: 6
+    inputs: windows
+    n_configs: 12
+    all: {batch_size: 256, weight_decay: 0.0001}
+    space:
+      hidden: [32, 64, 128]
+      layers: [1, 2, 3]
+      dropout: [0.1, 0.2, 0.3, 0.5]
+      lr: log-uniform [0.0003, 0.003]
+      window: [20, 30, 40]
+    configs:
+    - {id: lstm-00, hash: 771d0eb7b86a3b22, params: {hidden: 64, layers: 2, dropout: 0.2, lr: 0.001, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-01, hash: 786954ac2ef74c76, params: {hidden: 32, layers: 1, dropout: 0.5, lr: 0.000646, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-02, hash: 5426f67628415076, params: {hidden: 32, layers: 1, dropout: 0.5, lr: 0.00252, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-03, hash: 705f05b1358f809d, params: {hidden: 128, layers: 3, dropout: 0.5, lr: 0.00174, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-04, hash: e863963c0f88e27f, params: {hidden: 64, layers: 2, dropout: 0.3, lr: 0.000913, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-05, hash: 101aca3090ded0b6, params: {hidden: 32, layers: 1, dropout: 0.1, lr: 0.0012, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-06, hash: 5b8db9feb625ff12, params: {hidden: 32, layers: 2, dropout: 0.2, lr: 0.000797, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-07, hash: 727a20f9ef353f0d, params: {hidden: 64, layers: 2, dropout: 0.3, lr: 0.00053, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-08, hash: 3880906618a6220d, params: {hidden: 64, layers: 3, dropout: 0.3, lr: 0.000324, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-09, hash: 7e1f81a64b1fa384, params: {hidden: 128, layers: 2, dropout: 0.3, lr: 0.000779, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-10, hash: 8ab3598456e889dd, params: {hidden: 32, layers: 3, dropout: 0.5, lr: 0.00226, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: lstm-11, hash: 4f12daa452bd949d, params: {hidden: 64, layers: 3, dropout: 0.3, lr: 0.000589, window: 30, batch_size: 256, weight_decay: 0.0001}}
+  tcn:
+    index: 7
+    inputs: windows
+    n_configs: 12
+    all: {batch_size: 256, weight_decay: 0.0001}
+    space:
+      channels: [32, 64, 128]
+      kernel_size: [2, 3, 5]
+      dilations: [[1, 2, 4], [1, 2, 4, 8], [1, 2, 4, 8, 16]]
+      dropout: [0.1, 0.2, 0.3]
+      lr: log-uniform [0.0003, 0.003]
+      window: [20, 30, 40]
+    configs:
+    - {id: tcn-00, hash: 3fe4c8dbb2045f46, params: {channels: 64, kernel_size: 3, dilations: [1, 2, 4, 8], dropout: 0.2, lr: 0.001, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-01, hash: 16ade50af891beb3, params: {channels: 64, kernel_size: 5, dilations: [1, 2, 4], dropout: 0.1, lr: 0.00208, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-02, hash: 541666b7d44f79fb, params: {channels: 64, kernel_size: 5, dilations: [1, 2, 4], dropout: 0.3, lr: 0.000734, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-03, hash: fb27fc7e7c151d6f, params: {channels: 128, kernel_size: 3, dilations: [1, 2, 4], dropout: 0.1, lr: 0.00191, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-04, hash: 5e4e66aa69d05d51, params: {channels: 128, kernel_size: 5, dilations: [1, 2, 4, 8], dropout: 0.2, lr: 0.000357, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-05, hash: 3071f9ea8e361e66, params: {channels: 64, kernel_size: 5, dilations: [1, 2, 4, 8, 16], dropout: 0.1, lr: 0.000376, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-06, hash: 06735b17a10b1bc4, params: {channels: 32, kernel_size: 2, dilations: [1, 2, 4, 8, 16], dropout: 0.2, lr: 0.00148, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-07, hash: 1a5085b72aa131db, params: {channels: 32, kernel_size: 3, dilations: [1, 2, 4, 8], dropout: 0.3, lr: 0.00132, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-08, hash: f3a1bfbab5404f34, params: {channels: 32, kernel_size: 3, dilations: [1, 2, 4, 8], dropout: 0.3, lr: 0.00104, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-09, hash: 56eb8caee7a8770b, params: {channels: 128, kernel_size: 3, dilations: [1, 2, 4, 8], dropout: 0.2, lr: 0.000731, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-10, hash: 823a1f0414f5d07d, params: {channels: 128, kernel_size: 3, dilations: [1, 2, 4], dropout: 0.1, lr: 0.00185, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: tcn-11, hash: 170203109f9b8821, params: {channels: 64, kernel_size: 5, dilations: [1, 2, 4, 8], dropout: 0.3, lr: 0.00101, window: 30, batch_size: 256, weight_decay: 0.0001}}
+  cnn:
+    index: 8
+    inputs: windows
+    n_configs: 12
+    all: {batch_size: 512, weight_decay: 0.0001}
+    space:
+      filters: [10, 16, 32]
+      kernel_size: [5, 10, 15]
+      conv_layers: [3, 4, 5]
+      fc: [50, 100, 200]
+      dropout: [0.2, 0.5]
+      lr: log-uniform [0.0003, 0.003]
+      window: [20, 30, 40]
+    configs:
+    - {id: cnn-00, hash: e80d2821243bfddf, params: {filters: 10, kernel_size: 10, conv_layers: 4, fc: 100, dropout: 0.5, lr: 0.001, window: 30, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-01, hash: f063a568e63a7b03, params: {filters: 16, kernel_size: 10, conv_layers: 3, fc: 200, dropout: 0.5, lr: 0.00105, window: 30, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-02, hash: 57ed599ba8ec034f, params: {filters: 16, kernel_size: 15, conv_layers: 3, fc: 100, dropout: 0.5, lr: 0.000617, window: 30, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-03, hash: 53aa2591a5058fb9, params: {filters: 32, kernel_size: 5, conv_layers: 3, fc: 50, dropout: 0.5, lr: 0.0014, window: 30, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-04, hash: ddac395916e11146, params: {filters: 10, kernel_size: 5, conv_layers: 5, fc: 200, dropout: 0.2, lr: 0.00202, window: 40, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-05, hash: 5d987fe03d011a70, params: {filters: 32, kernel_size: 5, conv_layers: 3, fc: 100, dropout: 0.5, lr: 0.00152, window: 40, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-06, hash: 7df3cdf17780dfc2, params: {filters: 16, kernel_size: 5, conv_layers: 5, fc: 100, dropout: 0.5, lr: 0.0004, window: 30, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-07, hash: a8b2b098294979ae, params: {filters: 10, kernel_size: 5, conv_layers: 3, fc: 100, dropout: 0.2, lr: 0.00089, window: 20, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-08, hash: b32d0f4df84decec, params: {filters: 10, kernel_size: 5, conv_layers: 5, fc: 200, dropout: 0.5, lr: 0.00267, window: 40, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-09, hash: 68bf32d9fb2e9817, params: {filters: 32, kernel_size: 5, conv_layers: 5, fc: 100, dropout: 0.5, lr: 0.00239, window: 20, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-10, hash: f2b2b01c734e90ba, params: {filters: 32, kernel_size: 5, conv_layers: 5, fc: 50, dropout: 0.5, lr: 0.00179, window: 40, batch_size: 512, weight_decay: 0.0001}}
+    - {id: cnn-11, hash: c7037c1b4d99b520, params: {filters: 16, kernel_size: 15, conv_layers: 3, fc: 200, dropout: 0.2, lr: 0.000785, window: 30, batch_size: 512, weight_decay: 0.0001}}
+  transformer:
+    index: 9
+    inputs: windows
+    n_configs: 12
+    all: {batch_size: 256, weight_decay: 0.0001}
+    space:
+      d_model: [32, 64, 128]
+      heads: [2, 4]
+      layers: [1, 2, 3]
+      ff: [64, 128, 256]
+      dropout: [0.1, 0.2]
+      lr: log-uniform [0.0003, 0.003]
+      window: [20, 30, 40]
+    configs:
+    - {id: transformer-00, hash: e6387cace8cd67c7, params: {d_model: 64, heads: 4, layers: 2, ff: 128, dropout: 0.1, lr: 0.001, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-01, hash: f3499b33277ba33f, params: {d_model: 64, heads: 4, layers: 1, ff: 256, dropout: 0.2, lr: 0.000842, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-02, hash: be78c3b8f55efa3b, params: {d_model: 128, heads: 4, layers: 1, ff: 256, dropout: 0.1, lr: 0.000327, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-03, hash: 398831df4f3c8b32, params: {d_model: 64, heads: 2, layers: 3, ff: 256, dropout: 0.2, lr: 0.0019, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-04, hash: b63d48c9369c8f9a, params: {d_model: 32, heads: 2, layers: 2, ff: 128, dropout: 0.1, lr: 0.000925, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-05, hash: ed492cc012681ebd, params: {d_model: 128, heads: 2, layers: 1, ff: 256, dropout: 0.2, lr: 0.000338, window: 20, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-06, hash: 57ce12671273d025, params: {d_model: 32, heads: 4, layers: 2, ff: 256, dropout: 0.2, lr: 0.000318, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-07, hash: 21319f27e00cddd7, params: {d_model: 64, heads: 2, layers: 1, ff: 256, dropout: 0.1, lr: 0.000664, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-08, hash: 00e84232656dc2cb, params: {d_model: 128, heads: 4, layers: 1, ff: 128, dropout: 0.1, lr: 0.000498, window: 40, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-09, hash: 6ac996c49cb7ff05, params: {d_model: 128, heads: 4, layers: 2, ff: 64, dropout: 0.1, lr: 0.000831, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-10, hash: 5905007f39afad4b, params: {d_model: 32, heads: 4, layers: 2, ff: 64, dropout: 0.1, lr: 0.00145, window: 30, batch_size: 256, weight_decay: 0.0001}}
+    - {id: transformer-11, hash: 04689ff63164b0ee, params: {d_model: 128, heads: 4, layers: 1, ff: 256, dropout: 0.1, lr: 0.00247, window: 20, batch_size: 256, weight_decay: 0.0001}}
