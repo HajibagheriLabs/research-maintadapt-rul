@@ -128,6 +128,18 @@ class ResearchTrainingConfig:
 
 
 @dataclass(frozen=True)
+class CrossfitConfig:
+    # R and any dropped configurations follow from the dry run by PREREGISTRATION.md 4.4
+    repeats: int
+    # drops configurations 8-11 of every family with twelve configurations
+    drop_late_configs: bool
+
+    def configs_run(self, n_configs: int) -> int:
+        """How many of a family's configurations the confirmatory runs fit."""
+        return 8 if self.drop_late_configs and n_configs == 12 else n_configs
+
+
+@dataclass(frozen=True)
 class PrimaryConfig:
     cost_ratio: float
     lead_time: int
@@ -197,6 +209,7 @@ class ResearchPathsConfig:
     derived: str
     smoke: str
     dryrun: str
+    leaderboard: str
     reports: str
     paper_assets: str
 
@@ -207,9 +220,17 @@ class ResearchConfig:
     folds: FoldsConfig
     pool: PoolConfig
     training: ResearchTrainingConfig
+    crossfit: CrossfitConfig
     decision: DecisionGridConfig
     stats: StatsConfig
     paths: ResearchPathsConfig
+
+    def __post_init__(self) -> None:
+        if not 1 <= self.crossfit.repeats <= self.folds.n_repeats:
+            raise ValueError(
+                f"crossfit.repeats must lie in 1..{self.folds.n_repeats} (the repeats in "
+                f"the folds file), got {self.crossfit.repeats}"
+            )
 
 
 def fleet_number(name: str) -> int:

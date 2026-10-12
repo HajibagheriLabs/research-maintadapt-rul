@@ -71,6 +71,8 @@ def test_cpu_jobs_defaults_to_the_cpu_count_minus_two(tmp_path: Path) -> None:
         ("pool", "n_configs", {"ridge": 5}, "n_configs"),
         ("stats", "ci", 95, "ci"),
         ("training", "device", "gpu", "device"),
+        ("crossfit", "repeats", 4, "crossfit.repeats"),
+        ("crossfit", "repeats", 0, "crossfit.repeats"),
         ("data", "unexpected", 1, "unknown keys"),
     ],
 )
@@ -86,3 +88,15 @@ def test_bad_research_values_raise_clear_errors(
 def test_unknown_fleet_has_no_number() -> None:
     with pytest.raises(ValueError, match="unknown fleet"):
         fleet_number("NCMAPSS")
+
+
+def test_dropping_late_configurations_touches_only_twelve_config_families(
+    tmp_path: Path,
+) -> None:
+    raw = _raw()
+    raw["crossfit"]["drop_late_configs"] = True
+    cfg = _load(tmp_path, raw)
+    # ridge keeps its five grid points; every twelve-config family keeps 0-7
+    assert [cfg.crossfit.configs_run(n) for n in (5, 12)] == [5, 8]
+    run = {f: cfg.crossfit.configs_run(n) for f, n in cfg.pool.n_configs.items()}
+    assert sum(run.values()) == 5 + 9 * 8

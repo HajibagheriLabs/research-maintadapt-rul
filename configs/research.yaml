@@ -41,6 +41,11 @@ training:
   cpu_jobs: null
   gpu_torch_threads: 2
 
+crossfit:
+  # R = 3 or 2 and the dropped configurations, set from the dry run by PREREGISTRATION.md 4.4
+  repeats: 3
+  drop_late_configs: false
+
 decision:
   cost_ratios: [1.5, 2, 3, 5, 10, 20, 50]
   lead_times: [0, 10, 20]
@@ -63,5 +68,7 @@ paths:
   derived: runs/research/derived
   smoke: runs/research/smoke
   dryrun: runs/research/dryrun
+  # conventional leaderboard on the legacy split, kept apart from the confirmatory archive
+  leaderboard: runs/research/leaderboard
   reports: reports/research
   paper_assets: paper_assets
