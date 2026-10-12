@@ -1,17 +1,16 @@
 from dataclasses import replace
 from functools import cache
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
 import torch
+from synthetic_fleet import CFG, CONSTANT, FOLD, ROOT, TRAINING, fold_data, subset
 
-from maintadapt.data import SENSORS, Subset, add_rul
-from maintadapt.research.config import ResearchTrainingConfig, load_research_config
-from maintadapt.research.fold_data import PREDICTED, FoldData, build_fold_data
-from maintadapt.research.folds import Fold
+from maintadapt.data import SENSORS, Subset
+from maintadapt.research.fold_data import PREDICTED, FoldData
 from maintadapt.research.models.registry import (
+    CONTROL_FAMILIES,
     NEURAL_FAMILIES,
     TRAINERS,
     Fitted,
@@ -22,75 +21,28 @@ from maintadapt.research.models.registry import (
 )
 from maintadapt.research.models.spaces import FAMILY_NAMES, load_pool
 
-ROOT = Path(__file__).resolve().parents[1]
-CFG = load_research_config(ROOT / "configs" / "research.yaml")
 POOL = load_pool(ROOT / CFG.paths.pool, CFG.pool.seed, CFG.pool.n_configs)
 REFERENCE = {c.family: c.params for c in POOL if c.id.endswith("-00")}
-DATA_CFG = replace(CFG.data, fleets=["FD001"], windows=[5, 10])
-TRAINING = ResearchTrainingConfig(
-    device="cpu",
-    max_epochs=3,
-    patience=2,
-    grad_clip=1.0,
-    batch_size=256,
-    cpu_jobs=2,
-    gpu_torch_threads=1,
-)
 CPU = torch.device("cpu")
 SEED = 7
-FOLD = Fold(
-    inner_fit=tuple(range(1, 13)),
-    inner_val=tuple(range(13, 17)),
-    outer_test=tuple(range(17, 21)),
-)
-CONSTANT = ["sensor_1", "sensor_5", "sensor_10"]
 
 
-def _engine(unit: int, life: int, rng: np.random.Generator) -> pd.DataFrame:
-    cycle = np.arange(1, life + 1)
-    # wear grows slowly, then fast near failure, as in C-MAPSS degradation
-    wear = np.exp(3.0 * cycle / life) - 1.0
-    frame = pd.DataFrame({"unit_id": unit, "cycle": cycle})
-    frame["setting_1"] = rng.normal(0.0, 0.002, life)
-    frame["setting_2"] = rng.normal(0.0, 0.0002, life)
-    frame["setting_3"] = 100.0
-    for k, sensor in enumerate(SENSORS):
-        trend = (k % 5 - 2) * 0.2 * wear
-        frame[sensor] = 1.0 if sensor in CONSTANT else 10.0 + trend
-        if sensor not in CONSTANT:
-            frame[sensor] += rng.normal(0.0, 0.5, life)
-    return frame
-
-
-@cache
 def _subset() -> Subset:
-    rng = np.random.default_rng(0)
-    train = pd.concat(
-        [_engine(u, int(rng.integers(60, 160)), rng) for u in range(1, 21)],
-        ignore_index=True,
-    )
-    tests, final = [], {}
-    for unit in range(1, 7):
-        engine = _engine(unit, int(rng.integers(60, 160)), rng)
-        seen = int(len(engine) * rng.uniform(0.3, 0.9))
-        tests.append(engine.iloc[:seen])
-        final[unit] = len(engine) - seen
-    test = add_rul(pd.concat(tests, ignore_index=True), 125, pd.Series(final))
-    return Subset("FD001", add_rul(train, 125), test)
+    return subset()
 
 
 def _perturbed() -> Subset:
     """Outer_test and official test engines with wildly different readings."""
-    subset = _subset()
-    train, test = subset.train.copy(), subset.test.copy()
+    fleet = subset()
+    train, test = fleet.train.copy(), fleet.test.copy()
     held = train["unit_id"].isin(FOLD.outer_test)
     train.loc[held, SENSORS] = train.loc[held, SENSORS] * 1000.0 + 7.0
     test[SENSORS] = test[SENSORS] * -500.0 + 3.0
     return Subset("FD001", train, test)
 
 
-def _fold_data(subset: Subset) -> FoldData:
-    return build_fold_data(subset, FOLD, DATA_CFG, CFG.folds.seed, repeat=0, index=0)
+def _fold_data(fleet: Subset) -> FoldData:
+    return fold_data(fleet)
 
 
 @cache
@@ -122,9 +74,23 @@ def _assert_same(family: str, got: np.ndarray, expected: np.ndarray) -> None:
         np.testing.assert_allclose(got, expected, rtol=1e-12, atol=0.0)
 
 
-def test_registry_covers_every_family_of_the_pool() -> None:
-    assert set(TRAINERS) == set(FAMILY_NAMES)
+def test_registry_covers_every_family_of_the_pool_and_two_controls() -> None:
+    assert set(TRAINERS) == set(FAMILY_NAMES) | set(CONTROL_FAMILIES)
     assert set(REFERENCE) == set(FAMILY_NAMES)
+
+
+def test_controls_predict_the_capped_truth_and_the_cap() -> None:
+    data = _data()
+    oracle = fit("control_oracle", {}, data, SEED, CPU, TRAINING)
+    constant = fit("control_constant", {}, data, SEED, CPU, TRAINING)
+    for split in PREDICTED:
+        truth = data.target(split).to_numpy()
+        np.testing.assert_array_equal(oracle.predictions[split], truth)
+        assert (constant.predictions[split] == data.cap).all()
+    assert oracle.val_rmse == 0.0
+    assert (oracle.n_inputs, constant.n_inputs) == (1, 0)
+    with pytest.raises(ValueError, match="unknown keys"):
+        check_params("control_oracle", {"alpha": 1.0})
 
 
 def test_fold_data_fits_every_statistic_on_inner_fit_engines() -> None:

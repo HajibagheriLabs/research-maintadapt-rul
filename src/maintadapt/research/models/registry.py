@@ -31,6 +31,8 @@ from maintadapt.sequence import LSTMRegressor, TCNRegressor, predict, train_mode
 
 CPU_FAMILIES = ("ridge", "knn", "forest", "xgboost", "xgboost_raw")
 NEURAL_FAMILIES = ("mlp", "lstm", "tcn", "cnn", "transformer")
+# pipeline checks outside the pool: the capped truth itself, and the cap at every cycle
+CONTROL_FAMILIES = ("control_oracle", "control_constant")
 
 # builds a model's inputs for one split of a fold
 Inputs = Callable[[FoldData, str], Any]
@@ -235,6 +237,20 @@ def _sequence(family: str) -> Callable[[dict[str, Any], FoldData, _Run], _Traine
     return trainer
 
 
+def _control_oracle(params: dict[str, Any], data: FoldData, run: _Run) -> _Trained:
+    def inputs(fold: FoldData, split: str) -> np.ndarray:
+        return fold.target(split).to_numpy()[:, None]
+
+    return inputs, lambda x: x[:, 0], None
+
+
+def _control_constant(params: dict[str, Any], data: FoldData, run: _Run) -> _Trained:
+    def inputs(fold: FoldData, split: str) -> np.ndarray:
+        return np.empty((len(fold.frame(split)), 0))
+
+    return inputs, lambda x: np.full(len(x), float(data.cap)), None
+
+
 TRAINERS: dict[str, Callable[[dict[str, Any], FoldData, _Run], _Trained]] = {
     "ridge": _ridge,
     "knn": _knn,
@@ -246,16 +262,20 @@ TRAINERS: dict[str, Callable[[dict[str, Any], FoldData, _Run], _Trained]] = {
     "tcn": _sequence("tcn"),
     "cnn": _sequence("cnn"),
     "transformer": _sequence("transformer"),
+    "control_oracle": _control_oracle,
+    "control_constant": _control_constant,
 }
 
 
 def check_params(family: str, params: dict[str, Any]) -> None:
     """Raise unless params set exactly the keys of the family's configurations."""
     specs = {f.name: f for f in FAMILIES}
-    if family not in specs or family not in TRAINERS:
+    if family not in TRAINERS:
         raise ValueError(f"unknown family {family!r}; expected one of {list(TRAINERS)}")
-    spec = specs[family]
-    expected = set(spec.reference) | set(spec.shared)
+    if family in CONTROL_FAMILIES:
+        expected: set[str] = set()
+    else:
+        expected = set(specs[family].reference) | set(specs[family].shared)
     if set(params) != expected:
         raise ValueError(
             f"{family}: unknown keys {sorted(set(params) - expected)}, "
