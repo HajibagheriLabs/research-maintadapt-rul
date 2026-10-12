@@ -243,5 +243,11 @@ def test_the_guard_refuses_the_confirmatory_archive_until_it_is_frozen_and_valid
     with pytest.raises(GuardError, match="analysis-frozen"):
         require_frozen_archive(archive, cfg, ["FD001"], valid, lambda: False)
     with pytest.raises(GuardError, match="non-finite"):
-        require_frozen_archive(archive, cfg, ["FD001"], broken, lambda: True)
-    require_frozen_archive(archive, cfg, ["FD001"], valid, lambda: True)
+        require_frozen_archive(
+            archive, cfg, ["FD001"], broken, lambda: True, lambda: True
+        )
+    with pytest.raises(GuardError, match="differs from its version"):
+        require_frozen_archive(
+            archive, cfg, ["FD001"], valid, lambda: True, lambda: False
+        )
+    require_frozen_archive(archive, cfg, ["FD001"], valid, lambda: True, lambda: True)

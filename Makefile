@@ -37,9 +37,10 @@ Targets (variables in brackets):
   research-outcomes    tune policies and record maintenance outcomes into runs/research/derived [RESEARCH_CONFIG, ROOT]
   research-metrics     accuracy metrics as per-engine sums into runs/research/derived [RESEARCH_CONFIG, ROOT]
   research-sanity      check the smoke archive's derived tables; reports/research/smoke/sanity.md [RESEARCH_CONFIG]
+  research-confirmatory  E1-E3 and the verdicts; refuses the archive until analysis-frozen [RESEARCH_CONFIG, ROOT]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory
 
 help:
 	$(info $(HELP))
@@ -113,3 +114,6 @@ research-metrics:
 
 research-sanity:
 	$(PY) scripts/research/smoke_sanity.py --config $(RESEARCH_CONFIG)
+
+research-confirmatory:
+	$(PY) scripts/research/run_confirmatory.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
