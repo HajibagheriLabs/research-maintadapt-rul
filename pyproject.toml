@@ -3,9 +3,9 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "maintadapt"
-version = "0.1.0"
-description = "Remaining-useful-life prediction on NASA C-MAPSS, framed as a maintenance decision problem"
+name = "research-maintadapt-rul"
+version = "0.2.0.dev0"
+description = "Do remaining-useful-life leaderboards predict maintenance cost? A pre-registered study on NASA C-MAPSS"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -16,6 +16,8 @@ dependencies = [
     "mlflow~=3.16.0",
     "numpy~=2.4.0",
     "pandas~=3.0.0",
+    # mlflow 3.16 requires pyarrow<26
+    "pyarrow~=25.0.0",
     "pyyaml~=6.0.0",
     "scikit-learn~=1.9.0",
     "scipy~=1.17.0",
