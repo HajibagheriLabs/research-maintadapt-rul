@@ -145,6 +145,30 @@ decision metric exists:
   unchanged by x + 15, 1.25x, x^2/125 and exp(x/50) applied to every prediction, and R2 outcomes
   by affine maps, so a monotone recalibration cannot change a model's maintenance value.
 
+## Derived tables
+
+`make research-outcomes` and `make research-metrics` turn an archive into the tables the analysis
+reads, in `runs/research/derived/<archive>/<fleet>/`, so that no analysis reads predictions again:
+- **Outcomes.** Every configuration, repeat and fold is tuned three ways: on its inner_val engines
+  (validation, the primary), on the outer_test engines of the repeat's other folds (crossfit) and
+  on every outer_test engine of the repeat (oracle). Each tuned policy is applied to the fold's
+  outer_test engines; the table keeps theta, alpha, the in-sample cost rate (the validation cost
+  of section 5.8) and every engine's failure, cycles used and waste. Age replacement is tuned per
+  fold on the outer-train lifetimes and applied to the same outer_test engines.
+- **Metrics.** Each fit's accuracy is stored as per-engine sums and counts (squared errors,
+  NASA terms, jitter steps, late-phase errors), so every metric can be recomputed under the
+  engine bootstrap. Jitter needs five qualifying cycles on an engine, a rule applied when the
+  sums are combined. The 20 truncation points of each outer_test engine are drawn once per
+  engine from `default_rng([2026, fleet number, unit])`, so every configuration, repeat and fold
+  is scored at the same cycles.
+- **Exclusions and the guard.** A configuration with a failed fit in any fold of a fleet is left
+  out of that fleet and listed in `excluded.csv`; a pending fit stops the build. On the
+  confirmatory archive both builders refuse to run until `make research-validate` passes and the
+  tag `analysis-frozen` exists.
+
+The smoke archive passes every check in `reports/research/smoke/sanity.md`: the capped-truth
+control reaches S = 1 under all three tunings, and the constant control stays below 0.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.

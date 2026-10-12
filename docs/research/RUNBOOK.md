@@ -5,6 +5,28 @@ in every (fleet, repeat, outer fold) and store one prediction per cycle for ever
 outer_test and official test engine. They compute no test or decision metric; nothing may compute
 one from `runs/research/archive` before the tag `analysis-frozen` exists (CLAUDE.md, rule 8).
 
+## The full order
+
+| step | command | time |
+|---|---|---|
+| 1 | `make research-crossfit STREAM=cpu` and `make research-crossfit STREAM=gpu`, at once | 6.3 h (CPU) and 25.6 h (GPU) at R = 3 |
+| 2 | `make research-validate` | minutes |
+| 3 | `make research-outcomes` | about 20 minutes |
+| 4 | `make research-metrics` | about 5 minutes |
+| 5 | `make research-confirmatory` | Prompt 7 |
+
+The cross-fitting hours are the projection in `reports/research/compute_estimate.csv`. Steps 3 and
+4 are scaled from their smoke runs (0.45 s per configuration and repeat for the outcomes, 0.06 s
+per fit for the metrics, in `runs/research/derived/smoke/FD001/build_*.json`); FD002 and FD004
+have about three times FD001's engines. Steps 3 to 5 refuse to run on the confirmatory archive
+until `make research-validate` passes and the tag `analysis-frozen` exists, which is created
+after Prompt 7 and before both streams finish. They write `runs/research/derived/archive/`.
+
+The same chain on the smoke archive needs no tag and takes a few minutes:
+`make research-smoke`, `make research-validate ROOT=smoke`, `make research-outcomes ROOT=smoke`,
+`make research-metrics ROOT=smoke`, then `make research-sanity`, which writes
+`reports/research/smoke/sanity.md`.
+
 ## Before the first launch
 
 1. `make lint test` passes and `git status` shows no changes to tracked files. Every fit records the
@@ -103,7 +125,7 @@ progress a few times a day; there is nothing to do while it runs.
 
 - `make research-smoke`: FD001, repeat 0, all five folds, configuration 0 of every family and the
   two controls, with 3 epochs for the networks, into `runs/research/smoke`; about two minutes.
-  Check it with `make research-validate ROOT=runs/research/smoke`.
+  Check it with `make research-validate ROOT=smoke`.
 - `make research-dryrun`: times configurations 0-2 of every family on FD001 and FD004 (repeat 0,
   fold 0) with both streams running at once, writes `reports/research/compute_estimate.csv` and
   prints the outcome of the rule in PREREGISTRATION.md section 4.4.
@@ -115,6 +137,7 @@ progress a few times a day; there is nothing to do while it runs.
 ## When both streams have finished
 
 `make research-progress` shows no pending fit and `make research-validate` reports the archive
-valid. Configurations that failed in any fold of a fleet are excluded from that fleet and listed
-(PREREGISTRATION.md section 9). The archive stays where it is: never delete or edit
+valid. Then follow steps 3 to 5 of the full order. Configurations that failed in any fold of a
+fleet are excluded from that fleet and listed in `runs/research/derived/archive/<fleet>/
+excluded.csv` (PREREGISTRATION.md section 9). The archive stays where it is: never delete or edit
 `runs/research/archive`.
