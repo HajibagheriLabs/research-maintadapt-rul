@@ -25,6 +25,54 @@ test engines rests on an extrapolation of truncated histories, and the ± values
 only. Details and the recomputed numbers, each with its source file, are in
 [docs/legacy/ERRATA.md](docs/legacy/ERRATA.md).
 
+## Model registry
+
+**One interface.** `fit(family, params, fold_data, seed, device, training)` in
+`src/maintadapt/research/models/registry.py` trains any configuration of the pool and predicts every
+cycle of inner_val, outer_test and official_test, clipped to [0, cap]. `FoldData`
+(`src/maintadapt/research/fold_data.py`) runs the legacy `prepare_subset` with inner_fit as its
+training engines, so regimes, sensor screening and z-scores never see another engine. inner_val
+serves only early stopping (XGBoost and the networks); ridge, k-NN and the forest do not use it.
+Epochs, patience and gradient clipping come from `training` in `configs/research.yaml`, so a smoke
+run can shorten training without touching the frozen pool; batch size, learning rate and weight
+decay come from the configuration. The legacy `train_model` now accepts `checkpoint=None` and then
+keeps the best state in memory only.
+
+**CNN after Li, Ding and Sun (2018).** Kept from the paper: each window is a one-channel image of
+cycles by sensors; kernels span 10 cycles and one sensor, so sensors meet only in the
+fully-connected layer; four layers of 10 filters, then one filter of 3 cycles; zero padding that
+keeps the length; tanh; Xavier-normal initialisation; flatten, dropout 0.5, a fully-connected layer
+of 100 tanh units and one linear output; Adam at 1e-3; batches of 512; RUL capped at 125. Our shared
+protocol differs from theirs in five ways, and all ten families follow it:
+1. inputs are z-scores within regime fitted on inner_fit engines, not min-max scaling to [-1, 1]
+   per operating mode;
+2. training stops early on inner_val RMSE (at most 100 epochs, patience 15) at a constant learning
+   rate, instead of 250 epochs with the rate dropped from 1e-3 to 1e-4 for the last 50;
+3. the loss is the MSE of RUL/125, with gradient clipping at 1.0 and Adam weight decay 1e-4;
+4. the reference window is 30 cycles on every fleet (theirs: 30, 20, 30 and 15 on FD001 to FD004),
+   and windows are left-padded with the engine's first reading so that every cycle is predicted;
+5. the inputs are the sensors that pass screening on the fold's inner_fit engines, not a fixed
+   list of 14.
+These settings of the original are taken from its restatement by Javanmardi and Hüllermeier (2023,
+arXiv:2212.14612), who reuse its architecture and parameters; the restatement does not mention the
+initialisation. The original full text could not be opened when this entry was written, so the
+list should be checked against its Sections 2-3.
+
+**Transformer and MLP.** Neither follows a particular paper. Transformer: a linear projection of the
+readings, a learned positional embedding, PyTorch encoder layers (post-norm, ReLU, `batch_first`)
+and a prediction from the last cycle's representation; it needs no causal mask because every window
+ends at the predicted cycle. MLP: ReLU layers with dropout on the rolling features, standardised by
+a scaler fitted on inner_fit.
+
+**What "identical" means in the tests.** The causality, alignment and leakage tests compare
+predictions up to summation order. Float64 families agree to a relative 1e-12: ridge can differ in
+the last bit because BLAS sums rows in blocks whose boundaries move when rows are removed. The
+float32 networks agree to 1e-5 on their own output scale, RUL/125. The forest predicts with one
+thread: scikit-learn adds the tree outputs of several threads in the order they finish, which
+changed the last bits between two identical calls. KMeans regime centres also differ in the last
+bits between identical runs, so the leakage test compares centres to 1e-12 and the regime of every
+row exactly.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
