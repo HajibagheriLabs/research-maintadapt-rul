@@ -73,6 +73,54 @@ changed the last bits between two identical calls. KMeans regime centres also di
 bits between identical runs, so the leakage test compares centres to 1e-12 and the regime of every
 row exactly.
 
+## Cross-fitting runs
+
+**Archive.** `src/maintadapt/research/archive.py` stores each fit as
+`runs/research/archive/<fleet>/<family>/<config_id>/r<repeat>_f<fold>.parquet`: unit, cycle,
+uncapped RUL, split and prediction for every cycle of every inner_val, outer_test and official test
+engine. A JSON sidecar beside it holds the fit's ids, seed, status, attempts, timings, validation
+RMSE, package versions, hardware and git commit. Both files are written under a temporary name,
+flushed to disk and renamed, the sidecar last, so a fit is finished exactly when its sidecar
+exists and an interrupted run loses at most the fit in progress. `make research-validate` checks
+every finished fit against the raw data, the committed folds and the frozen pool.
+
+**Seeds and failures.** The seed of a fit is the first 31 bits of
+sha256("fleet|repeat|fold|config_id"). A fit that raises an error or returns non-finite
+predictions is retried once with seed + 1000 and then recorded as failed (PREREGISTRATION.md
+section 9). A rerun skips failed fits as well as finished ones, so no fit is attempted more than
+twice unless its sidecar is deleted by hand, which would be logged in DEVIATIONS.md.
+
+**Two streams, with CPU load kept moderate.** The CPU stream fits ridge, k-NN and the random forest,
+which scikit-learn runs on the CPU only, with half the logical CPUs (`training.cpu_jobs: null`). The
+GPU stream fits XGBoost, XGBoost on raw readings and the five networks on the GPU with two CPU
+threads (`training.gpu_threads`). Every fit also holds the BLAS and OpenMP thread pools to its
+thread count with threadpoolctl; left alone they size themselves to every logical CPU whatever
+`n_jobs` says. The runs last more than a day, and this keeps part of the CPU idle throughout.
+XGBoost builds its histograms on the GPU with the same hyperparameters, including early stopping
+on inner_val; its trees differ slightly from those of the CPU build, and the same seed gives the
+same trees.
+
+**Controls.** The smoke test adds two configurations outside the pool: `control_oracle` predicts
+the capped truth and `control_constant` predicts 125 at every cycle. They exist for end-to-end
+checks of the decision layer and never enter the confirmatory archive.
+
+**R = 3 by the pre-registered rule.** The dry run of 2026-10-12 (`make research-dryrun`) timed
+configurations 0, 1 and 2 of every family on FD001 and FD004 (repeat 0, fold 0) with both streams
+running at once, then scaled FD003 from FD001 and FD002 from FD004 by their inner_fit rows.
+`reports/research/compute_estimate.csv` projects 6.3 hours for the CPU stream and 25.6 hours for
+the GPU stream at R = 3 (4.2 and 17.0 at R = 2). Both are below the 72 hours of
+PREREGISTRATION.md section 4.4, so R = 3 and no configuration is dropped: 6,780 fits.
+`configs/research.yaml` records `crossfit.repeats: 3` and `drop_late_configs: false`.
+
+**Conventional leaderboard.** `make research-leaderboard` fits the reference configuration of
+every family on the engineering project's split (`configs/splits.json`, regimes clustered with its
+split seed 42) with seeds 0-4. It writes predictions to `runs/research/leaderboard`, outside the
+confirmatory archive, and compares ridge, XGBoost, the LSTM and the TCN with `reports/baselines.csv`
+and `reports/sequence.csv`. Two gaps are expected by design. Ridge's reference penalty is 1, while
+the engineering project chose 1, 0.1, 0.1 and 100 on FD001 to FD004 by validation
+(`reports/baselines_per_seed.csv`), so only FD001 should match. XGBoost now runs on the GPU, so its
+differences include the change of implementation as well as seed noise.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
