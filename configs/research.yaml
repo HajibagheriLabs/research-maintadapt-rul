@@ -1,0 +1,67 @@
+# Research study settings; PREREGISTRATION.md is the binding description of what they mean.
+
+data:
+  fleets: [FD001, FD002, FD003, FD004]
+  raw_dir: data/raw/CMAPSS
+  cap: 125
+  # flight regimes documented for C-MAPSS, as in configs/default.yaml
+  n_conditions: {FD001: 1, FD002: 6, FD003: 1, FD004: 6}
+  max_modal_share: 0.95
+  windows: [5, 10, 20, 30]
+  include_cycle: true
+
+folds:
+  n_outer: 5
+  n_repeats: 3
+  # one engine in every lifetime-sorted block of four goes to inner_val
+  inner_val_fraction: 0.25
+  seed: 2026
+
+pool:
+  seed: 2026
+  n_configs:
+    ridge: 5
+    knn: 12
+    forest: 12
+    xgboost: 12
+    xgboost_raw: 12
+    mlp: 12
+    lstm: 12
+    tcn: 12
+    cnn: 12
+    transformer: 12
+
+training:
+  device: auto
+  max_epochs: 100
+  patience: 15
+  grad_clip: 1.0
+  batch_size: 256
+  # null: CPU count minus two
+  cpu_jobs: null
+  gpu_torch_threads: 2
+
+decision:
+  cost_ratios: [1.5, 2, 3, 5, 10, 20, 50]
+  lead_times: [0, 10, 20]
+  regret_failure_costs: [50, 100, 200, 500, 1000, 2000]
+  ema_alphas: [1.0, 0.5, 0.3, 0.2, 0.1]
+  threshold_levels: 401
+  primary: {cost_ratio: 10, lead_time: 10, rule: R1, tuning: validation}
+
+stats:
+  n_boot: 2000
+  ci: 0.95
+  fdr: 0.05
+  seed: 2026
+
+paths:
+  folds: configs/research_folds.json
+  pool: configs/research_pool.yaml
+  manifest: docs/research/data_manifest.json
+  archive: runs/research/archive
+  derived: runs/research/derived
+  smoke: runs/research/smoke
+  dryrun: runs/research/dryrun
+  reports: reports/research
+  paper_assets: paper_assets

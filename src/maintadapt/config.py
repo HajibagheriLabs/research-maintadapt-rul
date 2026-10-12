@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, fields, is_dataclass
 from pathlib import Path
-from typing import Any, get_args, get_origin, get_type_hints
+from types import UnionType
+from typing import Any, Union, get_args, get_origin, get_type_hints
 
 import yaml
 
@@ -247,6 +248,13 @@ def _build(cls: type, raw: Any, where: str) -> Any:
 
 def _check(value: Any, hint: Any, where: str) -> Any:
     origin = get_origin(hint)
+    if origin in (Union, UnionType):
+        options = [a for a in get_args(hint) if a is not type(None)]
+        if value is None and len(options) < len(get_args(hint)):
+            return None
+        if len(options) != 1:
+            raise TypeError(f"{where}: only `X | None` unions are supported")
+        return _check(value, options[0], where)
     if origin is list:
         if not isinstance(value, list):
             raise TypeError(f"{where}: expected a list, got {type(value).__name__}")
