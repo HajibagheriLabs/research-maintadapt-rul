@@ -169,6 +169,44 @@ reads, in `runs/research/derived/<archive>/<fleet>/`, so that no analysis reads 
 The smoke archive passes every check in `reports/research/smoke/sanity.md`: the capped-truth
 control reaches S = 1 under all three tunings, and the constant control stays below 0.
 
+## Confirmatory analysis
+
+`src/maintadapt/research/analysis.py` and `scripts/research/run_confirmatory.py` compute E1-E3
+and apply the interpretation rules of PREREGISTRATION.md section 6, which they quote verbatim (a
+test holds them to the file). The details that section leaves to the implementation:
+- **One formula for point and interval.** Every quantity is a function of per-engine outcomes or
+  errors weighted by bootstrap counts; the point estimate passes a count of one per engine. D of a
+  configuration is 1 minus S pooled over the five folds of each repeat and averaged over repeats;
+  leaderboard RMSE and jitter are averaged over a configuration's fits.
+- **Bootstrap.** 2,000 replicates per fleet: one multinomial draw of training engines from
+  `default_rng([2026, fleet number, 0])`, shared by every configuration, repeat and selection,
+  and one of official test engines from `default_rng([2026, fleet number, 1])`. A replicate in
+  which tau-b is undefined (all values tied) is left out of the interval and the count of valid
+  replicates is reported.
+- **Jitter.** An official test engine enters jitter when it has at least five cycles whose previous
+  true RUL is below 125; that depends on the truth alone, so every fit uses the same engines.
+- **Verdict arithmetic.** "Interval excluding 0" means a lower bound above 0 or an upper bound
+  below 0; "within [-0.02, 0.02]" includes the end points; the band cut points and every other
+  comparison are as written in section 6. The tests check each rule on both sides of its
+  boundary.
+- **What the tag freezes.** The guard compares with the tagged versions not only `analysis.py`
+  and `run_confirmatory.py` but all the code between the archive and the verdicts: `stats.py`,
+  `policies.py`, `costs.py`, `derived.py`, `build_outcomes.py` and `build_metrics.py`. The
+  outcome and metric builders apply the same guard, so `--exploratory` cannot reach the
+  confirmatory archive before the tag either: it reads only derived tables, which cannot be
+  built from that archive until then.
+
+The smoke run (`reports/research/smoke/`, from `make research-confirmatory ROOT=smoke`) checks the
+pipeline only: one fleet, one repeat, three training epochs for the networks.
+
+**Leaderboard against the engineering project.** `reports/research/leaderboard_vs_legacy.csv`
+(from `make research-leaderboard`) reproduces the LSTM and the TCN on all four fleets to within
+0.001 cycles of RMSE, and ridge on FD001, where both use a penalty of 1. Ridge differs by design on
+FD002 to FD004. XGBoost agrees within twice the standard error of the difference on FD002 to
+FD004; on FD001 its RMSE is 0.18 cycles lower (11.96 against 12.14), just beyond twice that
+standard error (0.15). The difference is the move of XGBoost to the GPU, whose histogram
+algorithm builds slightly different trees with the same hyperparameters.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
