@@ -1,7 +1,7 @@
 # Pre-registration: Do remaining-useful-life leaderboards predict maintenance value?
 
-Status: binding from the commit tagged `prereg-v1` ([[AUTHOR: date]]).
-Author: [[AUTHOR: full name]], Independent Researcher, ORCID [[AUTHOR]]
+Status: binding from the commit tagged `prereg-v1` (2026-10-12).
+Author: Hadi Hajibagheri, Independent Researcher, ORCID 0009-0002-5404-911X
 Repository: github.com/HajibagheriLabs/research-maintadapt-rul (fork of maintadapt-rul, tag fork-point)
 Format: adapted from the template for preregistration of secondary data analysis
 (Van den Akker et al., 2021, Meta-Psychology).
