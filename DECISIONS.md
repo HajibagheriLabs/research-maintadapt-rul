@@ -121,6 +121,30 @@ the engineering project chose 1, 0.1, 0.1 and 100 on FD001 to FD004 by validatio
 (`reports/baselines_per_seed.csv`), so only FD001 should match. XGBoost now runs on the GPU, so its
 differences include the change of implementation as well as seed noise.
 
+## Decision layer and statistics
+
+`src/maintadapt/research/policies.py`, `costs.py` and `stats.py` implement sections 5 and 6 of
+PREREGISTRATION.md. Where those sections leave a detail open, it was fixed here, before any
+decision metric exists:
+- **Ties.** The candidate list keeps all 401 quantiles, duplicates included, between -inf and
+  +inf. Among the cheapest candidates the median one wins, and of an even number the lower middle
+  one. Under R2, alphas that reach the same cost rate go to the larger alpha, the lighter
+  smoothing. Age replacement considers every distinct training lifetime and "never", which is the
+  complete set of possible optima, with the same median rule.
+- **No alarm.** An engine whose score never reaches the threshold carries a sentinel alarm time
+  beyond any life plus lead time, so it fails without a special case.
+- **Bootstrap p-values.** Twice the smaller tail share of the bootstrap differences, each tail
+  counted as (count + 1) / (B + 1), so 2,000 replicates never report less than 0.001.
+- **Selection.** Choosing by a validation metric takes the lowest value in each (repeat, fold);
+  ties go to the configuration listed first in the pool.
+- **The capped truth as a predictor.** It reaches S = 1 at every lead time below the cap: the
+  threshold L puts the alarm at T - L and maintenance at T. At L = 125 it cannot, because the
+  capped truth is 125 from cycle 1 until T - 125 and no threshold can tell those cycles apart. The
+  registered lead times (0, 10, 20) are far below the cap.
+- **Invariance.** The tests confirm that R1 outcomes on engines the policy never saw are
+  unchanged by x + 15, 1.25x, x^2/125 and exp(x/50) applied to every prediction, and R2 outcomes
+  by affine maps, so a monotone recalibration cannot change a model's maintenance value.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
