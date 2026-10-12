@@ -1,0 +1,66 @@
+{
+  "parser": "maintadapt.data",
+  "hash": "SHA-256 of the parsed values as a row-major little-endian float64 array",
+  "files": {
+    "train_FD001.txt": {
+      "rows": 20631,
+      "units": 100,
+      "sha256": "67cddae6022259051186f8e07ff6a6e4dd6c9c43465ca928fb787eb0e23e5e5a"
+    },
+    "test_FD001.txt": {
+      "rows": 13096,
+      "units": 100,
+      "sha256": "f2e1fccd6ac174e0d18f511871035b757cc992927014dfec820f24108e5133c8"
+    },
+    "RUL_FD001.txt": {
+      "rows": 100,
+      "units": 100,
+      "sha256": "da1da25e3a16a0b5cda952e87d2b64f6ac224823fd88e095722dd068bb2f7201"
+    },
+    "train_FD002.txt": {
+      "rows": 53759,
+      "units": 260,
+      "sha256": "19e94fc33226d7104a13fb23023ce8dc75b0d8fb60d48dcb1812d42546b8d93e"
+    },
+    "test_FD002.txt": {
+      "rows": 33991,
+      "units": 259,
+      "sha256": "3371b3dc983f564fc72990fbf2dc421457d0239ea62ccd0feae7d40ae48737cf"
+    },
+    "RUL_FD002.txt": {
+      "rows": 259,
+      "units": 259,
+      "sha256": "e5e8e0069fc0aa0e0544b22ec216d52997cf7345678462d2b1561a333bdc49d8"
+    },
+    "train_FD003.txt": {
+      "rows": 24720,
+      "units": 100,
+      "sha256": "186218f41aa73154b474b22a84473e86aa62d2a65eac4d23ef5b10295cb2e907"
+    },
+    "test_FD003.txt": {
+      "rows": 16596,
+      "units": 100,
+      "sha256": "aae3a2891ba1b73fa7e5de910b41b8b8ab57f29ada2b1e0ab402d8407254f54b"
+    },
+    "RUL_FD003.txt": {
+      "rows": 100,
+      "units": 100,
+      "sha256": "46598577b9a0dc6874494cc6f3de1b7a38e4ea5e891fccc7361eff868f654798"
+    },
+    "train_FD004.txt": {
+      "rows": 61249,
+      "units": 249,
+      "sha256": "db86548013901a4fa234c9e45a8f1a398e89fa411e57024e10a2c4830e1c283b"
+    },
+    "test_FD004.txt": {
+      "rows": 41214,
+      "units": 248,
+      "sha256": "c75136adc639d928a45fbfd245dec0aa60cc3c9d8dd3478e29791764c96dae5a"
+    },
+    "RUL_FD004.txt": {
+      "rows": 248,
+      "units": 248,
+      "sha256": "6e27c1b1fad7533019231a0ad8f07cd9bd429c5f7c0ce0bcfb0119af80d4bdfc"
+    }
+  }
+}
