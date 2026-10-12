@@ -210,7 +210,8 @@ def estimate(cfg: ResearchConfig, root: str) -> None:
     )
     out = Path(cfg.paths.reports) / "compute_estimate.csv"
     out.parent.mkdir(parents=True, exist_ok=True)
-    projection.round(4).to_csv(out, index=False)
+    # LF on every system, so a rerun on Windows or Linux writes the same bytes
+    projection.round(4).to_csv(out, index=False, lineterminator="\n")
     totals = stream_totals(projection)
     decision = decide_repeats(totals)
     print(totals.round(1).to_string())

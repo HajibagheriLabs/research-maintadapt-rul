@@ -120,11 +120,11 @@ def summarise_leaderboard(
         print("no finished leaderboard fits yet")
         return
     reports.mkdir(parents=True, exist_ok=True)
-    per_seed.round(4).to_csv(
-        reports / "leaderboard_reference_per_seed.csv", index=False
-    )
+    # LF on every system, so a rerun on Windows or Linux writes the same bytes
+    lf = {"index": False, "lineterminator": "\n"}
+    per_seed.round(4).to_csv(reports / "leaderboard_reference_per_seed.csv", **lf)
     reference = summarise(per_seed, ["fleet", "family"], METRICS)
-    reference.round(3).to_csv(reports / "leaderboard_reference.csv", index=False)
+    reference.round(3).to_csv(reports / "leaderboard_reference.csv", **lf)
     legacy = pd.concat(
         [
             pd.read_csv(Path(legacy_reports) / name)
@@ -132,7 +132,7 @@ def summarise_leaderboard(
         ]
     ).rename(columns={"subset": "fleet", "model": "family"})
     comparison = compare_with_legacy(reference, legacy)
-    comparison.round(4).to_csv(reports / "leaderboard_vs_legacy.csv", index=False)
+    comparison.round(4).to_csv(reports / "leaderboard_vs_legacy.csv", **lf)
     complete = per_seed.groupby(["fleet", "family"]).size()
     print(
         f"wrote {reports / 'leaderboard_reference.csv'} and leaderboard_vs_legacy.csv: "
