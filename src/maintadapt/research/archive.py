@@ -93,9 +93,12 @@ def prediction_table(data: FoldData, predictions: dict[str, np.ndarray]) -> pa.T
 
 
 def _replace_atomically(path: Path, write: Any) -> None:
-    # a crash leaves at most a .tmp file behind, never a truncated file under the real name
+    # a crash leaves at most a .tmp file behind, never a truncated file under the real name;
+    # the flush puts the bytes on disk before the rename can, even if the machine stops
     tmp = path.with_name(path.name + ".tmp")
     write(tmp)
+    with open(tmp, "rb+") as fh:
+        os.fsync(fh.fileno())
     os.replace(tmp, path)
 
 
@@ -121,14 +124,21 @@ def write_fit(
     )
 
 
-def read_record(path: str | Path) -> dict[str, Any]:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+def read_record(path: str | Path) -> dict[str, Any] | None:
+    """The sidecar's record, or None when the file cannot be parsed."""
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
 
 
 def fit_status(root: str | Path, key: FitKey) -> str | None:
-    """ok or failed once the fit is finished; None while it is pending."""
-    path = key.sidecar(root)
-    return read_record(path)["status"] if path.exists() else None
+    """ok or failed once the fit is finished; None while it is pending.
+
+    An unreadable sidecar does not mark a fit as finished, so the fit runs again.
+    """
+    record = read_record(key.sidecar(root))
+    return None if record is None else record["status"]
 
 
 def records(root: str | Path, fleets: Sequence[str] | None = None) -> pd.DataFrame:
@@ -141,6 +151,9 @@ def records(root: str | Path, fleets: Sequence[str] | None = None) -> pd.DataFra
             continue
         for path in sorted(fleet_dir.glob("*/*/*.json")):
             record = read_record(path)
+            # validate_fleet reports these; everything else treats them as pending
+            if record is None:
+                continue
             record["parquet"] = str(path.with_suffix(".parquet"))
             rows.append(record)
     return pd.DataFrame(rows)
@@ -261,6 +274,9 @@ def validate_fleet(
     problems, counts = [], {"ok": 0, "failed": 0, "stray_tmp": 0, "orphan_parquet": 0}
     fleet_dir = Path(root) / fleet
     counts["stray_tmp"] = len(list(fleet_dir.glob("*/*/*.tmp")))
+    for sidecar in fleet_dir.glob("*/*/*.json"):
+        if read_record(sidecar) is None:
+            problems.append(f"{sidecar}: unreadable sidecar; the fit will run again")
     sidecars = {Path(p).with_suffix("") for p in found.get("parquet", [])}
     for parquet in fleet_dir.glob("*/*/*.parquet"):
         if parquet.with_suffix("") not in sidecars:

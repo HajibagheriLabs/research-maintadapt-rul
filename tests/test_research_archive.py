@@ -164,3 +164,17 @@ def test_validate_reports_foreign_configurations_and_orphan_files(
     assert any("frozen pool" in p for p in _validate(tmp_path))
     sidecar.unlink()
     assert any("without a sidecar" in p for p in _validate(tmp_path))
+
+
+def test_an_unreadable_sidecar_leaves_the_fit_pending_and_is_reported(
+    tmp_path: Path,
+) -> None:
+    parquet = _write(tmp_path, "ridge-00", 0, 0)
+    key = crossfit_key("FD001", "ridge", "ridge-00", 0, 0)
+    # a sidecar cut short, as a power cut before the flush could leave it
+    key.sidecar(tmp_path).write_text('{"fleet": "FD0', encoding="utf-8")
+    assert fit_status(tmp_path, key) is None
+    assert load(tmp_path).empty
+    problems = _validate(tmp_path)
+    assert any("unreadable sidecar" in p for p in problems)
+    assert any(str(parquet) in p and "without a sidecar" in p for p in problems)
