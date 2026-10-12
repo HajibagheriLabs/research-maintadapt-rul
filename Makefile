@@ -8,7 +8,8 @@ PYTHON ?= python3.11
 TORCH_INDEX ?=
 CONFIG ?= configs/default.yaml
 RESEARCH_CONFIG ?= configs/research.yaml
-# cross-fitting stream (cpu, gpu or all), fleets such as "FD001 FD002", and an archive directory
+# cross-fitting stream (cpu, gpu or all), fleets such as "FD001 FD002", and an archive:
+# archive (the default), smoke, dryrun or a path
 STREAM ?= all
 FLEETS ?=
 ROOT ?=
@@ -33,9 +34,12 @@ Targets (variables in brackets):
   research-leaderboard reference configurations on the legacy split, seeds 0-4; reports/research/leaderboard_*.csv [RESEARCH_CONFIG, STREAM]
   research-progress    finished, failed and pending fits per fleet and family, no metrics [RESEARCH_CONFIG, ROOT]
   research-validate    check every finished fit of an archive [RESEARCH_CONFIG, ROOT]
+  research-outcomes    tune policies and record maintenance outcomes into runs/research/derived [RESEARCH_CONFIG, ROOT]
+  research-metrics     accuracy metrics as per-engine sums into runs/research/derived [RESEARCH_CONFIG, ROOT]
+  research-sanity      check the smoke archive's derived tables; reports/research/smoke/sanity.md [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity
 
 help:
 	$(info $(HELP))
@@ -100,3 +104,12 @@ research-progress:
 
 research-validate:
 	$(PY) scripts/research/validate_archive.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+research-outcomes:
+	$(PY) scripts/research/build_outcomes.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+research-metrics:
+	$(PY) scripts/research/build_metrics.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+research-sanity:
+	$(PY) scripts/research/smoke_sanity.py --config $(RESEARCH_CONFIG)
