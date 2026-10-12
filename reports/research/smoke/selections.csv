@@ -1,0 +1,7 @@
+# SMOKE: pipeline check on the smoke archive (FD001, repeat 0, 3 training epochs for the networks); not confirmatory and says nothing about the hypotheses
+fleet,repeat_index,fold,by_validation_cost,by_validation_rmse
+FD001,0,0,xgboost-00,xgboost-00
+FD001,0,1,forest-00,xgboost-00
+FD001,0,2,forest-00,xgboost-00
+FD001,0,3,forest-00,xgboost-00
+FD001,0,4,xgboost-00,xgboost-00
