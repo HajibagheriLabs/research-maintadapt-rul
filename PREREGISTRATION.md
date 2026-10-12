@@ -31,21 +31,39 @@ Not studied here: probabilistic decision rules, calibration, transfer learning.
 - C-MAPSS FD001-FD004: run-to-failure training engines 100/260/100/249; official test engines
   100/259/100/248, truncated, with the true RUL at truncation.
 - N-CMAPSS: secondary analysis (section 8).
-- Integrity: docs/research/data_manifest.json, SHA-256 [[TO FILL]].
+- Integrity: docs/research/data_manifest.json, SHA-256 fc553f8742325ab650db8b0d33d62d692bcda7087256154367d0b6366b601dda.
 
 ## 4. Protocol
 4.1 Folds. For each fleet and repeat: five outer folds over all training engines, stratified by
 lifetime; within each outer-train set, 25% inner-validation engines (stratified the same way) and
-75% inner-fit engines. File configs/research_folds.json, SHA-256 [[TO FILL]].
-Sizes per fleet: [[TO FILL]].
+75% inner-fit engines. File configs/research_folds.json, SHA-256 157754641e81d05d86cb8b275b4f3e9744fdb078ca797a39a2a5ec2729baa021.
+Sizes per fleet (engines; per fold outer_test / inner_val / inner_fit): FD001 100; 20 / 20 / 60.
+FD002 260; 52 / 52 / 156. FD003 100; 20 / 20 / 60. FD004 249; 50 / 50 / 149 in 9 of the 15
+(repeat, fold) pairs, 50 / 49 / 150 in 3 and 49 / 50 / 150 in 3.
 4.2 Preparation, fitted on inner-fit engines only: operating-regime clustering, sensor screening
 (a sensor is dropped if one value covers at least 95% of its readings in any regime), z-score
 normalisation within regime. Tabular inputs: current readings, cycle, and trailing mean, standard
 deviation and slope over 5, 10, 20 and 30 cycles. Sequence inputs: windows of normalised readings,
 left-padded with the engine's first reading. Target: RUL capped at 125.
 4.3 Model pool: 10 families, 113 configurations; configuration 0 of each family is its reference
-configuration. File configs/research_pool.yaml, SHA-256 [[TO FILL]].
-[[TO FILL: table with family, inputs, number of configurations, reference configuration, space]]
+configuration. File configs/research_pool.yaml, SHA-256 c6d87e4bd469ac96fce5e3cd6730134159d8620de96d9ea5518b263b313f3809.
+| family | inputs | n | reference configuration (config 0) | space |
+|---|---|---|---|---|
+| ridge | rolling features, scaled | 5 | alpha 1 | alpha {0.1, 1, 10, 100, 1000} |
+| knn | rolling features, scaled | 12 | k 30, uniform weights | k {5, 10, 20, 30, 50, 100} x weights {uniform, distance} |
+| forest | rolling features | 12 | max_features 0.3, min_samples_leaf 5, max_depth None | max_features {0.1, 0.2, 0.3, 0.5}; min_samples_leaf {1, 5, 10, 20}; max_depth {None, 12, 20}; all: 200 trees, max_samples 0.5 |
+| xgboost | rolling features | 12 | legacy settings: max_depth 5, learning_rate 0.03, min_child_weight 5, subsample 0.8, colsample_bytree 0.6, reg_lambda 1 (XGBoost default), 2000 trees | max_depth {3, 4, 5, 6, 8}; learning_rate log-uniform [0.01, 0.1]; min_child_weight {1, 3, 5, 10, 20}; subsample uniform [0.6, 1]; colsample_bytree uniform [0.3, 1]; reg_lambda log-uniform [0.1, 10]; other configurations 3000 trees; all: early stopping after 100 rounds |
+| xgboost_raw | cycle and current readings | 12 | as xgboost | as xgboost |
+| mlp | rolling features, scaled | 12 | hidden (128, 64), dropout 0.1, lr 1e-3, weight_decay 1e-4 | hidden {(64,), (128, 64), (256, 128), (256, 128, 64)}; dropout {0, 0.1, 0.2}; lr log-uniform [3e-4, 3e-3]; weight_decay {0, 1e-5, 1e-4}; all: batch 256 |
+| lstm | windows | 12 | legacy: hidden 64, 2 layers, dropout 0.2, lr 1e-3, window 30 | hidden {32, 64, 128}; layers {1, 2, 3}; dropout {0.1, 0.2, 0.3, 0.5}; lr log-uniform [3e-4, 3e-3]; window {20, 30, 40}; all: batch 256, weight_decay 1e-4 |
+| tcn | windows | 12 | legacy: 64 channels, kernel 3, dilations (1, 2, 4, 8), dropout 0.2, lr 1e-3, window 30 | channels {32, 64, 128}; kernel {2, 3, 5}; dilations {(1, 2, 4), (1, 2, 4, 8), (1, 2, 4, 8, 16)}; dropout {0.1, 0.2, 0.3}; lr log-uniform [3e-4, 3e-3]; window {20, 30, 40}; all: batch 256, weight_decay 1e-4 |
+| cnn | windows | 12 | Li et al. (2018): 4 conv layers of 10 filters, kernel 10, then 1 filter of kernel 3; tanh; dropout 0.5; FC 100; lr 1e-3; window 30 | filters {10, 16, 32}; kernel {5, 10, 15}; conv layers {3, 4, 5}; fc {50, 100, 200}; dropout {0.2, 0.5}; lr log-uniform [3e-4, 3e-3]; window {20, 30, 40}; all: batch 512, weight_decay 1e-4 |
+| transformer | windows | 12 | d_model 64, 4 heads, 2 layers, ff 128, dropout 0.1, lr 1e-3, window 30 | d_model {32, 64, 128}; heads {2, 4}; layers {1, 2, 3}; ff {64, 128, 256}; dropout {0.1, 0.2}; lr log-uniform [3e-4, 3e-3]; window {20, 30, 40}; all: batch 256, weight_decay 1e-4 |
+
+"all:" settings apply to every configuration of the family, the reference included. Configurations
+1 onwards of ridge and knn are the remaining grid points in grid order; those of the other families
+are drawn with numpy default_rng([2026, family index]) in the order of the table (ridge = 0), without
+duplicates, continuous values rounded to three significant figures.
 Neural families: Adam, MSE on RUL/125, gradient clipping at 1.0, at most 100 epochs, early stopping
 after 15 epochs without improvement in inner-validation RMSE. XGBoost: early stopping after 100
 rounds without improvement in inner-validation RMSE. Every configuration is fitted in every
