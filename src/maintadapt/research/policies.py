@@ -113,6 +113,47 @@ def apply_policy(
     return outcomes(alarm_times(s, np.array([policy.theta])), lives_of(engines), lead)
 
 
+@dataclass(frozen=True, eq=False)
+class Trial:
+    """One smoothing of the tuning engines: its candidate thresholds and their alarms."""
+
+    alpha: float
+    candidates: np.ndarray
+    # candidates x engines
+    alarms: np.ndarray
+
+
+def trial(scored: Sequence[np.ndarray], alpha: float, levels: int) -> Trial:
+    candidates = threshold_candidates(scored, levels)
+    return Trial(alpha, candidates, alarm_times(scored, candidates))
+
+
+def pick(
+    trials: Sequence[Trial], lives: np.ndarray, lead: int, cost_ratios: Sequence[float]
+) -> dict[float, TunedPolicy]:
+    """Per cost ratio, the trial and candidate with the lowest pooled cost rate.
+
+    Ties between thresholds go to the median minimiser; ties between trials to the one
+    listed first, which callers order from the largest alpha, the lightest smoothing.
+    """
+    # imported here: costs builds on this module's outcomes
+    from maintadapt.research.costs import cost_rate
+
+    if not trials:
+        raise ValueError("tuning needs at least one trial")
+    found = [outcomes(t.alarms, lives, lead) for t in trials]
+    tuned = {}
+    for k in cost_ratios:
+        best: TunedPolicy | None = None
+        for t, result in zip(trials, found, strict=True):
+            rates = cost_rate(result, k)
+            i = median_minimiser(rates)
+            if best is None or rates[i] < best.cost_rate:
+                best = TunedPolicy(float(t.candidates[i]), t.alpha, float(rates[i]))
+        tuned[k] = best
+    return tuned
+
+
 def tune(
     engines: Sequence[np.ndarray],
     rule: str,
@@ -123,30 +164,11 @@ def tune(
 ) -> dict[float, TunedPolicy]:
     """The threshold (and for R2 the alpha) with the lowest pooled cost rate, per cost ratio.
 
-    Outcomes are computed once per alpha for every candidate threshold. Ties between
-    thresholds go to the median minimiser; ties between alphas to the larger alpha, the
-    lighter smoothing.
+    Ties between thresholds go to the median minimiser; ties between alphas to the larger
+    alpha, the lighter smoothing.
     """
-    # imported here: costs builds on this module's outcomes
-    from maintadapt.research.costs import cost_rate
-
     if rule not in RULES or (rule == "R2" and not alphas):
         raise ValueError(f"tuning needs a rule in {RULES} and, for R2, some alphas")
-    lives = lives_of(engines)
-    trials = []
-    for alpha in sorted([1.0] if rule == "R1" else set(alphas), reverse=True):
-        s = scores(engines, rule, alpha)
-        candidates = threshold_candidates(s, levels)
-        trials.append(
-            (alpha, candidates, outcomes(alarm_times(s, candidates), lives, lead))
-        )
-    tuned = {}
-    for k in cost_ratios:
-        best: TunedPolicy | None = None
-        for alpha, candidates, found in trials:
-            rates = cost_rate(found, k)
-            i = median_minimiser(rates)
-            if best is None or rates[i] < best.cost_rate:
-                best = TunedPolicy(float(candidates[i]), alpha, float(rates[i]))
-        tuned[k] = best
-    return tuned
+    chosen = [1.0] if rule == "R1" else sorted(set(alphas), reverse=True)
+    trials = [trial(scores(engines, rule, a), a, levels) for a in chosen]
+    return pick(trials, lives_of(engines), lead, cost_ratios)

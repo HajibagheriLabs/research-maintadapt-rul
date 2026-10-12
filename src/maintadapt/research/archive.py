@@ -169,13 +169,18 @@ def load(
     folds: Iterable[int] | None = None,
     splits: Iterable[str] | None = None,
     columns: Sequence[str] | None = None,
+    found: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Predictions of the finished fits that match every given filter.
 
     Fits are chosen by their sidecars; rows by split through a pyarrow filter. The key columns
-    fleet, family, config_id, repeat and fold can be selected like the stored ones.
+    fleet, family, config_id, repeat and fold can be selected like the stored ones. found, the
+    records(root) of an earlier call, saves reading every sidecar again.
     """
-    found = records(root, None if fleets is None else list(fleets))
+    if found is None:
+        found = records(root, None if fleets is None else list(fleets))
+    elif fleets is not None and not found.empty:
+        found = found[found["fleet"].isin(list(fleets))]
     if found.empty:
         return pd.DataFrame(columns=list(columns or [*KEYS.names, *SCHEMA.names]))
     keep = found["status"] == OK
@@ -316,3 +321,29 @@ def validate(
     hashes = {c.id: c.hash for c in pool}
     hashes |= {f"{name}-00": config_hash(name, {}) for name in CONTROL_FAMILIES}
     return validate_fleet(root, fleet, subset, folds, cfg.data.cap, hashes)
+
+
+class ParquetSink:
+    """A parquet file written in row groups under a temporary name, renamed when closed."""
+
+    def __init__(self, path: str | Path) -> None:
+        self.path = Path(path)
+        self.tmp = self.path.with_name(self.path.name + ".tmp")
+        self.writer: pq.ParquetWriter | None = None
+        self.rows = 0
+
+    def write(self, frame: pd.DataFrame) -> None:
+        table = pa.Table.from_pandas(frame, preserve_index=False)
+        if self.writer is None:
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+            self.writer = pq.ParquetWriter(self.tmp, table.schema, compression="zstd")
+        self.writer.write_table(table.cast(self.writer.schema))
+        self.rows += len(frame)
+
+    def close(self) -> None:
+        if self.writer is None:
+            raise ValueError(f"{self.path}: nothing was written")
+        self.writer.close()
+        with open(self.tmp, "rb+") as fh:
+            os.fsync(fh.fileno())
+        os.replace(self.tmp, self.path)

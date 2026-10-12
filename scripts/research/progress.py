@@ -10,16 +10,19 @@ import pandas as pd
 from maintadapt.research.archive import records
 from maintadapt.research.config import load_research_config
 from maintadapt.research.crossfit import STREAMS, plan, select_configs
+from maintadapt.research.guards import resolve_root
 from maintadapt.research.models.spaces import FAMILY_NAMES, load_pool
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/research.yaml")
-    parser.add_argument("--root", help="archive directory (default: paths.archive)")
+    parser.add_argument(
+        "--root", help="archive, smoke, dryrun or a path (default: archive)"
+    )
     args = parser.parse_args()
     cfg = load_research_config(args.config)
-    root = args.root or cfg.paths.archive
+    root = resolve_root(args.root, cfg)
 
     pool = load_pool(cfg.paths.pool, cfg.pool.seed, cfg.pool.n_configs)
     configs = select_configs(pool, FAMILY_NAMES, None, cfg.crossfit.configs_run)

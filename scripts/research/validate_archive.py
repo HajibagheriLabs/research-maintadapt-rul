@@ -8,16 +8,19 @@ import argparse
 
 from maintadapt.research.archive import validate
 from maintadapt.research.config import load_research_config
+from maintadapt.research.guards import resolve_root
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/research.yaml")
-    parser.add_argument("--root", help="archive directory (default: paths.archive)")
+    parser.add_argument(
+        "--root", help="archive, smoke, dryrun or a path (default: archive)"
+    )
     parser.add_argument("--fleets", nargs="+")
     args = parser.parse_args()
     cfg = load_research_config(args.config)
-    root = args.root or cfg.paths.archive
+    root = resolve_root(args.root, cfg)
 
     problems = []
     for fleet in args.fleets or cfg.data.fleets:
