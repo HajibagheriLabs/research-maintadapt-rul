@@ -8,7 +8,25 @@ PYTHON ?= python3.11
 TORCH_INDEX ?=
 CONFIG ?= configs/default.yaml
 
-.PHONY: setup test lint format data train eval report
+# printed by make itself, so `make help` works under cmd and sh alike and before setup
+define HELP
+Targets (variables in brackets):
+  help            list every target with one line each
+  setup           create .venv and install the pinned dependencies [PYTHON, TORCH_INDEX]
+  lint            ruff lint and format check
+  format          ruff format and safe lint fixes
+  test            run the test suite
+  data            check the raw C-MAPSS files, write configs/splits.json and the dataset report [CONFIG]
+  legacy-train    legacy: ridge, XGBoost, TCN and LSTM on every subset and seed, then transfer [CONFIG]
+  legacy-eval     legacy: prediction intervals and the alarm-threshold decision analysis [CONFIG]
+  legacy-report   legacy: reports/results.csv and the markdown tables of the engineering README [CONFIG]
+endef
+
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report
+
+help:
+	$(info $(HELP))
+	@cd .
 
 setup:
 	$(PYTHON) -m venv .venv
@@ -33,14 +51,14 @@ data:
 	$(PY) scripts/prepare_data.py --config $(CONFIG)
 	$(PY) scripts/inspect_data.py --config $(CONFIG)
 
-train:
+legacy-train:
 	$(PY) scripts/train_baselines.py --config $(CONFIG)
 	$(PY) scripts/train_sequence.py --config $(CONFIG)
 	$(PY) scripts/run_transfer.py --config $(CONFIG)
 
-eval:
+legacy-eval:
 	$(PY) scripts/run_uncertainty.py --config $(CONFIG)
 	$(PY) scripts/run_decision.py --config $(CONFIG)
 
-report:
+legacy-report:
 	$(PY) scripts/make_report.py --config $(CONFIG)
