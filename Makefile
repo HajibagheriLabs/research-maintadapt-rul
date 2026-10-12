@@ -7,6 +7,7 @@ endif
 PYTHON ?= python3.11
 TORCH_INDEX ?=
 CONFIG ?= configs/default.yaml
+RESEARCH_CONFIG ?= configs/research.yaml
 
 # printed by make itself, so `make help` works under cmd and sh alike and before setup
 define HELP
@@ -20,9 +21,11 @@ Targets (variables in brackets):
   legacy-train    legacy: ridge, XGBoost, TCN and LSTM on every subset and seed, then transfer [CONFIG]
   legacy-eval     legacy: prediction intervals and the alarm-threshold decision analysis [CONFIG]
   legacy-report   legacy: reports/results.csv and the markdown tables of the engineering README [CONFIG]
+  research-data   check the raw data against the manifest, write configs/research_folds.json [RESEARCH_CONFIG]
+  research-pool   write the frozen model pool configs/research_pool.yaml [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool
 
 help:
 	$(info $(HELP))
@@ -62,3 +65,10 @@ legacy-eval:
 
 legacy-report:
 	$(PY) scripts/make_report.py --config $(CONFIG)
+
+research-data:
+	$(PY) scripts/research/verify_data.py --config $(RESEARCH_CONFIG)
+	$(PY) scripts/research/make_folds.py --config $(RESEARCH_CONFIG)
+
+research-pool:
+	$(PY) scripts/research/make_pool.py --config $(RESEARCH_CONFIG)
