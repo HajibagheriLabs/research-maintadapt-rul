@@ -43,7 +43,8 @@ training:
   gpu_threads: 2
 
 crossfit:
-  # R = 3 or 2 and the dropped configurations, set from the dry run by PREREGISTRATION.md 4.4
+  # set by the rule of PREREGISTRATION.md 4.4 from the dry run of 2026-10-12: at most 25.6 h per
+  # stream at R = 3 (reports/research/compute_estimate.csv; DECISIONS.md)
   repeats: 3
   drop_late_configs: false
 
