@@ -1,3 +1,5 @@
+> This page describes the engineering project maintadapt-rul at tag `fork-point`. Its `make train`, `eval` and `report` targets are now `legacy-train`, `legacy-eval` and `legacy-report`, and its corrections are in [ERRATA.md](ERRATA.md).
+
 # MaintAdapt — Predictive Maintenance and Remaining Useful Life
 
 When should a turbofan engine come off the wing? Pull it too late and it fails in service, an
@@ -37,7 +39,7 @@ Expected cost per test engine:
 | FD003 | 100.0 | 81.3 | 32.3 ± 0.9 | 24.6 ± 1.3 |
 | FD004 | 100.0 | 92.3 | 39.4 ± 0.2 | 36.1 ± 0.6 |
 
-![Expected cost per engine against the alarm threshold](reports/figures/cost_vs_threshold.png)
+![Expected cost per engine against the alarm threshold](../../reports/figures/cost_vs_threshold.png)
 
 Both prediction-driven policies beat both references on every fleet. The fixed schedule is a weak
 alternative on the two-fault fleets because their lifetimes vary widely: on FD004 it services
@@ -45,13 +47,13 @@ every engine at age 225, discards 86 cycles per serviced engine and still lets 4
 the lower edge of the calibrated interval is cheaper than alarming on the point prediction on all
 four fleets, most clearly on FD003 (24.6 against 32.3 per engine), because it pulls uncertain
 engines earlier and cuts the failure rate from 20% to 9%. Thresholds, failure rates, discarded
-cycles and savings for every fleet are in [reports/decision_analysis.md](reports/decision_analysis.md),
+cycles and savings for every fleet are in [reports/decision_analysis.md](../../reports/decision_analysis.md),
 which also sets out what an operator should do.
 
 ### Remaining-useful-life models
 
 Scored at the last observed cycle of every official test engine, against truth capped at 125
-cycles (see [DECISIONS.md](DECISIONS.md)).
+cycles (see [DECISIONS.md](../../DECISIONS.md)).
 
 Test RMSE in cycles:
 
@@ -90,7 +92,7 @@ Normalising each sensor within its operating regime is what makes the multi-regi
 tractable (XGBoost, same settings). A raw reading mostly says which regime the engine is flying;
 within a regime, the degradation trend appears:
 
-![Raw and regime-normalised readings of one sensor](reports/figures/condition_normalisation.png)
+![Raw and regime-normalised readings of one sensor](../../reports/figures/condition_normalisation.png)
 
 | subset | normalisation | RMSE | NASA score |
 |---|---|---|---|
@@ -105,7 +107,7 @@ An LSTM pretrained on FD001 (one regime, one fault mode) is applied to FD003 (a 
 and FD004 (a second fault mode and six regimes): unchanged, trained from scratch on the target, or
 fine-tuned, with 10% to 100% of the target's training engines.
 
-![Test RMSE against the share of target training engines](reports/figures/transfer_budget.png)
+![Test RMSE against the share of target training engines](../../reports/figures/transfer_budget.png)
 
 | target | target engines used | trained from scratch | fine-tuned from FD001 | gain from fine-tuning (Welch) | FD001 model, zero-shot |
 |---|---|---|---|---|---|
@@ -147,7 +149,7 @@ split conformal calibration on validation engines:
 | FD004 | TCN MC dropout | 55% ± 2% | 19.3 ± 0.8 | 85% ± 1% | 43.1 ± 0.4 |
 | FD004 | LSTM MC dropout | 45% ± 1% | 13.2 ± 1.6 | 87% ± 1% | 44.4 ± 0.9 |
 
-![Empirical coverage against nominal interval level](reports/figures/interval_coverage.png)
+![Empirical coverage against nominal interval level](../../reports/figures/interval_coverage.png)
 
 XGBoost's quantile regression comes closest to its promise: its nominal 90% interval covers 83% to
 93% of test engines. MC dropout does not. The sequence models' 90% intervals cover only 44% to 64%,
@@ -171,7 +173,7 @@ repeated from 10 to 1,000 cycles. Tuned threshold on predicted RUL, in cycles:
 | 500 | 23 | 41 | 32 | 32 |
 | 1000 | 28 | 46 | 40 | 39 |
 
-![Savings and tuned threshold against the assumed failure cost](reports/figures/cost_sensitivity.png)
+![Savings and tuned threshold against the assumed failure cost](../../reports/figures/cost_sensitivity.png)
 
 The threshold rises with the cost of a failure, from zero, which means never alarming early, at 10
 cycles to 28 to 46 cycles at 1,000. Prediction-driven maintenance only pays once failures are
@@ -198,7 +200,7 @@ between 42% and 68% once a failure costs 100 cycles or more.
    with running to failure and with a fixed maintenance schedule.
 
 Every non-obvious choice, from the RUL cap to the cost model, is logged with its reason in
-[DECISIONS.md](DECISIONS.md).
+[DECISIONS.md](../../DECISIONS.md).
 
 ## Reproducing the results
 
@@ -235,7 +237,7 @@ data/raw/CMAPSS/train_FD004.txt   test_FD004.txt   RUL_FD004.txt
 `configs/splits.json`, and produces the dataset report in `reports/`, including the degradation
 trajectories below.
 
-![Sensor trajectories approaching failure](reports/figures/degradation_trajectories.png)
+![Sensor trajectories approaching failure](../../reports/figures/degradation_trajectories.png)
 
 ### Usage
 
@@ -282,4 +284,4 @@ the config is unchanged. Runs are also logged to a local MLflow store:
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](../../LICENSE).
