@@ -1,0 +1,4 @@
+analysis,stream,fits,hours
+S4 nested,cpu,120,0.16
+S4 nested,gpu,280,0.84
+S5 caps,gpu,160,0.34
