@@ -402,8 +402,8 @@ def readme(cfg: ResearchConfig, legacy: Legacy, out: Path) -> str:
             f"{cfg.data.cap} on the inner_val predictions maps the official test predictions; "
             "late-phase RMSE pools the cycles with true RUL <= 50 over the official test engines "
             "of a fit and is averaged over fits, like leaderboard RMSE. The recalibration never "
-            "reverses the order of two predictions, so under rule R1 it leaves maintenance "
-            "value unchanged."
+            "reverses the order of two predictions, but it may tie predictions that differed; "
+            "it changes the proxy only, never a policy."
         ),
         (
             f"- X2: predictions smoothed by the causal EMA at each fixed alpha in {{{alphas}}}; "

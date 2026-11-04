@@ -1,7 +1,8 @@
 """Exploratory analyses outside the pre-registered plan; every output is labelled EXPLORATORY.
 
-X1: late-phase RMSE after isotonic recalibration on inner_val, as an accuracy proxy that ignores
-    monotone distortions, which cannot change maintenance value under R1 (DECISIONS.md).
+X1: late-phase RMSE after isotonic recalibration on inner_val, as an accuracy proxy blind to
+    order-preserving distortions; strictly increasing ones cannot change R1 outcomes
+    (DECISIONS.md, Decision layer and statistics).
 X2: EMA smoothing at fixed alphas: its effect on maintenance value against its effect on RMSE.
 X3: the engineering project's booking evaluation (thresholds tuned on validation snapshots,
     decision.replay_alarms on truncated official test engines) against the trajectory
