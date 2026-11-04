@@ -121,6 +121,34 @@ the GPU stream at R = 3, from the dry run of 2026-10-12. The CPU stream finishes
 stream's largest shares are the transformer (8.4 hours), the TCN (4.9) and the CNN (4.1). Check
 progress a few times a day; there is nothing to do while it runs.
 
+## Extra fits of the secondary analyses
+
+Two secondary analyses need fits of their own, which go to archives beside the confirmatory one
+and never into it. They choose and repeat confirmatory fits, so they run after both streams have
+finished:
+
+| step | command | time |
+|---|---|---|
+| 1 | `make research-nested STREAM=cpu` and `make research-nested STREAM=gpu`, at once | 0.16 h (CPU) and 0.84 h (GPU) |
+| 2 | `make research-caps`, after the GPU stream of step 1 | 0.34 h |
+| 3 | `make research-extra-validate` | about a minute |
+| 4 | `make research-secondary` | about 10 minutes |
+
+- `research-nested` (S4): for repeat 0 of FD001 and FD003, each family's configuration with the
+  lowest inner_val RMSE in each outer fold, fitted on 4 inner folds of that fold's outer-train
+  engines, into `runs/research/archive_nested/outer<k>/`. The inner folds are written to
+  `runs/research/archive_nested/nested_folds.json`.
+- `research-caps` (S5): configuration 0 of XGBoost and the LSTM with training caps 100, 150, 200
+  and none, repeat 0, every fleet and fold, into `runs/research/archive_caps/<cap>/`. Both
+  families run on the GPU.
+
+The hours are the projection in `reports/research/compute_estimate_secondary.csv`
+(`make research-extra-estimate`). Both targets resume like the cross-fitting runs. Until the fits
+are complete, `make research-secondary` writes every other item and lists S4-nested and S5 as
+pending in `reports/research/secondary/README.md`. `make research-exploratory` needs no extra
+fits; its first run reads the archive once (about five minutes) and keeps per-fit tables in
+`runs/research/derived/archive/<fleet>/`.
+
 ## Smoke test, dry run and leaderboard
 
 - `make research-smoke`: FD001, repeat 0, all five folds, configuration 0 of every family and the

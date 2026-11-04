@@ -220,6 +220,65 @@ supported, H2 inconclusive, H3 rejected. The selection loss E2 is negative on al
 with intervals below 0 on FD001 to FD003: choosing by validation cost kept less maintenance value
 than choosing by validation RMSE, the opposite direction to H2.
 
+## Secondary and exploratory analyses
+
+`src/maintadapt/research/secondary.py` and `scripts/research/run_secondary.py` implement S1-S7
+and S9 of PREREGISTRATION.md section 7; `reports/research/secondary/README.md` maps every output
+file to its item. They import the confirmatory functions of `analysis.py` unchanged and draw the
+same bootstrap replicates, so every secondary interval comes from the replicates behind E1-E3;
+the script stops if its own E1 differs from `reports/research/confirmatory/e1.csv`. Where
+section 7 leaves a detail open, it was fixed as follows:
+- **Family representatives (S3, S4).** In each (repeat, fold) the family's configuration with
+  the lowest inner_val RMSE, ties to the first in pool order, as in E2. A family then behaves as
+  one configuration whose fit in each fold is its representative's, so S, leaderboard RMSE and
+  their bootstrap come from the confirmatory formulas.
+- **Inversions (S3).** Benjamini-Hochberg at 0.05 runs once over every p-value of S3: both
+  metrics, all 45 pairs of families and all four fleets. A pair is inverted when both
+  differences are rejected and point in opposite directions.
+- **Threshold variants (S4).** Crossfit and oracle thresholds come from the derived tables. E2
+  still chooses models by section 5.8's validation metrics, because the in-sample cost of a
+  crossfit or oracle policy is measured on outer_test engines.
+- **Nested tuning (S4).** In each outer fold of repeat 0 on FD001 and FD003, each family's
+  representative is fitted again on 4 lifetime-stratified inner folds of the outer-train
+  engines. In every inner training set, one engine in each lifetime-sorted block of five stops
+  the training early (12 of 60 engines). The inner folds come from
+  `default_rng([2026, repeat, fleet number, outer fold])`, and each fit's seed is that of the
+  cross-fitting design with `|inner<k>` appended to the configuration id. The thresholds are
+  tuned on the inner out-of-fold predictions of all 80 outer-train engines and applied to the
+  confirmatory outer_test predictions. The fits sit in `runs/research/archive_nested/outer<k>/`,
+  one archive per outer fold.
+- **Training caps (S5).** Configuration 0 of XGBoost and of the LSTM, repeat 0, every fleet and
+  fold, with the confirmatory seeds, so that only the cap changes; 125 comes from the
+  confirmatory archive. Without a cap the target is the uncapped RUL; the LSTM scales it by 600,
+  above every training RUL (at most 542, on FD004), and predictions are clipped to [0, 600].
+  Official-test metrics use the truth capped at 125, the leaderboard convention, with RMSE
+  against the uncapped truth beside it.
+- **Regret (S6).** Thresholds and age replacement are tuned to the lowest mean regret, rule R1,
+  at the primary lead time of 10 cycles, with the candidates and tie rule of section 5.4. The
+  regret share is 1 minus mean regret over age replacement's, pooled over the folds of a repeat
+  and averaged over repeats, which mirrors S with perfect prognostics at zero regret.
+- **Matched accuracy (S7) and the competitive region (S9).** S7 resamples the truncation-point
+  RMSE with the training engines, since it is measured on the engines D uses. S9 fixes the set of
+  configurations within 2 cycles of the best leaderboard RMSE by the point estimates.
+
+**Extra fits.** `make research-nested` and `make research-caps` run through `run_crossfit.py`,
+with its archive format, sidecars, retry and resume logic, into archives of their own;
+`make research-extra-validate` checks them against their own folds and caps.
+`reports/research/compute_estimate_secondary.csv` (`make research-extra-estimate`) projects 0.16
+hours for the 120 nested CPU fits, 0.84 for the 280 nested GPU fits and 0.34 for the 160 cap
+fits, from the confirmatory fits they repeat.
+
+**Exploratory analyses.** `scripts/research/run_exploratory.py` writes
+`reports/research/exploratory/`, every file labelled EXPLORATORY and its README defining each
+analysis. X1 recalibrates each fit's official-test predictions with an isotonic map fitted on its
+inner_val engines before taking late-phase RMSE. X2 smooths predictions with the causal EMA at
+each fixed alpha of the R2 grid and retunes rule R1 on them. X3 replays the engineering project's
+booking evaluation (`configs/default.yaml`: thresholds 0-125, failure cost 100 cycles, no lead
+time) on the truncated official test engines and compares it with the trajectory evaluation at
+the same failure cost.
+
+None of this changes PREREGISTRATION.md, so DEVIATIONS.md stays empty.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
