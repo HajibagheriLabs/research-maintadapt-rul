@@ -1,13 +1,18 @@
 """Cross-fit the model pool: every configuration in every (fleet, repeat, outer fold).
 
 Resumable: a fit whose sidecar exists is never refitted. Prints ids, seconds, validation RMSE
-and status per fit, and never a test or decision metric.
+and status per fit, and never a test or decision metric. --nested and --caps run the extra fits
+of the secondary analyses S4 and S5 (PREREGISTRATION.md section 7) into archives of their own;
+--estimate projects their hours from the confirmatory fits they repeat.
 """
 
 import argparse
+import json
 import subprocess
 import sys
-from dataclasses import replace
+from collections import Counter
+from collections.abc import Callable, Mapping, Sequence
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import pandas as pd
@@ -21,12 +26,20 @@ from maintadapt.research.compute import (
     project_hours,
     stream_totals,
 )
-from maintadapt.research.config import ResearchConfig, load_research_config
+from maintadapt.research.config import (
+    FleetDataConfig,
+    ResearchConfig,
+    load_research_config,
+)
 from maintadapt.research.crossfit import (
     STREAMS,
     Job,
     control_configs,
     environment,
+    family_representatives,
+    nested_inner_folds,
+    nested_root,
+    nested_seed,
     plan,
     run_jobs,
     select_configs,
@@ -44,6 +57,21 @@ from maintadapt.sequence import resolve_device
 
 SMOKE_EPOCHS = 3
 DRYRUN_FLEETS = ["FD001", "FD004"]
+FOLD_SPLITS = ("inner_fit", "inner_val", "outer_test")
+
+
+@dataclass(frozen=True, eq=False)
+class Part:
+    """The fits of one archive: jobs, the data settings and folds they use, seeds, labels."""
+
+    root: Path
+    jobs: list[Job]
+    data: FleetDataConfig
+    # fleet -> repeat -> fold
+    folds: Mapping[str, Mapping[int, Sequence[Fold]]]
+    seed_of: Callable[[Job], int] | None = None
+    # added to every sidecar
+    extra: dict | None = None
 
 
 def parse_args() -> argparse.Namespace:
@@ -53,7 +81,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fleets", nargs="+")
     parser.add_argument("--families", nargs="+")
     parser.add_argument("--repeats", nargs="+", type=int)
-    parser.add_argument("--folds", nargs="+", type=int)
+    parser.add_argument(
+        "--folds", nargs="+", type=int, help="outer folds (with --nested too)"
+    )
     parser.add_argument(
         "--configs", nargs="+", type=int, help="configuration numbers within a family"
     )
@@ -71,6 +101,24 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="time configurations 0-2 on FD001 and FD004, repeat 0, fold 0, "
         "and project the wall time",
+    )
+    mode.add_argument(
+        "--nested",
+        action="store_true",
+        help="S4: inner cross-fitting of each family's representative "
+        "(secondary.nested in the config)",
+    )
+    mode.add_argument(
+        "--caps",
+        action="store_true",
+        help="S5: the reference configurations trained with other caps "
+        "(secondary.caps in the config)",
+    )
+    mode.add_argument(
+        "--estimate",
+        action="store_true",
+        help="project the hours of the --nested and --caps fits from the confirmatory "
+        "fits they repeat",
     )
     return parser.parse_args()
 
@@ -93,6 +141,24 @@ def settings(args: argparse.Namespace, cfg: ResearchConfig) -> dict:
             "configs": [0, 1, 2],
             "root": cfg.paths.dryrun,
         }
+    elif args.nested:
+        n = cfg.secondary.nested
+        base = {
+            "fleets": n.fleets,
+            "repeats": [n.repeat],
+            # outer folds; every inner fold of each is fitted
+            "folds": list(range(cfg.folds.n_outer)),
+            "configs": None,
+            "root": cfg.paths.archive_nested,
+        }
+    elif args.caps:
+        base = {
+            "fleets": cfg.data.fleets,
+            "repeats": [cfg.secondary.caps.repeat],
+            "folds": list(range(cfg.folds.n_outer)),
+            "configs": [0],
+            "root": cfg.paths.archive_caps,
+        }
     else:
         base = {
             "fleets": cfg.data.fleets,
@@ -107,52 +173,131 @@ def settings(args: argparse.Namespace, cfg: ResearchConfig) -> dict:
     return base
 
 
-def jobs_for(args: argparse.Namespace, cfg: ResearchConfig, run: dict) -> list[Job]:
-    families = [
+def stream_families(args: argparse.Namespace) -> list[str]:
+    return [
         f for f in STREAMS[args.stream] if args.families is None or f in args.families
     ]
+
+
+def indexed(folds: dict[str, list[list[Fold]]]) -> dict[str, dict[int, list[Fold]]]:
+    return {fleet: dict(enumerate(repeats)) for fleet, repeats in folds.items()}
+
+
+def crossfit_part(args: argparse.Namespace, cfg: ResearchConfig, run: dict) -> Part:
     pool = load_pool(cfg.paths.pool, cfg.pool.seed, cfg.pool.n_configs)
     confirmatory = not (args.smoke or args.dry_run)
     configs = select_configs(
         pool,
-        families,
+        stream_families(args),
         run["configs"],
         cfg.crossfit.configs_run if confirmatory else None,
     )
     if args.smoke:
-        configs += [c for c in control_configs() if c.family in families]
-    return plan(configs, run["fleets"], run["repeats"], run["folds"])
+        configs += [c for c in control_configs() if c.family in stream_families(args)]
+    folds = load_folds(cfg.paths.folds, cfg.folds, cfg.data.fleets)
+    return Part(
+        Path(run["root"]),
+        plan(configs, run["fleets"], run["repeats"], run["folds"]),
+        cfg.data,
+        indexed(folds),
+    )
+
+
+def nested_parts(
+    args: argparse.Namespace, cfg: ResearchConfig, run: dict
+) -> list[Part]:
+    """One archive per outer fold: each family's representative fitted on its inner folds."""
+    n = cfg.secondary.nested
+    pool = {
+        c.id: c for c in load_pool(cfg.paths.pool, cfg.pool.seed, cfg.pool.n_configs)
+    }
+    folds = load_folds(cfg.paths.folds, cfg.folds, cfg.data.fleets)
+    # representatives are chosen among the confirmatory fits by inner_val RMSE alone
+    found = records(cfg.paths.archive, run["fleets"])
+    parts = []
+    for fleet in run["fleets"]:
+        lives = lifetimes(load_subset(cfg.data.raw_dir, fleet, cfg.data.cap).train)
+        for repeat in run["repeats"]:
+            for outer in run["folds"]:
+                inner = nested_inner_folds(cfg, lives, folds, fleet, repeat, outer)
+                reps = family_representatives(found, fleet, repeat, outer, FAMILY_NAMES)
+                configs = [
+                    pool[c] for c in reps if pool[c].family in stream_families(args)
+                ]
+                parts.append(
+                    Part(
+                        nested_root(run["root"], outer),
+                        plan(configs, [fleet], [repeat], range(n.inner_folds)),
+                        cfg.data,
+                        {fleet: {repeat: inner}},
+                        seed_of=lambda job, outer=outer: nested_seed(
+                            job.fleet, job.repeat, outer, job.fold, job.config.id
+                        ),
+                        extra={"outer_fold": outer},
+                    )
+                )
+    return parts
+
+
+def record_nested_folds(parts: Sequence[Part], root: str | Path) -> None:
+    """Write the inner folds next to the fits; nested_folds reproduces them exactly."""
+    path = Path(root) / "nested_folds.json"
+    known = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    for part in parts:
+        for fleet, repeats in part.folds.items():
+            for repeat, inner in repeats.items():
+                key = f"{fleet} r{repeat} f{part.extra['outer_fold']}"
+                known[key] = [
+                    {name: list(getattr(f, name)) for name in FOLD_SPLITS}
+                    for f in inner
+                ]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    text = json.dumps(dict(sorted(known.items())), indent=1) + "\n"
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
+def caps_parts(args: argparse.Namespace, cfg: ResearchConfig, run: dict) -> list[Part]:
+    """One archive per training cap, with the confirmatory seeds, so only the cap changes."""
+    caps = cfg.secondary.caps
+    pool = load_pool(cfg.paths.pool, cfg.pool.seed, cfg.pool.n_configs)
+    families = [f for f in stream_families(args) if f in caps.families]
+    configs = select_configs(pool, families, run["configs"])
+    folds = indexed(load_folds(cfg.paths.folds, cfg.folds, cfg.data.fleets))
+    return [
+        Part(
+            Path(run["root"]) / caps.name(cap),
+            plan(configs, run["fleets"], run["repeats"], run["folds"]),
+            replace(cfg.data, cap=caps.training_cap(cap)),
+            folds,
+            extra={"training_cap": cap},
+        )
+        for cap in caps.values
+    ]
+
+
+def parts_for(args: argparse.Namespace, cfg: ResearchConfig) -> list[Part]:
+    run = settings(args, cfg)
+    if args.nested:
+        return nested_parts(args, cfg, run)
+    if args.caps:
+        return caps_parts(args, cfg, run)
+    return [crossfit_part(args, cfg, run)]
 
 
 def run_stream(args: argparse.Namespace, cfg: ResearchConfig) -> None:
-    run = settings(args, cfg)
-    jobs = jobs_for(args, cfg, run)
-    folds = load_folds(cfg.paths.folds, cfg.folds, cfg.data.fleets)
+    parts = parts_for(args, cfg)
+    if args.nested:
+        record_nested_folds(parts, settings(args, cfg)["root"])
     device = resolve_device(cfg.training.device)
     training = cfg.training
     if args.smoke:
         training = replace(training, max_epochs=SMOKE_EPOCHS)
     subsets = {}
-    families, cpu_jobs = (
-        {job.config.family for job in jobs},
-        training.resolved_cpu_jobs(),
-    )
+    families = {job.config.family for part in parts for job in part.jobs}
+    cpu_jobs = training.resolved_cpu_jobs()
     gpu_threads = training.gpu_threads if device.type == "cuda" else cpu_jobs
     # regime clustering and feature building get no more threads than the stream's fits
     stream_threads = cpu_jobs if families - set(GPU_FAMILIES) else gpu_threads
-
-    def build_data(fleet: str, repeat: int, fold: int) -> FoldData:
-        if fleet not in subsets:
-            subsets[fleet] = load_subset(cfg.data.raw_dir, fleet, cfg.data.cap)
-        with threadpool_limits(limits=stream_threads):
-            return build_fold_data(
-                subsets[fleet],
-                folds[fleet][repeat][fold],
-                cfg.data,
-                cfg.folds.seed,
-                repeat=repeat,
-                index=fold,
-            )
 
     def fit_job(job: Job, data: FoldData, seed: int) -> FitOutput:
         c = job.config
@@ -161,26 +306,57 @@ def run_stream(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     def device_for(family: str) -> str:
         return str(device) if family in GPU_FAMILIES else "cpu"
 
-    parts = []
+    described = []
     if families & set(GPU_FAMILIES):
-        parts.append(f"XGBoost and networks on {device} with {gpu_threads} CPU threads")
+        described.append(
+            f"XGBoost and networks on {device} with {gpu_threads} CPU threads"
+        )
     if families - set(GPU_FAMILIES):
-        parts.append(f"ridge, k-NN and forest with {cpu_jobs} CPU threads")
+        described.append(f"ridge, k-NN and forest with {cpu_jobs} CPU threads")
+    roots = sorted({part.root.as_posix() for part in parts})
+    where = (
+        roots[0] if len(roots) == 1 else f"{len(roots)} archives: {', '.join(roots)}"
+    )
     print(
-        f"{args.stream} stream: {len(jobs)} fits planned in {run['root']} "
-        f"({'; '.join(parts)})",
+        f"{args.stream} stream: {sum(len(p.jobs) for p in parts)} fits planned in "
+        f"{where} ({'; '.join(described)})",
         flush=True,
     )
-    counts = run_jobs(
-        jobs,
-        run["root"],
-        build_data,
-        fit_job,
-        environment(device),
-        device_for,
-        limit=args.limit,
-        log=lambda line: print(line, flush=True),
-    )
+    counts: Counter[str] = Counter()
+    env = environment(device)
+    for part in parts:
+
+        def build_data(
+            fleet: str, repeat: int, fold: int, part: Part = part
+        ) -> FoldData:
+            key = (fleet, part.data.cap)
+            if key not in subsets:
+                subsets[key] = load_subset(cfg.data.raw_dir, fleet, part.data.cap)
+            with threadpool_limits(limits=stream_threads):
+                return build_fold_data(
+                    subsets[key],
+                    part.folds[fleet][repeat][fold],
+                    part.data,
+                    cfg.folds.seed,
+                    repeat=repeat,
+                    index=fold,
+                )
+
+        limit = None if args.limit is None else max(0, args.limit - counts["ran"])
+        counts.update(
+            run_jobs(
+                part.jobs,
+                part.root,
+                build_data,
+                fit_job,
+                env,
+                device_for,
+                limit=limit,
+                log=lambda line: print(line, flush=True),
+                seed_of=part.seed_of,
+                extra=part.extra,
+            )
+        )
     print(
         f"{args.stream} stream: {counts['ran']} fitted ({counts['ok']} ok, "
         f"{counts['failed']} failed), {counts['skipped']} already finished, "
@@ -221,6 +397,51 @@ def estimate(cfg: ResearchConfig, root: str) -> None:
     )
 
 
+def estimate_secondary(args: argparse.Namespace, cfg: ResearchConfig) -> None:
+    """Hours of the S4 and S5 fits, from the wall time of the confirmatory fits they repeat.
+
+    A nested fit repeats its representative's fit of that outer fold on fewer engines and is
+    scaled by inner_fit rows, as the dry run scaled fleets; a cap fit repeats the reference
+    fit of the same fold unchanged.
+    """
+    found = records(cfg.paths.archive)
+    seconds = found.set_index(["fleet", "config_id", "repeat", "fold"])["wall_seconds"]
+    folds = load_folds(cfg.paths.folds, cfg.folds, cfg.data.fleets)
+    lives = {
+        f: lifetimes(load_subset(cfg.data.raw_dir, f, cfg.data.cap).train)
+        for f in cfg.data.fleets
+    }
+    rows = []
+    for analysis, flag in (("S4 nested", "nested"), ("S5 caps", "caps")):
+        mode = argparse.Namespace(
+            **{**vars(args), "nested": flag == "nested", "caps": flag == "caps"},
+        )
+        mode.stream, mode.estimate = "all", False
+        for part in parts_for(mode, cfg):
+            outer = (part.extra or {}).get("outer_fold")
+            for job in part.jobs:
+                fold = job.fold if outer is None else outer
+                hours = seconds[(job.fleet, job.config.id, job.repeat, fold)] / 3600
+                if outer is not None:
+                    own = part.folds[job.fleet][job.repeat][job.fold].inner_fit
+                    main = folds[job.fleet][job.repeat][outer].inner_fit
+                    life = lives[job.fleet]
+                    hours *= life.loc[list(own)].sum() / life.loc[list(main)].sum()
+                stream = "gpu" if job.config.family in GPU_FAMILIES else "cpu"
+                rows.append(
+                    {"analysis": analysis, "stream": stream, "fits": 1, "hours": hours}
+                )
+    table = (
+        pd.DataFrame(rows)
+        .groupby(["analysis", "stream"], as_index=False)[["fits", "hours"]]
+        .sum()
+    )
+    out = Path(cfg.paths.reports) / "compute_estimate_secondary.csv"
+    table.round(2).to_csv(out, index=False, lineterminator="\n")
+    print(table.round(2).to_string(index=False))
+    print(f"wrote {out}")
+
+
 def dry_run_both_streams(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     """Time the CPU and GPU streams side by side, as the confirmatory runs will go."""
     base = [sys.executable, str(Path(__file__).resolve()), "--config", args.config]
@@ -245,6 +466,9 @@ def main() -> None:
     unknown = sorted(set(args.families or []) - set(FAMILY_NAMES) - set(STREAMS["cpu"]))
     if unknown:
         raise SystemExit(f"unknown families {unknown}")
+    if args.estimate:
+        estimate_secondary(args, cfg)
+        return
     if args.dry_run and args.stream == "all":
         dry_run_both_streams(args, cfg)
         return

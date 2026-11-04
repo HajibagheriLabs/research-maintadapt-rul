@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import pandas as pd
 import torch
 
 from maintadapt.research.archive import (
@@ -28,7 +29,9 @@ from maintadapt.research.archive import (
     prediction_table,
     write_fit,
 )
+from maintadapt.research.config import ResearchConfig
 from maintadapt.research.fold_data import FoldData
+from maintadapt.research.folds import Fold, nested_folds
 from maintadapt.research.models.registry import (
     CONTROL_FAMILIES,
     CPU_FAMILIES,
@@ -65,6 +68,60 @@ def fit_seed(fleet: str, repeat: int, fold: int, config_id: str) -> int:
     """The first 31 bits of sha256("fleet|repeat|fold|config_id")."""
     digest = hashlib.sha256(f"{fleet}|{repeat}|{fold}|{config_id}".encode()).digest()
     return int.from_bytes(digest[:4], "big") >> 1
+
+
+def nested_seed(fleet: str, repeat: int, outer: int, inner: int, config_id: str) -> int:
+    """Seed of an S4 nested fit: like fit_seed, with the inner fold appended to the string."""
+    return fit_seed(fleet, repeat, outer, f"{config_id}|inner{inner}")
+
+
+def nested_inner_folds(
+    cfg: ResearchConfig,
+    lives: pd.Series,
+    folds: dict[str, list[list[Fold]]],
+    fleet: str,
+    repeat: int,
+    outer: int,
+) -> list[Fold]:
+    """The inner folds of one outer fold under the settings of secondary.nested."""
+    n = cfg.secondary.nested
+    return nested_folds(
+        lives,
+        folds[fleet][repeat][outer],
+        cfg.folds,
+        fleet,
+        repeat,
+        outer,
+        n.inner_folds,
+        n.early_stopping_block,
+    )
+
+
+def nested_root(root: str | Path, outer: int) -> Path:
+    """Each outer fold's inner fits form an archive of their own, fold = inner fold."""
+    return Path(root) / f"outer{outer}"
+
+
+def family_representatives(
+    found: pd.DataFrame, fleet: str, repeat: int, fold: int, families: Sequence[str]
+) -> list[str]:
+    """Per family, the configuration with the lowest inner_val RMSE in one (repeat, fold).
+
+    found holds the archive's sidecars; ties go to the configuration listed first in the pool.
+    """
+    rows = found[
+        (found["fleet"] == fleet)
+        & (found["repeat"] == repeat)
+        & (found["fold"] == fold)
+        & (found["status"] == OK)
+        & found["family"].isin(list(families))
+    ].sort_values("config_id", kind="stable")
+    chosen = rows.loc[rows.groupby("family", sort=False)["val_rmse"].idxmin()]
+    missing = sorted(set(families) - set(chosen["family"]))
+    if missing:
+        raise ValueError(f"{fleet} r{repeat} f{fold}: no finished fit of {missing}")
+    rank = {f: i for i, f in enumerate(families)}
+    return sorted(chosen["config_id"], key=lambda c: rank[c.rsplit("-", 1)[0]])
 
 
 def control_configs() -> list[ModelConfig]:
@@ -236,8 +293,14 @@ def run_jobs(
     *,
     limit: int | None = None,
     log: Callable[[str], None] = print,
+    seed_of: Callable[[Job], int] | None = None,
+    extra: dict[str, Any] | None = None,
 ) -> Counter[str]:
-    """Run every pending job; FoldData is built once per (fleet, repeat, fold) with work left."""
+    """Run every pending job; FoldData is built once per (fleet, repeat, fold) with work left.
+
+    seed_of replaces fit_seed for fits outside the cross-fitting design; extra adds fields
+    to every sidecar.
+    """
     counts: Counter[str] = Counter()
     groups = itertools.groupby(jobs, key=lambda j: (j.fleet, j.repeat, j.fold))
     for (fleet, repeat, fold), group in groups:
@@ -262,14 +325,20 @@ def run_jobs(
                 "config_hash": c.hash,
                 "repeat": job.repeat,
                 "fold": job.fold,
+                **(extra or {}),
             }
+            seed = (
+                fit_seed(job.fleet, job.repeat, job.fold, c.id)
+                if seed_of is None
+                else seed_of(job)
+            )
             record = run_fit(
                 root,
                 job.key,
                 identity,
                 data,
                 lambda seed, job=job, data=data: fit_job(job, data, seed),
-                fit_seed(job.fleet, job.repeat, job.fold, c.id),
+                seed,
                 env,
                 device_for(c.family),
             )

@@ -203,6 +203,77 @@ class StatsConfig:
 
 
 @dataclass(frozen=True)
+class NestedConfig:
+    """S4 nested tuning: inner cross-fitting over each outer fold's outer-train engines."""
+
+    fleets: list[str]
+    repeat: int
+    inner_folds: int
+    # share of each inner training set held out for early stopping, as 1/m
+    early_stopping_fraction: float
+
+    def __post_init__(self) -> None:
+        if not self.fleets or not set(self.fleets) <= set(SUBSETS):
+            raise ValueError(
+                f"secondary.nested.fleets must be fleets, got {self.fleets}"
+            )
+        if self.inner_folds < 2:
+            raise ValueError("secondary.nested.inner_folds must be at least 2")
+        f = self.early_stopping_fraction
+        size = 1.0 / f if f > 0 else 0.0
+        if not 0.0 < f <= 0.5 or abs(size - round(size)) > 1e-9:
+            raise ValueError(
+                "secondary.nested.early_stopping_fraction must be 1/m for an integer "
+                f"m >= 2, got {f}"
+            )
+
+    @property
+    def early_stopping_block(self) -> int:
+        return round(1.0 / self.early_stopping_fraction)
+
+
+@dataclass(frozen=True)
+class CapsConfig:
+    """S5: the reference configurations of some families trained with other caps."""
+
+    # null trains on the uncapped RUL
+    values: list[int | None]
+    families: list[str]
+    repeat: int
+    # stands in for the missing cap: the networks' target scale and the upper clip of
+    # predictions; it lies above every training RUL, so no target is cut
+    uncapped_scale: int
+
+    def __post_init__(self) -> None:
+        caps = [v for v in self.values if v is not None]
+        if not self.values or min(caps, default=1) < 1:
+            raise ValueError(
+                f"secondary.caps.values must be positive, got {self.values}"
+            )
+        if not set(self.families) <= set(FAMILY_NAMES):
+            raise ValueError("secondary.caps.families must be pool families")
+        if self.uncapped_scale <= max(caps, default=0):
+            raise ValueError("secondary.caps.uncapped_scale must exceed every cap")
+
+    @staticmethod
+    def name(cap: int | None) -> str:
+        """Directory and label of a cap: its value, or none."""
+        return "none" if cap is None else str(cap)
+
+    def training_cap(self, cap: int | None) -> int:
+        """The cap a fit trains with; without one, the scale above every training RUL."""
+        return self.uncapped_scale if cap is None else cap
+
+
+@dataclass(frozen=True)
+class SecondaryConfig:
+    nested: NestedConfig
+    caps: CapsConfig
+    # S9: configurations within this many cycles of the best leaderboard RMSE
+    competitive_margin: float
+
+
+@dataclass(frozen=True)
 class ResearchPathsConfig:
     folds: str
     pool: str
@@ -212,6 +283,8 @@ class ResearchPathsConfig:
     smoke: str
     dryrun: str
     leaderboard: str
+    archive_nested: str
+    archive_caps: str
     reports: str
     paper_assets: str
 
@@ -225,6 +298,7 @@ class ResearchConfig:
     crossfit: CrossfitConfig
     decision: DecisionGridConfig
     stats: StatsConfig
+    secondary: SecondaryConfig
     paths: ResearchPathsConfig
 
     def __post_init__(self) -> None:
@@ -233,6 +307,14 @@ class ResearchConfig:
                 f"crossfit.repeats must lie in 1..{self.folds.n_repeats} (the repeats in "
                 f"the folds file), got {self.crossfit.repeats}"
             )
+        for name, repeat in (
+            ("nested", self.secondary.nested.repeat),
+            ("caps", self.secondary.caps.repeat),
+        ):
+            if not 0 <= repeat < self.crossfit.repeats:
+                raise ValueError(
+                    f"secondary.{name}.repeat must be a repeat of the runs, got {repeat}"
+                )
 
 
 def fleet_number(name: str) -> int:

@@ -154,6 +154,44 @@ def check_fleet_folds(repeats: list[list[Fold]], cfg: FoldsConfig, fleet: str) -
                 )
 
 
+def nested_folds(
+    lives: pd.Series,
+    outer: Fold,
+    cfg: FoldsConfig,
+    fleet: str,
+    repeat: int,
+    index: int,
+    n_inner: int,
+    early_stopping_block: int,
+) -> list[Fold]:
+    """Inner cross-fitting over one outer fold's outer-train engines (S4, nested tuning).
+
+    The outer-train engines fall into n_inner lifetime-stratified inner folds; each inner fold is
+    predicted by a model fitted on the others, of which one engine in every lifetime-sorted
+    block of early_stopping_block is held out for early stopping. In the returned folds that
+    held-out set is inner_val and the predicted inner fold is outer_test, so the cross-fitting
+    runner fits them unchanged. The generator is seeded by (folds seed, repeat, fleet, outer
+    fold), one entry longer than the outer folds' seed, so the two never share a stream.
+    """
+    train = lives.loc[[*outer.inner_fit, *outer.inner_val]]
+    order = sort_by_lifetime(train)
+    rng = np.random.default_rng([cfg.seed, repeat, fleet_number(fleet), index])
+    inner = assign_blocks(len(order), range(n_inner), rng)
+    early_labels = [1] + [0] * (early_stopping_block - 1)
+    folds = []
+    for k in range(n_inner):
+        rest = order[inner != k]
+        early = assign_blocks(len(rest), early_labels, rng).astype(bool)
+        folds.append(
+            Fold(
+                inner_fit=_ids(rest[~early]),
+                inner_val=_ids(rest[early]),
+                outer_test=_ids(order[inner == k]),
+            )
+        )
+    return folds
+
+
 def _ids(values: np.ndarray) -> tuple[int, ...]:
     return tuple(sorted(int(v) for v in values))
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import os
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -267,13 +267,14 @@ def validate_fleet(
     root: str | Path,
     fleet: str,
     subset: Subset,
-    repeats: list[list[Fold]],
+    repeats: Sequence[Sequence[Fold]] | Mapping[int, Sequence[Fold]],
     cap: float,
     hashes: dict[str, str],
 ) -> tuple[list[str], dict[str, int]]:
     """Check every finished fit of a fleet; returns the problems and counts of what was seen.
 
-    hashes maps every configuration id the archive may hold to its content hash.
+    repeats[repeat][fold] is the fold of each fit; hashes maps every configuration id the
+    archive may hold to its content hash.
     """
     found = records(root, [fleet])
     problems, counts = [], {"ok": 0, "failed": 0, "stray_tmp": 0, "orphan_parquet": 0}

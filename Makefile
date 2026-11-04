@@ -38,9 +38,15 @@ Targets (variables in brackets):
   research-metrics     accuracy metrics as per-engine sums into runs/research/derived [RESEARCH_CONFIG, ROOT]
   research-sanity      check the derived tables against the controls; smoke unless ROOT is given [RESEARCH_CONFIG, ROOT]
   research-confirmatory  E1-E3 and the verdicts; refuses the archive until analysis-frozen [RESEARCH_CONFIG, ROOT]
+  research-nested      S4: inner cross-fitting of the family representatives into runs/research/archive_nested; resumable [RESEARCH_CONFIG, STREAM]
+  research-caps        S5: reference XGBoost and LSTM with training caps 100, 150, 200 and none into runs/research/archive_caps; resumable [RESEARCH_CONFIG]
+  research-extra-estimate  project the hours of research-nested and research-caps; reports/research/compute_estimate_secondary.csv [RESEARCH_CONFIG]
+  research-extra-validate  check every finished fit of the nested and training-cap archives [RESEARCH_CONFIG]
+  research-secondary   S1-S7 and S9 of PREREGISTRATION.md section 7 into reports/research/secondary [RESEARCH_CONFIG]
+  research-exploratory analyses outside the plan, labelled EXPLORATORY, into reports/research/exploratory [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory
 
 help:
 	$(info $(HELP))
@@ -117,3 +123,22 @@ research-sanity:
 
 research-confirmatory:
 	$(PY) scripts/research/run_confirmatory.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+research-nested:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --nested --stream $(STREAM)
+
+research-caps:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --caps --stream gpu
+
+research-extra-estimate:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --estimate
+
+research-extra-validate:
+	$(PY) scripts/research/validate_archive.py --config $(RESEARCH_CONFIG) --nested
+	$(PY) scripts/research/validate_archive.py --config $(RESEARCH_CONFIG) --caps
+
+research-secondary:
+	$(PY) scripts/research/run_secondary.py --config $(RESEARCH_CONFIG)
+
+research-exploratory:
+	$(PY) scripts/research/run_exploratory.py --config $(RESEARCH_CONFIG)

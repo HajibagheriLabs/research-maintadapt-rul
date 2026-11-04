@@ -62,6 +62,16 @@ stats:
   fdr: 0.05
   seed: 2026
 
+# secondary analyses of PREREGISTRATION.md section 7 that need fits of their own
+secondary:
+  # S4 nested tuning: family representatives, 4-fold inner cross-fitting over each outer-train set
+  nested: {fleets: [FD001, FD003], repeat: 0, inner_folds: 4, early_stopping_fraction: 0.2}
+  # S5: the reference XGBoost and LSTM with other training caps; null trains on the uncapped RUL,
+  # which the networks scale by 600, above every training RUL (at most 542, on FD004)
+  caps: {values: [100, 150, 200, null], families: [xgboost, lstm], repeat: 0, uncapped_scale: 600}
+  # S9: configurations whose leaderboard RMSE is within this many cycles of the best
+  competitive_margin: 2.0
+
 paths:
   folds: configs/research_folds.json
   pool: configs/research_pool.yaml
@@ -72,5 +82,8 @@ paths:
   dryrun: runs/research/dryrun
   # conventional leaderboard on the legacy split, kept apart from the confirmatory archive
   leaderboard: runs/research/leaderboard
+  # S4 and S5 fits, kept apart from the confirmatory archive
+  archive_nested: runs/research/archive_nested
+  archive_caps: runs/research/archive_caps
   reports: reports/research
   paper_assets: paper_assets
