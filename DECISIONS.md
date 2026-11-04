@@ -207,6 +207,19 @@ FD004; on FD001 its RMSE is 0.18 cycles lower (11.96 against 12.14), just beyond
 standard error (0.15). The difference is the move of XGBoost to the GPU, whose histogram
 algorithm builds slightly different trees with the same hyperparameters.
 
+**The confirmatory runs.** The sidecars in `runs/research/archive` (from `make research-crossfit`)
+record 6,780 fits, every one finished on its first attempt with status ok and run from commit
+01a7fd1, the commit tagged `analysis-frozen`. The CPU stream ran from 2026-10-17 12:28 to 19:00 UTC
+(1,740 fits) and the GPU stream until 2026-10-18 15:29 UTC (5,040 fits). No configuration is
+excluded on any fleet (`runs/research/derived/archive/<fleet>/excluded.csv`), so every endpoint
+covers all 113 configurations. The derived tables pass every structural check in
+`reports/research/archive_sanity.md` (`make research-sanity ROOT=archive`).
+
+**Verdicts.** `reports/research/confirmatory/verdicts.md` (`make research-confirmatory`): H1
+supported, H2 inconclusive, H3 rejected. The selection loss E2 is negative on all four fleets,
+with intervals below 0 on FD001 to FD003: choosing by validation cost kept less maintenance value
+than choosing by validation RMSE, the opposite direction to H2.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
