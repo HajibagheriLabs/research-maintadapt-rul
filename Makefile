@@ -36,7 +36,7 @@ Targets (variables in brackets):
   research-validate    check every finished fit of an archive [RESEARCH_CONFIG, ROOT]
   research-outcomes    tune policies and record maintenance outcomes into runs/research/derived [RESEARCH_CONFIG, ROOT]
   research-metrics     accuracy metrics as per-engine sums into runs/research/derived [RESEARCH_CONFIG, ROOT]
-  research-sanity      check the smoke archive's derived tables; reports/research/smoke/sanity.md [RESEARCH_CONFIG]
+  research-sanity      check the derived tables against the controls; smoke unless ROOT is given [RESEARCH_CONFIG, ROOT]
   research-confirmatory  E1-E3 and the verdicts; refuses the archive until analysis-frozen [RESEARCH_CONFIG, ROOT]
 endef
 
@@ -113,7 +113,7 @@ research-metrics:
 	$(PY) scripts/research/build_metrics.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
 
 research-sanity:
-	$(PY) scripts/research/smoke_sanity.py --config $(RESEARCH_CONFIG)
+	$(PY) scripts/research/smoke_sanity.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
 
 research-confirmatory:
 	$(PY) scripts/research/run_confirmatory.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
