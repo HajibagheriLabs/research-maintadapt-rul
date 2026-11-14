@@ -1,6 +1,6 @@
 # Secondary analyses
 
-Pre-registered secondary analyses S1-S7 and S9 of PREREGISTRATION.md section 7, written by `make research-secondary` at commit df827c0e199e1676fdf2152aa74d432bc7cc4454. None of them is confirmatory and none changes a verdict. S8 (N-CMAPSS) is not part of this folder.
+Pre-registered secondary analyses S1-S7 and S9 of PREREGISTRATION.md section 7, written by `make research-secondary` at commit 35ab3424b86effeee2cfd1dd155aa1eaa01a33a5. None of them is confirmatory and none changes a verdict. S8 (N-CMAPSS) is not part of this folder.
 
 Every estimate uses the derived tables of `runs/research/derived/archive/<fleet>/` and the confirmatory bootstrap: 2,000 replicates with training engines from `default_rng([2026, fleet number, 0])` and official test engines from `[..., 1]`, shared by every configuration, so each interval comes from the same replicates as E1-E3. Rows are point estimates with percentile 95% intervals (`_lo`, `_hi`). The first line of every CSV states its item.
 
@@ -14,9 +14,9 @@ Every estimate uses the derived tables of `runs/research/derived/archive/<fleet>
 | `s3_pairwise.csv` | S3 | every pair of families: differences in leaderboard RMSE and in D with intervals, bootstrap p-values, Benjamini-Hochberg q-values over the whole analysis, inversions. |
 | `s3_family_e1.csv` | S3 | tau-b(leaderboard RMSE, D) across the family representatives. |
 | `s4_threshold_variants.csv` | S4 | E1-E3 under validation, crossfit and oracle tuning; E2 keeps the validation selection. |
-| `s4_nested.csv` | S4 | S of each family representative under validation, crossfit, oracle and nested tuning (nested fleets, repeat 0). Pending: needs make research-nested STREAM=cpu and STREAM=gpu. |
-| `s4_nested_e1.csv` | S4 | tau-b(leaderboard RMSE, D) across the family representatives per tuning (repeat 0). Pending: needs make research-nested STREAM=cpu and STREAM=gpu. |
-| `s5_caps.csv` | S5 | reference XGBoost and LSTM per training cap: leaderboard RMSE (truth capped at 125), RMSE against the uncapped truth, jitter and S (repeat 0). Pending: needs make research-caps. |
+| `s4_nested.csv` | S4 | S of each family representative under validation, crossfit, oracle and nested tuning (nested fleets, repeat 0). |
+| `s4_nested_e1.csv` | S4 | tau-b(leaderboard RMSE, D) across the family representatives per tuning (repeat 0). |
+| `s5_caps.csv` | S5 | reference XGBoost and LSTM per training cap: leaderboard RMSE (truth capped at 125), RMSE against the uncapped truth, jitter and S (repeat 0). |
 | `s6_regret.csv` | S6 | E1-E3 with regret (C_f * failure + waste) in place of the cost rate, per C_f. |
 | `s7_matched_accuracy.csv` | S7 | tau-b(RMSE at 20 truncation points per outer_test engine, D) against E1. |
 | `s9_competitive.csv` | S9 | E1 among the configurations within the margin of the best leaderboard RMSE. |

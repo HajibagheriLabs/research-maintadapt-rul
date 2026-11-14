@@ -266,7 +266,10 @@ with its archive format, sidecars, retry and resume logic, into archives of thei
 `make research-extra-validate` checks them against their own folds and caps.
 `reports/research/compute_estimate_secondary.csv` (`make research-extra-estimate`) projects 0.16
 hours for the 120 nested CPU fits, 0.84 for the 280 nested GPU fits and 0.34 for the 160 cap
-fits, from the confirmatory fits they repeat.
+fits, from the confirmatory fits they repeat. The sidecars in `runs/research/archive_nested` and
+`runs/research/archive_caps` record all 560 fits finished on the first attempt from commit
+35ab342, with summed wall times of 0.18, 0.77 and 0.30 hours; the results are
+`s4_nested.csv`, `s4_nested_e1.csv` and `s5_caps.csv` in `reports/research/secondary/`.
 
 **Exploratory analyses.** `scripts/research/run_exploratory.py` writes
 `reports/research/exploratory/`, every file labelled EXPLORATORY and its README defining each
