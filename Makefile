@@ -44,9 +44,10 @@ Targets (variables in brackets):
   research-extra-validate  check every finished fit of the nested and training-cap archives [RESEARCH_CONFIG]
   research-secondary   S1-S7 and S9 of PREREGISTRATION.md section 7 into reports/research/secondary [RESEARCH_CONFIG]
   research-exploratory analyses outside the plan, labelled EXPLORATORY, into reports/research/exploratory [RESEARCH_CONFIG]
+  research-ncmapss-inspect  N-CMAPSS groups, shapes, units, failure modes and the cap; reports/research/ncmapss/inspection.md [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect
 
 help:
 	$(info $(HELP))
@@ -142,3 +143,6 @@ research-secondary:
 
 research-exploratory:
 	$(PY) scripts/research/run_exploratory.py --config $(RESEARCH_CONFIG)
+
+research-ncmapss-inspect:
+	$(PY) scripts/research/inspect_ncmapss.py --config $(RESEARCH_CONFIG)

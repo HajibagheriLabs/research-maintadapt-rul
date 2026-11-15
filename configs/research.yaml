@@ -72,6 +72,15 @@ secondary:
   # S9: configurations whose leaderboard RMSE is within this many cycles of the best
   competitive_margin: 2.0
 
+# N-CMAPSS, the secondary fleet of PREREGISTRATION.md section 8 (DECISIONS.md, N-CMAPSS)
+ncmapss:
+  raw_dir: data/raw/NCMAPSS/data_set
+  # section 8's cap; null until make research-ncmapss-inspect has computed it
+  cap: null
+  frame: runs/research/ncmapss/flights.parquet
+  folds: configs/research_folds_ncmapss.json
+  archive: runs/research/archive_ncmapss
+
 paths:
   folds: configs/research_folds.json
   pool: configs/research_pool.yaml

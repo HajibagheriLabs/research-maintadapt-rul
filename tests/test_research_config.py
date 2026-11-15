@@ -85,9 +85,10 @@ def test_bad_research_values_raise_clear_errors(
         _load(tmp_path, raw)
 
 
-def test_unknown_fleet_has_no_number() -> None:
+def test_fleets_are_numbered_and_unknown_ones_are_not() -> None:
+    assert [fleet_number(f) for f in ("FD001", "FD004", "NCMAPSS")] == [1, 4, 5]
     with pytest.raises(ValueError, match="unknown fleet"):
-        fleet_number("NCMAPSS")
+        fleet_number("FD005")
 
 
 def test_dropping_late_configurations_touches_only_twelve_config_families(

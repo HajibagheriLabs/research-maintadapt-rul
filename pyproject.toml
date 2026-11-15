@@ -12,6 +12,8 @@ license-files = ["LICENSE"]
 requires-python = ">=3.11"
 authors = [{ name = "HajibagheriLabs" }]
 dependencies = [
+    # N-CMAPSS is distributed as HDF5
+    "h5py~=3.16.0",
     "matplotlib~=3.11.0",
     "mlflow~=3.16.0",
     "numpy~=2.4.0",

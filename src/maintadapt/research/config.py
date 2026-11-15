@@ -274,6 +274,30 @@ class SecondaryConfig:
 
 
 @dataclass(frozen=True)
+class NcmapssConfig:
+    """N-CMAPSS, the secondary fleet of PREREGISTRATION.md section 8."""
+
+    raw_dir: str
+    # section 8's cap, fixed from the inspection before any N-CMAPSS model is trained
+    cap: int | None
+    # one row per unit and flight, built from W and X_s only
+    frame: str
+    folds: str
+    archive: str
+
+    def __post_init__(self) -> None:
+        if self.cap is not None and self.cap <= 0:
+            raise ValueError(f"ncmapss.cap must be positive, got {self.cap}")
+
+    def require_cap(self) -> int:
+        if self.cap is None:
+            raise ValueError(
+                "ncmapss.cap is not set; run make research-ncmapss-inspect and record it"
+            )
+        return self.cap
+
+
+@dataclass(frozen=True)
 class ResearchPathsConfig:
     folds: str
     pool: str
@@ -299,6 +323,7 @@ class ResearchConfig:
     decision: DecisionGridConfig
     stats: StatsConfig
     secondary: SecondaryConfig
+    ncmapss: NcmapssConfig
     paths: ResearchPathsConfig
 
     def __post_init__(self) -> None:
@@ -317,10 +342,19 @@ class ResearchConfig:
                 )
 
 
+# N-CMAPSS pools its sub-datasets into one fleet, numbered after the four of C-MAPSS
+NCMAPSS = "NCMAPSS"
+NCMAPSS_NUMBER = 5
+
+
 def fleet_number(name: str) -> int:
-    """1 to 4 for FD001 to FD004; part of every fleet-specific random seed."""
+    """1 to 4 for FD001 to FD004 and 5 for NCMAPSS; part of every fleet-specific seed."""
+    if name == NCMAPSS:
+        return NCMAPSS_NUMBER
     if name not in SUBSETS:
-        raise ValueError(f"unknown fleet {name!r}; expected one of {SUBSETS}")
+        raise ValueError(
+            f"unknown fleet {name!r}; expected one of {SUBSETS} or {NCMAPSS}"
+        )
     return int(name[2:])
 
 
