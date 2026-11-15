@@ -329,6 +329,28 @@ the ends of T one unit at a time:
   are computed and read by the rules of section 6, and every output is labelled secondary and
   descriptive.
 
+**Pipeline.** Written after the decisions above were committed:
+- `make research-ncmapss-data` builds the frame and the folds. The frame has 99 units and
+  7,473 flights (`runs/research/ncmapss/flights.json`). Outer folds hold 19 or 20 units,
+  inner_val 19 or 20 and inner_fit 59 or 60 (`configs/research_folds_ncmapss.json`).
+- `fold_data.build_ncmapss_fold_data` is FoldData's N-CMAPSS preparation; the C-MAPSS
+  preparation is unchanged.
+- `run_crossfit.py --ncmapss` fits into `runs/research/archive_ncmapss` with
+  `fit_seed("NCMAPSS", ...)`.
+- `build_outcomes.py` and `build_metrics.py` are frozen and read the C-MAPSS files, so
+  `build_ncmapss.py` applies the same `derived.py` functions to N-CMAPSS.
+- `analysis.fleet_inputs` supplies the decision inputs unchanged. It expects official test
+  engines, so `ncmapss_analysis` gives it one placeholder row per fit, which no N-CMAPSS
+  quantity reads.
+- A bootstrap replicate that draws no unit of some fold leaves that fold's RMSE undefined, and
+  the replicate is left out, like a tau-b replicate with all values tied.
+- The smoke run (`make research-ncmapss-smoke`, then validate, derived and report with
+  `ROOT=runs/research/smoke_ncmapss`) checks the pipeline only and writes
+  `reports/research/ncmapss/smoke_ncmapss/`.
+- The dry run (`make research-ncmapss-dryrun`) timed configurations 0-2 of every family on
+  repeat 0, fold 0, with both streams at once. `reports/research/ncmapss/compute_estimate.csv`
+  projects 0.40 hours for the 435 CPU fits and 2.48 for the 1,260 GPU fits.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.

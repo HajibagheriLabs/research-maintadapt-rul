@@ -149,6 +149,25 @@ pending in `reports/research/secondary/README.md`. `make research-exploratory` n
 fits; its first run reads the archive once (about five minutes) and keeps per-fit tables in
 `runs/research/derived/archive/<fleet>/`.
 
+## N-CMAPSS (secondary, PREREGISTRATION.md section 8)
+
+The N-CMAPSS files go in `data/raw/NCMAPSS/data_set/` (NASA's archive, extracted as it comes).
+The cap and every preprocessing choice were committed to DECISIONS.md before the first fit.
+
+| step | command | time |
+|---|---|---|
+| 1 | `make research-ncmapss-inspect` (writes `reports/research/ncmapss/inspection.md`) | under a minute |
+| 2 | `make research-ncmapss-data` (per-flight frame and folds) | about a minute |
+| 3 | `make research-ncmapss STREAM=cpu` and `make research-ncmapss STREAM=gpu`, at once | 0.40 h (CPU) and 2.48 h (GPU) |
+| 4 | `make research-ncmapss-validate` | about a minute |
+| 5 | `make research-ncmapss-derived` | a few minutes |
+| 6 | `make research-ncmapss-report` (writes `reports/research/ncmapss/`) | under a minute |
+
+Steps 1 and 2 have been run and their outputs committed; start at step 3. The hours are the
+projection in `reports/research/ncmapss/compute_estimate.csv` (`make research-ncmapss-dryrun`).
+The fits go to `runs/research/archive_ncmapss` and resume like the cross-fitting runs.
+`make research-ncmapss-smoke` checks the pipeline in about two minutes.
+
 ## Smoke test, dry run and leaderboard
 
 - `make research-smoke`: FD001, repeat 0, all five folds, configuration 0 of every family and the
