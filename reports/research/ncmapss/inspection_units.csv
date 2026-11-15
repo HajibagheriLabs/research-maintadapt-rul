@@ -1,0 +1,100 @@
+sub_dataset,part,unit,unit_id,samples,flights,flight_classes,rul_is_life_minus_cycle,health_state_monotone,onset_flight,onset_rul,degraded
+DS01-005,dev,1,101,433325,100,1,True,True,37,63,HPT_eff_mod
+DS01-005,dev,2,102,1049088,75,3,True,True,19,56,HPT_eff_mod
+DS01-005,dev,3,103,893054,100,2,True,True,26,74,HPT_eff_mod
+DS01-005,dev,4,104,414172,95,1,True,True,38,57,HPT_eff_mod
+DS01-005,dev,5,105,1280147,89,3,True,True,19,70,HPT_eff_mod
+DS01-005,dev,6,106,836850,94,2,True,True,25,69,HPT_eff_mod
+DS01-005,test,7,107,392585,90,1,True,True,36,54,HPT_eff_mod
+DS01-005,test,8,108,800294,89,2,True,True,26,63,HPT_eff_mod
+DS01-005,test,9,109,351683,80,1,True,True,35,45,HPT_eff_mod
+DS01-005,test,10,110,1190670,82,3,True,True,18,64,HPT_eff_mod
+DS02-006,dev,2,202,853142,75,3,True,True,17,58,HPT_eff_mod
+DS02-006,dev,5,205,1033420,89,3,True,True,17,72,HPT_eff_mod
+DS02-006,dev,10,210,952711,82,3,True,True,17,65,HPT_eff_mod
+DS02-006,dev,16,216,765295,63,3,True,True,16,47,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS02-006,dev,18,218,890719,71,3,True,True,17,54,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS02-006,dev,20,220,768160,66,3,True,True,17,49,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS02-006,test,11,211,663495,59,3,True,True,19,40,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS02-006,test,14,214,156778,76,1,True,True,36,40,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS02-006,test,15,215,433470,67,2,True,True,24,43,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,1,301,308489,72,1,True,True,37,35,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,2,302,647164,73,2,True,True,24,49,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,3,303,589837,67,2,True,True,25,42,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,4,304,539087,60,2,True,True,24,36,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,5,305,401143,93,1,True,True,38,55,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,6,306,946509,63,3,True,True,18,45,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,7,307,699860,80,2,True,True,25,55,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,8,308,1075006,71,3,True,True,18,53,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,dev,9,309,364182,84,1,True,True,37,47,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,10,310,951109,66,3,True,True,18,48,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,11,311,824492,59,3,True,True,19,40,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,12,312,405409,93,1,True,True,37,56,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,13,313,1106892,77,3,True,True,19,58,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,14,314,345484,76,1,True,True,36,40,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS03-012,test,15,315,618174,67,2,True,True,25,42,HPT_eff_mod LPT_eff_mod LPT_flow_mod
+DS04,dev,1,401,774297,87,2,True,True,22,65,fan_eff_mod fan_flow_mod
+DS04,dev,2,402,1075817,73,3,True,True,17,56,fan_eff_mod fan_flow_mod
+DS04,dev,3,403,923937,100,2,True,True,22,78,fan_eff_mod fan_flow_mod
+DS04,dev,4,404,978116,69,3,True,True,16,53,fan_eff_mod fan_flow_mod
+DS04,dev,5,405,1438219,100,3,True,True,17,83,fan_eff_mod fan_flow_mod
+DS04,dev,6,406,1187066,83,3,True,True,17,66,fan_eff_mod fan_flow_mod
+DS04,test,7,407,821349,87,2,True,True,22,65,fan_eff_mod fan_flow_mod
+DS04,test,8,408,857593,99,2,True,True,22,77,fan_eff_mod fan_flow_mod
+DS04,test,9,409,677437,73,2,True,True,22,51,fan_eff_mod fan_flow_mod
+DS04,test,10,410,1246182,85,3,True,True,17,68,fan_eff_mod fan_flow_mod
+DS05,dev,1,501,732513,80,2,True,True,24,56,HPC_eff_mod HPC_flow_mod
+DS05,dev,2,502,1181619,80,3,True,True,19,61,HPC_eff_mod HPC_flow_mod
+DS05,dev,3,503,569389,65,2,True,True,26,39,HPC_eff_mod HPC_flow_mod
+DS05,dev,4,504,442921,99,1,True,True,36,63,HPC_eff_mod HPC_flow_mod
+DS05,dev,5,505,450160,100,1,True,True,36,64,HPC_eff_mod HPC_flow_mod
+DS05,dev,6,506,974004,67,3,True,True,18,49,HPC_eff_mod HPC_flow_mod
+DS05,test,7,507,746193,85,2,True,True,24,61,HPC_eff_mod HPC_flow_mod
+DS05,test,8,508,388079,91,1,True,True,36,55,HPC_eff_mod HPC_flow_mod
+DS05,test,9,509,1058183,69,3,True,True,19,50,HPC_eff_mod HPC_flow_mod
+DS05,test,10,510,369591,82,1,True,True,37,45,HPC_eff_mod HPC_flow_mod
+DS06,dev,1,601,715097,78,2,True,True,23,55,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,dev,2,602,1153305,78,3,True,True,17,61,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,dev,3,603,569389,65,2,True,True,24,41,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,dev,4,604,387882,87,1,True,True,33,54,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,dev,5,605,446824,99,1,True,True,33,66,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,dev,6,606,984712,68,3,True,True,17,51,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,test,7,607,706594,80,2,True,True,22,58,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,test,8,608,388079,91,1,True,True,32,59,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,test,9,609,1058183,69,3,True,True,17,52,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS06,test,10,610,369591,82,1,True,True,33,49,LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod
+DS07,dev,1,701,616431,67,2,True,True,24,43,LPT_eff_mod LPT_flow_mod
+DS07,dev,2,702,1254445,85,3,True,True,19,66,LPT_eff_mod LPT_flow_mod
+DS07,dev,3,703,676623,78,2,True,True,26,52,LPT_eff_mod LPT_flow_mod
+DS07,dev,4,704,354653,79,1,True,True,36,43,LPT_eff_mod LPT_flow_mod
+DS07,dev,5,705,383295,85,1,True,True,36,49,LPT_eff_mod LPT_flow_mod
+DS07,dev,6,706,1064729,74,3,True,True,19,55,LPT_eff_mod LPT_flow_mod
+DS07,test,7,707,685263,78,2,True,True,24,54,LPT_eff_mod LPT_flow_mod
+DS07,test,8,708,351945,83,1,True,True,37,46,LPT_eff_mod LPT_flow_mod
+DS07,test,9,709,1439850,96,3,True,True,19,77,LPT_eff_mod LPT_flow_mod
+DS07,test,10,710,392728,87,1,True,True,37,50,LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,1,801,321104,72,1,True,True,31,41,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,2,802,739431,51,3,True,True,16,35,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,3,803,340419,75,1,True,True,29,46,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,4,804,615089,71,2,True,True,22,49,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,5,805,490607,56,2,True,True,19,37,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,6,806,809899,58,3,True,True,15,43,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,7,807,594819,68,2,True,True,21,47,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,8,808,574085,65,2,True,True,23,42,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,dev,9,809,399936,95,1,True,True,30,65,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,10,810,336834,78,1,True,True,30,48,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,11,811,548023,60,2,True,True,21,39,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,12,812,848572,58,3,True,True,18,40,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,13,813,852722,56,3,True,True,15,41,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,14,814,831713,59,3,True,True,16,43,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08a-009,test,15,815,305133,72,1,True,True,28,44,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,1,901,791013,53,3,True,True,17,36,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,2,902,761866,52,3,True,True,17,35,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,3,903,768857,53,3,True,True,17,36,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,4,904,704221,48,3,True,True,17,31,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,5,905,743617,50,3,True,True,16,34,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,dev,6,906,530344,60,2,True,True,22,38,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,test,7,907,543034,62,2,True,True,23,39,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,test,8,908,555710,62,2,True,True,23,39,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,test,9,909,539272,59,2,True,True,22,37,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
+DS08c-008,test,10,910,479803,54,2,True,True,22,32,fan_eff_mod fan_flow_mod LPC_eff_mod LPC_flow_mod HPC_eff_mod HPC_flow_mod HPT_eff_mod HPT_flow_mod LPT_eff_mod LPT_flow_mod
