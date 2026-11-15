@@ -1,0 +1,11 @@
+stream,family,measured_seconds,rows_scale,fits,hours
+cpu,ridge,0.2524,1.0227,75,0.0054
+cpu,knn,0.4019,1.0227,180,0.0206
+cpu,forest,7.4035,1.0227,180,0.3786
+gpu,xgboost,7.588,1.0227,180,0.388
+gpu,xgboost_raw,4.6664,1.0227,180,0.2386
+gpu,mlp,4.4459,1.0227,180,0.2273
+gpu,lstm,4.3834,1.0227,180,0.2241
+gpu,tcn,9.8233,1.0227,180,0.5023
+gpu,cnn,6.4163,1.0227,180,0.3281
+gpu,transformer,11.1637,1.0227,180,0.5708

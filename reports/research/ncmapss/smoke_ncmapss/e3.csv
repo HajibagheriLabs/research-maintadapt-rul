@@ -1,0 +1,3 @@
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory; pipeline check on runs/research/smoke_ncmapss
+fleet,configs,delta_tau,lo,hi,valid_replicates,tau_jitter,tau_jitter_lo,tau_jitter_hi,tau_rmse
+NCMAPSS,10,-0.04444444444444445,-0.4455555555555536,0.04444444444444445,2000,0.4666666666666666,0.19888888888889084,0.5111111111111111,0.5111111111111111

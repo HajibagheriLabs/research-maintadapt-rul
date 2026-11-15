@@ -1,0 +1,7 @@
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory; pipeline check on runs/research/smoke_ncmapss
+repeat_index,fold,by_validation_cost,by_validation_rmse
+0,0,ridge-00,xgboost_raw-00
+0,1,xgboost_raw-00,xgboost_raw-00
+0,2,xgboost-00,xgboost-00
+0,3,xgboost_raw-00,xgboost_raw-00
+0,4,ridge-00,xgboost_raw-00
