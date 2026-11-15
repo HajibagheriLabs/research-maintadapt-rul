@@ -31,7 +31,8 @@ class FoldData:
     # trailing windows of the rolling features, not sequence window lengths
     feature_windows: list[int]
     include_cycle: bool
-    conditions: OperatingConditions
+    # C-MAPSS regimes; None for N-CMAPSS, whose flight class takes their place
+    conditions: OperatingConditions | None
     screening: pd.DataFrame
     normaliser: Normaliser
     # not an init field, so dataclasses.replace starts a copy with an empty cache
@@ -121,4 +122,65 @@ def build_fold_data(
         conditions=prepared.conditions,
         screening=prepared.screening,
         normaliser=prepared.normaliser,
+    )
+
+
+# N-CMAPSS flight classes: short, medium and long flights
+FLIGHT_CLASSES = (1, 2, 3)
+
+
+def build_ncmapss_fold_data(
+    subset: Subset,
+    fold: Fold,
+    features: list[str],
+    cfg: FleetDataConfig,
+    *,
+    repeat: int,
+    index: int,
+) -> FoldData:
+    """N-CMAPSS: z-score the per-flight features within flight class on inner_fit units.
+
+    A zero standard deviation counts as 1, so a constant feature centres to zero; a flight
+    class that inner_fit never flies stops the fold. The flight class enters as indicators.
+    There is no official test split: its frame is empty and no fit predicts it.
+    """
+    frame = subset.train
+    fitted = frame[frame["unit_id"].isin(fold.inner_fit)]
+    unseen = sorted(set(frame["fc"]) - set(fitted["fc"]))
+    if unseen:
+        raise ValueError(
+            f"{subset.name}: inner_fit never flies flight classes {unseen}"
+        )
+    grouped = fitted.groupby("fc")[features]
+    std = grouped.std(ddof=0)
+    normaliser = Normaliser(
+        list(features), "fc", grouped.mean(), std.mask(std == 0, 1.0)
+    )
+    indicators = {f"fc_{c}": (frame["fc"] == c).astype(float) for c in FLIGHT_CLASSES}
+    scaled = normaliser.transform(frame).assign(**indicators)
+    members = {
+        "inner_fit": fold.inner_fit,
+        "inner_val": fold.inner_val,
+        "outer_test": fold.outer_test,
+    }
+    frames = {}
+    for split, units in members.items():
+        rows = scaled[scaled["unit_id"].isin(units)]
+        missing = sorted(set(units) - set(rows["unit_id"]))
+        if missing:
+            raise ValueError(f"{subset.name}: {split} units {missing} have no rows")
+        frames[split] = rows.sort_values(["unit_id", "cycle"], ignore_index=True)
+    frames["official_test"] = scaled.iloc[:0].reset_index(drop=True)
+    return FoldData(
+        fleet=subset.name,
+        repeat=repeat,
+        fold=index,
+        frames=frames,
+        sensors=[*features, *indicators],
+        cap=cfg.cap,
+        feature_windows=list(cfg.windows),
+        include_cycle=cfg.include_cycle,
+        conditions=None,
+        screening=pd.DataFrame(),
+        normaliser=normaliser,
     )

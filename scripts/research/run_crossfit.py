@@ -27,6 +27,7 @@ from maintadapt.research.compute import (
     stream_totals,
 )
 from maintadapt.research.config import (
+    NCMAPSS,
     FleetDataConfig,
     ResearchConfig,
     load_research_config,
@@ -44,7 +45,11 @@ from maintadapt.research.crossfit import (
     run_jobs,
     select_configs,
 )
-from maintadapt.research.fold_data import FoldData, build_fold_data
+from maintadapt.research.fold_data import (
+    FoldData,
+    build_fold_data,
+    build_ncmapss_fold_data,
+)
 from maintadapt.research.folds import Fold, lifetimes, load_folds
 from maintadapt.research.models.registry import (
     CPU_FAMILIES,
@@ -53,6 +58,7 @@ from maintadapt.research.models.registry import (
     fit,
 )
 from maintadapt.research.models.spaces import FAMILY_NAMES, load_pool
+from maintadapt.research.ncmapss import load_subset as load_ncmapss
 from maintadapt.sequence import resolve_device
 
 SMOKE_EPOCHS = 3
@@ -72,6 +78,8 @@ class Part:
     seed_of: Callable[[Job], int] | None = None
     # added to every sidecar
     extra: dict | None = None
+    # builds a fold's data in place of the C-MAPSS preparation (N-CMAPSS)
+    prepare: Callable[[str, int, int], FoldData] | None = None
 
 
 def parse_args() -> argparse.Namespace:
@@ -89,6 +97,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--limit", type=int, help="stop after this many new fits")
     parser.add_argument("--root", help="archive directory (default: from the mode)")
+    parser.add_argument(
+        "--ncmapss",
+        action="store_true",
+        help="fleet NCMAPSS (PREREGISTRATION.md section 8), alone or with --smoke or "
+        "--dry-run, into archives of its own",
+    )
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
         "--smoke",
@@ -167,6 +181,15 @@ def settings(args: argparse.Namespace, cfg: ResearchConfig) -> dict:
             "configs": None,
             "root": cfg.paths.archive,
         }
+    if args.ncmapss:
+        base["fleets"] = [NCMAPSS]
+        base["root"] = (
+            f"{cfg.paths.smoke}_ncmapss"
+            if args.smoke
+            else f"{cfg.paths.dryrun}_ncmapss"
+            if args.dry_run
+            else cfg.ncmapss.archive
+        )
     for name in base:
         if getattr(args, name) is not None:
             base[name] = getattr(args, name)
@@ -275,8 +298,31 @@ def caps_parts(args: argparse.Namespace, cfg: ResearchConfig, run: dict) -> list
     ]
 
 
+def ncmapss_part(args: argparse.Namespace, cfg: ResearchConfig, run: dict) -> Part:
+    """The pool on N-CMAPSS, with its own frame, folds, cap and preparation."""
+    part = crossfit_part(args, cfg, run)
+    cap = cfg.ncmapss.require_cap()
+    subset, features = load_ncmapss(cfg.ncmapss.frame, cap)
+    folds = load_folds(cfg.ncmapss.folds, cfg.folds, [NCMAPSS])
+    data = replace(cfg.data, cap=cap)
+
+    def prepare(fleet: str, repeat: int, fold: int) -> FoldData:
+        return build_ncmapss_fold_data(
+            subset,
+            folds[fleet][repeat][fold],
+            features,
+            data,
+            repeat=repeat,
+            index=fold,
+        )
+
+    return replace(part, data=data, folds=indexed(folds), prepare=prepare)
+
+
 def parts_for(args: argparse.Namespace, cfg: ResearchConfig) -> list[Part]:
     run = settings(args, cfg)
+    if args.ncmapss:
+        return [ncmapss_part(args, cfg, run)]
     if args.nested:
         return nested_parts(args, cfg, run)
     if args.caps:
@@ -329,6 +375,9 @@ def run_stream(args: argparse.Namespace, cfg: ResearchConfig) -> None:
         def build_data(
             fleet: str, repeat: int, fold: int, part: Part = part
         ) -> FoldData:
+            if part.prepare is not None:
+                with threadpool_limits(limits=stream_threads):
+                    return part.prepare(fleet, repeat, fold)
             key = (fleet, part.data.cap)
             if key not in subsets:
                 subsets[key] = load_subset(cfg.data.raw_dir, fleet, part.data.cap)
@@ -442,10 +491,49 @@ def estimate_secondary(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     print(f"wrote {out}")
 
 
+def estimate_ncmapss(cfg: ResearchConfig, root: str) -> None:
+    """Hours of the N-CMAPSS runs from its dry run, scaled by inner_fit flights as for C-MAPSS.
+
+    A family's seconds per fit are the mean over its timed configurations (repeat 0, fold 0),
+    times the mean inner_fit flights of all folds over those of the timed fold.
+    """
+    subset, _ = load_ncmapss(cfg.ncmapss.frame, cfg.ncmapss.require_cap())
+    lives = lifetimes(subset.train)
+    folds = load_folds(cfg.ncmapss.folds, cfg.folds, [NCMAPSS])[NCMAPSS]
+    per_fold = inner_fit_rows(lives, folds)
+    scale = (sum(per_fold) / len(per_fold)) / per_fold[0]
+    found = records(root, [NCMAPSS])
+    seconds = found[found["status"] == "ok"].groupby("family")["wall_seconds"].mean()
+    streams = {"cpu": CPU_FAMILIES, "gpu": GPU_FAMILIES}
+    rows = []
+    for stream, families in streams.items():
+        for family in families:
+            if family not in seconds:
+                raise SystemExit(f"the dry run has no finished {family} fit")
+            fits = cfg.pool.n_configs[family] * cfg.folds.n_outer * cfg.crossfit.repeats
+            hours = seconds[family] * scale * fits / 3600
+            rows.append(
+                {
+                    "stream": stream,
+                    "family": family,
+                    "measured_seconds": seconds[family],
+                    "rows_scale": scale,
+                    "fits": fits,
+                    "hours": hours,
+                }
+            )
+    table = pd.DataFrame(rows)
+    out = Path(cfg.paths.reports) / "ncmapss" / "compute_estimate.csv"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    table.round(4).to_csv(out, index=False, lineterminator="\n")
+    print(table.groupby("stream")[["fits", "hours"]].sum().round(2).to_string())
+    print(f"wrote {out}")
+
+
 def dry_run_both_streams(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     """Time the CPU and GPU streams side by side, as the confirmatory runs will go."""
     base = [sys.executable, str(Path(__file__).resolve()), "--config", args.config]
-    base += ["--dry-run"]
+    base += ["--dry-run", *(["--ncmapss"] if args.ncmapss else [])]
     for name in ("fleets", "families", "configs", "root"):
         value = getattr(args, name)
         if value is not None:
@@ -457,7 +545,10 @@ def dry_run_both_streams(args: argparse.Namespace, cfg: ResearchConfig) -> None:
     codes = [child.wait() for child in children]
     if any(codes):
         raise SystemExit(f"a dry-run stream failed with exit codes {codes}")
-    estimate(cfg, settings(args, cfg)["root"])
+    if args.ncmapss:
+        estimate_ncmapss(cfg, settings(args, cfg)["root"])
+    else:
+        estimate(cfg, settings(args, cfg)["root"])
 
 
 def main() -> None:
@@ -466,6 +557,8 @@ def main() -> None:
     unknown = sorted(set(args.families or []) - set(FAMILY_NAMES) - set(STREAMS["cpu"]))
     if unknown:
         raise SystemExit(f"unknown families {unknown}")
+    if args.ncmapss and (args.nested or args.caps or args.estimate):
+        raise SystemExit("--ncmapss runs the pool, its smoke test or its dry run only")
     if args.estimate:
         estimate_secondary(args, cfg)
         return

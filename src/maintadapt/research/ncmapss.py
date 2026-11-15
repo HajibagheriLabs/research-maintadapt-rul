@@ -20,6 +20,8 @@ import h5py
 import numpy as np
 import pandas as pd
 
+from maintadapt.data import Subset
+
 FLEET = "NCMAPSS"
 GROUPS = ("W", "X_s", "X_v", "T", "Y", "A")
 PARTS = ("dev", "test")
@@ -302,3 +304,17 @@ def build_frame(raw_dir: str | Path) -> Frame:
     features = feature_columns(columns)
     frame = frame[ids + features].sort_values(["unit_id", "cycle"], ignore_index=True)
     return Frame(frame, features, excluded)
+
+
+def frame_features(flights: pd.DataFrame) -> list[str]:
+    """The per-flight inputs of a stored frame, in its column order."""
+    return [
+        c for c in flights.columns if c == "duration" or c.startswith(("mean_", "std_"))
+    ]
+
+
+def load_subset(path: str | Path, cap: int) -> tuple[Subset, list[str]]:
+    """The stored frame as a Subset whose train holds every unit and whose test is empty."""
+    flights = pd.read_parquet(path).sort_values(["unit_id", "cycle"], ignore_index=True)
+    train = flights.assign(rul_capped=flights["rul"].clip(upper=cap).astype("int64"))
+    return Subset(FLEET, train, train.iloc[:0]), frame_features(flights)

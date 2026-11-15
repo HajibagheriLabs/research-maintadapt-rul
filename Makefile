@@ -45,9 +45,16 @@ Targets (variables in brackets):
   research-secondary   S1-S7 and S9 of PREREGISTRATION.md section 7 into reports/research/secondary [RESEARCH_CONFIG]
   research-exploratory analyses outside the plan, labelled EXPLORATORY, into reports/research/exploratory [RESEARCH_CONFIG]
   research-ncmapss-inspect  N-CMAPSS groups, shapes, units, failure modes and the cap; reports/research/ncmapss/inspection.md [RESEARCH_CONFIG]
+  research-ncmapss-data  N-CMAPSS per-flight frame from W and X_s, and configs/research_folds_ncmapss.json [RESEARCH_CONFIG]
+  research-ncmapss-smoke  configuration 0 of every family and two controls, 3 epochs, on N-CMAPSS repeat 0 [RESEARCH_CONFIG]
+  research-ncmapss-dryrun  time configurations 0-2 on N-CMAPSS, both streams; reports/research/ncmapss/compute_estimate.csv [RESEARCH_CONFIG]
+  research-ncmapss     fit the pool on N-CMAPSS in every (repeat, fold); resumable [RESEARCH_CONFIG, STREAM]
+  research-ncmapss-validate  check every finished N-CMAPSS fit [RESEARCH_CONFIG, ROOT]
+  research-ncmapss-derived  N-CMAPSS outcomes and metrics into runs/research/derived [RESEARCH_CONFIG, ROOT]
+  research-ncmapss-report  N-CMAPSS E1-E3, secondary and descriptive; reports/research/ncmapss [RESEARCH_CONFIG, ROOT]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report
 
 help:
 	$(info $(HELP))
@@ -146,3 +153,24 @@ research-exploratory:
 
 research-ncmapss-inspect:
 	$(PY) scripts/research/inspect_ncmapss.py --config $(RESEARCH_CONFIG)
+
+research-ncmapss-data:
+	$(PY) scripts/research/make_ncmapss.py --config $(RESEARCH_CONFIG)
+
+research-ncmapss-smoke:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --ncmapss --smoke
+
+research-ncmapss-dryrun:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --ncmapss --dry-run
+
+research-ncmapss:
+	$(PY) scripts/research/run_crossfit.py --config $(RESEARCH_CONFIG) --ncmapss --stream $(STREAM)
+
+research-ncmapss-validate:
+	$(PY) scripts/research/validate_archive.py --config $(RESEARCH_CONFIG) --ncmapss $(if $(ROOT),--root $(ROOT))
+
+research-ncmapss-derived:
+	$(PY) scripts/research/build_ncmapss.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+research-ncmapss-report:
+	$(PY) scripts/research/run_ncmapss.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))

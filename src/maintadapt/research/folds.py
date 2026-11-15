@@ -49,9 +49,21 @@ def assign_blocks(
     return out
 
 
-def fleet_folds(lives: pd.Series, cfg: FoldsConfig, fleet: str) -> list[list[Fold]]:
-    """Folds of one fleet per repeat; one generator per repeat, outer blocks drawn first."""
-    order = sort_by_lifetime(lives)
+def sort_by_stratum(lives: pd.Series, strata: pd.Series) -> np.ndarray:
+    """Unit ids ordered by stratum, then lifetime, then unit id."""
+    ids = lives.index.to_numpy()
+    groups = strata.loc[ids].to_numpy()
+    return ids[np.lexsort((ids, lives.to_numpy(), groups))]
+
+
+def fleet_folds(
+    lives: pd.Series, cfg: FoldsConfig, fleet: str, order: np.ndarray | None = None
+) -> list[list[Fold]]:
+    """Folds of one fleet per repeat; one generator per repeat, outer blocks drawn first.
+
+    Units are taken in lifetime order unless order gives another (sort_by_stratum).
+    """
+    order = sort_by_lifetime(lives) if order is None else np.asarray(order)
     inner_labels = [1] + [0] * (cfg.inner_block - 1)
     repeats = []
     for repeat in range(cfg.n_repeats):
