@@ -282,6 +282,53 @@ the same failure cost.
 
 None of this changes PREREGISTRATION.md, so DEVIATIONS.md stays empty.
 
+## N-CMAPSS
+
+Fixed before any N-CMAPSS model is trained (PREREGISTRATION.md section 8). The facts come from
+`reports/research/ncmapss/inspection.md` (`make research-ncmapss-inspect`), which read A, Y and
+the ends of T one unit at a time:
+- **Files.** NASA's archive holds ten sub-datasets. `N-CMAPSS_DS08d-010.h5` fails to open (its
+  last 32 bytes are missing), so it is excluded. The other nine hold 99 units with 48 to 100
+  flights each. In every unit the rows form one block, flights run 1..T, Y equals T - t at
+  every flight, the health state falls once from 1 to 0, and the flight class never changes.
+  The development and test parts of the files are pooled. A unit's id is 100 times the file's
+  position in name order plus its number in the file (DS01-005 unit 7 is 107).
+- **Cap: 50 flights.** The RUL at the first flight with health state 0 has a median of exactly
+  50 over the 99 units (range 31 to 83), which rounds to 50. `configs/research.yaml` records it
+  as `ncmapss.cap`.
+- **Per-flight aggregation.** One row per unit and flight. It holds the mean and the population
+  standard deviation of each of the 4 W and 14 X_s variables over the flight's 1 Hz samples,
+  and the flight's duration in samples: 37 numbers. The row also keeps the flight class and the
+  true RUL. X_v, T and the health state never enter it. `ncmapss.read_inputs` refuses them, and
+  a test feeds a poisoned X_v through the whole build to prove it.
+- **Standardisation.** Each of the 37 numbers is z-scored within flight class. Its mean and
+  standard deviation come from the inner_fit units' flights of that class; a zero standard
+  deviation counts as 1, and a class absent from inner_fit stops the fold. The flight class
+  itself enters as three indicators. Nothing is screened and nothing is clustered: the flight
+  class takes the place of C-MAPSS's operating regimes.
+- **Model inputs and target.** The 40 per-flight inputs play the part of C-MAPSS's sensors:
+  - tabular families read their current values with trailing means, standard deviations and
+    slopes over 5, 10, 20 and 30 flights, plus the flight number;
+  - XGBoost on raw readings reads the flight number and the current values;
+  - sequence families read windows of past flights, left-padded with the first.
+  The target is min(RUL, 50); the networks scale it by 50, and predictions are clipped to
+  [0, 50].
+- **Folds.** Five outer folds over the 99 units for each of three repeats, stratified by
+  sub-dataset. The units are sorted by sub-dataset, then lifetime, then id, and every block of
+  five consecutive units is spread over the five folds. Within each outer-train set, one unit in
+  every block of four of the same order goes to inner_val. The generator is
+  `default_rng([2026, repeat, 5])`, with 5 as the N-CMAPSS fleet number. The folds go to
+  `configs/research_folds_ncmapss.json`.
+- **Metrics without an official test set.** Prediction files hold inner_val and outer_test.
+  Leaderboard RMSE is the RMSE over every flight of a fit's outer_test units against the capped
+  truth, averaged over fits. Jitter uses the same units and section 5.7's rule with the cap of
+  50. Because these accuracy metrics and D are measured on the same units, the bootstrap draws
+  units once, from `default_rng([2026, 5, 0])`, and both resample with that draw.
+- **Everything else as for C-MAPSS.** The same pool of 113 configurations and the same seed
+  formula, with fleet NCMAPSS. The same decision grid, with lead times counted in flights. E1-E3
+  are computed and read by the rules of section 6, and every output is labelled secondary and
+  descriptive.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.

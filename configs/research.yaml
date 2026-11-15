@@ -75,8 +75,9 @@ secondary:
 # N-CMAPSS, the secondary fleet of PREREGISTRATION.md section 8 (DECISIONS.md, N-CMAPSS)
 ncmapss:
   raw_dir: data/raw/NCMAPSS/data_set
-  # section 8's cap; null until make research-ncmapss-inspect has computed it
-  cap: null
+  # section 8's cap from make research-ncmapss-inspect (reports/research/ncmapss/inspection.md):
+  # the median RUL at the first abnormal health state over 99 units, 50, rounded to 5 cycles
+  cap: 50
   frame: runs/research/ncmapss/flights.parquet
   folds: configs/research_folds_ncmapss.json
   archive: runs/research/archive_ncmapss
