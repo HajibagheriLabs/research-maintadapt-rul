@@ -2,7 +2,7 @@
 
 Writes paper_assets/figures (PDF with embedded fonts, PNG previews), paper_assets/tables
 (booktabs), paper_assets/numbers.tex, paper_assets/RESULTS_DIGEST.md and, for the few numbers
-computed here rather than read from reports/research, paper_assets/data/. Assets only: no
+computed here rather than read from reports/research, paper_assets/computed/. Assets only: no
 manuscript prose. Every number names its source file, column and command in the digest.
 """
 
@@ -78,7 +78,7 @@ COMMANDS = {
     "reports/research/ncmapss": "make research-ncmapss-report",
     "reports/research/leaderboard": "make research-leaderboard",
     "reports/research/compute_estimate": "make research-dryrun",
-    "paper_assets/data": "make paper-assets",
+    "paper_assets/computed": "make paper-assets",
     "configs/research_pool.yaml": "make research-pool",
 }
 VERDICT_FILE = "reports/research/confirmatory/verdicts.md"
@@ -1466,7 +1466,7 @@ def table_data(data: pd.DataFrame, out: Path) -> None:
             ],
             rows,
             "lrrrlrrrr",
-            "paper_assets/data/data_folds.csv (raw files, configs/research_folds*.json); N-CMAPSS: "
+            "paper_assets/computed/data_folds.csv (raw files, configs/research_folds*.json); N-CMAPSS: "
             "units, flight classes and flights",
         ),
     )
@@ -1739,7 +1739,7 @@ def table_compute(compute: pd.DataFrame, out: Path) -> None:
             ],
             rows,
             "lllrrr",
-            "paper_assets/data/compute.csv (sidecars of every archive, wall_seconds) and "
+            "paper_assets/computed/compute.csv (sidecars of every archive, wall_seconds) and "
             "reports/research/compute_estimate.csv (hours_r3)",
         ),
     )
@@ -1860,7 +1860,7 @@ def main() -> None:
     args = parser.parse_args()
     cfg = load_research_config(args.config)
     root = Path(cfg.paths.paper_assets)
-    figures, tables, data = root / "figures", root / "tables", root / "data"
+    figures, tables, data = root / "figures", root / "tables", root / "computed"
     for d in (figures, tables, data):
         d.mkdir(parents=True, exist_ok=True)
     apply_paper_style()
@@ -1876,7 +1876,7 @@ def main() -> None:
     frame.to_csv(data / "f1_invariance.csv", index=False, lineterminator="\n")
     for _, r in frame.iterrows():
         stem = f"f1.{F1['fleet']}.{r['variant']}"
-        src = "paper_assets/data/f1_invariance.csv"
+        src = "paper_assets/computed/f1_invariance.csv"
         n.add(
             "F",
             f"{stem}_leaderboard_rmse",
@@ -1909,7 +1909,7 @@ def main() -> None:
     gap = oracle_selection(cfg)
     gap.to_csv(data / "f5_oracle_selection.csv", index=False, lineterminator="\n")
     for _, r in gap.iterrows():
-        src = "paper_assets/data/f5_oracle_selection.csv"
+        src = "paper_assets/computed/f5_oracle_selection.csv"
         n.add(
             "RQ2",
             f"f5.{r['fleet']}.oracle_config",
@@ -1942,7 +1942,7 @@ def main() -> None:
     data_table = data_summary(cfg)
     data_table.to_csv(data / "data_folds.csv", index=False, lineterminator="\n")
     for _, r in data_table.iterrows():
-        src = "paper_assets/data/data_folds.csv"
+        src = "paper_assets/computed/data_folds.csv"
         for column in (
             "train_units",
             "test_units",
@@ -2004,7 +2004,7 @@ def main() -> None:
     compute.to_csv(data / "compute.csv", index=False, lineterminator="\n")
     for archive, g in compute.groupby("archive", sort=False):
         key = archive.lower().replace(" ", "_").replace("-", "")
-        src = "paper_assets/data/compute.csv"
+        src = "paper_assets/computed/compute.csv"
         n.add(
             "D",
             f"compute.all.{key}_fits",
