@@ -1,0 +1,3 @@
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory
+fleet,configs,delta_tau,lo,hi,valid_replicates,tau_jitter,tau_jitter_lo,tau_jitter_hi,tau_rmse
+NCMAPSS,113,-0.5793299620733249,-0.7016750948166876,-0.30208596713021524,2000,0.09766118836915297,-0.1087547408343868,0.18173198482932995,0.6769911504424778

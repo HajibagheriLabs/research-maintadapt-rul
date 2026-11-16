@@ -350,6 +350,11 @@ the ends of T one unit at a time:
 - The dry run (`make research-ncmapss-dryrun`) timed configurations 0-2 of every family on
   repeat 0, fold 0, with both streams at once. `reports/research/ncmapss/compute_estimate.csv`
   projects 0.40 hours for the 435 CPU fits and 2.48 for the 1,260 GPU fits.
+- The full run: all 1,695 fits (113 configurations, 3 repeats, 5 folds) finished on the first
+  attempt from commit ec69fec, and `make research-ncmapss-validate` reports the archive valid
+  with 0 failed fits. No configuration is excluded
+  (`runs/research/derived/archive_ncmapss/NCMAPSS/excluded.csv`). E1-E3 are in
+  `reports/research/ncmapss/results.md` (`make research-ncmapss-report`).
 
 ## Legacy log (engineering project, tag `fork-point`)
 

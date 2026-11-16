@@ -1,0 +1,3 @@
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory
+fleet,configs,selection_loss,lo,hi,valid_replicates,s_by_cost,s_by_cost_lo,s_by_cost_hi,s_by_rmse,s_by_rmse_lo,s_by_rmse_hi
+NCMAPSS,113,-0.2810790570221371,-0.6596639658895389,0.057382690750848925,2000,-0.4500939799900485,-1.3535095170808031,0.14644446661494523,-0.16901492296791143,-1.029500085678879,0.40166397461316133

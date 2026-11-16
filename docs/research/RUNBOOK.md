@@ -163,7 +163,7 @@ The cap and every preprocessing choice were committed to DECISIONS.md before the
 | 5 | `make research-ncmapss-derived` | a few minutes |
 | 6 | `make research-ncmapss-report` (writes `reports/research/ncmapss/`) | under a minute |
 
-Steps 1 and 2 have been run and their outputs committed; start at step 3. The hours are the
+All six steps have been run and their outputs committed. The hours are the
 projection in `reports/research/ncmapss/compute_estimate.csv` (`make research-ncmapss-dryrun`).
 The fits go to `runs/research/archive_ncmapss` and resume like the cross-fitting runs.
 `make research-ncmapss-smoke` checks the pipeline in about two minutes.
