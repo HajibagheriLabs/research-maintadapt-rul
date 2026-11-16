@@ -1,6 +1,6 @@
 # Results digest
 
-Facts only. Every number below is a macro of `paper_assets/numbers.tex` (`\val{<analysis>.<fleet>.<quantity>}`), with its source file, column and the command that wrote the source. Intervals are percentile 95% bootstrap intervals; `_lo`, `_hi` and `_ci` macros exist for every number shown with one. Confirmatory numbers are `e1`, `e2`, `e3` and `verdict` on FD001-FD004; `s*` are pre-registered secondary analyses, NCMAPSS is secondary analysis S8 (descriptive), `x*` are exploratory, and `f1`, `f5`, `data` and `compute` are computed by `make paper-assets`. Written by make paper-assets at commit 47df31a0d0948b79b4818fafa45ec413e2bdd6c8.
+Facts only. Every number below is a macro of `paper_assets/numbers.tex` (`\val{<analysis>.<fleet>.<quantity>}`), with its source file, column and the command that wrote the source. Intervals are percentile 95% bootstrap intervals; `_lo`, `_hi` and `_ci` macros exist for every number shown with one. Confirmatory numbers are `e1`, `e2`, `e3` and `verdict` on FD001-FD004; `s*` are pre-registered secondary analyses, NCMAPSS is secondary analysis S8 (descriptive), `x*` are exploratory, and `f1`, `f5`, `data` and `compute` are computed by `make paper-assets`. Written by make paper-assets at commit c520d0350eaaa8f5ca7abe7fdbb243b2d41714c9+dirty.
 
 Definitions of the numbers computed here:
 
@@ -227,22 +227,22 @@ Pre-registered verdict: **inconclusive** (`reports/research/confirmatory/verdict
 | S6 e2_selection_loss with regret, C_f = 500 | FD004 | -0.026 | [-0.101, 0.043] | `\val{s6.FD004.cf500_e2_selection_loss}` | `reports/research/secondary/s6_regret.csv` | e2_selection_loss, _lo, _hi (failure_cost = 500) | make research-secondary |
 | S6 e2_selection_loss with regret, C_f = 1000 | FD004 | -0.092 | [-0.231, 0.033] | `\val{s6.FD004.cf1000_e2_selection_loss}` | `reports/research/secondary/s6_regret.csv` | e2_selection_loss, _lo, _hi (failure_cost = 1000) | make research-secondary |
 | S6 e2_selection_loss with regret, C_f = 2000 | FD004 | -0.232 | [-0.517, 0.023] | `\val{s6.FD004.cf2000_e2_selection_loss}` | `reports/research/secondary/s6_regret.csv` | e2_selection_loss, _lo, _hi (failure_cost = 2000) | make research-secondary |
-| F5 configuration with the highest S in hindsight | FD001 | transformer-05 |  | `\val{f5.FD001.oracle_config}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_config | make paper-assets |
-| F5 its S | FD001 | 0.863 |  | `\val{f5.FD001.oracle_s}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_s | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD001 | 1.166 | [0.619, 2.032] | `\val{f5.FD001.gap_cost}` | `paper_assets/data/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD001 | 0.285 | [-0.010, 0.649] | `\val{f5.FD001.gap_rmse}` | `paper_assets/data/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
-| F5 configuration with the highest S in hindsight | FD002 | transformer-04 |  | `\val{f5.FD002.oracle_config}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_config | make paper-assets |
-| F5 its S | FD002 | 0.880 |  | `\val{f5.FD002.oracle_s}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_s | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD002 | 0.862 | [0.540, 1.225] | `\val{f5.FD002.gap_cost}` | `paper_assets/data/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD002 | 0.241 | [0.081, 0.430] | `\val{f5.FD002.gap_rmse}` | `paper_assets/data/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
-| F5 configuration with the highest S in hindsight | FD003 | mlp-06 |  | `\val{f5.FD003.oracle_config}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_config | make paper-assets |
-| F5 its S | FD003 | 0.723 |  | `\val{f5.FD003.oracle_s}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_s | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD003 | 1.376 | [0.809, 2.190] | `\val{f5.FD003.gap_cost}` | `paper_assets/data/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD003 | 0.240 | [-0.042, 0.603] | `\val{f5.FD003.gap_rmse}` | `paper_assets/data/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
-| F5 configuration with the highest S in hindsight | FD004 | transformer-11 |  | `\val{f5.FD004.oracle_config}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_config | make paper-assets |
-| F5 its S | FD004 | 0.876 |  | `\val{f5.FD004.oracle_s}` | `paper_assets/data/f5_oracle_selection.csv` | oracle_s | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD004 | 0.275 | [0.123, 0.454] | `\val{f5.FD004.gap_cost}` | `paper_assets/data/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
-| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD004 | 0.146 | [0.024, 0.291] | `\val{f5.FD004.gap_rmse}` | `paper_assets/data/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
+| F5 configuration with the highest S in hindsight | FD001 | transformer-05 |  | `\val{f5.FD001.oracle_config}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_config | make paper-assets |
+| F5 its S | FD001 | 0.863 |  | `\val{f5.FD001.oracle_s}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_s | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD001 | 1.166 | [0.619, 2.032] | `\val{f5.FD001.gap_cost}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD001 | 0.285 | [-0.010, 0.649] | `\val{f5.FD001.gap_rmse}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
+| F5 configuration with the highest S in hindsight | FD002 | transformer-04 |  | `\val{f5.FD002.oracle_config}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_config | make paper-assets |
+| F5 its S | FD002 | 0.880 |  | `\val{f5.FD002.oracle_s}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_s | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD002 | 0.862 | [0.540, 1.225] | `\val{f5.FD002.gap_cost}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD002 | 0.241 | [0.081, 0.430] | `\val{f5.FD002.gap_rmse}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
+| F5 configuration with the highest S in hindsight | FD003 | mlp-06 |  | `\val{f5.FD003.oracle_config}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_config | make paper-assets |
+| F5 its S | FD003 | 0.723 |  | `\val{f5.FD003.oracle_s}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_s | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD003 | 1.376 | [0.809, 2.190] | `\val{f5.FD003.gap_cost}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD003 | 0.240 | [-0.042, 0.603] | `\val{f5.FD003.gap_rmse}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
+| F5 configuration with the highest S in hindsight | FD004 | transformer-11 |  | `\val{f5.FD004.oracle_config}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_config | make paper-assets |
+| F5 its S | FD004 | 0.876 |  | `\val{f5.FD004.oracle_s}` | `paper_assets/computed/f5_oracle_selection.csv` | oracle_s | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation cost) | FD004 | 0.275 | [0.123, 0.454] | `\val{f5.FD004.gap_cost}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_cost, _lo, _hi | make paper-assets |
+| F5 oracle-selection gap (descriptive, not pre-registered): S(best in hindsight) - S(chosen by validation RMSE) | FD004 | 0.146 | [0.024, 0.291] | `\val{f5.FD004.gap_rmse}` | `paper_assets/computed/f5_oracle_selection.csv` | gap_rmse, _lo, _hi | make paper-assets |
 
 ## RQ3: jitter against leaderboard RMSE (H3)
 
@@ -658,15 +658,15 @@ Pre-registered verdict: **rejected** (`reports/research/confirmatory/verdicts.md
 
 | quantity | fleet | estimate | 95% interval | macro | source | column | command |
 |---|---|---|---|---|---|---|---|
-| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions y | FD001 | 12.65 |  | `\val{f1.FD001.original_leaderboard_rmse}` | `paper_assets/data/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
-| F1 S, predictions y | FD001 | 0.712 |  | `\val{f1.FD001.original_savings_share}` | `paper_assets/data/f1_invariance.csv` | savings_share | make paper-assets |
-| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.original_outcomes_differing}` | `paper_assets/data/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
-| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions y + 15 | FD001 | 20.86 |  | `\val{f1.FD001.shifted_leaderboard_rmse}` | `paper_assets/data/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
-| F1 S, predictions y + 15 | FD001 | 0.712 |  | `\val{f1.FD001.shifted_savings_share}` | `paper_assets/data/f1_invariance.csv` | savings_share | make paper-assets |
-| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.shifted_outcomes_differing}` | `paper_assets/data/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
-| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions 1.25 y | FD001 | 26.73 |  | `\val{f1.FD001.scaled_leaderboard_rmse}` | `paper_assets/data/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
-| F1 S, predictions 1.25 y | FD001 | 0.712 |  | `\val{f1.FD001.scaled_savings_share}` | `paper_assets/data/f1_invariance.csv` | savings_share | make paper-assets |
-| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.scaled_outcomes_differing}` | `paper_assets/data/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
+| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions y | FD001 | 12.65 |  | `\val{f1.FD001.original_leaderboard_rmse}` | `paper_assets/computed/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
+| F1 S, predictions y | FD001 | 0.712 |  | `\val{f1.FD001.original_savings_share}` | `paper_assets/computed/f1_invariance.csv` | savings_share | make paper-assets |
+| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.original_outcomes_differing}` | `paper_assets/computed/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
+| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions y + 15 | FD001 | 20.86 |  | `\val{f1.FD001.shifted_leaderboard_rmse}` | `paper_assets/computed/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
+| F1 S, predictions y + 15 | FD001 | 0.712 |  | `\val{f1.FD001.shifted_savings_share}` | `paper_assets/computed/f1_invariance.csv` | savings_share | make paper-assets |
+| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.shifted_outcomes_differing}` | `paper_assets/computed/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
+| F1 leaderboard RMSE of xgboost-00, repeat 0, predictions 1.25 y | FD001 | 26.73 |  | `\val{f1.FD001.scaled_leaderboard_rmse}` | `paper_assets/computed/f1_invariance.csv` | leaderboard_rmse | make paper-assets |
+| F1 S, predictions 1.25 y | FD001 | 0.712 |  | `\val{f1.FD001.scaled_savings_share}` | `paper_assets/computed/f1_invariance.csv` | savings_share | make paper-assets |
+| F1 outcomes (engine x setting x tuning) that differ from the original, R1 and R2 | FD001 | 0 and 0 of 12600 |  | `\val{f1.FD001.scaled_outcomes_differing}` | `paper_assets/computed/f1_invariance.csv` | outcomes_differing_R1, outcomes_differing_R2, outcomes_compared | make paper-assets |
 
 ## Conventional leaderboard (reference configurations, legacy split)
 
@@ -813,83 +813,83 @@ Pre-registered verdict: **rejected** (`reports/research/confirmatory/verdicts.md
 
 | quantity | fleet | estimate | 95% interval | macro | source | column | command |
 |---|---|---|---|---|---|---|---|
-| train_units | FD001 | 100 |  | `\val{data.FD001.train_units}` | `paper_assets/data/data_folds.csv` | train_units | make paper-assets |
-| test_units | FD001 | 100 |  | `\val{data.FD001.test_units}` | `paper_assets/data/data_folds.csv` | test_units | make paper-assets |
-| regimes | FD001 | 1 |  | `\val{data.FD001.regimes}` | `paper_assets/data/data_folds.csv` | regimes | make paper-assets |
-| life_min | FD001 | 128 |  | `\val{data.FD001.life_min}` | `paper_assets/data/data_folds.csv` | life_min | make paper-assets |
-| life_max | FD001 | 362 |  | `\val{data.FD001.life_max}` | `paper_assets/data/data_folds.csv` | life_max | make paper-assets |
-| cap | FD001 | 125 |  | `\val{data.FD001.cap}` | `paper_assets/data/data_folds.csv` | cap | make paper-assets |
-| flights | FD001 | 0 |  | `\val{data.FD001.flights}` | `paper_assets/data/data_folds.csv` | flights | make paper-assets |
-| repeats | FD001 | 3 |  | `\val{data.FD001.repeats}` | `paper_assets/data/data_folds.csv` | repeats | make paper-assets |
-| median life | FD001 | 199.0 |  | `\val{data.FD001.life_median}` | `paper_assets/data/data_folds.csv` | life_median | make paper-assets |
-| outer_test engines per fold | FD001 | 20 |  | `\val{data.FD001.outer_test}` | `paper_assets/data/data_folds.csv` | outer_test | make paper-assets |
-| inner_val engines per fold | FD001 | 20 |  | `\val{data.FD001.inner_val}` | `paper_assets/data/data_folds.csv` | inner_val | make paper-assets |
-| inner_fit engines per fold | FD001 | 60 |  | `\val{data.FD001.inner_fit}` | `paper_assets/data/data_folds.csv` | inner_fit | make paper-assets |
-| train_units | FD002 | 260 |  | `\val{data.FD002.train_units}` | `paper_assets/data/data_folds.csv` | train_units | make paper-assets |
-| test_units | FD002 | 259 |  | `\val{data.FD002.test_units}` | `paper_assets/data/data_folds.csv` | test_units | make paper-assets |
-| regimes | FD002 | 6 |  | `\val{data.FD002.regimes}` | `paper_assets/data/data_folds.csv` | regimes | make paper-assets |
-| life_min | FD002 | 128 |  | `\val{data.FD002.life_min}` | `paper_assets/data/data_folds.csv` | life_min | make paper-assets |
-| life_max | FD002 | 378 |  | `\val{data.FD002.life_max}` | `paper_assets/data/data_folds.csv` | life_max | make paper-assets |
-| cap | FD002 | 125 |  | `\val{data.FD002.cap}` | `paper_assets/data/data_folds.csv` | cap | make paper-assets |
-| flights | FD002 | 0 |  | `\val{data.FD002.flights}` | `paper_assets/data/data_folds.csv` | flights | make paper-assets |
-| repeats | FD002 | 3 |  | `\val{data.FD002.repeats}` | `paper_assets/data/data_folds.csv` | repeats | make paper-assets |
-| median life | FD002 | 199.0 |  | `\val{data.FD002.life_median}` | `paper_assets/data/data_folds.csv` | life_median | make paper-assets |
-| outer_test engines per fold | FD002 | 52 |  | `\val{data.FD002.outer_test}` | `paper_assets/data/data_folds.csv` | outer_test | make paper-assets |
-| inner_val engines per fold | FD002 | 52 |  | `\val{data.FD002.inner_val}` | `paper_assets/data/data_folds.csv` | inner_val | make paper-assets |
-| inner_fit engines per fold | FD002 | 156 |  | `\val{data.FD002.inner_fit}` | `paper_assets/data/data_folds.csv` | inner_fit | make paper-assets |
-| train_units | FD003 | 100 |  | `\val{data.FD003.train_units}` | `paper_assets/data/data_folds.csv` | train_units | make paper-assets |
-| test_units | FD003 | 100 |  | `\val{data.FD003.test_units}` | `paper_assets/data/data_folds.csv` | test_units | make paper-assets |
-| regimes | FD003 | 1 |  | `\val{data.FD003.regimes}` | `paper_assets/data/data_folds.csv` | regimes | make paper-assets |
-| life_min | FD003 | 145 |  | `\val{data.FD003.life_min}` | `paper_assets/data/data_folds.csv` | life_min | make paper-assets |
-| life_max | FD003 | 525 |  | `\val{data.FD003.life_max}` | `paper_assets/data/data_folds.csv` | life_max | make paper-assets |
-| cap | FD003 | 125 |  | `\val{data.FD003.cap}` | `paper_assets/data/data_folds.csv` | cap | make paper-assets |
-| flights | FD003 | 0 |  | `\val{data.FD003.flights}` | `paper_assets/data/data_folds.csv` | flights | make paper-assets |
-| repeats | FD003 | 3 |  | `\val{data.FD003.repeats}` | `paper_assets/data/data_folds.csv` | repeats | make paper-assets |
-| median life | FD003 | 220.5 |  | `\val{data.FD003.life_median}` | `paper_assets/data/data_folds.csv` | life_median | make paper-assets |
-| outer_test engines per fold | FD003 | 20 |  | `\val{data.FD003.outer_test}` | `paper_assets/data/data_folds.csv` | outer_test | make paper-assets |
-| inner_val engines per fold | FD003 | 20 |  | `\val{data.FD003.inner_val}` | `paper_assets/data/data_folds.csv` | inner_val | make paper-assets |
-| inner_fit engines per fold | FD003 | 60 |  | `\val{data.FD003.inner_fit}` | `paper_assets/data/data_folds.csv` | inner_fit | make paper-assets |
-| train_units | FD004 | 249 |  | `\val{data.FD004.train_units}` | `paper_assets/data/data_folds.csv` | train_units | make paper-assets |
-| test_units | FD004 | 248 |  | `\val{data.FD004.test_units}` | `paper_assets/data/data_folds.csv` | test_units | make paper-assets |
-| regimes | FD004 | 6 |  | `\val{data.FD004.regimes}` | `paper_assets/data/data_folds.csv` | regimes | make paper-assets |
-| life_min | FD004 | 128 |  | `\val{data.FD004.life_min}` | `paper_assets/data/data_folds.csv` | life_min | make paper-assets |
-| life_max | FD004 | 543 |  | `\val{data.FD004.life_max}` | `paper_assets/data/data_folds.csv` | life_max | make paper-assets |
-| cap | FD004 | 125 |  | `\val{data.FD004.cap}` | `paper_assets/data/data_folds.csv` | cap | make paper-assets |
-| flights | FD004 | 0 |  | `\val{data.FD004.flights}` | `paper_assets/data/data_folds.csv` | flights | make paper-assets |
-| repeats | FD004 | 3 |  | `\val{data.FD004.repeats}` | `paper_assets/data/data_folds.csv` | repeats | make paper-assets |
-| median life | FD004 | 234.0 |  | `\val{data.FD004.life_median}` | `paper_assets/data/data_folds.csv` | life_median | make paper-assets |
-| outer_test engines per fold | FD004 | 49--50 |  | `\val{data.FD004.outer_test}` | `paper_assets/data/data_folds.csv` | outer_test | make paper-assets |
-| inner_val engines per fold | FD004 | 49--50 |  | `\val{data.FD004.inner_val}` | `paper_assets/data/data_folds.csv` | inner_val | make paper-assets |
-| inner_fit engines per fold | FD004 | 149--150 |  | `\val{data.FD004.inner_fit}` | `paper_assets/data/data_folds.csv` | inner_fit | make paper-assets |
-| train_units | NCMAPSS | 99 |  | `\val{data.NCMAPSS.train_units}` | `paper_assets/data/data_folds.csv` | train_units | make paper-assets |
-| test_units | NCMAPSS | 0 |  | `\val{data.NCMAPSS.test_units}` | `paper_assets/data/data_folds.csv` | test_units | make paper-assets |
-| regimes | NCMAPSS | 3 |  | `\val{data.NCMAPSS.regimes}` | `paper_assets/data/data_folds.csv` | regimes | make paper-assets |
-| life_min | NCMAPSS | 48 |  | `\val{data.NCMAPSS.life_min}` | `paper_assets/data/data_folds.csv` | life_min | make paper-assets |
-| life_max | NCMAPSS | 100 |  | `\val{data.NCMAPSS.life_max}` | `paper_assets/data/data_folds.csv` | life_max | make paper-assets |
-| cap | NCMAPSS | 50 |  | `\val{data.NCMAPSS.cap}` | `paper_assets/data/data_folds.csv` | cap | make paper-assets |
-| flights | NCMAPSS | 7473 |  | `\val{data.NCMAPSS.flights}` | `paper_assets/data/data_folds.csv` | flights | make paper-assets |
-| repeats | NCMAPSS | 3 |  | `\val{data.NCMAPSS.repeats}` | `paper_assets/data/data_folds.csv` | repeats | make paper-assets |
-| median life | NCMAPSS | 75.0 |  | `\val{data.NCMAPSS.life_median}` | `paper_assets/data/data_folds.csv` | life_median | make paper-assets |
-| outer_test engines per fold | NCMAPSS | 19--20 |  | `\val{data.NCMAPSS.outer_test}` | `paper_assets/data/data_folds.csv` | outer_test | make paper-assets |
-| inner_val engines per fold | NCMAPSS | 19--20 |  | `\val{data.NCMAPSS.inner_val}` | `paper_assets/data/data_folds.csv` | inner_val | make paper-assets |
-| inner_fit engines per fold | NCMAPSS | 59--60 |  | `\val{data.NCMAPSS.inner_fit}` | `paper_assets/data/data_folds.csv` | inner_fit | make paper-assets |
+| train_units | FD001 | 100 |  | `\val{data.FD001.train_units}` | `paper_assets/computed/data_folds.csv` | train_units | make paper-assets |
+| test_units | FD001 | 100 |  | `\val{data.FD001.test_units}` | `paper_assets/computed/data_folds.csv` | test_units | make paper-assets |
+| regimes | FD001 | 1 |  | `\val{data.FD001.regimes}` | `paper_assets/computed/data_folds.csv` | regimes | make paper-assets |
+| life_min | FD001 | 128 |  | `\val{data.FD001.life_min}` | `paper_assets/computed/data_folds.csv` | life_min | make paper-assets |
+| life_max | FD001 | 362 |  | `\val{data.FD001.life_max}` | `paper_assets/computed/data_folds.csv` | life_max | make paper-assets |
+| cap | FD001 | 125 |  | `\val{data.FD001.cap}` | `paper_assets/computed/data_folds.csv` | cap | make paper-assets |
+| flights | FD001 | 0 |  | `\val{data.FD001.flights}` | `paper_assets/computed/data_folds.csv` | flights | make paper-assets |
+| repeats | FD001 | 3 |  | `\val{data.FD001.repeats}` | `paper_assets/computed/data_folds.csv` | repeats | make paper-assets |
+| median life | FD001 | 199.0 |  | `\val{data.FD001.life_median}` | `paper_assets/computed/data_folds.csv` | life_median | make paper-assets |
+| outer_test engines per fold | FD001 | 20 |  | `\val{data.FD001.outer_test}` | `paper_assets/computed/data_folds.csv` | outer_test | make paper-assets |
+| inner_val engines per fold | FD001 | 20 |  | `\val{data.FD001.inner_val}` | `paper_assets/computed/data_folds.csv` | inner_val | make paper-assets |
+| inner_fit engines per fold | FD001 | 60 |  | `\val{data.FD001.inner_fit}` | `paper_assets/computed/data_folds.csv` | inner_fit | make paper-assets |
+| train_units | FD002 | 260 |  | `\val{data.FD002.train_units}` | `paper_assets/computed/data_folds.csv` | train_units | make paper-assets |
+| test_units | FD002 | 259 |  | `\val{data.FD002.test_units}` | `paper_assets/computed/data_folds.csv` | test_units | make paper-assets |
+| regimes | FD002 | 6 |  | `\val{data.FD002.regimes}` | `paper_assets/computed/data_folds.csv` | regimes | make paper-assets |
+| life_min | FD002 | 128 |  | `\val{data.FD002.life_min}` | `paper_assets/computed/data_folds.csv` | life_min | make paper-assets |
+| life_max | FD002 | 378 |  | `\val{data.FD002.life_max}` | `paper_assets/computed/data_folds.csv` | life_max | make paper-assets |
+| cap | FD002 | 125 |  | `\val{data.FD002.cap}` | `paper_assets/computed/data_folds.csv` | cap | make paper-assets |
+| flights | FD002 | 0 |  | `\val{data.FD002.flights}` | `paper_assets/computed/data_folds.csv` | flights | make paper-assets |
+| repeats | FD002 | 3 |  | `\val{data.FD002.repeats}` | `paper_assets/computed/data_folds.csv` | repeats | make paper-assets |
+| median life | FD002 | 199.0 |  | `\val{data.FD002.life_median}` | `paper_assets/computed/data_folds.csv` | life_median | make paper-assets |
+| outer_test engines per fold | FD002 | 52 |  | `\val{data.FD002.outer_test}` | `paper_assets/computed/data_folds.csv` | outer_test | make paper-assets |
+| inner_val engines per fold | FD002 | 52 |  | `\val{data.FD002.inner_val}` | `paper_assets/computed/data_folds.csv` | inner_val | make paper-assets |
+| inner_fit engines per fold | FD002 | 156 |  | `\val{data.FD002.inner_fit}` | `paper_assets/computed/data_folds.csv` | inner_fit | make paper-assets |
+| train_units | FD003 | 100 |  | `\val{data.FD003.train_units}` | `paper_assets/computed/data_folds.csv` | train_units | make paper-assets |
+| test_units | FD003 | 100 |  | `\val{data.FD003.test_units}` | `paper_assets/computed/data_folds.csv` | test_units | make paper-assets |
+| regimes | FD003 | 1 |  | `\val{data.FD003.regimes}` | `paper_assets/computed/data_folds.csv` | regimes | make paper-assets |
+| life_min | FD003 | 145 |  | `\val{data.FD003.life_min}` | `paper_assets/computed/data_folds.csv` | life_min | make paper-assets |
+| life_max | FD003 | 525 |  | `\val{data.FD003.life_max}` | `paper_assets/computed/data_folds.csv` | life_max | make paper-assets |
+| cap | FD003 | 125 |  | `\val{data.FD003.cap}` | `paper_assets/computed/data_folds.csv` | cap | make paper-assets |
+| flights | FD003 | 0 |  | `\val{data.FD003.flights}` | `paper_assets/computed/data_folds.csv` | flights | make paper-assets |
+| repeats | FD003 | 3 |  | `\val{data.FD003.repeats}` | `paper_assets/computed/data_folds.csv` | repeats | make paper-assets |
+| median life | FD003 | 220.5 |  | `\val{data.FD003.life_median}` | `paper_assets/computed/data_folds.csv` | life_median | make paper-assets |
+| outer_test engines per fold | FD003 | 20 |  | `\val{data.FD003.outer_test}` | `paper_assets/computed/data_folds.csv` | outer_test | make paper-assets |
+| inner_val engines per fold | FD003 | 20 |  | `\val{data.FD003.inner_val}` | `paper_assets/computed/data_folds.csv` | inner_val | make paper-assets |
+| inner_fit engines per fold | FD003 | 60 |  | `\val{data.FD003.inner_fit}` | `paper_assets/computed/data_folds.csv` | inner_fit | make paper-assets |
+| train_units | FD004 | 249 |  | `\val{data.FD004.train_units}` | `paper_assets/computed/data_folds.csv` | train_units | make paper-assets |
+| test_units | FD004 | 248 |  | `\val{data.FD004.test_units}` | `paper_assets/computed/data_folds.csv` | test_units | make paper-assets |
+| regimes | FD004 | 6 |  | `\val{data.FD004.regimes}` | `paper_assets/computed/data_folds.csv` | regimes | make paper-assets |
+| life_min | FD004 | 128 |  | `\val{data.FD004.life_min}` | `paper_assets/computed/data_folds.csv` | life_min | make paper-assets |
+| life_max | FD004 | 543 |  | `\val{data.FD004.life_max}` | `paper_assets/computed/data_folds.csv` | life_max | make paper-assets |
+| cap | FD004 | 125 |  | `\val{data.FD004.cap}` | `paper_assets/computed/data_folds.csv` | cap | make paper-assets |
+| flights | FD004 | 0 |  | `\val{data.FD004.flights}` | `paper_assets/computed/data_folds.csv` | flights | make paper-assets |
+| repeats | FD004 | 3 |  | `\val{data.FD004.repeats}` | `paper_assets/computed/data_folds.csv` | repeats | make paper-assets |
+| median life | FD004 | 234.0 |  | `\val{data.FD004.life_median}` | `paper_assets/computed/data_folds.csv` | life_median | make paper-assets |
+| outer_test engines per fold | FD004 | 49--50 |  | `\val{data.FD004.outer_test}` | `paper_assets/computed/data_folds.csv` | outer_test | make paper-assets |
+| inner_val engines per fold | FD004 | 49--50 |  | `\val{data.FD004.inner_val}` | `paper_assets/computed/data_folds.csv` | inner_val | make paper-assets |
+| inner_fit engines per fold | FD004 | 149--150 |  | `\val{data.FD004.inner_fit}` | `paper_assets/computed/data_folds.csv` | inner_fit | make paper-assets |
+| train_units | NCMAPSS | 99 |  | `\val{data.NCMAPSS.train_units}` | `paper_assets/computed/data_folds.csv` | train_units | make paper-assets |
+| test_units | NCMAPSS | 0 |  | `\val{data.NCMAPSS.test_units}` | `paper_assets/computed/data_folds.csv` | test_units | make paper-assets |
+| regimes | NCMAPSS | 3 |  | `\val{data.NCMAPSS.regimes}` | `paper_assets/computed/data_folds.csv` | regimes | make paper-assets |
+| life_min | NCMAPSS | 48 |  | `\val{data.NCMAPSS.life_min}` | `paper_assets/computed/data_folds.csv` | life_min | make paper-assets |
+| life_max | NCMAPSS | 100 |  | `\val{data.NCMAPSS.life_max}` | `paper_assets/computed/data_folds.csv` | life_max | make paper-assets |
+| cap | NCMAPSS | 50 |  | `\val{data.NCMAPSS.cap}` | `paper_assets/computed/data_folds.csv` | cap | make paper-assets |
+| flights | NCMAPSS | 7473 |  | `\val{data.NCMAPSS.flights}` | `paper_assets/computed/data_folds.csv` | flights | make paper-assets |
+| repeats | NCMAPSS | 3 |  | `\val{data.NCMAPSS.repeats}` | `paper_assets/computed/data_folds.csv` | repeats | make paper-assets |
+| median life | NCMAPSS | 75.0 |  | `\val{data.NCMAPSS.life_median}` | `paper_assets/computed/data_folds.csv` | life_median | make paper-assets |
+| outer_test engines per fold | NCMAPSS | 19--20 |  | `\val{data.NCMAPSS.outer_test}` | `paper_assets/computed/data_folds.csv` | outer_test | make paper-assets |
+| inner_val engines per fold | NCMAPSS | 19--20 |  | `\val{data.NCMAPSS.inner_val}` | `paper_assets/computed/data_folds.csv` | inner_val | make paper-assets |
+| inner_fit engines per fold | NCMAPSS | 59--60 |  | `\val{data.NCMAPSS.inner_fit}` | `paper_assets/computed/data_folds.csv` | inner_fit | make paper-assets |
 | configurations in the pool | all | 113 |  | `\val{data.all.configs}` | `configs/research_pool.yaml` | total | make research-pool |
 | families in the pool | all | 10 |  | `\val{data.all.families}` | `configs/research_pool.yaml` | families | make research-pool |
-| fits in the confirmatory archive | all | 6780 |  | `\val{compute.all.confirmatory_fits}` | `paper_assets/data/compute.csv` | fits (archive = confirmatory) | make paper-assets |
-| failed fits in the confirmatory archive | all | 0 |  | `\val{compute.all.confirmatory_failed}` | `paper_assets/data/compute.csv` | failed (archive = confirmatory) | make paper-assets |
-| summed fit hours, confirmatory, cpu stream | all | 5.59 |  | `\val{compute.all.confirmatory_cpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = confirmatory, stream = cpu) | make paper-assets |
-| summed fit hours, confirmatory, gpu stream | all | 22.41 |  | `\val{compute.all.confirmatory_gpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = confirmatory, stream = gpu) | make paper-assets |
-| fits in the S4 nested archive | all | 400 |  | `\val{compute.all.s4_nested_fits}` | `paper_assets/data/compute.csv` | fits (archive = S4 nested) | make paper-assets |
-| failed fits in the S4 nested archive | all | 0 |  | `\val{compute.all.s4_nested_failed}` | `paper_assets/data/compute.csv` | failed (archive = S4 nested) | make paper-assets |
-| summed fit hours, S4 nested, cpu stream | all | 0.18 |  | `\val{compute.all.s4_nested_cpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = S4 nested, stream = cpu) | make paper-assets |
-| summed fit hours, S4 nested, gpu stream | all | 0.77 |  | `\val{compute.all.s4_nested_gpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = S4 nested, stream = gpu) | make paper-assets |
-| fits in the S5 caps archive | all | 160 |  | `\val{compute.all.s5_caps_fits}` | `paper_assets/data/compute.csv` | fits (archive = S5 caps) | make paper-assets |
-| failed fits in the S5 caps archive | all | 0 |  | `\val{compute.all.s5_caps_failed}` | `paper_assets/data/compute.csv` | failed (archive = S5 caps) | make paper-assets |
-| summed fit hours, S5 caps, gpu stream | all | 0.30 |  | `\val{compute.all.s5_caps_gpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = S5 caps, stream = gpu) | make paper-assets |
-| fits in the N-CMAPSS archive | all | 1695 |  | `\val{compute.all.ncmapss_fits}` | `paper_assets/data/compute.csv` | fits (archive = N-CMAPSS) | make paper-assets |
-| failed fits in the N-CMAPSS archive | all | 0 |  | `\val{compute.all.ncmapss_failed}` | `paper_assets/data/compute.csv` | failed (archive = N-CMAPSS) | make paper-assets |
-| summed fit hours, N-CMAPSS, cpu stream | all | 0.32 |  | `\val{compute.all.ncmapss_cpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = N-CMAPSS, stream = cpu) | make paper-assets |
-| summed fit hours, N-CMAPSS, gpu stream | all | 1.95 |  | `\val{compute.all.ncmapss_gpu_hours}` | `paper_assets/data/compute.csv` | hours (archive = N-CMAPSS, stream = gpu) | make paper-assets |
+| fits in the confirmatory archive | all | 6780 |  | `\val{compute.all.confirmatory_fits}` | `paper_assets/computed/compute.csv` | fits (archive = confirmatory) | make paper-assets |
+| failed fits in the confirmatory archive | all | 0 |  | `\val{compute.all.confirmatory_failed}` | `paper_assets/computed/compute.csv` | failed (archive = confirmatory) | make paper-assets |
+| summed fit hours, confirmatory, cpu stream | all | 5.59 |  | `\val{compute.all.confirmatory_cpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = confirmatory, stream = cpu) | make paper-assets |
+| summed fit hours, confirmatory, gpu stream | all | 22.41 |  | `\val{compute.all.confirmatory_gpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = confirmatory, stream = gpu) | make paper-assets |
+| fits in the S4 nested archive | all | 400 |  | `\val{compute.all.s4_nested_fits}` | `paper_assets/computed/compute.csv` | fits (archive = S4 nested) | make paper-assets |
+| failed fits in the S4 nested archive | all | 0 |  | `\val{compute.all.s4_nested_failed}` | `paper_assets/computed/compute.csv` | failed (archive = S4 nested) | make paper-assets |
+| summed fit hours, S4 nested, cpu stream | all | 0.18 |  | `\val{compute.all.s4_nested_cpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = S4 nested, stream = cpu) | make paper-assets |
+| summed fit hours, S4 nested, gpu stream | all | 0.77 |  | `\val{compute.all.s4_nested_gpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = S4 nested, stream = gpu) | make paper-assets |
+| fits in the S5 caps archive | all | 160 |  | `\val{compute.all.s5_caps_fits}` | `paper_assets/computed/compute.csv` | fits (archive = S5 caps) | make paper-assets |
+| failed fits in the S5 caps archive | all | 0 |  | `\val{compute.all.s5_caps_failed}` | `paper_assets/computed/compute.csv` | failed (archive = S5 caps) | make paper-assets |
+| summed fit hours, S5 caps, gpu stream | all | 0.30 |  | `\val{compute.all.s5_caps_gpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = S5 caps, stream = gpu) | make paper-assets |
+| fits in the N-CMAPSS archive | all | 1695 |  | `\val{compute.all.ncmapss_fits}` | `paper_assets/computed/compute.csv` | fits (archive = N-CMAPSS) | make paper-assets |
+| failed fits in the N-CMAPSS archive | all | 0 |  | `\val{compute.all.ncmapss_failed}` | `paper_assets/computed/compute.csv` | failed (archive = N-CMAPSS) | make paper-assets |
+| summed fit hours, N-CMAPSS, cpu stream | all | 0.32 |  | `\val{compute.all.ncmapss_cpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = N-CMAPSS, stream = cpu) | make paper-assets |
+| summed fit hours, N-CMAPSS, gpu stream | all | 1.95 |  | `\val{compute.all.ncmapss_gpu_hours}` | `paper_assets/computed/compute.csv` | hours (archive = N-CMAPSS, stream = gpu) | make paper-assets |
 
 ## Exploratory (not pre-registered, uncorrected)
 
