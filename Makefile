@@ -52,9 +52,11 @@ Targets (variables in brackets):
   research-ncmapss-validate  check every finished N-CMAPSS fit [RESEARCH_CONFIG, ROOT]
   research-ncmapss-derived  N-CMAPSS outcomes and metrics into runs/research/derived [RESEARCH_CONFIG, ROOT]
   research-ncmapss-report  N-CMAPSS E1-E3, secondary and descriptive; reports/research/ncmapss [RESEARCH_CONFIG, ROOT]
+  paper-assets         figures, tables, numbers.tex and RESULTS_DIGEST.md into paper_assets [RESEARCH_CONFIG]
+  paper-check          recompute E1-E3 of every fleet from the archives with independent code [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report paper-assets paper-check
 
 help:
 	$(info $(HELP))
@@ -174,3 +176,9 @@ research-ncmapss-derived:
 
 research-ncmapss-report:
 	$(PY) scripts/research/run_ncmapss.py --config $(RESEARCH_CONFIG) $(if $(ROOT),--root $(ROOT))
+
+paper-assets:
+	$(PY) scripts/research/make_paper_assets.py --config $(RESEARCH_CONFIG)
+
+paper-check:
+	$(PY) scripts/research/check_numbers.py --config $(RESEARCH_CONFIG)

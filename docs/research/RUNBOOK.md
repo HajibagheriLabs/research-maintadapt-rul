@@ -168,6 +168,23 @@ projection in `reports/research/ncmapss/compute_estimate.csv` (`make research-nc
 The fits go to `runs/research/archive_ncmapss` and resume like the cross-fitting runs.
 `make research-ncmapss-smoke` checks the pipeline in about two minutes.
 
+## Paper assets
+
+After every report above exists:
+
+| step | command | time |
+|---|---|---|
+| 1 | `make paper-assets` (writes `paper_assets/`) | under a minute |
+| 2 | `make paper-check` | about five minutes |
+
+`make paper-assets` reads the committed reports, the derived tables and a few archive files.
+It writes the figures (PDF with embedded fonts and PNG previews), the booktabs tables,
+`numbers.tex` and `RESULTS_DIGEST.md`; the few numbers it computes itself go to
+`paper_assets/data/`. `make paper-check` recomputes the point estimates of E1-E3 for FD001-FD004
+and N-CMAPSS from the archives, the fold files and the pool with
+`src/maintadapt/research/recheck.py`, which imports nothing from maintadapt. It fails on any
+difference above 1e-9 from the reports or from the macros of `numbers.tex`.
+
 ## Smoke test, dry run and leaderboard
 
 - `make research-smoke`: FD001, repeat 0, all five folds, configuration 0 of every family and the
