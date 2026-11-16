@@ -1,0 +1,1938 @@
+% Numbers of the paper, written by make paper-assets at commit 47df31a0d0948b79b4818fafa45ec413e2bdd6c8; do not edit.
+% Sources and columns: paper_assets/RESULTS_DIGEST.md.
+% \val{<analysis>.<fleet>.<quantity>} prints a number of the paper; an undefined key prints
+% ??key?? in bold, so a missing or misspelt number shows in the PDF
+\makeatletter
+\providecommand{\defval}[2]{\expandafter\def\csname val@#1\endcsname{#2}}
+\providecommand{\val}[1]{\ifcsname val@#1\endcsname\csname val@#1\endcsname
+  \else\textbf{??\texttt{\detokenize{#1}}??}\fi}
+\makeatother
+
+\defval{compute.all.confirmatory_cpu_hours}{5.59}
+\defval{compute.all.confirmatory_failed}{0}
+\defval{compute.all.confirmatory_fits}{6780}
+\defval{compute.all.confirmatory_gpu_hours}{22.41}
+\defval{compute.all.ncmapss_cpu_hours}{0.32}
+\defval{compute.all.ncmapss_failed}{0}
+\defval{compute.all.ncmapss_fits}{1695}
+\defval{compute.all.ncmapss_gpu_hours}{1.95}
+\defval{compute.all.s4_nested_cpu_hours}{0.18}
+\defval{compute.all.s4_nested_failed}{0}
+\defval{compute.all.s4_nested_fits}{400}
+\defval{compute.all.s4_nested_gpu_hours}{0.77}
+\defval{compute.all.s5_caps_failed}{0}
+\defval{compute.all.s5_caps_fits}{160}
+\defval{compute.all.s5_caps_gpu_hours}{0.30}
+\defval{data.FD001.cap}{125}
+\defval{data.FD001.flights}{0}
+\defval{data.FD001.inner_fit}{60}
+\defval{data.FD001.inner_val}{20}
+\defval{data.FD001.life_max}{362}
+\defval{data.FD001.life_median}{199.0}
+\defval{data.FD001.life_min}{128}
+\defval{data.FD001.outer_test}{20}
+\defval{data.FD001.regimes}{1}
+\defval{data.FD001.repeats}{3}
+\defval{data.FD001.test_units}{100}
+\defval{data.FD001.train_units}{100}
+\defval{data.FD002.cap}{125}
+\defval{data.FD002.flights}{0}
+\defval{data.FD002.inner_fit}{156}
+\defval{data.FD002.inner_val}{52}
+\defval{data.FD002.life_max}{378}
+\defval{data.FD002.life_median}{199.0}
+\defval{data.FD002.life_min}{128}
+\defval{data.FD002.outer_test}{52}
+\defval{data.FD002.regimes}{6}
+\defval{data.FD002.repeats}{3}
+\defval{data.FD002.test_units}{259}
+\defval{data.FD002.train_units}{260}
+\defval{data.FD003.cap}{125}
+\defval{data.FD003.flights}{0}
+\defval{data.FD003.inner_fit}{60}
+\defval{data.FD003.inner_val}{20}
+\defval{data.FD003.life_max}{525}
+\defval{data.FD003.life_median}{220.5}
+\defval{data.FD003.life_min}{145}
+\defval{data.FD003.outer_test}{20}
+\defval{data.FD003.regimes}{1}
+\defval{data.FD003.repeats}{3}
+\defval{data.FD003.test_units}{100}
+\defval{data.FD003.train_units}{100}
+\defval{data.FD004.cap}{125}
+\defval{data.FD004.flights}{0}
+\defval{data.FD004.inner_fit}{149--150}
+\defval{data.FD004.inner_val}{49--50}
+\defval{data.FD004.life_max}{543}
+\defval{data.FD004.life_median}{234.0}
+\defval{data.FD004.life_min}{128}
+\defval{data.FD004.outer_test}{49--50}
+\defval{data.FD004.regimes}{6}
+\defval{data.FD004.repeats}{3}
+\defval{data.FD004.test_units}{248}
+\defval{data.FD004.train_units}{249}
+\defval{data.NCMAPSS.cap}{50}
+\defval{data.NCMAPSS.flights}{7473}
+\defval{data.NCMAPSS.inner_fit}{59--60}
+\defval{data.NCMAPSS.inner_val}{19--20}
+\defval{data.NCMAPSS.life_max}{100}
+\defval{data.NCMAPSS.life_median}{75.0}
+\defval{data.NCMAPSS.life_min}{48}
+\defval{data.NCMAPSS.outer_test}{19--20}
+\defval{data.NCMAPSS.regimes}{3}
+\defval{data.NCMAPSS.repeats}{3}
+\defval{data.NCMAPSS.test_units}{0}
+\defval{data.NCMAPSS.train_units}{99}
+\defval{data.all.configs}{113}
+\defval{data.all.families}{10}
+\defval{e1.FD001.band}{weak}
+\defval{e1.FD001.configs}{113}
+\defval{e1.FD001.tau_b}{0.286}
+\defval{e1.FD001.tau_b_ci}{[\ensuremath{-0.182}, 0.408]}
+\defval{e1.FD001.tau_b_hi}{0.408}
+\defval{e1.FD001.tau_b_lo}{\ensuremath{-0.182}}
+\defval{e1.FD002.band}{weak}
+\defval{e1.FD002.configs}{113}
+\defval{e1.FD002.tau_b}{0.041}
+\defval{e1.FD002.tau_b_ci}{[\ensuremath{-0.281}, 0.355]}
+\defval{e1.FD002.tau_b_hi}{0.355}
+\defval{e1.FD002.tau_b_lo}{\ensuremath{-0.281}}
+\defval{e1.FD003.band}{weak}
+\defval{e1.FD003.configs}{113}
+\defval{e1.FD003.tau_b}{\ensuremath{-0.037}}
+\defval{e1.FD003.tau_b_ci}{[\ensuremath{-0.295}, 0.281]}
+\defval{e1.FD003.tau_b_hi}{0.281}
+\defval{e1.FD003.tau_b_lo}{\ensuremath{-0.295}}
+\defval{e1.FD004.band}{weak}
+\defval{e1.FD004.configs}{113}
+\defval{e1.FD004.tau_b}{\ensuremath{-0.062}}
+\defval{e1.FD004.tau_b_ci}{[\ensuremath{-0.285}, 0.193]}
+\defval{e1.FD004.tau_b_hi}{0.193}
+\defval{e1.FD004.tau_b_lo}{\ensuremath{-0.285}}
+\defval{e1.NCMAPSS.band}{moderate}
+\defval{e1.NCMAPSS.configs}{113}
+\defval{e1.NCMAPSS.tau_b}{0.677}
+\defval{e1.NCMAPSS.tau_b_ci}{[0.374, 0.724]}
+\defval{e1.NCMAPSS.tau_b_hi}{0.724}
+\defval{e1.NCMAPSS.tau_b_lo}{0.374}
+\defval{e2.FD001.s_by_cost}{\ensuremath{-0.304}}
+\defval{e2.FD001.s_by_cost_ci}{[\ensuremath{-1.219}, 0.283]}
+\defval{e2.FD001.s_by_cost_hi}{0.283}
+\defval{e2.FD001.s_by_cost_lo}{\ensuremath{-1.219}}
+\defval{e2.FD001.s_by_rmse}{0.578}
+\defval{e2.FD001.s_by_rmse_ci}{[0.189, 0.839]}
+\defval{e2.FD001.s_by_rmse_hi}{0.839}
+\defval{e2.FD001.s_by_rmse_lo}{0.189}
+\defval{e2.FD001.selection_loss}{\ensuremath{-0.882}}
+\defval{e2.FD001.selection_loss_ci}{[\ensuremath{-1.710}, \ensuremath{-0.363}]}
+\defval{e2.FD001.selection_loss_hi}{\ensuremath{-0.363}}
+\defval{e2.FD001.selection_loss_lo}{\ensuremath{-1.710}}
+\defval{e2.FD002.s_by_cost}{0.018}
+\defval{e2.FD002.s_by_cost_ci}{[\ensuremath{-0.359}, 0.347]}
+\defval{e2.FD002.s_by_cost_hi}{0.347}
+\defval{e2.FD002.s_by_cost_lo}{\ensuremath{-0.359}}
+\defval{e2.FD002.s_by_rmse}{0.639}
+\defval{e2.FD002.s_by_rmse_ci}{[0.454, 0.784]}
+\defval{e2.FD002.s_by_rmse_hi}{0.784}
+\defval{e2.FD002.s_by_rmse_lo}{0.454}
+\defval{e2.FD002.selection_loss}{\ensuremath{-0.621}}
+\defval{e2.FD002.selection_loss_ci}{[\ensuremath{-0.967}, \ensuremath{-0.324}]}
+\defval{e2.FD002.selection_loss_hi}{\ensuremath{-0.324}}
+\defval{e2.FD002.selection_loss_lo}{\ensuremath{-0.967}}
+\defval{e2.FD003.s_by_cost}{\ensuremath{-0.653}}
+\defval{e2.FD003.s_by_cost_ci}{[\ensuremath{-1.573}, 0.015]}
+\defval{e2.FD003.s_by_cost_hi}{0.015}
+\defval{e2.FD003.s_by_cost_lo}{\ensuremath{-1.573}}
+\defval{e2.FD003.s_by_rmse}{0.483}
+\defval{e2.FD003.s_by_rmse_ci}{[0.060, 0.776]}
+\defval{e2.FD003.s_by_rmse_hi}{0.776}
+\defval{e2.FD003.s_by_rmse_lo}{0.060}
+\defval{e2.FD003.selection_loss}{\ensuremath{-1.136}}
+\defval{e2.FD003.selection_loss_ci}{[\ensuremath{-1.933}, \ensuremath{-0.537}]}
+\defval{e2.FD003.selection_loss_hi}{\ensuremath{-0.537}}
+\defval{e2.FD003.selection_loss_lo}{\ensuremath{-1.933}}
+\defval{e2.FD004.s_by_cost}{0.601}
+\defval{e2.FD004.s_by_cost_ci}{[0.417, 0.742]}
+\defval{e2.FD004.s_by_cost_hi}{0.742}
+\defval{e2.FD004.s_by_cost_lo}{0.417}
+\defval{e2.FD004.s_by_rmse}{0.729}
+\defval{e2.FD004.s_by_rmse_ci}{[0.575, 0.839]}
+\defval{e2.FD004.s_by_rmse_hi}{0.839}
+\defval{e2.FD004.s_by_rmse_lo}{0.575}
+\defval{e2.FD004.selection_loss}{\ensuremath{-0.129}}
+\defval{e2.FD004.selection_loss_ci}{[\ensuremath{-0.297}, 0.019]}
+\defval{e2.FD004.selection_loss_hi}{0.019}
+\defval{e2.FD004.selection_loss_lo}{\ensuremath{-0.297}}
+\defval{e2.NCMAPSS.s_by_cost}{\ensuremath{-0.450}}
+\defval{e2.NCMAPSS.s_by_cost_ci}{[\ensuremath{-1.354}, 0.146]}
+\defval{e2.NCMAPSS.s_by_cost_hi}{0.146}
+\defval{e2.NCMAPSS.s_by_cost_lo}{\ensuremath{-1.354}}
+\defval{e2.NCMAPSS.s_by_rmse}{\ensuremath{-0.169}}
+\defval{e2.NCMAPSS.s_by_rmse_ci}{[\ensuremath{-1.030}, 0.402]}
+\defval{e2.NCMAPSS.s_by_rmse_hi}{0.402}
+\defval{e2.NCMAPSS.s_by_rmse_lo}{\ensuremath{-1.030}}
+\defval{e2.NCMAPSS.selection_loss}{\ensuremath{-0.281}}
+\defval{e2.NCMAPSS.selection_loss_ci}{[\ensuremath{-0.660}, 0.057]}
+\defval{e2.NCMAPSS.selection_loss_hi}{0.057}
+\defval{e2.NCMAPSS.selection_loss_lo}{\ensuremath{-0.660}}
+\defval{e3.FD001.delta_tau}{\ensuremath{-0.068}}
+\defval{e3.FD001.delta_tau_ci}{[\ensuremath{-0.208}, 0.192]}
+\defval{e3.FD001.delta_tau_hi}{0.192}
+\defval{e3.FD001.delta_tau_lo}{\ensuremath{-0.208}}
+\defval{e3.FD001.tau_jitter}{0.219}
+\defval{e3.FD001.tau_jitter_ci}{[\ensuremath{-0.104}, 0.306]}
+\defval{e3.FD001.tau_jitter_hi}{0.306}
+\defval{e3.FD001.tau_jitter_lo}{\ensuremath{-0.104}}
+\defval{e3.FD002.delta_tau}{\ensuremath{-0.050}}
+\defval{e3.FD002.delta_tau_ci}{[\ensuremath{-0.209}, 0.117]}
+\defval{e3.FD002.delta_tau_hi}{0.117}
+\defval{e3.FD002.delta_tau_lo}{\ensuremath{-0.209}}
+\defval{e3.FD002.tau_jitter}{\ensuremath{-0.008}}
+\defval{e3.FD002.tau_jitter_ci}{[\ensuremath{-0.247}, 0.222]}
+\defval{e3.FD002.tau_jitter_hi}{0.222}
+\defval{e3.FD002.tau_jitter_lo}{\ensuremath{-0.247}}
+\defval{e3.FD003.delta_tau}{\ensuremath{-0.220}}
+\defval{e3.FD003.delta_tau_ci}{[\ensuremath{-0.396}, 0.126]}
+\defval{e3.FD003.delta_tau_hi}{0.126}
+\defval{e3.FD003.delta_tau_lo}{\ensuremath{-0.396}}
+\defval{e3.FD003.tau_jitter}{\ensuremath{-0.257}}
+\defval{e3.FD003.tau_jitter_ci}{[\ensuremath{-0.331}, 0.039]}
+\defval{e3.FD003.tau_jitter_hi}{0.039}
+\defval{e3.FD003.tau_jitter_lo}{\ensuremath{-0.331}}
+\defval{e3.FD004.delta_tau}{0.027}
+\defval{e3.FD004.delta_tau_ci}{[\ensuremath{-0.154}, 0.217]}
+\defval{e3.FD004.delta_tau_hi}{0.217}
+\defval{e3.FD004.delta_tau_lo}{\ensuremath{-0.154}}
+\defval{e3.FD004.tau_jitter}{\ensuremath{-0.035}}
+\defval{e3.FD004.tau_jitter_ci}{[\ensuremath{-0.235}, 0.199]}
+\defval{e3.FD004.tau_jitter_hi}{0.199}
+\defval{e3.FD004.tau_jitter_lo}{\ensuremath{-0.235}}
+\defval{e3.NCMAPSS.delta_tau}{\ensuremath{-0.579}}
+\defval{e3.NCMAPSS.delta_tau_ci}{[\ensuremath{-0.702}, \ensuremath{-0.302}]}
+\defval{e3.NCMAPSS.delta_tau_hi}{\ensuremath{-0.302}}
+\defval{e3.NCMAPSS.delta_tau_lo}{\ensuremath{-0.702}}
+\defval{e3.NCMAPSS.tau_jitter}{0.098}
+\defval{e3.NCMAPSS.tau_jitter_ci}{[\ensuremath{-0.109}, 0.182]}
+\defval{e3.NCMAPSS.tau_jitter_hi}{0.182}
+\defval{e3.NCMAPSS.tau_jitter_lo}{\ensuremath{-0.109}}
+\defval{f1.FD001.original_leaderboard_rmse}{12.65}
+\defval{f1.FD001.original_outcomes_differing}{0 and 0 of 12600}
+\defval{f1.FD001.original_savings_share}{0.712}
+\defval{f1.FD001.scaled_leaderboard_rmse}{26.73}
+\defval{f1.FD001.scaled_outcomes_differing}{0 and 0 of 12600}
+\defval{f1.FD001.scaled_savings_share}{0.712}
+\defval{f1.FD001.shifted_leaderboard_rmse}{20.86}
+\defval{f1.FD001.shifted_outcomes_differing}{0 and 0 of 12600}
+\defval{f1.FD001.shifted_savings_share}{0.712}
+\defval{f5.FD001.gap_cost}{1.166}
+\defval{f5.FD001.gap_cost_ci}{[0.619, 2.032]}
+\defval{f5.FD001.gap_cost_hi}{2.032}
+\defval{f5.FD001.gap_cost_lo}{0.619}
+\defval{f5.FD001.gap_rmse}{0.285}
+\defval{f5.FD001.gap_rmse_ci}{[\ensuremath{-0.010}, 0.649]}
+\defval{f5.FD001.gap_rmse_hi}{0.649}
+\defval{f5.FD001.gap_rmse_lo}{\ensuremath{-0.010}}
+\defval{f5.FD001.oracle_config}{transformer-05}
+\defval{f5.FD001.oracle_s}{0.863}
+\defval{f5.FD002.gap_cost}{0.862}
+\defval{f5.FD002.gap_cost_ci}{[0.540, 1.225]}
+\defval{f5.FD002.gap_cost_hi}{1.225}
+\defval{f5.FD002.gap_cost_lo}{0.540}
+\defval{f5.FD002.gap_rmse}{0.241}
+\defval{f5.FD002.gap_rmse_ci}{[0.081, 0.430]}
+\defval{f5.FD002.gap_rmse_hi}{0.430}
+\defval{f5.FD002.gap_rmse_lo}{0.081}
+\defval{f5.FD002.oracle_config}{transformer-04}
+\defval{f5.FD002.oracle_s}{0.880}
+\defval{f5.FD003.gap_cost}{1.376}
+\defval{f5.FD003.gap_cost_ci}{[0.809, 2.190]}
+\defval{f5.FD003.gap_cost_hi}{2.190}
+\defval{f5.FD003.gap_cost_lo}{0.809}
+\defval{f5.FD003.gap_rmse}{0.240}
+\defval{f5.FD003.gap_rmse_ci}{[\ensuremath{-0.042}, 0.603]}
+\defval{f5.FD003.gap_rmse_hi}{0.603}
+\defval{f5.FD003.gap_rmse_lo}{\ensuremath{-0.042}}
+\defval{f5.FD003.oracle_config}{mlp-06}
+\defval{f5.FD003.oracle_s}{0.723}
+\defval{f5.FD004.gap_cost}{0.275}
+\defval{f5.FD004.gap_cost_ci}{[0.123, 0.454]}
+\defval{f5.FD004.gap_cost_hi}{0.454}
+\defval{f5.FD004.gap_cost_lo}{0.123}
+\defval{f5.FD004.gap_rmse}{0.146}
+\defval{f5.FD004.gap_rmse_ci}{[0.024, 0.291]}
+\defval{f5.FD004.gap_rmse_hi}{0.291}
+\defval{f5.FD004.gap_rmse_lo}{0.024}
+\defval{f5.FD004.oracle_config}{transformer-11}
+\defval{f5.FD004.oracle_s}{0.876}
+\defval{leaderboard.FD001.cnn_nasa}{390}
+\defval{leaderboard.FD001.cnn_rmse}{14.16}
+\defval{leaderboard.FD001.cnn_rmse_sd}{0.55}
+\defval{leaderboard.FD001.forest_nasa}{237}
+\defval{leaderboard.FD001.forest_rmse}{12.80}
+\defval{leaderboard.FD001.forest_rmse_sd}{0.13}
+\defval{leaderboard.FD001.knn_nasa}{583}
+\defval{leaderboard.FD001.knn_rmse}{16.40}
+\defval{leaderboard.FD001.knn_rmse_sd}{0.00}
+\defval{leaderboard.FD001.lstm_nasa}{413}
+\defval{leaderboard.FD001.lstm_rmse}{14.52}
+\defval{leaderboard.FD001.lstm_rmse_legacy}{14.52}
+\defval{leaderboard.FD001.lstm_rmse_sd}{0.62}
+\defval{leaderboard.FD001.mlp_nasa}{368}
+\defval{leaderboard.FD001.mlp_rmse}{14.42}
+\defval{leaderboard.FD001.mlp_rmse_sd}{0.34}
+\defval{leaderboard.FD001.ridge_nasa}{347}
+\defval{leaderboard.FD001.ridge_rmse}{14.99}
+\defval{leaderboard.FD001.ridge_rmse_legacy}{14.99}
+\defval{leaderboard.FD001.ridge_rmse_sd}{0.00}
+\defval{leaderboard.FD001.tcn_nasa}{395}
+\defval{leaderboard.FD001.tcn_rmse}{14.69}
+\defval{leaderboard.FD001.tcn_rmse_legacy}{14.69}
+\defval{leaderboard.FD001.tcn_rmse_sd}{0.43}
+\defval{leaderboard.FD001.transformer_nasa}{374}
+\defval{leaderboard.FD001.transformer_rmse}{14.34}
+\defval{leaderboard.FD001.transformer_rmse_sd}{0.51}
+\defval{leaderboard.FD001.xgboost_nasa}{208}
+\defval{leaderboard.FD001.xgboost_raw_nasa}{475}
+\defval{leaderboard.FD001.xgboost_raw_rmse}{16.84}
+\defval{leaderboard.FD001.xgboost_raw_rmse_sd}{0.47}
+\defval{leaderboard.FD001.xgboost_rmse}{11.96}
+\defval{leaderboard.FD001.xgboost_rmse_legacy}{12.14}
+\defval{leaderboard.FD001.xgboost_rmse_sd}{0.14}
+\defval{leaderboard.FD002.cnn_nasa}{903}
+\defval{leaderboard.FD002.cnn_rmse}{13.55}
+\defval{leaderboard.FD002.cnn_rmse_sd}{0.32}
+\defval{leaderboard.FD002.forest_nasa}{865}
+\defval{leaderboard.FD002.forest_rmse}{13.27}
+\defval{leaderboard.FD002.forest_rmse_sd}{0.08}
+\defval{leaderboard.FD002.knn_nasa}{1439}
+\defval{leaderboard.FD002.knn_rmse}{16.30}
+\defval{leaderboard.FD002.knn_rmse_sd}{0.00}
+\defval{leaderboard.FD002.lstm_nasa}{1108}
+\defval{leaderboard.FD002.lstm_rmse}{14.68}
+\defval{leaderboard.FD002.lstm_rmse_legacy}{14.68}
+\defval{leaderboard.FD002.lstm_rmse_sd}{0.32}
+\defval{leaderboard.FD002.mlp_nasa}{847}
+\defval{leaderboard.FD002.mlp_rmse}{13.74}
+\defval{leaderboard.FD002.mlp_rmse_sd}{0.37}
+\defval{leaderboard.FD002.ridge_nasa}{1178}
+\defval{leaderboard.FD002.ridge_rmse}{15.96}
+\defval{leaderboard.FD002.ridge_rmse_legacy}{15.96}
+\defval{leaderboard.FD002.ridge_rmse_sd}{0.00}
+\defval{leaderboard.FD002.tcn_nasa}{1059}
+\defval{leaderboard.FD002.tcn_rmse}{14.35}
+\defval{leaderboard.FD002.tcn_rmse_legacy}{14.35}
+\defval{leaderboard.FD002.tcn_rmse_sd}{0.30}
+\defval{leaderboard.FD002.transformer_nasa}{956}
+\defval{leaderboard.FD002.transformer_rmse}{14.26}
+\defval{leaderboard.FD002.transformer_rmse_sd}{0.19}
+\defval{leaderboard.FD002.xgboost_nasa}{690}
+\defval{leaderboard.FD002.xgboost_raw_nasa}{1542}
+\defval{leaderboard.FD002.xgboost_raw_rmse}{16.41}
+\defval{leaderboard.FD002.xgboost_raw_rmse_sd}{0.03}
+\defval{leaderboard.FD002.xgboost_rmse}{12.67}
+\defval{leaderboard.FD002.xgboost_rmse_legacy}{12.60}
+\defval{leaderboard.FD002.xgboost_rmse_sd}{0.07}
+\defval{leaderboard.FD003.cnn_nasa}{358}
+\defval{leaderboard.FD003.cnn_rmse}{13.29}
+\defval{leaderboard.FD003.cnn_rmse_sd}{0.65}
+\defval{leaderboard.FD003.forest_nasa}{381}
+\defval{leaderboard.FD003.forest_rmse}{13.69}
+\defval{leaderboard.FD003.forest_rmse_sd}{0.12}
+\defval{leaderboard.FD003.knn_nasa}{1305}
+\defval{leaderboard.FD003.knn_rmse}{18.73}
+\defval{leaderboard.FD003.knn_rmse_sd}{0.00}
+\defval{leaderboard.FD003.lstm_nasa}{436}
+\defval{leaderboard.FD003.lstm_rmse}{13.66}
+\defval{leaderboard.FD003.lstm_rmse_legacy}{13.66}
+\defval{leaderboard.FD003.lstm_rmse_sd}{0.77}
+\defval{leaderboard.FD003.mlp_nasa}{284}
+\defval{leaderboard.FD003.mlp_rmse}{12.54}
+\defval{leaderboard.FD003.mlp_rmse_sd}{0.59}
+\defval{leaderboard.FD003.ridge_nasa}{504}
+\defval{leaderboard.FD003.ridge_rmse}{16.32}
+\defval{leaderboard.FD003.ridge_rmse_legacy}{16.29}
+\defval{leaderboard.FD003.ridge_rmse_sd}{0.00}
+\defval{leaderboard.FD003.tcn_nasa}{553}
+\defval{leaderboard.FD003.tcn_rmse}{14.42}
+\defval{leaderboard.FD003.tcn_rmse_legacy}{14.42}
+\defval{leaderboard.FD003.tcn_rmse_sd}{0.49}
+\defval{leaderboard.FD003.transformer_nasa}{459}
+\defval{leaderboard.FD003.transformer_rmse}{14.43}
+\defval{leaderboard.FD003.transformer_rmse_sd}{0.62}
+\defval{leaderboard.FD003.xgboost_nasa}{265}
+\defval{leaderboard.FD003.xgboost_raw_nasa}{717}
+\defval{leaderboard.FD003.xgboost_raw_rmse}{16.74}
+\defval{leaderboard.FD003.xgboost_raw_rmse_sd}{0.04}
+\defval{leaderboard.FD003.xgboost_rmse}{12.46}
+\defval{leaderboard.FD003.xgboost_rmse_legacy}{12.49}
+\defval{leaderboard.FD003.xgboost_rmse_sd}{0.09}
+\defval{leaderboard.FD004.cnn_nasa}{1215}
+\defval{leaderboard.FD004.cnn_rmse}{14.31}
+\defval{leaderboard.FD004.cnn_rmse_sd}{0.23}
+\defval{leaderboard.FD004.forest_nasa}{957}
+\defval{leaderboard.FD004.forest_rmse}{14.38}
+\defval{leaderboard.FD004.forest_rmse_sd}{0.07}
+\defval{leaderboard.FD004.knn_nasa}{2708}
+\defval{leaderboard.FD004.knn_rmse}{18.42}
+\defval{leaderboard.FD004.knn_rmse_sd}{0.00}
+\defval{leaderboard.FD004.lstm_nasa}{1408}
+\defval{leaderboard.FD004.lstm_rmse}{15.25}
+\defval{leaderboard.FD004.lstm_rmse_legacy}{15.25}
+\defval{leaderboard.FD004.lstm_rmse_sd}{0.32}
+\defval{leaderboard.FD004.mlp_nasa}{1104}
+\defval{leaderboard.FD004.mlp_rmse}{14.03}
+\defval{leaderboard.FD004.mlp_rmse_sd}{0.25}
+\defval{leaderboard.FD004.ridge_nasa}{1543}
+\defval{leaderboard.FD004.ridge_rmse}{18.12}
+\defval{leaderboard.FD004.ridge_rmse_legacy}{18.53}
+\defval{leaderboard.FD004.ridge_rmse_sd}{0.00}
+\defval{leaderboard.FD004.tcn_nasa}{1703}
+\defval{leaderboard.FD004.tcn_rmse}{16.15}
+\defval{leaderboard.FD004.tcn_rmse_legacy}{16.15}
+\defval{leaderboard.FD004.tcn_rmse_sd}{0.23}
+\defval{leaderboard.FD004.transformer_nasa}{1331}
+\defval{leaderboard.FD004.transformer_rmse}{14.90}
+\defval{leaderboard.FD004.transformer_rmse_sd}{0.45}
+\defval{leaderboard.FD004.xgboost_nasa}{808}
+\defval{leaderboard.FD004.xgboost_raw_nasa}{1791}
+\defval{leaderboard.FD004.xgboost_raw_rmse}{17.38}
+\defval{leaderboard.FD004.xgboost_raw_rmse_sd}{0.14}
+\defval{leaderboard.FD004.xgboost_rmse}{13.36}
+\defval{leaderboard.FD004.xgboost_rmse_legacy}{13.49}
+\defval{leaderboard.FD004.xgboost_rmse_sd}{0.11}
+\defval{s1.FD001.leaderboard_rmse_tau_b}{0.286}
+\defval{s1.FD001.leaderboard_rmse_tau_b_ci}{[\ensuremath{-0.182}, 0.408]}
+\defval{s1.FD001.leaderboard_rmse_tau_b_hi}{0.408}
+\defval{s1.FD001.leaderboard_rmse_tau_b_lo}{\ensuremath{-0.182}}
+\defval{s1.FD001.nasa_score_tau_b}{0.193}
+\defval{s1.FD001.nasa_score_tau_b_ci}{[\ensuremath{-0.235}, 0.364]}
+\defval{s1.FD001.nasa_score_tau_b_hi}{0.364}
+\defval{s1.FD001.nasa_score_tau_b_lo}{\ensuremath{-0.235}}
+\defval{s1.FD001.rmse_all_cycles_tau_b}{0.325}
+\defval{s1.FD001.rmse_all_cycles_tau_b_ci}{[\ensuremath{-0.151}, 0.441]}
+\defval{s1.FD001.rmse_all_cycles_tau_b_hi}{0.441}
+\defval{s1.FD001.rmse_all_cycles_tau_b_lo}{\ensuremath{-0.151}}
+\defval{s1.FD002.leaderboard_rmse_tau_b}{0.041}
+\defval{s1.FD002.leaderboard_rmse_tau_b_ci}{[\ensuremath{-0.281}, 0.355]}
+\defval{s1.FD002.leaderboard_rmse_tau_b_hi}{0.355}
+\defval{s1.FD002.leaderboard_rmse_tau_b_lo}{\ensuremath{-0.281}}
+\defval{s1.FD002.nasa_score_tau_b}{0.009}
+\defval{s1.FD002.nasa_score_tau_b_ci}{[\ensuremath{-0.308}, 0.317]}
+\defval{s1.FD002.nasa_score_tau_b_hi}{0.317}
+\defval{s1.FD002.nasa_score_tau_b_lo}{\ensuremath{-0.308}}
+\defval{s1.FD002.rmse_all_cycles_tau_b}{0.047}
+\defval{s1.FD002.rmse_all_cycles_tau_b_ci}{[\ensuremath{-0.299}, 0.367]}
+\defval{s1.FD002.rmse_all_cycles_tau_b_hi}{0.367}
+\defval{s1.FD002.rmse_all_cycles_tau_b_lo}{\ensuremath{-0.299}}
+\defval{s1.FD003.leaderboard_rmse_tau_b}{\ensuremath{-0.037}}
+\defval{s1.FD003.leaderboard_rmse_tau_b_ci}{[\ensuremath{-0.295}, 0.281]}
+\defval{s1.FD003.leaderboard_rmse_tau_b_hi}{0.281}
+\defval{s1.FD003.leaderboard_rmse_tau_b_lo}{\ensuremath{-0.295}}
+\defval{s1.FD003.nasa_score_tau_b}{\ensuremath{-0.038}}
+\defval{s1.FD003.nasa_score_tau_b_ci}{[\ensuremath{-0.311}, 0.295]}
+\defval{s1.FD003.nasa_score_tau_b_hi}{0.295}
+\defval{s1.FD003.nasa_score_tau_b_lo}{\ensuremath{-0.311}}
+\defval{s1.FD003.rmse_all_cycles_tau_b}{\ensuremath{-0.056}}
+\defval{s1.FD003.rmse_all_cycles_tau_b_ci}{[\ensuremath{-0.304}, 0.256]}
+\defval{s1.FD003.rmse_all_cycles_tau_b_hi}{0.256}
+\defval{s1.FD003.rmse_all_cycles_tau_b_lo}{\ensuremath{-0.304}}
+\defval{s1.FD004.leaderboard_rmse_tau_b}{\ensuremath{-0.062}}
+\defval{s1.FD004.leaderboard_rmse_tau_b_ci}{[\ensuremath{-0.285}, 0.193]}
+\defval{s1.FD004.leaderboard_rmse_tau_b_hi}{0.193}
+\defval{s1.FD004.leaderboard_rmse_tau_b_lo}{\ensuremath{-0.285}}
+\defval{s1.FD004.nasa_score_tau_b}{\ensuremath{-0.081}}
+\defval{s1.FD004.nasa_score_tau_b_ci}{[\ensuremath{-0.297}, 0.213]}
+\defval{s1.FD004.nasa_score_tau_b_hi}{0.213}
+\defval{s1.FD004.nasa_score_tau_b_lo}{\ensuremath{-0.297}}
+\defval{s1.FD004.rmse_all_cycles_tau_b}{\ensuremath{-0.027}}
+\defval{s1.FD004.rmse_all_cycles_tau_b_ci}{[\ensuremath{-0.272}, 0.230]}
+\defval{s1.FD004.rmse_all_cycles_tau_b_hi}{0.230}
+\defval{s1.FD004.rmse_all_cycles_tau_b_lo}{\ensuremath{-0.272}}
+\defval{s2.FD001.R1_e1_tau_b_max}{0.583}
+\defval{s2.FD001.R1_e1_tau_b_min}{\ensuremath{-0.042}}
+\defval{s2.FD001.R1_e2_selection_loss_max}{\ensuremath{-0.025}}
+\defval{s2.FD001.R1_e2_selection_loss_min}{\ensuremath{-2.626}}
+\defval{s2.FD001.R1_e3_delta_tau_max}{0.049}
+\defval{s2.FD001.R1_e3_delta_tau_min}{\ensuremath{-0.316}}
+\defval{s2.FD001.R1_weak_settings}{17}
+\defval{s2.FD001.R2_e1_tau_b_max}{0.562}
+\defval{s2.FD001.R2_e1_tau_b_min}{\ensuremath{-0.093}}
+\defval{s2.FD001.R2_e2_selection_loss_max}{\ensuremath{-0.054}}
+\defval{s2.FD001.R2_e2_selection_loss_min}{\ensuremath{-4.637}}
+\defval{s2.FD001.R2_e3_delta_tau_max}{0.061}
+\defval{s2.FD001.R2_e3_delta_tau_min}{\ensuremath{-0.369}}
+\defval{s2.FD001.R2_weak_settings}{18}
+\defval{s2.FD002.R1_e1_tau_b_max}{0.650}
+\defval{s2.FD002.R1_e1_tau_b_min}{\ensuremath{-0.081}}
+\defval{s2.FD002.R1_e2_selection_loss_max}{0.019}
+\defval{s2.FD002.R1_e2_selection_loss_min}{\ensuremath{-2.561}}
+\defval{s2.FD002.R1_e3_delta_tau_max}{0.050}
+\defval{s2.FD002.R1_e3_delta_tau_min}{\ensuremath{-0.268}}
+\defval{s2.FD002.R1_weak_settings}{13}
+\defval{s2.FD002.R2_e1_tau_b_max}{0.716}
+\defval{s2.FD002.R2_e1_tau_b_min}{\ensuremath{-0.239}}
+\defval{s2.FD002.R2_e2_selection_loss_max}{\ensuremath{-0.009}}
+\defval{s2.FD002.R2_e2_selection_loss_min}{\ensuremath{-2.789}}
+\defval{s2.FD002.R2_e3_delta_tau_max}{0.096}
+\defval{s2.FD002.R2_e3_delta_tau_min}{\ensuremath{-0.337}}
+\defval{s2.FD002.R2_weak_settings}{11}
+\defval{s2.FD003.R1_e1_tau_b_max}{0.550}
+\defval{s2.FD003.R1_e1_tau_b_min}{\ensuremath{-0.126}}
+\defval{s2.FD003.R1_e2_selection_loss_max}{\ensuremath{-0.024}}
+\defval{s2.FD003.R1_e2_selection_loss_min}{\ensuremath{-3.512}}
+\defval{s2.FD003.R1_e3_delta_tau_max}{0.246}
+\defval{s2.FD003.R1_e3_delta_tau_min}{\ensuremath{-0.335}}
+\defval{s2.FD003.R1_weak_settings}{19}
+\defval{s2.FD003.R2_e1_tau_b_max}{0.610}
+\defval{s2.FD003.R2_e1_tau_b_min}{\ensuremath{-0.132}}
+\defval{s2.FD003.R2_e2_selection_loss_max}{\ensuremath{-0.024}}
+\defval{s2.FD003.R2_e2_selection_loss_min}{\ensuremath{-3.403}}
+\defval{s2.FD003.R2_e3_delta_tau_max}{0.163}
+\defval{s2.FD003.R2_e3_delta_tau_min}{\ensuremath{-0.440}}
+\defval{s2.FD003.R2_weak_settings}{19}
+\defval{s2.FD004.R1_e1_tau_b_max}{0.478}
+\defval{s2.FD004.R1_e1_tau_b_min}{\ensuremath{-0.229}}
+\defval{s2.FD004.R1_e2_selection_loss_max}{0.067}
+\defval{s2.FD004.R1_e2_selection_loss_min}{\ensuremath{-1.141}}
+\defval{s2.FD004.R1_e3_delta_tau_max}{0.344}
+\defval{s2.FD004.R1_e3_delta_tau_min}{\ensuremath{-0.286}}
+\defval{s2.FD004.R1_weak_settings}{18}
+\defval{s2.FD004.R2_e1_tau_b_max}{0.558}
+\defval{s2.FD004.R2_e1_tau_b_min}{\ensuremath{-0.231}}
+\defval{s2.FD004.R2_e2_selection_loss_max}{0.030}
+\defval{s2.FD004.R2_e2_selection_loss_min}{\ensuremath{-1.518}}
+\defval{s2.FD004.R2_e3_delta_tau_max}{0.333}
+\defval{s2.FD004.R2_e3_delta_tau_min}{\ensuremath{-0.284}}
+\defval{s2.FD004.R2_weak_settings}{18}
+\defval{s2.all.H1_mixed_settings}{9}
+\defval{s2.all.H1_supported_settings}{33}
+\defval{s2.all.H2_inconclusive_settings}{42}
+\defval{s2.all.H3_inconclusive_settings}{15}
+\defval{s2.all.H3_rejected_settings}{27}
+\defval{s3.FD001.cnn_failure_rate}{0.040}
+\defval{s3.FD001.cnn_leaderboard_rmse}{12.58}
+\defval{s3.FD001.cnn_leaderboard_rmse_ci}{[10.17, 14.95]}
+\defval{s3.FD001.cnn_leaderboard_rmse_hi}{14.95}
+\defval{s3.FD001.cnn_leaderboard_rmse_lo}{10.17}
+\defval{s3.FD001.cnn_rank_rmse}{2}
+\defval{s3.FD001.cnn_rank_value}{5}
+\defval{s3.FD001.cnn_savings_share}{0.460}
+\defval{s3.FD001.cnn_savings_share_ci}{[0.027, 0.748]}
+\defval{s3.FD001.cnn_savings_share_hi}{0.748}
+\defval{s3.FD001.cnn_savings_share_lo}{0.027}
+\defval{s3.FD001.cnn_waste_per_maintenance}{6.0}
+\defval{s3.FD001.family_tau_b}{0.244}
+\defval{s3.FD001.family_tau_b_ci}{[\ensuremath{-0.289}, 0.600]}
+\defval{s3.FD001.family_tau_b_hi}{0.600}
+\defval{s3.FD001.family_tau_b_lo}{\ensuremath{-0.289}}
+\defval{s3.FD001.forest_failure_rate}{0.033}
+\defval{s3.FD001.forest_leaderboard_rmse}{13.04}
+\defval{s3.FD001.forest_leaderboard_rmse_ci}{[10.98, 15.03]}
+\defval{s3.FD001.forest_leaderboard_rmse_hi}{15.03}
+\defval{s3.FD001.forest_leaderboard_rmse_lo}{10.98}
+\defval{s3.FD001.forest_rank_rmse}{3}
+\defval{s3.FD001.forest_rank_value}{3}
+\defval{s3.FD001.forest_savings_share}{0.551}
+\defval{s3.FD001.forest_savings_share_ci}{[0.094, 0.842]}
+\defval{s3.FD001.forest_savings_share_hi}{0.842}
+\defval{s3.FD001.forest_savings_share_lo}{0.094}
+\defval{s3.FD001.forest_waste_per_maintenance}{5.1}
+\defval{s3.FD001.inversions}{0}
+\defval{s3.FD001.inversions_unadjusted}{0}
+\defval{s3.FD001.knn_failure_rate}{0.047}
+\defval{s3.FD001.knn_leaderboard_rmse}{16.54}
+\defval{s3.FD001.knn_leaderboard_rmse_ci}{[13.98, 18.99]}
+\defval{s3.FD001.knn_leaderboard_rmse_hi}{18.99}
+\defval{s3.FD001.knn_leaderboard_rmse_lo}{13.98}
+\defval{s3.FD001.knn_rank_rmse}{9}
+\defval{s3.FD001.knn_rank_value}{8}
+\defval{s3.FD001.knn_savings_share}{0.351}
+\defval{s3.FD001.knn_savings_share_ci}{[\ensuremath{-0.291}, 0.750]}
+\defval{s3.FD001.knn_savings_share_hi}{0.750}
+\defval{s3.FD001.knn_savings_share_lo}{\ensuremath{-0.291}}
+\defval{s3.FD001.knn_waste_per_maintenance}{8.8}
+\defval{s3.FD001.lstm_failure_rate}{0.027}
+\defval{s3.FD001.lstm_leaderboard_rmse}{14.75}
+\defval{s3.FD001.lstm_leaderboard_rmse_ci}{[12.35, 17.15]}
+\defval{s3.FD001.lstm_leaderboard_rmse_hi}{17.15}
+\defval{s3.FD001.lstm_leaderboard_rmse_lo}{12.35}
+\defval{s3.FD001.lstm_rank_rmse}{6}
+\defval{s3.FD001.lstm_rank_value}{1}
+\defval{s3.FD001.lstm_savings_share}{0.615}
+\defval{s3.FD001.lstm_savings_share_ci}{[0.224, 0.868]}
+\defval{s3.FD001.lstm_savings_share_hi}{0.868}
+\defval{s3.FD001.lstm_savings_share_lo}{0.224}
+\defval{s3.FD001.lstm_waste_per_maintenance}{7.3}
+\defval{s3.FD001.mlp_failure_rate}{0.063}
+\defval{s3.FD001.mlp_leaderboard_rmse}{14.90}
+\defval{s3.FD001.mlp_leaderboard_rmse_ci}{[12.52, 17.15]}
+\defval{s3.FD001.mlp_leaderboard_rmse_hi}{17.15}
+\defval{s3.FD001.mlp_leaderboard_rmse_lo}{12.52}
+\defval{s3.FD001.mlp_rank_rmse}{7}
+\defval{s3.FD001.mlp_rank_value}{10}
+\defval{s3.FD001.mlp_savings_share}{0.130}
+\defval{s3.FD001.mlp_savings_share_ci}{[\ensuremath{-0.621}, 0.597]}
+\defval{s3.FD001.mlp_savings_share_hi}{0.597}
+\defval{s3.FD001.mlp_savings_share_lo}{\ensuremath{-0.621}}
+\defval{s3.FD001.mlp_waste_per_maintenance}{9.8}
+\defval{s3.FD001.ridge_failure_rate}{0.037}
+\defval{s3.FD001.ridge_leaderboard_rmse}{15.19}
+\defval{s3.FD001.ridge_leaderboard_rmse_ci}{[13.25, 17.11]}
+\defval{s3.FD001.ridge_leaderboard_rmse_hi}{17.11}
+\defval{s3.FD001.ridge_leaderboard_rmse_lo}{13.25}
+\defval{s3.FD001.ridge_rank_rmse}{8}
+\defval{s3.FD001.ridge_rank_value}{6}
+\defval{s3.FD001.ridge_savings_share}{0.451}
+\defval{s3.FD001.ridge_savings_share_ci}{[\ensuremath{-0.072}, 0.767]}
+\defval{s3.FD001.ridge_savings_share_hi}{0.767}
+\defval{s3.FD001.ridge_savings_share_lo}{\ensuremath{-0.072}}
+\defval{s3.FD001.ridge_waste_per_maintenance}{11.7}
+\defval{s3.FD001.tcn_failure_rate}{0.033}
+\defval{s3.FD001.tcn_leaderboard_rmse}{14.15}
+\defval{s3.FD001.tcn_leaderboard_rmse_ci}{[11.97, 16.17]}
+\defval{s3.FD001.tcn_leaderboard_rmse_hi}{16.17}
+\defval{s3.FD001.tcn_leaderboard_rmse_lo}{11.97}
+\defval{s3.FD001.tcn_rank_rmse}{5}
+\defval{s3.FD001.tcn_rank_value}{4}
+\defval{s3.FD001.tcn_savings_share}{0.535}
+\defval{s3.FD001.tcn_savings_share_ci}{[0.051, 0.832]}
+\defval{s3.FD001.tcn_savings_share_hi}{0.832}
+\defval{s3.FD001.tcn_savings_share_lo}{0.051}
+\defval{s3.FD001.tcn_waste_per_maintenance}{7.0}
+\defval{s3.FD001.transformer_failure_rate}{0.030}
+\defval{s3.FD001.transformer_leaderboard_rmse}{14.03}
+\defval{s3.FD001.transformer_leaderboard_rmse_ci}{[11.70, 16.28]}
+\defval{s3.FD001.transformer_leaderboard_rmse_hi}{16.28}
+\defval{s3.FD001.transformer_leaderboard_rmse_lo}{11.70}
+\defval{s3.FD001.transformer_rank_rmse}{4}
+\defval{s3.FD001.transformer_rank_value}{2}
+\defval{s3.FD001.transformer_savings_share}{0.581}
+\defval{s3.FD001.transformer_savings_share_ci}{[0.147, 0.851]}
+\defval{s3.FD001.transformer_savings_share_hi}{0.851}
+\defval{s3.FD001.transformer_savings_share_lo}{0.147}
+\defval{s3.FD001.transformer_waste_per_maintenance}{6.5}
+\defval{s3.FD001.xgboost_failure_rate}{0.047}
+\defval{s3.FD001.xgboost_leaderboard_rmse}{12.50}
+\defval{s3.FD001.xgboost_leaderboard_rmse_ci}{[10.42, 14.62]}
+\defval{s3.FD001.xgboost_leaderboard_rmse_hi}{14.62}
+\defval{s3.FD001.xgboost_leaderboard_rmse_lo}{10.42}
+\defval{s3.FD001.xgboost_rank_rmse}{1}
+\defval{s3.FD001.xgboost_rank_value}{7}
+\defval{s3.FD001.xgboost_raw_failure_rate}{0.060}
+\defval{s3.FD001.xgboost_raw_leaderboard_rmse}{16.75}
+\defval{s3.FD001.xgboost_raw_leaderboard_rmse_ci}{[14.00, 19.27]}
+\defval{s3.FD001.xgboost_raw_leaderboard_rmse_hi}{19.27}
+\defval{s3.FD001.xgboost_raw_leaderboard_rmse_lo}{14.00}
+\defval{s3.FD001.xgboost_raw_rank_rmse}{10}
+\defval{s3.FD001.xgboost_raw_rank_value}{9}
+\defval{s3.FD001.xgboost_raw_savings_share}{0.174}
+\defval{s3.FD001.xgboost_raw_savings_share_ci}{[\ensuremath{-0.603}, 0.677]}
+\defval{s3.FD001.xgboost_raw_savings_share_hi}{0.677}
+\defval{s3.FD001.xgboost_raw_savings_share_lo}{\ensuremath{-0.603}}
+\defval{s3.FD001.xgboost_raw_waste_per_maintenance}{9.7}
+\defval{s3.FD001.xgboost_savings_share}{0.372}
+\defval{s3.FD001.xgboost_savings_share_ci}{[\ensuremath{-0.165}, 0.730]}
+\defval{s3.FD001.xgboost_savings_share_hi}{0.730}
+\defval{s3.FD001.xgboost_savings_share_lo}{\ensuremath{-0.165}}
+\defval{s3.FD001.xgboost_waste_per_maintenance}{6.6}
+\defval{s3.FD002.cnn_failure_rate}{0.014}
+\defval{s3.FD002.cnn_leaderboard_rmse}{13.13}
+\defval{s3.FD002.cnn_leaderboard_rmse_ci}{[11.73, 14.52]}
+\defval{s3.FD002.cnn_leaderboard_rmse_hi}{14.52}
+\defval{s3.FD002.cnn_leaderboard_rmse_lo}{11.73}
+\defval{s3.FD002.cnn_rank_rmse}{2}
+\defval{s3.FD002.cnn_rank_value}{3}
+\defval{s3.FD002.cnn_savings_share}{0.726}
+\defval{s3.FD002.cnn_savings_share_ci}{[0.580, 0.843]}
+\defval{s3.FD002.cnn_savings_share_hi}{0.843}
+\defval{s3.FD002.cnn_savings_share_lo}{0.580}
+\defval{s3.FD002.cnn_waste_per_maintenance}{10.0}
+\defval{s3.FD002.family_tau_b}{0.067}
+\defval{s3.FD002.family_tau_b_ci}{[\ensuremath{-0.289}, 0.556]}
+\defval{s3.FD002.family_tau_b_hi}{0.556}
+\defval{s3.FD002.family_tau_b_lo}{\ensuremath{-0.289}}
+\defval{s3.FD002.forest_failure_rate}{0.024}
+\defval{s3.FD002.forest_leaderboard_rmse}{13.26}
+\defval{s3.FD002.forest_leaderboard_rmse_ci}{[11.82, 14.55]}
+\defval{s3.FD002.forest_leaderboard_rmse_hi}{14.55}
+\defval{s3.FD002.forest_leaderboard_rmse_lo}{11.82}
+\defval{s3.FD002.forest_rank_rmse}{3}
+\defval{s3.FD002.forest_rank_value}{7}
+\defval{s3.FD002.forest_savings_share}{0.608}
+\defval{s3.FD002.forest_savings_share_ci}{[0.370, 0.795]}
+\defval{s3.FD002.forest_savings_share_hi}{0.795}
+\defval{s3.FD002.forest_savings_share_lo}{0.370}
+\defval{s3.FD002.forest_waste_per_maintenance}{7.2}
+\defval{s3.FD002.inversions}{0}
+\defval{s3.FD002.inversions_unadjusted}{0}
+\defval{s3.FD002.knn_failure_rate}{0.022}
+\defval{s3.FD002.knn_leaderboard_rmse}{16.29}
+\defval{s3.FD002.knn_leaderboard_rmse_ci}{[14.82, 17.75]}
+\defval{s3.FD002.knn_leaderboard_rmse_hi}{17.75}
+\defval{s3.FD002.knn_leaderboard_rmse_lo}{14.82}
+\defval{s3.FD002.knn_rank_rmse}{9}
+\defval{s3.FD002.knn_rank_value}{8}
+\defval{s3.FD002.knn_savings_share}{0.594}
+\defval{s3.FD002.knn_savings_share_ci}{[0.352, 0.784]}
+\defval{s3.FD002.knn_savings_share_hi}{0.784}
+\defval{s3.FD002.knn_savings_share_lo}{0.352}
+\defval{s3.FD002.knn_waste_per_maintenance}{12.6}
+\defval{s3.FD002.lstm_failure_rate}{0.010}
+\defval{s3.FD002.lstm_leaderboard_rmse}{13.76}
+\defval{s3.FD002.lstm_leaderboard_rmse_ci}{[12.35, 15.22]}
+\defval{s3.FD002.lstm_leaderboard_rmse_hi}{15.22}
+\defval{s3.FD002.lstm_leaderboard_rmse_lo}{12.35}
+\defval{s3.FD002.lstm_rank_rmse}{6}
+\defval{s3.FD002.lstm_rank_value}{1}
+\defval{s3.FD002.lstm_savings_share}{0.791}
+\defval{s3.FD002.lstm_savings_share_ci}{[0.656, 0.892]}
+\defval{s3.FD002.lstm_savings_share_hi}{0.892}
+\defval{s3.FD002.lstm_savings_share_lo}{0.656}
+\defval{s3.FD002.lstm_waste_per_maintenance}{8.7}
+\defval{s3.FD002.mlp_failure_rate}{0.014}
+\defval{s3.FD002.mlp_leaderboard_rmse}{14.09}
+\defval{s3.FD002.mlp_leaderboard_rmse_ci}{[12.92, 15.26]}
+\defval{s3.FD002.mlp_leaderboard_rmse_hi}{15.26}
+\defval{s3.FD002.mlp_leaderboard_rmse_lo}{12.92}
+\defval{s3.FD002.mlp_rank_rmse}{7}
+\defval{s3.FD002.mlp_rank_value}{4}
+\defval{s3.FD002.mlp_savings_share}{0.717}
+\defval{s3.FD002.mlp_savings_share_ci}{[0.564, 0.830]}
+\defval{s3.FD002.mlp_savings_share_hi}{0.830}
+\defval{s3.FD002.mlp_savings_share_lo}{0.564}
+\defval{s3.FD002.mlp_waste_per_maintenance}{11.1}
+\defval{s3.FD002.ridge_failure_rate}{0.031}
+\defval{s3.FD002.ridge_leaderboard_rmse}{16.04}
+\defval{s3.FD002.ridge_leaderboard_rmse_ci}{[14.71, 17.36]}
+\defval{s3.FD002.ridge_leaderboard_rmse_hi}{17.36}
+\defval{s3.FD002.ridge_leaderboard_rmse_lo}{14.71}
+\defval{s3.FD002.ridge_rank_rmse}{8}
+\defval{s3.FD002.ridge_rank_value}{10}
+\defval{s3.FD002.ridge_savings_share}{0.483}
+\defval{s3.FD002.ridge_savings_share_ci}{[0.204, 0.705]}
+\defval{s3.FD002.ridge_savings_share_hi}{0.705}
+\defval{s3.FD002.ridge_savings_share_lo}{0.204}
+\defval{s3.FD002.ridge_waste_per_maintenance}{11.0}
+\defval{s3.FD002.tcn_failure_rate}{0.019}
+\defval{s3.FD002.tcn_leaderboard_rmse}{13.69}
+\defval{s3.FD002.tcn_leaderboard_rmse_ci}{[12.37, 15.05]}
+\defval{s3.FD002.tcn_leaderboard_rmse_hi}{15.05}
+\defval{s3.FD002.tcn_leaderboard_rmse_lo}{12.37}
+\defval{s3.FD002.tcn_rank_rmse}{5}
+\defval{s3.FD002.tcn_rank_value}{5}
+\defval{s3.FD002.tcn_savings_share}{0.670}
+\defval{s3.FD002.tcn_savings_share_ci}{[0.468, 0.823]}
+\defval{s3.FD002.tcn_savings_share_hi}{0.823}
+\defval{s3.FD002.tcn_savings_share_lo}{0.468}
+\defval{s3.FD002.tcn_waste_per_maintenance}{8.2}
+\defval{s3.FD002.transformer_failure_rate}{0.013}
+\defval{s3.FD002.transformer_leaderboard_rmse}{13.50}
+\defval{s3.FD002.transformer_leaderboard_rmse_ci}{[12.02, 15.00]}
+\defval{s3.FD002.transformer_leaderboard_rmse_hi}{15.00}
+\defval{s3.FD002.transformer_leaderboard_rmse_lo}{12.02}
+\defval{s3.FD002.transformer_rank_rmse}{4}
+\defval{s3.FD002.transformer_rank_value}{2}
+\defval{s3.FD002.transformer_savings_share}{0.758}
+\defval{s3.FD002.transformer_savings_share_ci}{[0.630, 0.857]}
+\defval{s3.FD002.transformer_savings_share_hi}{0.857}
+\defval{s3.FD002.transformer_savings_share_lo}{0.630}
+\defval{s3.FD002.transformer_waste_per_maintenance}{8.4}
+\defval{s3.FD002.xgboost_failure_rate}{0.027}
+\defval{s3.FD002.xgboost_leaderboard_rmse}{12.77}
+\defval{s3.FD002.xgboost_leaderboard_rmse_ci}{[11.47, 14.00]}
+\defval{s3.FD002.xgboost_leaderboard_rmse_hi}{14.00}
+\defval{s3.FD002.xgboost_leaderboard_rmse_lo}{11.47}
+\defval{s3.FD002.xgboost_rank_rmse}{1}
+\defval{s3.FD002.xgboost_rank_value}{9}
+\defval{s3.FD002.xgboost_raw_failure_rate}{0.017}
+\defval{s3.FD002.xgboost_raw_leaderboard_rmse}{16.39}
+\defval{s3.FD002.xgboost_raw_leaderboard_rmse_ci}{[14.78, 17.97]}
+\defval{s3.FD002.xgboost_raw_leaderboard_rmse_hi}{17.97}
+\defval{s3.FD002.xgboost_raw_leaderboard_rmse_lo}{14.78}
+\defval{s3.FD002.xgboost_raw_rank_rmse}{10}
+\defval{s3.FD002.xgboost_raw_rank_value}{6}
+\defval{s3.FD002.xgboost_raw_savings_share}{0.646}
+\defval{s3.FD002.xgboost_raw_savings_share_ci}{[0.416, 0.815]}
+\defval{s3.FD002.xgboost_raw_savings_share_hi}{0.815}
+\defval{s3.FD002.xgboost_raw_savings_share_lo}{0.416}
+\defval{s3.FD002.xgboost_raw_waste_per_maintenance}{14.8}
+\defval{s3.FD002.xgboost_savings_share}{0.561}
+\defval{s3.FD002.xgboost_savings_share_ci}{[0.307, 0.747]}
+\defval{s3.FD002.xgboost_savings_share_hi}{0.747}
+\defval{s3.FD002.xgboost_savings_share_lo}{0.307}
+\defval{s3.FD002.xgboost_waste_per_maintenance}{8.5}
+\defval{s3.FD003.cnn_failure_rate}{0.023}
+\defval{s3.FD003.cnn_leaderboard_rmse}{12.38}
+\defval{s3.FD003.cnn_leaderboard_rmse_ci}{[10.24, 14.46]}
+\defval{s3.FD003.cnn_leaderboard_rmse_hi}{14.46}
+\defval{s3.FD003.cnn_leaderboard_rmse_lo}{10.24}
+\defval{s3.FD003.cnn_rank_rmse}{1}
+\defval{s3.FD003.cnn_rank_value}{1}
+\defval{s3.FD003.cnn_savings_share}{0.696}
+\defval{s3.FD003.cnn_savings_share_ci}{[0.431, 0.873]}
+\defval{s3.FD003.cnn_savings_share_hi}{0.873}
+\defval{s3.FD003.cnn_savings_share_lo}{0.431}
+\defval{s3.FD003.cnn_waste_per_maintenance}{9.9}
+\defval{s3.FD003.family_tau_b}{0.156}
+\defval{s3.FD003.family_tau_b_ci}{[\ensuremath{-0.289}, 0.511]}
+\defval{s3.FD003.family_tau_b_hi}{0.511}
+\defval{s3.FD003.family_tau_b_lo}{\ensuremath{-0.289}}
+\defval{s3.FD003.forest_failure_rate}{0.047}
+\defval{s3.FD003.forest_leaderboard_rmse}{13.99}
+\defval{s3.FD003.forest_leaderboard_rmse_ci}{[11.60, 16.23]}
+\defval{s3.FD003.forest_leaderboard_rmse_hi}{16.23}
+\defval{s3.FD003.forest_leaderboard_rmse_lo}{11.60}
+\defval{s3.FD003.forest_rank_rmse}{5}
+\defval{s3.FD003.forest_rank_value}{5}
+\defval{s3.FD003.forest_savings_share}{0.473}
+\defval{s3.FD003.forest_savings_share_ci}{[\ensuremath{-0.060}, 0.834]}
+\defval{s3.FD003.forest_savings_share_hi}{0.834}
+\defval{s3.FD003.forest_savings_share_lo}{\ensuremath{-0.060}}
+\defval{s3.FD003.forest_waste_per_maintenance}{5.4}
+\defval{s3.FD003.inversions}{0}
+\defval{s3.FD003.inversions_unadjusted}{0}
+\defval{s3.FD003.knn_failure_rate}{0.047}
+\defval{s3.FD003.knn_leaderboard_rmse}{19.23}
+\defval{s3.FD003.knn_leaderboard_rmse_ci}{[16.04, 22.25]}
+\defval{s3.FD003.knn_leaderboard_rmse_hi}{22.25}
+\defval{s3.FD003.knn_leaderboard_rmse_lo}{16.04}
+\defval{s3.FD003.knn_rank_rmse}{10}
+\defval{s3.FD003.knn_rank_value}{6}
+\defval{s3.FD003.knn_savings_share}{0.459}
+\defval{s3.FD003.knn_savings_share_ci}{[\ensuremath{-0.027}, 0.803]}
+\defval{s3.FD003.knn_savings_share_hi}{0.803}
+\defval{s3.FD003.knn_savings_share_lo}{\ensuremath{-0.027}}
+\defval{s3.FD003.knn_waste_per_maintenance}{7.4}
+\defval{s3.FD003.lstm_failure_rate}{0.033}
+\defval{s3.FD003.lstm_leaderboard_rmse}{14.84}
+\defval{s3.FD003.lstm_leaderboard_rmse_ci}{[12.48, 17.04]}
+\defval{s3.FD003.lstm_leaderboard_rmse_hi}{17.04}
+\defval{s3.FD003.lstm_leaderboard_rmse_lo}{12.48}
+\defval{s3.FD003.lstm_rank_rmse}{7}
+\defval{s3.FD003.lstm_rank_value}{4}
+\defval{s3.FD003.lstm_savings_share}{0.600}
+\defval{s3.FD003.lstm_savings_share_ci}{[0.258, 0.833]}
+\defval{s3.FD003.lstm_savings_share_hi}{0.833}
+\defval{s3.FD003.lstm_savings_share_lo}{0.258}
+\defval{s3.FD003.lstm_waste_per_maintenance}{7.9}
+\defval{s3.FD003.mlp_failure_rate}{0.067}
+\defval{s3.FD003.mlp_leaderboard_rmse}{13.39}
+\defval{s3.FD003.mlp_leaderboard_rmse_ci}{[11.37, 15.37]}
+\defval{s3.FD003.mlp_leaderboard_rmse_hi}{15.37}
+\defval{s3.FD003.mlp_leaderboard_rmse_lo}{11.37}
+\defval{s3.FD003.mlp_rank_rmse}{4}
+\defval{s3.FD003.mlp_rank_value}{10}
+\defval{s3.FD003.mlp_savings_share}{0.232}
+\defval{s3.FD003.mlp_savings_share_ci}{[\ensuremath{-0.336}, 0.615]}
+\defval{s3.FD003.mlp_savings_share_hi}{0.615}
+\defval{s3.FD003.mlp_savings_share_lo}{\ensuremath{-0.336}}
+\defval{s3.FD003.mlp_waste_per_maintenance}{8.8}
+\defval{s3.FD003.ridge_failure_rate}{0.060}
+\defval{s3.FD003.ridge_leaderboard_rmse}{16.28}
+\defval{s3.FD003.ridge_leaderboard_rmse_ci}{[13.99, 18.39]}
+\defval{s3.FD003.ridge_leaderboard_rmse_hi}{18.39}
+\defval{s3.FD003.ridge_leaderboard_rmse_lo}{13.99}
+\defval{s3.FD003.ridge_rank_rmse}{8}
+\defval{s3.FD003.ridge_rank_value}{9}
+\defval{s3.FD003.ridge_savings_share}{0.269}
+\defval{s3.FD003.ridge_savings_share_ci}{[\ensuremath{-0.385}, 0.695]}
+\defval{s3.FD003.ridge_savings_share_hi}{0.695}
+\defval{s3.FD003.ridge_savings_share_lo}{\ensuremath{-0.385}}
+\defval{s3.FD003.ridge_waste_per_maintenance}{13.5}
+\defval{s3.FD003.tcn_failure_rate}{0.063}
+\defval{s3.FD003.tcn_leaderboard_rmse}{14.53}
+\defval{s3.FD003.tcn_leaderboard_rmse_ci}{[12.18, 16.71]}
+\defval{s3.FD003.tcn_leaderboard_rmse_hi}{16.71}
+\defval{s3.FD003.tcn_leaderboard_rmse_lo}{12.18}
+\defval{s3.FD003.tcn_rank_rmse}{6}
+\defval{s3.FD003.tcn_rank_value}{8}
+\defval{s3.FD003.tcn_savings_share}{0.279}
+\defval{s3.FD003.tcn_savings_share_ci}{[\ensuremath{-0.208}, 0.622]}
+\defval{s3.FD003.tcn_savings_share_hi}{0.622}
+\defval{s3.FD003.tcn_savings_share_lo}{\ensuremath{-0.208}}
+\defval{s3.FD003.tcn_waste_per_maintenance}{7.4}
+\defval{s3.FD003.transformer_failure_rate}{0.027}
+\defval{s3.FD003.transformer_leaderboard_rmse}{13.33}
+\defval{s3.FD003.transformer_leaderboard_rmse_ci}{[11.21, 15.36]}
+\defval{s3.FD003.transformer_leaderboard_rmse_hi}{15.36}
+\defval{s3.FD003.transformer_leaderboard_rmse_lo}{11.21}
+\defval{s3.FD003.transformer_rank_rmse}{3}
+\defval{s3.FD003.transformer_rank_value}{2}
+\defval{s3.FD003.transformer_savings_share}{0.669}
+\defval{s3.FD003.transformer_savings_share_ci}{[0.337, 0.889]}
+\defval{s3.FD003.transformer_savings_share_hi}{0.889}
+\defval{s3.FD003.transformer_savings_share_lo}{0.337}
+\defval{s3.FD003.transformer_waste_per_maintenance}{8.5}
+\defval{s3.FD003.xgboost_failure_rate}{0.047}
+\defval{s3.FD003.xgboost_leaderboard_rmse}{12.66}
+\defval{s3.FD003.xgboost_leaderboard_rmse_ci}{[10.61, 14.63]}
+\defval{s3.FD003.xgboost_leaderboard_rmse_hi}{14.63}
+\defval{s3.FD003.xgboost_leaderboard_rmse_lo}{10.61}
+\defval{s3.FD003.xgboost_rank_rmse}{2}
+\defval{s3.FD003.xgboost_rank_value}{7}
+\defval{s3.FD003.xgboost_raw_failure_rate}{0.033}
+\defval{s3.FD003.xgboost_raw_leaderboard_rmse}{17.04}
+\defval{s3.FD003.xgboost_raw_leaderboard_rmse_ci}{[14.35, 19.67]}
+\defval{s3.FD003.xgboost_raw_leaderboard_rmse_hi}{19.67}
+\defval{s3.FD003.xgboost_raw_leaderboard_rmse_lo}{14.35}
+\defval{s3.FD003.xgboost_raw_rank_rmse}{9}
+\defval{s3.FD003.xgboost_raw_rank_value}{3}
+\defval{s3.FD003.xgboost_raw_savings_share}{0.601}
+\defval{s3.FD003.xgboost_raw_savings_share_ci}{[0.152, 0.888]}
+\defval{s3.FD003.xgboost_raw_savings_share_hi}{0.888}
+\defval{s3.FD003.xgboost_raw_savings_share_lo}{0.152}
+\defval{s3.FD003.xgboost_raw_waste_per_maintenance}{7.8}
+\defval{s3.FD003.xgboost_savings_share}{0.456}
+\defval{s3.FD003.xgboost_savings_share_ci}{[\ensuremath{-0.030}, 0.778]}
+\defval{s3.FD003.xgboost_savings_share_hi}{0.778}
+\defval{s3.FD003.xgboost_savings_share_lo}{\ensuremath{-0.030}}
+\defval{s3.FD003.xgboost_waste_per_maintenance}{7.9}
+\defval{s3.FD004.cnn_failure_rate}{0.019}
+\defval{s3.FD004.cnn_leaderboard_rmse}{13.60}
+\defval{s3.FD004.cnn_leaderboard_rmse_ci}{[11.83, 15.33]}
+\defval{s3.FD004.cnn_leaderboard_rmse_hi}{15.33}
+\defval{s3.FD004.cnn_leaderboard_rmse_lo}{11.83}
+\defval{s3.FD004.cnn_rank_rmse}{1}
+\defval{s3.FD004.cnn_rank_value}{9}
+\defval{s3.FD004.cnn_savings_share}{0.753}
+\defval{s3.FD004.cnn_savings_share_ci}{[0.619, 0.849]}
+\defval{s3.FD004.cnn_savings_share_hi}{0.849}
+\defval{s3.FD004.cnn_savings_share_lo}{0.619}
+\defval{s3.FD004.cnn_waste_per_maintenance}{17.4}
+\defval{s3.FD004.family_tau_b}{\ensuremath{-0.333}}
+\defval{s3.FD004.family_tau_b_ci}{[\ensuremath{-0.601}, 0.244]}
+\defval{s3.FD004.family_tau_b_hi}{0.244}
+\defval{s3.FD004.family_tau_b_lo}{\ensuremath{-0.601}}
+\defval{s3.FD004.forest_failure_rate}{0.016}
+\defval{s3.FD004.forest_leaderboard_rmse}{14.66}
+\defval{s3.FD004.forest_leaderboard_rmse_ci}{[12.97, 16.35]}
+\defval{s3.FD004.forest_leaderboard_rmse_hi}{16.35}
+\defval{s3.FD004.forest_leaderboard_rmse_lo}{12.97}
+\defval{s3.FD004.forest_rank_rmse}{6}
+\defval{s3.FD004.forest_rank_value}{5}
+\defval{s3.FD004.forest_savings_share}{0.788}
+\defval{s3.FD004.forest_savings_share_ci}{[0.677, 0.874]}
+\defval{s3.FD004.forest_savings_share_hi}{0.874}
+\defval{s3.FD004.forest_savings_share_lo}{0.677}
+\defval{s3.FD004.forest_waste_per_maintenance}{15.3}
+\defval{s3.FD004.inversions}{0}
+\defval{s3.FD004.inversions_unadjusted}{0}
+\defval{s3.FD004.knn_failure_rate}{0.012}
+\defval{s3.FD004.knn_leaderboard_rmse}{18.27}
+\defval{s3.FD004.knn_leaderboard_rmse_ci}{[16.34, 20.16]}
+\defval{s3.FD004.knn_leaderboard_rmse_hi}{20.16}
+\defval{s3.FD004.knn_leaderboard_rmse_lo}{16.34}
+\defval{s3.FD004.knn_rank_rmse}{9}
+\defval{s3.FD004.knn_rank_value}{2}
+\defval{s3.FD004.knn_savings_share}{0.813}
+\defval{s3.FD004.knn_savings_share_ci}{[0.691, 0.903]}
+\defval{s3.FD004.knn_savings_share_hi}{0.903}
+\defval{s3.FD004.knn_savings_share_lo}{0.691}
+\defval{s3.FD004.knn_waste_per_maintenance}{17.6}
+\defval{s3.FD004.lstm_failure_rate}{0.016}
+\defval{s3.FD004.lstm_leaderboard_rmse}{14.34}
+\defval{s3.FD004.lstm_leaderboard_rmse_ci}{[12.80, 15.99]}
+\defval{s3.FD004.lstm_leaderboard_rmse_hi}{15.99}
+\defval{s3.FD004.lstm_leaderboard_rmse_lo}{12.80}
+\defval{s3.FD004.lstm_rank_rmse}{4}
+\defval{s3.FD004.lstm_rank_value}{8}
+\defval{s3.FD004.lstm_savings_share}{0.773}
+\defval{s3.FD004.lstm_savings_share_ci}{[0.623, 0.878]}
+\defval{s3.FD004.lstm_savings_share_hi}{0.878}
+\defval{s3.FD004.lstm_savings_share_lo}{0.623}
+\defval{s3.FD004.lstm_waste_per_maintenance}{18.1}
+\defval{s3.FD004.mlp_failure_rate}{0.019}
+\defval{s3.FD004.mlp_leaderboard_rmse}{14.49}
+\defval{s3.FD004.mlp_leaderboard_rmse_ci}{[12.81, 16.21]}
+\defval{s3.FD004.mlp_leaderboard_rmse_hi}{16.21}
+\defval{s3.FD004.mlp_leaderboard_rmse_lo}{12.81}
+\defval{s3.FD004.mlp_rank_rmse}{5}
+\defval{s3.FD004.mlp_rank_value}{10}
+\defval{s3.FD004.mlp_savings_share}{0.746}
+\defval{s3.FD004.mlp_savings_share_ci}{[0.637, 0.830]}
+\defval{s3.FD004.mlp_savings_share_hi}{0.830}
+\defval{s3.FD004.mlp_savings_share_lo}{0.637}
+\defval{s3.FD004.mlp_waste_per_maintenance}{18.6}
+\defval{s3.FD004.ridge_failure_rate}{0.016}
+\defval{s3.FD004.ridge_leaderboard_rmse}{18.38}
+\defval{s3.FD004.ridge_leaderboard_rmse_ci}{[16.64, 19.98]}
+\defval{s3.FD004.ridge_leaderboard_rmse_hi}{19.98}
+\defval{s3.FD004.ridge_leaderboard_rmse_lo}{16.64}
+\defval{s3.FD004.ridge_rank_rmse}{10}
+\defval{s3.FD004.ridge_rank_value}{7}
+\defval{s3.FD004.ridge_savings_share}{0.782}
+\defval{s3.FD004.ridge_savings_share_ci}{[0.632, 0.887]}
+\defval{s3.FD004.ridge_savings_share_hi}{0.887}
+\defval{s3.FD004.ridge_savings_share_lo}{0.632}
+\defval{s3.FD004.ridge_waste_per_maintenance}{16.4}
+\defval{s3.FD004.tcn_failure_rate}{0.012}
+\defval{s3.FD004.tcn_leaderboard_rmse}{15.56}
+\defval{s3.FD004.tcn_leaderboard_rmse_ci}{[13.95, 17.22]}
+\defval{s3.FD004.tcn_leaderboard_rmse_hi}{17.22}
+\defval{s3.FD004.tcn_leaderboard_rmse_lo}{13.95}
+\defval{s3.FD004.tcn_rank_rmse}{7}
+\defval{s3.FD004.tcn_rank_value}{1}
+\defval{s3.FD004.tcn_savings_share}{0.830}
+\defval{s3.FD004.tcn_savings_share_ci}{[0.732, 0.902]}
+\defval{s3.FD004.tcn_savings_share_hi}{0.902}
+\defval{s3.FD004.tcn_savings_share_lo}{0.732}
+\defval{s3.FD004.tcn_waste_per_maintenance}{14.2}
+\defval{s3.FD004.transformer_failure_rate}{0.015}
+\defval{s3.FD004.transformer_leaderboard_rmse}{13.97}
+\defval{s3.FD004.transformer_leaderboard_rmse_ci}{[12.18, 15.80]}
+\defval{s3.FD004.transformer_leaderboard_rmse_hi}{15.80}
+\defval{s3.FD004.transformer_leaderboard_rmse_lo}{12.18}
+\defval{s3.FD004.transformer_rank_rmse}{3}
+\defval{s3.FD004.transformer_rank_value}{4}
+\defval{s3.FD004.transformer_savings_share}{0.797}
+\defval{s3.FD004.transformer_savings_share_ci}{[0.695, 0.872]}
+\defval{s3.FD004.transformer_savings_share_hi}{0.872}
+\defval{s3.FD004.transformer_savings_share_lo}{0.695}
+\defval{s3.FD004.transformer_waste_per_maintenance}{16.0}
+\defval{s3.FD004.xgboost_failure_rate}{0.015}
+\defval{s3.FD004.xgboost_leaderboard_rmse}{13.84}
+\defval{s3.FD004.xgboost_leaderboard_rmse_ci}{[12.16, 15.53]}
+\defval{s3.FD004.xgboost_leaderboard_rmse_hi}{15.53}
+\defval{s3.FD004.xgboost_leaderboard_rmse_lo}{12.16}
+\defval{s3.FD004.xgboost_rank_rmse}{2}
+\defval{s3.FD004.xgboost_rank_value}{6}
+\defval{s3.FD004.xgboost_raw_failure_rate}{0.008}
+\defval{s3.FD004.xgboost_raw_leaderboard_rmse}{17.93}
+\defval{s3.FD004.xgboost_raw_leaderboard_rmse_ci}{[15.81, 19.90]}
+\defval{s3.FD004.xgboost_raw_leaderboard_rmse_hi}{19.90}
+\defval{s3.FD004.xgboost_raw_leaderboard_rmse_lo}{15.81}
+\defval{s3.FD004.xgboost_raw_rank_rmse}{8}
+\defval{s3.FD004.xgboost_raw_rank_value}{3}
+\defval{s3.FD004.xgboost_raw_savings_share}{0.811}
+\defval{s3.FD004.xgboost_raw_savings_share_ci}{[0.694, 0.891]}
+\defval{s3.FD004.xgboost_raw_savings_share_hi}{0.891}
+\defval{s3.FD004.xgboost_raw_savings_share_lo}{0.694}
+\defval{s3.FD004.xgboost_raw_waste_per_maintenance}{25.3}
+\defval{s3.FD004.xgboost_savings_share}{0.783}
+\defval{s3.FD004.xgboost_savings_share_ci}{[0.667, 0.872]}
+\defval{s3.FD004.xgboost_savings_share_hi}{0.872}
+\defval{s3.FD004.xgboost_savings_share_lo}{0.667}
+\defval{s3.FD004.xgboost_waste_per_maintenance}{18.6}
+\defval{s4.FD001.crossfit_e1_tau_b}{0.290}
+\defval{s4.FD001.crossfit_e1_tau_b_ci}{[\ensuremath{-0.127}, 0.384]}
+\defval{s4.FD001.crossfit_e1_tau_b_hi}{0.384}
+\defval{s4.FD001.crossfit_e1_tau_b_lo}{\ensuremath{-0.127}}
+\defval{s4.FD001.crossfit_e2_selection_loss}{\ensuremath{-0.163}}
+\defval{s4.FD001.crossfit_e2_selection_loss_ci}{[\ensuremath{-0.468}, 0.096]}
+\defval{s4.FD001.crossfit_e2_selection_loss_hi}{0.096}
+\defval{s4.FD001.crossfit_e2_selection_loss_lo}{\ensuremath{-0.468}}
+\defval{s4.FD001.crossfit_e3_delta_tau}{\ensuremath{-0.138}}
+\defval{s4.FD001.crossfit_e3_delta_tau_ci}{[\ensuremath{-0.226}, 0.124]}
+\defval{s4.FD001.crossfit_e3_delta_tau_hi}{0.124}
+\defval{s4.FD001.crossfit_e3_delta_tau_lo}{\ensuremath{-0.226}}
+\defval{s4.FD001.crossfit_family_tau_b}{\ensuremath{-0.022}}
+\defval{s4.FD001.crossfit_family_tau_b_ci}{[\ensuremath{-0.378}, 0.422]}
+\defval{s4.FD001.crossfit_family_tau_b_hi}{0.422}
+\defval{s4.FD001.crossfit_family_tau_b_lo}{\ensuremath{-0.378}}
+\defval{s4.FD001.crossfit_mean_savings_share}{0.712}
+\defval{s4.FD001.nested_family_tau_b}{0.289}
+\defval{s4.FD001.nested_family_tau_b_ci}{[\ensuremath{-0.111}, 0.600]}
+\defval{s4.FD001.nested_family_tau_b_hi}{0.600}
+\defval{s4.FD001.nested_family_tau_b_lo}{\ensuremath{-0.111}}
+\defval{s4.FD001.oracle_e1_tau_b}{0.464}
+\defval{s4.FD001.oracle_e1_tau_b_ci}{[0.298, 0.553]}
+\defval{s4.FD001.oracle_e1_tau_b_hi}{0.553}
+\defval{s4.FD001.oracle_e1_tau_b_lo}{0.298}
+\defval{s4.FD001.oracle_e2_selection_loss}{0.005}
+\defval{s4.FD001.oracle_e2_selection_loss_ci}{[0.002, 0.010]}
+\defval{s4.FD001.oracle_e2_selection_loss_hi}{0.010}
+\defval{s4.FD001.oracle_e2_selection_loss_lo}{0.002}
+\defval{s4.FD001.oracle_e3_delta_tau}{\ensuremath{-0.141}}
+\defval{s4.FD001.oracle_e3_delta_tau_ci}{[\ensuremath{-0.230}, 0.027]}
+\defval{s4.FD001.oracle_e3_delta_tau_hi}{0.027}
+\defval{s4.FD001.oracle_e3_delta_tau_lo}{\ensuremath{-0.230}}
+\defval{s4.FD001.oracle_family_tau_b}{0.689}
+\defval{s4.FD001.oracle_family_tau_b_ci}{[0.422, 0.822]}
+\defval{s4.FD001.oracle_family_tau_b_hi}{0.822}
+\defval{s4.FD001.oracle_family_tau_b_lo}{0.422}
+\defval{s4.FD001.oracle_mean_savings_share}{0.920}
+\defval{s4.FD001.validation_e1_tau_b}{0.286}
+\defval{s4.FD001.validation_e1_tau_b_ci}{[\ensuremath{-0.182}, 0.408]}
+\defval{s4.FD001.validation_e1_tau_b_hi}{0.408}
+\defval{s4.FD001.validation_e1_tau_b_lo}{\ensuremath{-0.182}}
+\defval{s4.FD001.validation_e2_selection_loss}{\ensuremath{-0.882}}
+\defval{s4.FD001.validation_e2_selection_loss_ci}{[\ensuremath{-1.710}, \ensuremath{-0.363}]}
+\defval{s4.FD001.validation_e2_selection_loss_hi}{\ensuremath{-0.363}}
+\defval{s4.FD001.validation_e2_selection_loss_lo}{\ensuremath{-1.710}}
+\defval{s4.FD001.validation_e3_delta_tau}{\ensuremath{-0.068}}
+\defval{s4.FD001.validation_e3_delta_tau_ci}{[\ensuremath{-0.208}, 0.192]}
+\defval{s4.FD001.validation_e3_delta_tau_hi}{0.192}
+\defval{s4.FD001.validation_e3_delta_tau_lo}{\ensuremath{-0.208}}
+\defval{s4.FD001.validation_family_tau_b}{\ensuremath{-0.022}}
+\defval{s4.FD001.validation_family_tau_b_ci}{[\ensuremath{-0.333}, 0.467]}
+\defval{s4.FD001.validation_family_tau_b_hi}{0.467}
+\defval{s4.FD001.validation_family_tau_b_lo}{\ensuremath{-0.333}}
+\defval{s4.FD001.validation_mean_savings_share}{0.443}
+\defval{s4.FD002.crossfit_e1_tau_b}{0.287}
+\defval{s4.FD002.crossfit_e1_tau_b_ci}{[\ensuremath{-0.091}, 0.422]}
+\defval{s4.FD002.crossfit_e1_tau_b_hi}{0.422}
+\defval{s4.FD002.crossfit_e1_tau_b_lo}{\ensuremath{-0.091}}
+\defval{s4.FD002.crossfit_e2_selection_loss}{\ensuremath{-0.079}}
+\defval{s4.FD002.crossfit_e2_selection_loss_ci}{[\ensuremath{-0.240}, 0.072]}
+\defval{s4.FD002.crossfit_e2_selection_loss_hi}{0.072}
+\defval{s4.FD002.crossfit_e2_selection_loss_lo}{\ensuremath{-0.240}}
+\defval{s4.FD002.crossfit_e3_delta_tau}{0.051}
+\defval{s4.FD002.crossfit_e3_delta_tau_ci}{[\ensuremath{-0.101}, 0.197]}
+\defval{s4.FD002.crossfit_e3_delta_tau_hi}{0.197}
+\defval{s4.FD002.crossfit_e3_delta_tau_lo}{\ensuremath{-0.101}}
+\defval{s4.FD002.crossfit_mean_savings_share}{0.815}
+\defval{s4.FD002.oracle_e1_tau_b}{0.592}
+\defval{s4.FD002.oracle_e1_tau_b_ci}{[0.428, 0.614]}
+\defval{s4.FD002.oracle_e1_tau_b_hi}{0.614}
+\defval{s4.FD002.oracle_e1_tau_b_lo}{0.428}
+\defval{s4.FD002.oracle_e2_selection_loss}{0.010}
+\defval{s4.FD002.oracle_e2_selection_loss_ci}{[0.006, 0.015]}
+\defval{s4.FD002.oracle_e2_selection_loss_hi}{0.015}
+\defval{s4.FD002.oracle_e2_selection_loss_lo}{0.006}
+\defval{s4.FD002.oracle_e3_delta_tau}{\ensuremath{-0.137}}
+\defval{s4.FD002.oracle_e3_delta_tau_ci}{[\ensuremath{-0.167}, 0.028]}
+\defval{s4.FD002.oracle_e3_delta_tau_hi}{0.028}
+\defval{s4.FD002.oracle_e3_delta_tau_lo}{\ensuremath{-0.167}}
+\defval{s4.FD002.oracle_mean_savings_share}{0.892}
+\defval{s4.FD002.validation_e1_tau_b}{0.041}
+\defval{s4.FD002.validation_e1_tau_b_ci}{[\ensuremath{-0.281}, 0.355]}
+\defval{s4.FD002.validation_e1_tau_b_hi}{0.355}
+\defval{s4.FD002.validation_e1_tau_b_lo}{\ensuremath{-0.281}}
+\defval{s4.FD002.validation_e2_selection_loss}{\ensuremath{-0.621}}
+\defval{s4.FD002.validation_e2_selection_loss_ci}{[\ensuremath{-0.967}, \ensuremath{-0.324}]}
+\defval{s4.FD002.validation_e2_selection_loss_hi}{\ensuremath{-0.324}}
+\defval{s4.FD002.validation_e2_selection_loss_lo}{\ensuremath{-0.967}}
+\defval{s4.FD002.validation_e3_delta_tau}{\ensuremath{-0.050}}
+\defval{s4.FD002.validation_e3_delta_tau_ci}{[\ensuremath{-0.209}, 0.117]}
+\defval{s4.FD002.validation_e3_delta_tau_hi}{0.117}
+\defval{s4.FD002.validation_e3_delta_tau_lo}{\ensuremath{-0.209}}
+\defval{s4.FD002.validation_mean_savings_share}{0.660}
+\defval{s4.FD003.crossfit_e1_tau_b}{0.012}
+\defval{s4.FD003.crossfit_e1_tau_b_ci}{[\ensuremath{-0.268}, 0.290]}
+\defval{s4.FD003.crossfit_e1_tau_b_hi}{0.290}
+\defval{s4.FD003.crossfit_e1_tau_b_lo}{\ensuremath{-0.268}}
+\defval{s4.FD003.crossfit_e2_selection_loss}{0.171}
+\defval{s4.FD003.crossfit_e2_selection_loss_ci}{[\ensuremath{-0.081}, 0.478]}
+\defval{s4.FD003.crossfit_e2_selection_loss_hi}{0.478}
+\defval{s4.FD003.crossfit_e2_selection_loss_lo}{\ensuremath{-0.081}}
+\defval{s4.FD003.crossfit_e3_delta_tau}{0.018}
+\defval{s4.FD003.crossfit_e3_delta_tau_ci}{[\ensuremath{-0.229}, 0.279]}
+\defval{s4.FD003.crossfit_e3_delta_tau_hi}{0.279}
+\defval{s4.FD003.crossfit_e3_delta_tau_lo}{\ensuremath{-0.229}}
+\defval{s4.FD003.crossfit_family_tau_b}{\ensuremath{-0.378}}
+\defval{s4.FD003.crossfit_family_tau_b_ci}{[\ensuremath{-0.556}, 0.246]}
+\defval{s4.FD003.crossfit_family_tau_b_hi}{0.246}
+\defval{s4.FD003.crossfit_family_tau_b_lo}{\ensuremath{-0.556}}
+\defval{s4.FD003.crossfit_mean_savings_share}{0.779}
+\defval{s4.FD003.nested_family_tau_b}{\ensuremath{-0.067}}
+\defval{s4.FD003.nested_family_tau_b_ci}{[\ensuremath{-0.422}, 0.201]}
+\defval{s4.FD003.nested_family_tau_b_hi}{0.201}
+\defval{s4.FD003.nested_family_tau_b_lo}{\ensuremath{-0.422}}
+\defval{s4.FD003.oracle_e1_tau_b}{\ensuremath{-0.013}}
+\defval{s4.FD003.oracle_e1_tau_b_ci}{[\ensuremath{-0.121}, 0.118]}
+\defval{s4.FD003.oracle_e1_tau_b_hi}{0.118}
+\defval{s4.FD003.oracle_e1_tau_b_lo}{\ensuremath{-0.121}}
+\defval{s4.FD003.oracle_e2_selection_loss}{0.021}
+\defval{s4.FD003.oracle_e2_selection_loss_ci}{[0.013, 0.033]}
+\defval{s4.FD003.oracle_e2_selection_loss_hi}{0.033}
+\defval{s4.FD003.oracle_e2_selection_loss_lo}{0.013}
+\defval{s4.FD003.oracle_e3_delta_tau}{0.101}
+\defval{s4.FD003.oracle_e3_delta_tau_ci}{[\ensuremath{-0.042}, 0.193]}
+\defval{s4.FD003.oracle_e3_delta_tau_hi}{0.193}
+\defval{s4.FD003.oracle_e3_delta_tau_lo}{\ensuremath{-0.042}}
+\defval{s4.FD003.oracle_family_tau_b}{\ensuremath{-0.022}}
+\defval{s4.FD003.oracle_family_tau_b_ci}{[\ensuremath{-0.244}, 0.156]}
+\defval{s4.FD003.oracle_family_tau_b_hi}{0.156}
+\defval{s4.FD003.oracle_family_tau_b_lo}{\ensuremath{-0.244}}
+\defval{s4.FD003.oracle_mean_savings_share}{0.926}
+\defval{s4.FD003.validation_e1_tau_b}{\ensuremath{-0.037}}
+\defval{s4.FD003.validation_e1_tau_b_ci}{[\ensuremath{-0.295}, 0.281]}
+\defval{s4.FD003.validation_e1_tau_b_hi}{0.281}
+\defval{s4.FD003.validation_e1_tau_b_lo}{\ensuremath{-0.295}}
+\defval{s4.FD003.validation_e2_selection_loss}{\ensuremath{-1.136}}
+\defval{s4.FD003.validation_e2_selection_loss_ci}{[\ensuremath{-1.933}, \ensuremath{-0.537}]}
+\defval{s4.FD003.validation_e2_selection_loss_hi}{\ensuremath{-0.537}}
+\defval{s4.FD003.validation_e2_selection_loss_lo}{\ensuremath{-1.933}}
+\defval{s4.FD003.validation_e3_delta_tau}{\ensuremath{-0.220}}
+\defval{s4.FD003.validation_e3_delta_tau_ci}{[\ensuremath{-0.396}, 0.126]}
+\defval{s4.FD003.validation_e3_delta_tau_hi}{0.126}
+\defval{s4.FD003.validation_e3_delta_tau_lo}{\ensuremath{-0.396}}
+\defval{s4.FD003.validation_family_tau_b}{0.156}
+\defval{s4.FD003.validation_family_tau_b_ci}{[\ensuremath{-0.244}, 0.333]}
+\defval{s4.FD003.validation_family_tau_b_hi}{0.333}
+\defval{s4.FD003.validation_family_tau_b_lo}{\ensuremath{-0.244}}
+\defval{s4.FD003.validation_mean_savings_share}{0.424}
+\defval{s4.FD004.crossfit_e1_tau_b}{\ensuremath{-0.067}}
+\defval{s4.FD004.crossfit_e1_tau_b_ci}{[\ensuremath{-0.283}, 0.175]}
+\defval{s4.FD004.crossfit_e1_tau_b_hi}{0.175}
+\defval{s4.FD004.crossfit_e1_tau_b_lo}{\ensuremath{-0.283}}
+\defval{s4.FD004.crossfit_e2_selection_loss}{\ensuremath{-0.056}}
+\defval{s4.FD004.crossfit_e2_selection_loss_ci}{[\ensuremath{-0.138}, 0.017]}
+\defval{s4.FD004.crossfit_e2_selection_loss_hi}{0.017}
+\defval{s4.FD004.crossfit_e2_selection_loss_lo}{\ensuremath{-0.138}}
+\defval{s4.FD004.crossfit_e3_delta_tau}{0.301}
+\defval{s4.FD004.crossfit_e3_delta_tau_ci}{[0.078, 0.365]}
+\defval{s4.FD004.crossfit_e3_delta_tau_hi}{0.365}
+\defval{s4.FD004.crossfit_e3_delta_tau_lo}{0.078}
+\defval{s4.FD004.crossfit_mean_savings_share}{0.846}
+\defval{s4.FD004.oracle_e1_tau_b}{0.002}
+\defval{s4.FD004.oracle_e1_tau_b_ci}{[\ensuremath{-0.095}, 0.102]}
+\defval{s4.FD004.oracle_e1_tau_b_hi}{0.102}
+\defval{s4.FD004.oracle_e1_tau_b_lo}{\ensuremath{-0.095}}
+\defval{s4.FD004.oracle_e2_selection_loss}{0.008}
+\defval{s4.FD004.oracle_e2_selection_loss_ci}{[0.005, 0.012]}
+\defval{s4.FD004.oracle_e2_selection_loss_hi}{0.012}
+\defval{s4.FD004.oracle_e2_selection_loss_lo}{0.005}
+\defval{s4.FD004.oracle_e3_delta_tau}{0.234}
+\defval{s4.FD004.oracle_e3_delta_tau_ci}{[0.131, 0.300]}
+\defval{s4.FD004.oracle_e3_delta_tau_hi}{0.300}
+\defval{s4.FD004.oracle_e3_delta_tau_lo}{0.131}
+\defval{s4.FD004.oracle_mean_savings_share}{0.903}
+\defval{s4.FD004.validation_e1_tau_b}{\ensuremath{-0.062}}
+\defval{s4.FD004.validation_e1_tau_b_ci}{[\ensuremath{-0.285}, 0.193]}
+\defval{s4.FD004.validation_e1_tau_b_hi}{0.193}
+\defval{s4.FD004.validation_e1_tau_b_lo}{\ensuremath{-0.285}}
+\defval{s4.FD004.validation_e2_selection_loss}{\ensuremath{-0.129}}
+\defval{s4.FD004.validation_e2_selection_loss_ci}{[\ensuremath{-0.297}, 0.019]}
+\defval{s4.FD004.validation_e2_selection_loss_hi}{0.019}
+\defval{s4.FD004.validation_e2_selection_loss_lo}{\ensuremath{-0.297}}
+\defval{s4.FD004.validation_e3_delta_tau}{0.027}
+\defval{s4.FD004.validation_e3_delta_tau_ci}{[\ensuremath{-0.154}, 0.217]}
+\defval{s4.FD004.validation_e3_delta_tau_hi}{0.217}
+\defval{s4.FD004.validation_e3_delta_tau_lo}{\ensuremath{-0.154}}
+\defval{s4.FD004.validation_mean_savings_share}{0.787}
+\defval{s5.FD001.lstm_cap100_leaderboard_rmse}{16.03}
+\defval{s5.FD001.lstm_cap100_leaderboard_rmse_ci}{[13.76, 18.04]}
+\defval{s5.FD001.lstm_cap100_leaderboard_rmse_hi}{18.04}
+\defval{s5.FD001.lstm_cap100_leaderboard_rmse_lo}{13.76}
+\defval{s5.FD001.lstm_cap100_savings_share}{0.450}
+\defval{s5.FD001.lstm_cap100_savings_share_ci}{[\ensuremath{-0.189}, 0.862]}
+\defval{s5.FD001.lstm_cap100_savings_share_hi}{0.862}
+\defval{s5.FD001.lstm_cap100_savings_share_lo}{\ensuremath{-0.189}}
+\defval{s5.FD001.lstm_cap125_leaderboard_rmse}{15.47}
+\defval{s5.FD001.lstm_cap125_leaderboard_rmse_ci}{[12.81, 18.15]}
+\defval{s5.FD001.lstm_cap125_leaderboard_rmse_hi}{18.15}
+\defval{s5.FD001.lstm_cap125_leaderboard_rmse_lo}{12.81}
+\defval{s5.FD001.lstm_cap125_savings_share}{0.825}
+\defval{s5.FD001.lstm_cap125_savings_share_ci}{[0.488, 0.963]}
+\defval{s5.FD001.lstm_cap125_savings_share_hi}{0.963}
+\defval{s5.FD001.lstm_cap125_savings_share_lo}{0.488}
+\defval{s5.FD001.lstm_cap150_leaderboard_rmse}{19.92}
+\defval{s5.FD001.lstm_cap150_leaderboard_rmse_ci}{[17.12, 22.64]}
+\defval{s5.FD001.lstm_cap150_leaderboard_rmse_hi}{22.64}
+\defval{s5.FD001.lstm_cap150_leaderboard_rmse_lo}{17.12}
+\defval{s5.FD001.lstm_cap150_savings_share}{0.693}
+\defval{s5.FD001.lstm_cap150_savings_share_ci}{[0.258, 0.953]}
+\defval{s5.FD001.lstm_cap150_savings_share_hi}{0.953}
+\defval{s5.FD001.lstm_cap150_savings_share_lo}{0.258}
+\defval{s5.FD001.lstm_cap200_leaderboard_rmse}{26.88}
+\defval{s5.FD001.lstm_cap200_leaderboard_rmse_ci}{[22.99, 30.72]}
+\defval{s5.FD001.lstm_cap200_leaderboard_rmse_hi}{30.72}
+\defval{s5.FD001.lstm_cap200_leaderboard_rmse_lo}{22.99}
+\defval{s5.FD001.lstm_cap200_savings_share}{0.808}
+\defval{s5.FD001.lstm_cap200_savings_share_ci}{[0.467, 0.952]}
+\defval{s5.FD001.lstm_cap200_savings_share_hi}{0.952}
+\defval{s5.FD001.lstm_cap200_savings_share_lo}{0.467}
+\defval{s5.FD001.lstm_capnone_leaderboard_rmse}{34.26}
+\defval{s5.FD001.lstm_capnone_leaderboard_rmse_ci}{[28.78, 39.49]}
+\defval{s5.FD001.lstm_capnone_leaderboard_rmse_hi}{39.49}
+\defval{s5.FD001.lstm_capnone_leaderboard_rmse_lo}{28.78}
+\defval{s5.FD001.lstm_capnone_savings_share}{0.669}
+\defval{s5.FD001.lstm_capnone_savings_share_ci}{[0.142, 0.939]}
+\defval{s5.FD001.lstm_capnone_savings_share_hi}{0.939}
+\defval{s5.FD001.lstm_capnone_savings_share_lo}{0.142}
+\defval{s5.FD001.xgboost_cap100_leaderboard_rmse}{15.19}
+\defval{s5.FD001.xgboost_cap100_leaderboard_rmse_ci}{[12.93, 17.14]}
+\defval{s5.FD001.xgboost_cap100_leaderboard_rmse_hi}{17.14}
+\defval{s5.FD001.xgboost_cap100_leaderboard_rmse_lo}{12.93}
+\defval{s5.FD001.xgboost_cap100_savings_share}{0.469}
+\defval{s5.FD001.xgboost_cap100_savings_share_ci}{[\ensuremath{-0.163}, 0.876]}
+\defval{s5.FD001.xgboost_cap100_savings_share_hi}{0.876}
+\defval{s5.FD001.xgboost_cap100_savings_share_lo}{\ensuremath{-0.163}}
+\defval{s5.FD001.xgboost_cap125_leaderboard_rmse}{12.65}
+\defval{s5.FD001.xgboost_cap125_leaderboard_rmse_ci}{[10.56, 14.71]}
+\defval{s5.FD001.xgboost_cap125_leaderboard_rmse_hi}{14.71}
+\defval{s5.FD001.xgboost_cap125_leaderboard_rmse_lo}{10.56}
+\defval{s5.FD001.xgboost_cap125_savings_share}{0.712}
+\defval{s5.FD001.xgboost_cap125_savings_share_ci}{[0.325, 0.967]}
+\defval{s5.FD001.xgboost_cap125_savings_share_hi}{0.967}
+\defval{s5.FD001.xgboost_cap125_savings_share_lo}{0.325}
+\defval{s5.FD001.xgboost_cap150_leaderboard_rmse}{16.10}
+\defval{s5.FD001.xgboost_cap150_leaderboard_rmse_ci}{[13.73, 18.48]}
+\defval{s5.FD001.xgboost_cap150_leaderboard_rmse_hi}{18.48}
+\defval{s5.FD001.xgboost_cap150_leaderboard_rmse_lo}{13.73}
+\defval{s5.FD001.xgboost_cap150_savings_share}{0.584}
+\defval{s5.FD001.xgboost_cap150_savings_share_ci}{[0.061, 0.958]}
+\defval{s5.FD001.xgboost_cap150_savings_share_hi}{0.958}
+\defval{s5.FD001.xgboost_cap150_savings_share_lo}{0.061}
+\defval{s5.FD001.xgboost_cap200_leaderboard_rmse}{21.72}
+\defval{s5.FD001.xgboost_cap200_leaderboard_rmse_ci}{[18.56, 24.85]}
+\defval{s5.FD001.xgboost_cap200_leaderboard_rmse_hi}{24.85}
+\defval{s5.FD001.xgboost_cap200_leaderboard_rmse_lo}{18.56}
+\defval{s5.FD001.xgboost_cap200_savings_share}{0.575}
+\defval{s5.FD001.xgboost_cap200_savings_share_ci}{[0.047, 0.951]}
+\defval{s5.FD001.xgboost_cap200_savings_share_hi}{0.951}
+\defval{s5.FD001.xgboost_cap200_savings_share_lo}{0.047}
+\defval{s5.FD001.xgboost_capnone_leaderboard_rmse}{24.91}
+\defval{s5.FD001.xgboost_capnone_leaderboard_rmse_ci}{[20.99, 28.62]}
+\defval{s5.FD001.xgboost_capnone_leaderboard_rmse_hi}{28.62}
+\defval{s5.FD001.xgboost_capnone_leaderboard_rmse_lo}{20.99}
+\defval{s5.FD001.xgboost_capnone_savings_share}{0.579}
+\defval{s5.FD001.xgboost_capnone_savings_share_ci}{[0.054, 0.955]}
+\defval{s5.FD001.xgboost_capnone_savings_share_hi}{0.955}
+\defval{s5.FD001.xgboost_capnone_savings_share_lo}{0.054}
+\defval{s5.FD002.lstm_cap100_leaderboard_rmse}{17.92}
+\defval{s5.FD002.lstm_cap100_leaderboard_rmse_ci}{[16.58, 19.26]}
+\defval{s5.FD002.lstm_cap100_leaderboard_rmse_hi}{19.26}
+\defval{s5.FD002.lstm_cap100_leaderboard_rmse_lo}{16.58}
+\defval{s5.FD002.lstm_cap100_savings_share}{0.779}
+\defval{s5.FD002.lstm_cap100_savings_share_ci}{[0.556, 0.938]}
+\defval{s5.FD002.lstm_cap100_savings_share_hi}{0.938}
+\defval{s5.FD002.lstm_cap100_savings_share_lo}{0.556}
+\defval{s5.FD002.lstm_cap125_leaderboard_rmse}{14.54}
+\defval{s5.FD002.lstm_cap125_leaderboard_rmse_ci}{[12.99, 16.13]}
+\defval{s5.FD002.lstm_cap125_leaderboard_rmse_hi}{16.13}
+\defval{s5.FD002.lstm_cap125_leaderboard_rmse_lo}{12.99}
+\defval{s5.FD002.lstm_cap125_savings_share}{0.820}
+\defval{s5.FD002.lstm_cap125_savings_share_ci}{[0.631, 0.934]}
+\defval{s5.FD002.lstm_cap125_savings_share_hi}{0.934}
+\defval{s5.FD002.lstm_cap125_savings_share_lo}{0.631}
+\defval{s5.FD002.lstm_cap150_leaderboard_rmse}{17.57}
+\defval{s5.FD002.lstm_cap150_leaderboard_rmse_ci}{[15.75, 19.45]}
+\defval{s5.FD002.lstm_cap150_leaderboard_rmse_hi}{19.45}
+\defval{s5.FD002.lstm_cap150_leaderboard_rmse_lo}{15.75}
+\defval{s5.FD002.lstm_cap150_savings_share}{0.805}
+\defval{s5.FD002.lstm_cap150_savings_share_ci}{[0.626, 0.923]}
+\defval{s5.FD002.lstm_cap150_savings_share_hi}{0.923}
+\defval{s5.FD002.lstm_cap150_savings_share_lo}{0.626}
+\defval{s5.FD002.lstm_cap200_leaderboard_rmse}{24.10}
+\defval{s5.FD002.lstm_cap200_leaderboard_rmse_ci}{[21.90, 26.44]}
+\defval{s5.FD002.lstm_cap200_leaderboard_rmse_hi}{26.44}
+\defval{s5.FD002.lstm_cap200_leaderboard_rmse_lo}{21.90}
+\defval{s5.FD002.lstm_cap200_savings_share}{0.585}
+\defval{s5.FD002.lstm_cap200_savings_share_ci}{[0.269, 0.816]}
+\defval{s5.FD002.lstm_cap200_savings_share_hi}{0.816}
+\defval{s5.FD002.lstm_cap200_savings_share_lo}{0.269}
+\defval{s5.FD002.lstm_capnone_leaderboard_rmse}{28.71}
+\defval{s5.FD002.lstm_capnone_leaderboard_rmse_ci}{[25.97, 31.37]}
+\defval{s5.FD002.lstm_capnone_leaderboard_rmse_hi}{31.37}
+\defval{s5.FD002.lstm_capnone_leaderboard_rmse_lo}{25.97}
+\defval{s5.FD002.lstm_capnone_savings_share}{0.587}
+\defval{s5.FD002.lstm_capnone_savings_share_ci}{[0.296, 0.810]}
+\defval{s5.FD002.lstm_capnone_savings_share_hi}{0.810}
+\defval{s5.FD002.lstm_capnone_savings_share_lo}{0.296}
+\defval{s5.FD002.xgboost_cap100_leaderboard_rmse}{17.04}
+\defval{s5.FD002.xgboost_cap100_leaderboard_rmse_ci}{[15.83, 18.25]}
+\defval{s5.FD002.xgboost_cap100_leaderboard_rmse_hi}{18.25}
+\defval{s5.FD002.xgboost_cap100_leaderboard_rmse_lo}{15.83}
+\defval{s5.FD002.xgboost_cap100_savings_share}{0.309}
+\defval{s5.FD002.xgboost_cap100_savings_share_ci}{[\ensuremath{-0.086}, 0.646]}
+\defval{s5.FD002.xgboost_cap100_savings_share_hi}{0.646}
+\defval{s5.FD002.xgboost_cap100_savings_share_lo}{\ensuremath{-0.086}}
+\defval{s5.FD002.xgboost_cap125_leaderboard_rmse}{12.70}
+\defval{s5.FD002.xgboost_cap125_leaderboard_rmse_ci}{[11.39, 13.96]}
+\defval{s5.FD002.xgboost_cap125_leaderboard_rmse_hi}{13.96}
+\defval{s5.FD002.xgboost_cap125_leaderboard_rmse_lo}{11.39}
+\defval{s5.FD002.xgboost_cap125_savings_share}{0.409}
+\defval{s5.FD002.xgboost_cap125_savings_share_ci}{[0.037, 0.711]}
+\defval{s5.FD002.xgboost_cap125_savings_share_hi}{0.711}
+\defval{s5.FD002.xgboost_cap125_savings_share_lo}{0.037}
+\defval{s5.FD002.xgboost_cap150_leaderboard_rmse}{15.29}
+\defval{s5.FD002.xgboost_cap150_leaderboard_rmse_ci}{[13.64, 16.99]}
+\defval{s5.FD002.xgboost_cap150_leaderboard_rmse_hi}{16.99}
+\defval{s5.FD002.xgboost_cap150_leaderboard_rmse_lo}{13.64}
+\defval{s5.FD002.xgboost_cap150_savings_share}{0.465}
+\defval{s5.FD002.xgboost_cap150_savings_share_ci}{[0.090, 0.744]}
+\defval{s5.FD002.xgboost_cap150_savings_share_hi}{0.744}
+\defval{s5.FD002.xgboost_cap150_savings_share_lo}{0.090}
+\defval{s5.FD002.xgboost_cap200_leaderboard_rmse}{21.29}
+\defval{s5.FD002.xgboost_cap200_leaderboard_rmse_ci}{[19.09, 23.50]}
+\defval{s5.FD002.xgboost_cap200_leaderboard_rmse_hi}{23.50}
+\defval{s5.FD002.xgboost_cap200_leaderboard_rmse_lo}{19.09}
+\defval{s5.FD002.xgboost_cap200_savings_share}{0.359}
+\defval{s5.FD002.xgboost_cap200_savings_share_ci}{[\ensuremath{-0.028}, 0.676]}
+\defval{s5.FD002.xgboost_cap200_savings_share_hi}{0.676}
+\defval{s5.FD002.xgboost_cap200_savings_share_lo}{\ensuremath{-0.028}}
+\defval{s5.FD002.xgboost_capnone_leaderboard_rmse}{23.89}
+\defval{s5.FD002.xgboost_capnone_leaderboard_rmse_ci}{[21.28, 26.42]}
+\defval{s5.FD002.xgboost_capnone_leaderboard_rmse_hi}{26.42}
+\defval{s5.FD002.xgboost_capnone_leaderboard_rmse_lo}{21.28}
+\defval{s5.FD002.xgboost_capnone_savings_share}{0.360}
+\defval{s5.FD002.xgboost_capnone_savings_share_ci}{[\ensuremath{-0.046}, 0.686]}
+\defval{s5.FD002.xgboost_capnone_savings_share_hi}{0.686}
+\defval{s5.FD002.xgboost_capnone_savings_share_lo}{\ensuremath{-0.046}}
+\defval{s5.FD003.lstm_cap100_leaderboard_rmse}{16.88}
+\defval{s5.FD003.lstm_cap100_leaderboard_rmse_ci}{[14.85, 18.83]}
+\defval{s5.FD003.lstm_cap100_leaderboard_rmse_hi}{18.83}
+\defval{s5.FD003.lstm_cap100_leaderboard_rmse_lo}{14.85}
+\defval{s5.FD003.lstm_cap100_savings_share}{0.426}
+\defval{s5.FD003.lstm_cap100_savings_share_ci}{[\ensuremath{-0.191}, 0.856]}
+\defval{s5.FD003.lstm_cap100_savings_share_hi}{0.856}
+\defval{s5.FD003.lstm_cap100_savings_share_lo}{\ensuremath{-0.191}}
+\defval{s5.FD003.lstm_cap125_leaderboard_rmse}{15.13}
+\defval{s5.FD003.lstm_cap125_leaderboard_rmse_ci}{[12.74, 17.52]}
+\defval{s5.FD003.lstm_cap125_leaderboard_rmse_hi}{17.52}
+\defval{s5.FD003.lstm_cap125_leaderboard_rmse_lo}{12.74}
+\defval{s5.FD003.lstm_cap125_savings_share}{\ensuremath{-0.010}}
+\defval{s5.FD003.lstm_cap125_savings_share_ci}{[\ensuremath{-0.844}, 0.579]}
+\defval{s5.FD003.lstm_cap125_savings_share_hi}{0.579}
+\defval{s5.FD003.lstm_cap125_savings_share_lo}{\ensuremath{-0.844}}
+\defval{s5.FD003.lstm_cap150_leaderboard_rmse}{21.46}
+\defval{s5.FD003.lstm_cap150_leaderboard_rmse_ci}{[18.58, 24.21]}
+\defval{s5.FD003.lstm_cap150_leaderboard_rmse_hi}{24.21}
+\defval{s5.FD003.lstm_cap150_leaderboard_rmse_lo}{18.58}
+\defval{s5.FD003.lstm_cap150_savings_share}{0.090}
+\defval{s5.FD003.lstm_cap150_savings_share_ci}{[\ensuremath{-0.724}, 0.653]}
+\defval{s5.FD003.lstm_cap150_savings_share_hi}{0.653}
+\defval{s5.FD003.lstm_cap150_savings_share_lo}{\ensuremath{-0.724}}
+\defval{s5.FD003.lstm_cap200_leaderboard_rmse}{33.77}
+\defval{s5.FD003.lstm_cap200_leaderboard_rmse_ci}{[28.81, 38.28]}
+\defval{s5.FD003.lstm_cap200_leaderboard_rmse_hi}{38.28}
+\defval{s5.FD003.lstm_cap200_leaderboard_rmse_lo}{28.81}
+\defval{s5.FD003.lstm_cap200_savings_share}{0.614}
+\defval{s5.FD003.lstm_cap200_savings_share_ci}{[0.121, 0.939]}
+\defval{s5.FD003.lstm_cap200_savings_share_hi}{0.939}
+\defval{s5.FD003.lstm_cap200_savings_share_lo}{0.121}
+\defval{s5.FD003.lstm_capnone_leaderboard_rmse}{45.01}
+\defval{s5.FD003.lstm_capnone_leaderboard_rmse_ci}{[38.02, 51.60]}
+\defval{s5.FD003.lstm_capnone_leaderboard_rmse_hi}{51.60}
+\defval{s5.FD003.lstm_capnone_leaderboard_rmse_lo}{38.02}
+\defval{s5.FD003.lstm_capnone_savings_share}{0.021}
+\defval{s5.FD003.lstm_capnone_savings_share_ci}{[\ensuremath{-0.842}, 0.603]}
+\defval{s5.FD003.lstm_capnone_savings_share_hi}{0.603}
+\defval{s5.FD003.lstm_capnone_savings_share_lo}{\ensuremath{-0.842}}
+\defval{s5.FD003.xgboost_cap100_leaderboard_rmse}{15.21}
+\defval{s5.FD003.xgboost_cap100_leaderboard_rmse_ci}{[13.27, 17.05]}
+\defval{s5.FD003.xgboost_cap100_leaderboard_rmse_hi}{17.05}
+\defval{s5.FD003.xgboost_cap100_leaderboard_rmse_lo}{13.27}
+\defval{s5.FD003.xgboost_cap100_savings_share}{0.434}
+\defval{s5.FD003.xgboost_cap100_savings_share_ci}{[\ensuremath{-0.160}, 0.863]}
+\defval{s5.FD003.xgboost_cap100_savings_share_hi}{0.863}
+\defval{s5.FD003.xgboost_cap100_savings_share_lo}{\ensuremath{-0.160}}
+\defval{s5.FD003.xgboost_cap125_leaderboard_rmse}{12.92}
+\defval{s5.FD003.xgboost_cap125_leaderboard_rmse_ci}{[10.52, 15.08]}
+\defval{s5.FD003.xgboost_cap125_leaderboard_rmse_hi}{15.08}
+\defval{s5.FD003.xgboost_cap125_leaderboard_rmse_lo}{10.52}
+\defval{s5.FD003.xgboost_cap125_savings_share}{0.214}
+\defval{s5.FD003.xgboost_cap125_savings_share_ci}{[\ensuremath{-0.531}, 0.743]}
+\defval{s5.FD003.xgboost_cap125_savings_share_hi}{0.743}
+\defval{s5.FD003.xgboost_cap125_savings_share_lo}{\ensuremath{-0.531}}
+\defval{s5.FD003.xgboost_cap150_leaderboard_rmse}{17.26}
+\defval{s5.FD003.xgboost_cap150_leaderboard_rmse_ci}{[14.19, 20.27]}
+\defval{s5.FD003.xgboost_cap150_leaderboard_rmse_hi}{20.27}
+\defval{s5.FD003.xgboost_cap150_leaderboard_rmse_lo}{14.19}
+\defval{s5.FD003.xgboost_cap150_savings_share}{0.212}
+\defval{s5.FD003.xgboost_cap150_savings_share_ci}{[\ensuremath{-0.585}, 0.718]}
+\defval{s5.FD003.xgboost_cap150_savings_share_hi}{0.718}
+\defval{s5.FD003.xgboost_cap150_savings_share_lo}{\ensuremath{-0.585}}
+\defval{s5.FD003.xgboost_cap200_leaderboard_rmse}{26.06}
+\defval{s5.FD003.xgboost_cap200_leaderboard_rmse_ci}{[21.46, 30.23]}
+\defval{s5.FD003.xgboost_cap200_leaderboard_rmse_hi}{30.23}
+\defval{s5.FD003.xgboost_cap200_leaderboard_rmse_lo}{21.46}
+\defval{s5.FD003.xgboost_cap200_savings_share}{0.207}
+\defval{s5.FD003.xgboost_cap200_savings_share_ci}{[\ensuremath{-0.509}, 0.715]}
+\defval{s5.FD003.xgboost_cap200_savings_share_hi}{0.715}
+\defval{s5.FD003.xgboost_cap200_savings_share_lo}{\ensuremath{-0.509}}
+\defval{s5.FD003.xgboost_capnone_leaderboard_rmse}{36.25}
+\defval{s5.FD003.xgboost_capnone_leaderboard_rmse_ci}{[29.11, 43.18]}
+\defval{s5.FD003.xgboost_capnone_leaderboard_rmse_hi}{43.18}
+\defval{s5.FD003.xgboost_capnone_leaderboard_rmse_lo}{29.11}
+\defval{s5.FD003.xgboost_capnone_savings_share}{0.511}
+\defval{s5.FD003.xgboost_capnone_savings_share_ci}{[\ensuremath{-0.041}, 0.875]}
+\defval{s5.FD003.xgboost_capnone_savings_share_hi}{0.875}
+\defval{s5.FD003.xgboost_capnone_savings_share_lo}{\ensuremath{-0.041}}
+\defval{s5.FD004.lstm_cap100_leaderboard_rmse}{19.07}
+\defval{s5.FD004.lstm_cap100_leaderboard_rmse_ci}{[17.80, 20.39]}
+\defval{s5.FD004.lstm_cap100_leaderboard_rmse_hi}{20.39}
+\defval{s5.FD004.lstm_cap100_leaderboard_rmse_lo}{17.80}
+\defval{s5.FD004.lstm_cap100_savings_share}{0.869}
+\defval{s5.FD004.lstm_cap100_savings_share_ci}{[0.768, 0.921]}
+\defval{s5.FD004.lstm_cap100_savings_share_hi}{0.921}
+\defval{s5.FD004.lstm_cap100_savings_share_lo}{0.768}
+\defval{s5.FD004.lstm_cap125_leaderboard_rmse}{15.29}
+\defval{s5.FD004.lstm_cap125_leaderboard_rmse_ci}{[13.68, 16.93]}
+\defval{s5.FD004.lstm_cap125_leaderboard_rmse_hi}{16.93}
+\defval{s5.FD004.lstm_cap125_leaderboard_rmse_lo}{13.68}
+\defval{s5.FD004.lstm_cap125_savings_share}{0.817}
+\defval{s5.FD004.lstm_cap125_savings_share_ci}{[0.675, 0.904]}
+\defval{s5.FD004.lstm_cap125_savings_share_hi}{0.904}
+\defval{s5.FD004.lstm_cap125_savings_share_lo}{0.675}
+\defval{s5.FD004.lstm_cap150_leaderboard_rmse}{19.80}
+\defval{s5.FD004.lstm_cap150_leaderboard_rmse_ci}{[18.04, 21.64]}
+\defval{s5.FD004.lstm_cap150_leaderboard_rmse_hi}{21.64}
+\defval{s5.FD004.lstm_cap150_leaderboard_rmse_lo}{18.04}
+\defval{s5.FD004.lstm_cap150_savings_share}{0.827}
+\defval{s5.FD004.lstm_cap150_savings_share_ci}{[0.685, 0.912]}
+\defval{s5.FD004.lstm_cap150_savings_share_hi}{0.912}
+\defval{s5.FD004.lstm_cap150_savings_share_lo}{0.685}
+\defval{s5.FD004.lstm_cap200_leaderboard_rmse}{30.51}
+\defval{s5.FD004.lstm_cap200_leaderboard_rmse_ci}{[28.10, 33.02]}
+\defval{s5.FD004.lstm_cap200_leaderboard_rmse_hi}{33.02}
+\defval{s5.FD004.lstm_cap200_leaderboard_rmse_lo}{28.10}
+\defval{s5.FD004.lstm_cap200_savings_share}{0.844}
+\defval{s5.FD004.lstm_cap200_savings_share_ci}{[0.741, 0.900]}
+\defval{s5.FD004.lstm_cap200_savings_share_hi}{0.900}
+\defval{s5.FD004.lstm_cap200_savings_share_lo}{0.741}
+\defval{s5.FD004.lstm_capnone_leaderboard_rmse}{46.34}
+\defval{s5.FD004.lstm_capnone_leaderboard_rmse_ci}{[41.54, 50.80]}
+\defval{s5.FD004.lstm_capnone_leaderboard_rmse_hi}{50.80}
+\defval{s5.FD004.lstm_capnone_leaderboard_rmse_lo}{41.54}
+\defval{s5.FD004.lstm_capnone_savings_share}{0.758}
+\defval{s5.FD004.lstm_capnone_savings_share_ci}{[0.564, 0.886]}
+\defval{s5.FD004.lstm_capnone_savings_share_hi}{0.886}
+\defval{s5.FD004.lstm_capnone_savings_share_lo}{0.564}
+\defval{s5.FD004.xgboost_cap100_leaderboard_rmse}{18.46}
+\defval{s5.FD004.xgboost_cap100_leaderboard_rmse_ci}{[17.01, 19.88]}
+\defval{s5.FD004.xgboost_cap100_leaderboard_rmse_hi}{19.88}
+\defval{s5.FD004.xgboost_cap100_leaderboard_rmse_lo}{17.01}
+\defval{s5.FD004.xgboost_cap100_savings_share}{0.706}
+\defval{s5.FD004.xgboost_cap100_savings_share_ci}{[0.497, 0.866]}
+\defval{s5.FD004.xgboost_cap100_savings_share_hi}{0.866}
+\defval{s5.FD004.xgboost_cap100_savings_share_lo}{0.497}
+\defval{s5.FD004.xgboost_cap125_leaderboard_rmse}{14.07}
+\defval{s5.FD004.xgboost_cap125_leaderboard_rmse_ci}{[12.30, 15.80]}
+\defval{s5.FD004.xgboost_cap125_leaderboard_rmse_hi}{15.80}
+\defval{s5.FD004.xgboost_cap125_leaderboard_rmse_lo}{12.30}
+\defval{s5.FD004.xgboost_cap125_savings_share}{0.735}
+\defval{s5.FD004.xgboost_cap125_savings_share_ci}{[0.543, 0.883]}
+\defval{s5.FD004.xgboost_cap125_savings_share_hi}{0.883}
+\defval{s5.FD004.xgboost_cap125_savings_share_lo}{0.543}
+\defval{s5.FD004.xgboost_cap150_leaderboard_rmse}{18.50}
+\defval{s5.FD004.xgboost_cap150_leaderboard_rmse_ci}{[16.69, 20.30]}
+\defval{s5.FD004.xgboost_cap150_leaderboard_rmse_hi}{20.30}
+\defval{s5.FD004.xgboost_cap150_leaderboard_rmse_lo}{16.69}
+\defval{s5.FD004.xgboost_cap150_savings_share}{0.692}
+\defval{s5.FD004.xgboost_cap150_savings_share_ci}{[0.480, 0.853]}
+\defval{s5.FD004.xgboost_cap150_savings_share_hi}{0.853}
+\defval{s5.FD004.xgboost_cap150_savings_share_lo}{0.480}
+\defval{s5.FD004.xgboost_cap200_leaderboard_rmse}{29.74}
+\defval{s5.FD004.xgboost_cap200_leaderboard_rmse_ci}{[26.98, 32.47]}
+\defval{s5.FD004.xgboost_cap200_leaderboard_rmse_hi}{32.47}
+\defval{s5.FD004.xgboost_cap200_leaderboard_rmse_lo}{26.98}
+\defval{s5.FD004.xgboost_cap200_savings_share}{0.831}
+\defval{s5.FD004.xgboost_cap200_savings_share_ci}{[0.693, 0.914]}
+\defval{s5.FD004.xgboost_cap200_savings_share_hi}{0.914}
+\defval{s5.FD004.xgboost_cap200_savings_share_lo}{0.693}
+\defval{s5.FD004.xgboost_capnone_leaderboard_rmse}{42.21}
+\defval{s5.FD004.xgboost_capnone_leaderboard_rmse_ci}{[36.90, 47.30]}
+\defval{s5.FD004.xgboost_capnone_leaderboard_rmse_hi}{47.30}
+\defval{s5.FD004.xgboost_capnone_leaderboard_rmse_lo}{36.90}
+\defval{s5.FD004.xgboost_capnone_savings_share}{0.812}
+\defval{s5.FD004.xgboost_capnone_savings_share_ci}{[0.648, 0.924]}
+\defval{s5.FD004.xgboost_capnone_savings_share_hi}{0.924}
+\defval{s5.FD004.xgboost_capnone_savings_share_lo}{0.648}
+\defval{s6.FD001.cf1000_e1_tau_b}{0.290}
+\defval{s6.FD001.cf1000_e1_tau_b_ci}{[\ensuremath{-0.162}, 0.413]}
+\defval{s6.FD001.cf1000_e1_tau_b_hi}{0.413}
+\defval{s6.FD001.cf1000_e1_tau_b_lo}{\ensuremath{-0.162}}
+\defval{s6.FD001.cf1000_e2_selection_loss}{\ensuremath{-0.808}}
+\defval{s6.FD001.cf1000_e2_selection_loss_ci}{[\ensuremath{-1.472}, \ensuremath{-0.352}]}
+\defval{s6.FD001.cf1000_e2_selection_loss_hi}{\ensuremath{-0.352}}
+\defval{s6.FD001.cf1000_e2_selection_loss_lo}{\ensuremath{-1.472}}
+\defval{s6.FD001.cf1000_e3_delta_tau}{\ensuremath{-0.064}}
+\defval{s6.FD001.cf1000_e3_delta_tau_ci}{[\ensuremath{-0.209}, 0.187]}
+\defval{s6.FD001.cf1000_e3_delta_tau_hi}{0.187}
+\defval{s6.FD001.cf1000_e3_delta_tau_lo}{\ensuremath{-0.209}}
+\defval{s6.FD001.cf100_e1_tau_b}{0.453}
+\defval{s6.FD001.cf100_e1_tau_b_ci}{[0.169, 0.528]}
+\defval{s6.FD001.cf100_e1_tau_b_hi}{0.528}
+\defval{s6.FD001.cf100_e1_tau_b_lo}{0.169}
+\defval{s6.FD001.cf100_e2_selection_loss}{\ensuremath{-0.055}}
+\defval{s6.FD001.cf100_e2_selection_loss_ci}{[\ensuremath{-0.139}, 0.016]}
+\defval{s6.FD001.cf100_e2_selection_loss_hi}{0.016}
+\defval{s6.FD001.cf100_e2_selection_loss_lo}{\ensuremath{-0.139}}
+\defval{s6.FD001.cf100_e3_delta_tau}{\ensuremath{-0.176}}
+\defval{s6.FD001.cf100_e3_delta_tau_ci}{[\ensuremath{-0.277}, 0.045]}
+\defval{s6.FD001.cf100_e3_delta_tau_hi}{0.045}
+\defval{s6.FD001.cf100_e3_delta_tau_lo}{\ensuremath{-0.277}}
+\defval{s6.FD001.cf2000_e1_tau_b}{0.274}
+\defval{s6.FD001.cf2000_e1_tau_b_ci}{[\ensuremath{-0.190}, 0.401]}
+\defval{s6.FD001.cf2000_e1_tau_b_hi}{0.401}
+\defval{s6.FD001.cf2000_e1_tau_b_lo}{\ensuremath{-0.190}}
+\defval{s6.FD001.cf2000_e2_selection_loss}{\ensuremath{-1.480}}
+\defval{s6.FD001.cf2000_e2_selection_loss_ci}{[\ensuremath{-2.894}, \ensuremath{-0.611}]}
+\defval{s6.FD001.cf2000_e2_selection_loss_hi}{\ensuremath{-0.611}}
+\defval{s6.FD001.cf2000_e2_selection_loss_lo}{\ensuremath{-2.894}}
+\defval{s6.FD001.cf2000_e3_delta_tau}{\ensuremath{-0.069}}
+\defval{s6.FD001.cf2000_e3_delta_tau_ci}{[\ensuremath{-0.207}, 0.192]}
+\defval{s6.FD001.cf2000_e3_delta_tau_hi}{0.192}
+\defval{s6.FD001.cf2000_e3_delta_tau_lo}{\ensuremath{-0.207}}
+\defval{s6.FD001.cf200_e1_tau_b}{0.394}
+\defval{s6.FD001.cf200_e1_tau_b_ci}{[0.015, 0.479]}
+\defval{s6.FD001.cf200_e1_tau_b_hi}{0.479}
+\defval{s6.FD001.cf200_e1_tau_b_lo}{0.015}
+\defval{s6.FD001.cf200_e2_selection_loss}{\ensuremath{-0.161}}
+\defval{s6.FD001.cf200_e2_selection_loss_ci}{[\ensuremath{-0.303}, \ensuremath{-0.052}]}
+\defval{s6.FD001.cf200_e2_selection_loss_hi}{\ensuremath{-0.052}}
+\defval{s6.FD001.cf200_e2_selection_loss_lo}{\ensuremath{-0.303}}
+\defval{s6.FD001.cf200_e3_delta_tau}{\ensuremath{-0.113}}
+\defval{s6.FD001.cf200_e3_delta_tau_ci}{[\ensuremath{-0.233}, 0.132]}
+\defval{s6.FD001.cf200_e3_delta_tau_hi}{0.132}
+\defval{s6.FD001.cf200_e3_delta_tau_lo}{\ensuremath{-0.233}}
+\defval{s6.FD001.cf500_e1_tau_b}{0.323}
+\defval{s6.FD001.cf500_e1_tau_b_ci}{[\ensuremath{-0.110}, 0.428]}
+\defval{s6.FD001.cf500_e1_tau_b_hi}{0.428}
+\defval{s6.FD001.cf500_e1_tau_b_lo}{\ensuremath{-0.110}}
+\defval{s6.FD001.cf500_e2_selection_loss}{\ensuremath{-0.415}}
+\defval{s6.FD001.cf500_e2_selection_loss_ci}{[\ensuremath{-0.736}, \ensuremath{-0.171}]}
+\defval{s6.FD001.cf500_e2_selection_loss_hi}{\ensuremath{-0.171}}
+\defval{s6.FD001.cf500_e2_selection_loss_lo}{\ensuremath{-0.736}}
+\defval{s6.FD001.cf500_e3_delta_tau}{\ensuremath{-0.079}}
+\defval{s6.FD001.cf500_e3_delta_tau_ci}{[\ensuremath{-0.216}, 0.174]}
+\defval{s6.FD001.cf500_e3_delta_tau_hi}{0.174}
+\defval{s6.FD001.cf500_e3_delta_tau_lo}{\ensuremath{-0.216}}
+\defval{s6.FD001.cf50_e1_tau_b}{0.457}
+\defval{s6.FD001.cf50_e1_tau_b_ci}{[0.231, 0.551]}
+\defval{s6.FD001.cf50_e1_tau_b_hi}{0.551}
+\defval{s6.FD001.cf50_e1_tau_b_lo}{0.231}
+\defval{s6.FD001.cf50_e2_selection_loss}{\ensuremath{-0.016}}
+\defval{s6.FD001.cf50_e2_selection_loss_ci}{[\ensuremath{-0.073}, 0.033]}
+\defval{s6.FD001.cf50_e2_selection_loss_hi}{0.033}
+\defval{s6.FD001.cf50_e2_selection_loss_lo}{\ensuremath{-0.073}}
+\defval{s6.FD001.cf50_e3_delta_tau}{\ensuremath{-0.202}}
+\defval{s6.FD001.cf50_e3_delta_tau_ci}{[\ensuremath{-0.303}, \ensuremath{-0.022}]}
+\defval{s6.FD001.cf50_e3_delta_tau_hi}{\ensuremath{-0.022}}
+\defval{s6.FD001.cf50_e3_delta_tau_lo}{\ensuremath{-0.303}}
+\defval{s6.FD002.cf1000_e1_tau_b}{0.123}
+\defval{s6.FD002.cf1000_e1_tau_b_ci}{[\ensuremath{-0.230}, 0.388]}
+\defval{s6.FD002.cf1000_e1_tau_b_hi}{0.388}
+\defval{s6.FD002.cf1000_e1_tau_b_lo}{\ensuremath{-0.230}}
+\defval{s6.FD002.cf1000_e2_selection_loss}{\ensuremath{-0.512}}
+\defval{s6.FD002.cf1000_e2_selection_loss_ci}{[\ensuremath{-0.789}, \ensuremath{-0.270}]}
+\defval{s6.FD002.cf1000_e2_selection_loss_hi}{\ensuremath{-0.270}}
+\defval{s6.FD002.cf1000_e2_selection_loss_lo}{\ensuremath{-0.789}}
+\defval{s6.FD002.cf1000_e3_delta_tau}{\ensuremath{-0.057}}
+\defval{s6.FD002.cf1000_e3_delta_tau_ci}{[\ensuremath{-0.211}, 0.111]}
+\defval{s6.FD002.cf1000_e3_delta_tau_hi}{0.111}
+\defval{s6.FD002.cf1000_e3_delta_tau_lo}{\ensuremath{-0.211}}
+\defval{s6.FD002.cf100_e1_tau_b}{0.549}
+\defval{s6.FD002.cf100_e1_tau_b_ci}{[0.329, 0.599]}
+\defval{s6.FD002.cf100_e1_tau_b_hi}{0.599}
+\defval{s6.FD002.cf100_e1_tau_b_lo}{0.329}
+\defval{s6.FD002.cf100_e2_selection_loss}{\ensuremath{-0.025}}
+\defval{s6.FD002.cf100_e2_selection_loss_ci}{[\ensuremath{-0.063}, 0.011]}
+\defval{s6.FD002.cf100_e2_selection_loss_hi}{0.011}
+\defval{s6.FD002.cf100_e2_selection_loss_lo}{\ensuremath{-0.063}}
+\defval{s6.FD002.cf100_e3_delta_tau}{\ensuremath{-0.172}}
+\defval{s6.FD002.cf100_e3_delta_tau_ci}{[\ensuremath{-0.242}, \ensuremath{-0.007}]}
+\defval{s6.FD002.cf100_e3_delta_tau_hi}{\ensuremath{-0.007}}
+\defval{s6.FD002.cf100_e3_delta_tau_lo}{\ensuremath{-0.242}}
+\defval{s6.FD002.cf2000_e1_tau_b}{0.007}
+\defval{s6.FD002.cf2000_e1_tau_b_ci}{[\ensuremath{-0.302}, 0.333]}
+\defval{s6.FD002.cf2000_e1_tau_b_hi}{0.333}
+\defval{s6.FD002.cf2000_e1_tau_b_lo}{\ensuremath{-0.302}}
+\defval{s6.FD002.cf2000_e2_selection_loss}{\ensuremath{-1.056}}
+\defval{s6.FD002.cf2000_e2_selection_loss_ci}{[\ensuremath{-1.642}, \ensuremath{-0.559}]}
+\defval{s6.FD002.cf2000_e2_selection_loss_hi}{\ensuremath{-0.559}}
+\defval{s6.FD002.cf2000_e2_selection_loss_lo}{\ensuremath{-1.642}}
+\defval{s6.FD002.cf2000_e3_delta_tau}{\ensuremath{-0.043}}
+\defval{s6.FD002.cf2000_e3_delta_tau_ci}{[\ensuremath{-0.211}, 0.121]}
+\defval{s6.FD002.cf2000_e3_delta_tau_hi}{0.121}
+\defval{s6.FD002.cf2000_e3_delta_tau_lo}{\ensuremath{-0.211}}
+\defval{s6.FD002.cf200_e1_tau_b}{0.495}
+\defval{s6.FD002.cf200_e1_tau_b_ci}{[0.214, 0.562]}
+\defval{s6.FD002.cf200_e1_tau_b_hi}{0.562}
+\defval{s6.FD002.cf200_e1_tau_b_lo}{0.214}
+\defval{s6.FD002.cf200_e2_selection_loss}{\ensuremath{-0.088}}
+\defval{s6.FD002.cf200_e2_selection_loss_ci}{[\ensuremath{-0.151}, \ensuremath{-0.031}]}
+\defval{s6.FD002.cf200_e2_selection_loss_hi}{\ensuremath{-0.031}}
+\defval{s6.FD002.cf200_e2_selection_loss_lo}{\ensuremath{-0.151}}
+\defval{s6.FD002.cf200_e3_delta_tau}{\ensuremath{-0.119}}
+\defval{s6.FD002.cf200_e3_delta_tau_ci}{[\ensuremath{-0.198}, 0.070]}
+\defval{s6.FD002.cf200_e3_delta_tau_hi}{0.070}
+\defval{s6.FD002.cf200_e3_delta_tau_lo}{\ensuremath{-0.198}}
+\defval{s6.FD002.cf500_e1_tau_b}{0.329}
+\defval{s6.FD002.cf500_e1_tau_b_ci}{[\ensuremath{-0.026}, 0.479]}
+\defval{s6.FD002.cf500_e1_tau_b_hi}{0.479}
+\defval{s6.FD002.cf500_e1_tau_b_lo}{\ensuremath{-0.026}}
+\defval{s6.FD002.cf500_e2_selection_loss}{\ensuremath{-0.258}}
+\defval{s6.FD002.cf500_e2_selection_loss_ci}{[\ensuremath{-0.410}, \ensuremath{-0.123}]}
+\defval{s6.FD002.cf500_e2_selection_loss_hi}{\ensuremath{-0.123}}
+\defval{s6.FD002.cf500_e2_selection_loss_lo}{\ensuremath{-0.410}}
+\defval{s6.FD002.cf500_e3_delta_tau}{\ensuremath{-0.087}}
+\defval{s6.FD002.cf500_e3_delta_tau_ci}{[\ensuremath{-0.196}, 0.111]}
+\defval{s6.FD002.cf500_e3_delta_tau_hi}{0.111}
+\defval{s6.FD002.cf500_e3_delta_tau_lo}{\ensuremath{-0.196}}
+\defval{s6.FD002.cf50_e1_tau_b}{0.593}
+\defval{s6.FD002.cf50_e1_tau_b_ci}{[0.410, 0.620]}
+\defval{s6.FD002.cf50_e1_tau_b_hi}{0.620}
+\defval{s6.FD002.cf50_e1_tau_b_lo}{0.410}
+\defval{s6.FD002.cf50_e2_selection_loss}{\ensuremath{-0.008}}
+\defval{s6.FD002.cf50_e2_selection_loss_ci}{[\ensuremath{-0.033}, 0.016]}
+\defval{s6.FD002.cf50_e2_selection_loss_hi}{0.016}
+\defval{s6.FD002.cf50_e2_selection_loss_lo}{\ensuremath{-0.033}}
+\defval{s6.FD002.cf50_e3_delta_tau}{\ensuremath{-0.240}}
+\defval{s6.FD002.cf50_e3_delta_tau_ci}{[\ensuremath{-0.286}, \ensuremath{-0.072}]}
+\defval{s6.FD002.cf50_e3_delta_tau_hi}{\ensuremath{-0.072}}
+\defval{s6.FD002.cf50_e3_delta_tau_lo}{\ensuremath{-0.286}}
+\defval{s6.FD003.cf1000_e1_tau_b}{\ensuremath{-0.038}}
+\defval{s6.FD003.cf1000_e1_tau_b_ci}{[\ensuremath{-0.295}, 0.283]}
+\defval{s6.FD003.cf1000_e1_tau_b_hi}{0.283}
+\defval{s6.FD003.cf1000_e1_tau_b_lo}{\ensuremath{-0.295}}
+\defval{s6.FD003.cf1000_e2_selection_loss}{\ensuremath{-0.933}}
+\defval{s6.FD003.cf1000_e2_selection_loss_ci}{[\ensuremath{-1.459}, \ensuremath{-0.454}]}
+\defval{s6.FD003.cf1000_e2_selection_loss_hi}{\ensuremath{-0.454}}
+\defval{s6.FD003.cf1000_e2_selection_loss_lo}{\ensuremath{-1.459}}
+\defval{s6.FD003.cf1000_e3_delta_tau}{\ensuremath{-0.208}}
+\defval{s6.FD003.cf1000_e3_delta_tau_ci}{[\ensuremath{-0.389}, 0.131]}
+\defval{s6.FD003.cf1000_e3_delta_tau_hi}{0.131}
+\defval{s6.FD003.cf1000_e3_delta_tau_lo}{\ensuremath{-0.389}}
+\defval{s6.FD003.cf100_e1_tau_b}{0.016}
+\defval{s6.FD003.cf100_e1_tau_b_ci}{[\ensuremath{-0.227}, 0.263]}
+\defval{s6.FD003.cf100_e1_tau_b_hi}{0.263}
+\defval{s6.FD003.cf100_e1_tau_b_lo}{\ensuremath{-0.227}}
+\defval{s6.FD003.cf100_e2_selection_loss}{\ensuremath{-0.072}}
+\defval{s6.FD003.cf100_e2_selection_loss_ci}{[\ensuremath{-0.130}, \ensuremath{-0.018}]}
+\defval{s6.FD003.cf100_e2_selection_loss_hi}{\ensuremath{-0.018}}
+\defval{s6.FD003.cf100_e2_selection_loss_lo}{\ensuremath{-0.130}}
+\defval{s6.FD003.cf100_e3_delta_tau}{\ensuremath{-0.059}}
+\defval{s6.FD003.cf100_e3_delta_tau_ci}{[\ensuremath{-0.262}, 0.140]}
+\defval{s6.FD003.cf100_e3_delta_tau_hi}{0.140}
+\defval{s6.FD003.cf100_e3_delta_tau_lo}{\ensuremath{-0.262}}
+\defval{s6.FD003.cf2000_e1_tau_b}{\ensuremath{-0.034}}
+\defval{s6.FD003.cf2000_e1_tau_b_ci}{[\ensuremath{-0.294}, 0.284]}
+\defval{s6.FD003.cf2000_e1_tau_b_hi}{0.284}
+\defval{s6.FD003.cf2000_e1_tau_b_lo}{\ensuremath{-0.294}}
+\defval{s6.FD003.cf2000_e2_selection_loss}{\ensuremath{-1.759}}
+\defval{s6.FD003.cf2000_e2_selection_loss_ci}{[\ensuremath{-2.931}, \ensuremath{-0.856}]}
+\defval{s6.FD003.cf2000_e2_selection_loss_hi}{\ensuremath{-0.856}}
+\defval{s6.FD003.cf2000_e2_selection_loss_lo}{\ensuremath{-2.931}}
+\defval{s6.FD003.cf2000_e3_delta_tau}{\ensuremath{-0.226}}
+\defval{s6.FD003.cf2000_e3_delta_tau_ci}{[\ensuremath{-0.400}, 0.127]}
+\defval{s6.FD003.cf2000_e3_delta_tau_hi}{0.127}
+\defval{s6.FD003.cf2000_e3_delta_tau_lo}{\ensuremath{-0.400}}
+\defval{s6.FD003.cf200_e1_tau_b}{\ensuremath{-0.028}}
+\defval{s6.FD003.cf200_e1_tau_b_ci}{[\ensuremath{-0.273}, 0.274]}
+\defval{s6.FD003.cf200_e1_tau_b_hi}{0.274}
+\defval{s6.FD003.cf200_e1_tau_b_lo}{\ensuremath{-0.273}}
+\defval{s6.FD003.cf200_e2_selection_loss}{\ensuremath{-0.162}}
+\defval{s6.FD003.cf200_e2_selection_loss_ci}{[\ensuremath{-0.269}, \ensuremath{-0.065}]}
+\defval{s6.FD003.cf200_e2_selection_loss_hi}{\ensuremath{-0.065}}
+\defval{s6.FD003.cf200_e2_selection_loss_lo}{\ensuremath{-0.269}}
+\defval{s6.FD003.cf200_e3_delta_tau}{\ensuremath{-0.116}}
+\defval{s6.FD003.cf200_e3_delta_tau_ci}{[\ensuremath{-0.320}, 0.145]}
+\defval{s6.FD003.cf200_e3_delta_tau_hi}{0.145}
+\defval{s6.FD003.cf200_e3_delta_tau_lo}{\ensuremath{-0.320}}
+\defval{s6.FD003.cf500_e1_tau_b}{\ensuremath{-0.035}}
+\defval{s6.FD003.cf500_e1_tau_b_ci}{[\ensuremath{-0.292}, 0.283]}
+\defval{s6.FD003.cf500_e1_tau_b_hi}{0.283}
+\defval{s6.FD003.cf500_e1_tau_b_lo}{\ensuremath{-0.292}}
+\defval{s6.FD003.cf500_e2_selection_loss}{\ensuremath{-0.447}}
+\defval{s6.FD003.cf500_e2_selection_loss_ci}{[\ensuremath{-0.711}, \ensuremath{-0.208}]}
+\defval{s6.FD003.cf500_e2_selection_loss_hi}{\ensuremath{-0.208}}
+\defval{s6.FD003.cf500_e2_selection_loss_lo}{\ensuremath{-0.711}}
+\defval{s6.FD003.cf500_e3_delta_tau}{\ensuremath{-0.183}}
+\defval{s6.FD003.cf500_e3_delta_tau_ci}{[\ensuremath{-0.369}, 0.141]}
+\defval{s6.FD003.cf500_e3_delta_tau_hi}{0.141}
+\defval{s6.FD003.cf500_e3_delta_tau_lo}{\ensuremath{-0.369}}
+\defval{s6.FD003.cf50_e1_tau_b}{0.114}
+\defval{s6.FD003.cf50_e1_tau_b_ci}{[\ensuremath{-0.108}, 0.294]}
+\defval{s6.FD003.cf50_e1_tau_b_hi}{0.294}
+\defval{s6.FD003.cf50_e1_tau_b_lo}{\ensuremath{-0.108}}
+\defval{s6.FD003.cf50_e2_selection_loss}{\ensuremath{-0.024}}
+\defval{s6.FD003.cf50_e2_selection_loss_ci}{[\ensuremath{-0.069}, 0.023]}
+\defval{s6.FD003.cf50_e2_selection_loss_hi}{0.023}
+\defval{s6.FD003.cf50_e2_selection_loss_lo}{\ensuremath{-0.069}}
+\defval{s6.FD003.cf50_e3_delta_tau}{\ensuremath{-0.076}}
+\defval{s6.FD003.cf50_e3_delta_tau_ci}{[\ensuremath{-0.243}, 0.107]}
+\defval{s6.FD003.cf50_e3_delta_tau_hi}{0.107}
+\defval{s6.FD003.cf50_e3_delta_tau_lo}{\ensuremath{-0.243}}
+\defval{s6.FD004.cf1000_e1_tau_b}{\ensuremath{-0.015}}
+\defval{s6.FD004.cf1000_e1_tau_b_ci}{[\ensuremath{-0.231}, 0.221]}
+\defval{s6.FD004.cf1000_e1_tau_b_hi}{0.221}
+\defval{s6.FD004.cf1000_e1_tau_b_lo}{\ensuremath{-0.231}}
+\defval{s6.FD004.cf1000_e2_selection_loss}{\ensuremath{-0.092}}
+\defval{s6.FD004.cf1000_e2_selection_loss_ci}{[\ensuremath{-0.231}, 0.033]}
+\defval{s6.FD004.cf1000_e2_selection_loss_hi}{0.033}
+\defval{s6.FD004.cf1000_e2_selection_loss_lo}{\ensuremath{-0.231}}
+\defval{s6.FD004.cf1000_e3_delta_tau}{0.115}
+\defval{s6.FD004.cf1000_e3_delta_tau_ci}{[\ensuremath{-0.092}, 0.250]}
+\defval{s6.FD004.cf1000_e3_delta_tau_hi}{0.250}
+\defval{s6.FD004.cf1000_e3_delta_tau_lo}{\ensuremath{-0.092}}
+\defval{s6.FD004.cf100_e1_tau_b}{0.105}
+\defval{s6.FD004.cf100_e1_tau_b_ci}{[\ensuremath{-0.057}, 0.272]}
+\defval{s6.FD004.cf100_e1_tau_b_hi}{0.272}
+\defval{s6.FD004.cf100_e1_tau_b_lo}{\ensuremath{-0.057}}
+\defval{s6.FD004.cf100_e2_selection_loss}{0.039}
+\defval{s6.FD004.cf100_e2_selection_loss_ci}{[0.016, 0.062]}
+\defval{s6.FD004.cf100_e2_selection_loss_hi}{0.062}
+\defval{s6.FD004.cf100_e2_selection_loss_lo}{0.016}
+\defval{s6.FD004.cf100_e3_delta_tau}{0.081}
+\defval{s6.FD004.cf100_e3_delta_tau_ci}{[\ensuremath{-0.091}, 0.199]}
+\defval{s6.FD004.cf100_e3_delta_tau_hi}{0.199}
+\defval{s6.FD004.cf100_e3_delta_tau_lo}{\ensuremath{-0.091}}
+\defval{s6.FD004.cf2000_e1_tau_b}{\ensuremath{-0.066}}
+\defval{s6.FD004.cf2000_e1_tau_b_ci}{[\ensuremath{-0.290}, 0.187]}
+\defval{s6.FD004.cf2000_e1_tau_b_hi}{0.187}
+\defval{s6.FD004.cf2000_e1_tau_b_lo}{\ensuremath{-0.290}}
+\defval{s6.FD004.cf2000_e2_selection_loss}{\ensuremath{-0.232}}
+\defval{s6.FD004.cf2000_e2_selection_loss_ci}{[\ensuremath{-0.517}, 0.023]}
+\defval{s6.FD004.cf2000_e2_selection_loss_hi}{0.023}
+\defval{s6.FD004.cf2000_e2_selection_loss_lo}{\ensuremath{-0.517}}
+\defval{s6.FD004.cf2000_e3_delta_tau}{0.017}
+\defval{s6.FD004.cf2000_e3_delta_tau_ci}{[\ensuremath{-0.159}, 0.213]}
+\defval{s6.FD004.cf2000_e3_delta_tau_hi}{0.213}
+\defval{s6.FD004.cf2000_e3_delta_tau_lo}{\ensuremath{-0.159}}
+\defval{s6.FD004.cf200_e1_tau_b}{\ensuremath{-0.012}}
+\defval{s6.FD004.cf200_e1_tau_b_ci}{[\ensuremath{-0.207}, 0.186]}
+\defval{s6.FD004.cf200_e1_tau_b_hi}{0.186}
+\defval{s6.FD004.cf200_e1_tau_b_lo}{\ensuremath{-0.207}}
+\defval{s6.FD004.cf200_e2_selection_loss}{0.022}
+\defval{s6.FD004.cf200_e2_selection_loss_ci}{[\ensuremath{-0.014}, 0.054]}
+\defval{s6.FD004.cf200_e2_selection_loss_hi}{0.054}
+\defval{s6.FD004.cf200_e2_selection_loss_lo}{\ensuremath{-0.014}}
+\defval{s6.FD004.cf200_e3_delta_tau}{0.146}
+\defval{s6.FD004.cf200_e3_delta_tau_ci}{[\ensuremath{-0.046}, 0.264]}
+\defval{s6.FD004.cf200_e3_delta_tau_hi}{0.264}
+\defval{s6.FD004.cf200_e3_delta_tau_lo}{\ensuremath{-0.046}}
+\defval{s6.FD004.cf500_e1_tau_b}{\ensuremath{-0.038}}
+\defval{s6.FD004.cf500_e1_tau_b_ci}{[\ensuremath{-0.224}, 0.197]}
+\defval{s6.FD004.cf500_e1_tau_b_hi}{0.197}
+\defval{s6.FD004.cf500_e1_tau_b_lo}{\ensuremath{-0.224}}
+\defval{s6.FD004.cf500_e2_selection_loss}{\ensuremath{-0.026}}
+\defval{s6.FD004.cf500_e2_selection_loss_ci}{[\ensuremath{-0.101}, 0.043]}
+\defval{s6.FD004.cf500_e2_selection_loss_hi}{0.043}
+\defval{s6.FD004.cf500_e2_selection_loss_lo}{\ensuremath{-0.101}}
+\defval{s6.FD004.cf500_e3_delta_tau}{0.152}
+\defval{s6.FD004.cf500_e3_delta_tau_ci}{[\ensuremath{-0.058}, 0.256]}
+\defval{s6.FD004.cf500_e3_delta_tau_hi}{0.256}
+\defval{s6.FD004.cf500_e3_delta_tau_lo}{\ensuremath{-0.058}}
+\defval{s6.FD004.cf50_e1_tau_b}{0.235}
+\defval{s6.FD004.cf50_e1_tau_b_ci}{[0.076, 0.362]}
+\defval{s6.FD004.cf50_e1_tau_b_hi}{0.362}
+\defval{s6.FD004.cf50_e1_tau_b_lo}{0.076}
+\defval{s6.FD004.cf50_e2_selection_loss}{0.061}
+\defval{s6.FD004.cf50_e2_selection_loss_ci}{[0.038, 0.084]}
+\defval{s6.FD004.cf50_e2_selection_loss_hi}{0.084}
+\defval{s6.FD004.cf50_e2_selection_loss_lo}{0.038}
+\defval{s6.FD004.cf50_e3_delta_tau}{\ensuremath{-0.051}}
+\defval{s6.FD004.cf50_e3_delta_tau_ci}{[\ensuremath{-0.173}, 0.078]}
+\defval{s6.FD004.cf50_e3_delta_tau_hi}{0.078}
+\defval{s6.FD004.cf50_e3_delta_tau_lo}{\ensuremath{-0.173}}
+\defval{s7.FD001.difference}{0.043}
+\defval{s7.FD001.difference_ci}{[\ensuremath{-0.064}, 0.177]}
+\defval{s7.FD001.difference_hi}{0.177}
+\defval{s7.FD001.difference_lo}{\ensuremath{-0.064}}
+\defval{s7.FD001.tau_matched}{0.329}
+\defval{s7.FD001.tau_matched_ci}{[\ensuremath{-0.148}, 0.448]}
+\defval{s7.FD001.tau_matched_hi}{0.448}
+\defval{s7.FD001.tau_matched_lo}{\ensuremath{-0.148}}
+\defval{s7.FD002.difference}{0.015}
+\defval{s7.FD002.difference_ci}{[\ensuremath{-0.078}, 0.095]}
+\defval{s7.FD002.difference_hi}{0.095}
+\defval{s7.FD002.difference_lo}{\ensuremath{-0.078}}
+\defval{s7.FD002.tau_matched}{0.057}
+\defval{s7.FD002.tau_matched_ci}{[\ensuremath{-0.287}, 0.381]}
+\defval{s7.FD002.tau_matched_hi}{0.381}
+\defval{s7.FD002.tau_matched_lo}{\ensuremath{-0.287}}
+\defval{s7.FD003.difference}{\ensuremath{-0.042}}
+\defval{s7.FD003.difference_ci}{[\ensuremath{-0.141}, 0.101]}
+\defval{s7.FD003.difference_hi}{0.101}
+\defval{s7.FD003.difference_lo}{\ensuremath{-0.141}}
+\defval{s7.FD003.tau_matched}{\ensuremath{-0.079}}
+\defval{s7.FD003.tau_matched_ci}{[\ensuremath{-0.310}, 0.269]}
+\defval{s7.FD003.tau_matched_hi}{0.269}
+\defval{s7.FD003.tau_matched_lo}{\ensuremath{-0.310}}
+\defval{s7.FD004.difference}{0.002}
+\defval{s7.FD004.difference_ci}{[\ensuremath{-0.065}, 0.095]}
+\defval{s7.FD004.difference_hi}{0.095}
+\defval{s7.FD004.difference_lo}{\ensuremath{-0.065}}
+\defval{s7.FD004.tau_matched}{\ensuremath{-0.061}}
+\defval{s7.FD004.tau_matched_ci}{[\ensuremath{-0.295}, 0.232]}
+\defval{s7.FD004.tau_matched_hi}{0.232}
+\defval{s7.FD004.tau_matched_lo}{\ensuremath{-0.295}}
+\defval{s9.FD001.best_rmse}{12.38}
+\defval{s9.FD001.configs}{40}
+\defval{s9.FD001.families}{5}
+\defval{s9.FD001.tau_b}{0.082}
+\defval{s9.FD001.tau_b_ci}{[\ensuremath{-0.297}, 0.356]}
+\defval{s9.FD001.tau_b_hi}{0.356}
+\defval{s9.FD001.tau_b_lo}{\ensuremath{-0.297}}
+\defval{s9.FD002.best_rmse}{12.63}
+\defval{s9.FD002.configs}{59}
+\defval{s9.FD002.families}{7}
+\defval{s9.FD002.tau_b}{\ensuremath{-0.174}}
+\defval{s9.FD002.tau_b_ci}{[\ensuremath{-0.389}, 0.175]}
+\defval{s9.FD002.tau_b_hi}{0.175}
+\defval{s9.FD002.tau_b_lo}{\ensuremath{-0.389}}
+\defval{s9.FD003.best_rmse}{12.66}
+\defval{s9.FD003.configs}{49}
+\defval{s9.FD003.families}{5}
+\defval{s9.FD003.tau_b}{0.236}
+\defval{s9.FD003.tau_b_ci}{[\ensuremath{-0.269}, 0.442]}
+\defval{s9.FD003.tau_b_hi}{0.442}
+\defval{s9.FD003.tau_b_lo}{\ensuremath{-0.269}}
+\defval{s9.FD004.best_rmse}{13.52}
+\defval{s9.FD004.configs}{61}
+\defval{s9.FD004.families}{7}
+\defval{s9.FD004.tau_b}{0.128}
+\defval{s9.FD004.tau_b_ci}{[\ensuremath{-0.123}, 0.267]}
+\defval{s9.FD004.tau_b_hi}{0.267}
+\defval{s9.FD004.tau_b_lo}{\ensuremath{-0.123}}
+\defval{verdict.all.H1}{supported}
+\defval{verdict.all.H2}{inconclusive}
+\defval{verdict.all.H3}{rejected}
+\defval{x1.FD001.late_rmse_isotonic_tau_b}{0.384}
+\defval{x1.FD001.late_rmse_isotonic_tau_b_ci}{[\ensuremath{-0.135}, 0.480]}
+\defval{x1.FD001.late_rmse_isotonic_tau_b_hi}{0.480}
+\defval{x1.FD001.late_rmse_isotonic_tau_b_lo}{\ensuremath{-0.135}}
+\defval{x1.FD001.late_rmse_tau_b}{0.387}
+\defval{x1.FD001.late_rmse_tau_b_ci}{[\ensuremath{-0.121}, 0.490]}
+\defval{x1.FD001.late_rmse_tau_b_hi}{0.490}
+\defval{x1.FD001.late_rmse_tau_b_lo}{\ensuremath{-0.121}}
+\defval{x1.FD002.late_rmse_isotonic_tau_b}{0.080}
+\defval{x1.FD002.late_rmse_isotonic_tau_b_ci}{[\ensuremath{-0.276}, 0.389]}
+\defval{x1.FD002.late_rmse_isotonic_tau_b_hi}{0.389}
+\defval{x1.FD002.late_rmse_isotonic_tau_b_lo}{\ensuremath{-0.276}}
+\defval{x1.FD002.late_rmse_tau_b}{0.136}
+\defval{x1.FD002.late_rmse_tau_b_ci}{[\ensuremath{-0.206}, 0.417]}
+\defval{x1.FD002.late_rmse_tau_b_hi}{0.417}
+\defval{x1.FD002.late_rmse_tau_b_lo}{\ensuremath{-0.206}}
+\defval{x1.FD003.late_rmse_isotonic_tau_b}{\ensuremath{-0.057}}
+\defval{x1.FD003.late_rmse_isotonic_tau_b_ci}{[\ensuremath{-0.281}, 0.263]}
+\defval{x1.FD003.late_rmse_isotonic_tau_b_hi}{0.263}
+\defval{x1.FD003.late_rmse_isotonic_tau_b_lo}{\ensuremath{-0.281}}
+\defval{x1.FD003.late_rmse_tau_b}{\ensuremath{-0.002}}
+\defval{x1.FD003.late_rmse_tau_b_ci}{[\ensuremath{-0.260}, 0.284]}
+\defval{x1.FD003.late_rmse_tau_b_hi}{0.284}
+\defval{x1.FD003.late_rmse_tau_b_lo}{\ensuremath{-0.260}}
+\defval{x1.FD004.late_rmse_isotonic_tau_b}{\ensuremath{-0.091}}
+\defval{x1.FD004.late_rmse_isotonic_tau_b_ci}{[\ensuremath{-0.313}, 0.207]}
+\defval{x1.FD004.late_rmse_isotonic_tau_b_hi}{0.207}
+\defval{x1.FD004.late_rmse_isotonic_tau_b_lo}{\ensuremath{-0.313}}
+\defval{x1.FD004.late_rmse_tau_b}{\ensuremath{-0.086}}
+\defval{x1.FD004.late_rmse_tau_b_ci}{[\ensuremath{-0.303}, 0.196]}
+\defval{x1.FD004.late_rmse_tau_b_hi}{0.196}
+\defval{x1.FD004.late_rmse_tau_b_lo}{\ensuremath{-0.303}}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_decision_loss}{0.269}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_decision_loss_ci}{[\ensuremath{-0.157}, 0.387]}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_decision_loss_hi}{0.387}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_decision_loss_lo}{\ensuremath{-0.157}}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_leaderboard_rmse}{0.676}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_leaderboard_rmse_ci}{[0.501, 0.745]}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_leaderboard_rmse_hi}{0.745}
+\defval{x3.FD001.tau_legacy_booking_cost_vs_leaderboard_rmse_lo}{0.501}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_decision_loss}{0.063}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_decision_loss_ci}{[\ensuremath{-0.271}, 0.345]}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_decision_loss_hi}{0.345}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_decision_loss_lo}{\ensuremath{-0.271}}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_leaderboard_rmse}{0.781}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_leaderboard_rmse_ci}{[0.558, 0.803]}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_leaderboard_rmse_hi}{0.803}
+\defval{x3.FD002.tau_legacy_booking_cost_vs_leaderboard_rmse_lo}{0.558}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_decision_loss}{\ensuremath{-0.074}}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_decision_loss_ci}{[\ensuremath{-0.309}, 0.247]}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_decision_loss_hi}{0.247}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_decision_loss_lo}{\ensuremath{-0.309}}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_leaderboard_rmse}{0.724}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_leaderboard_rmse_ci}{[0.498, 0.788]}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_leaderboard_rmse_hi}{0.788}
+\defval{x3.FD003.tau_legacy_booking_cost_vs_leaderboard_rmse_lo}{0.498}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_decision_loss}{\ensuremath{-0.034}}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_decision_loss_ci}{[\ensuremath{-0.267}, 0.222]}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_decision_loss_hi}{0.222}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_decision_loss_lo}{\ensuremath{-0.267}}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_leaderboard_rmse}{0.772}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_leaderboard_rmse_ci}{[0.644, 0.834]}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_leaderboard_rmse_hi}{0.834}
+\defval{x3.FD004.tau_legacy_booking_cost_vs_leaderboard_rmse_lo}{0.644}

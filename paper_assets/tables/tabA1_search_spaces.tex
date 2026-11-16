@@ -1,0 +1,18 @@
+% configs/research_pool.yaml (make research-pool)
+% written by make paper-assets; do not edit
+\begin{tabular}{llrp{6cm}p{3cm}}
+\toprule
+family & inputs & n & search space & all configurations \\
+\midrule
+ridge & rolling features, scaled & 5 & alpha [0.1, 1.0, 10.0, 100.0, 1000.0] & -- \\
+k-NN & rolling features, scaled & 12 & n\_neighbors [5, 10, 20, 30, 50, 100]; weights ['uniform', 'distance'] & -- \\
+forest & rolling features & 12 & max\_features [0.1, 0.2, 0.3, 0.5]; min\_samples\_leaf [1, 5, 10, 20]; max\_depth [None, 12, 20] & n\_estimators 200, max\_samples 0.5 \\
+XGBoost & rolling features & 12 & max\_depth [3, 4, 5, 6, 8]; learning\_rate log-uniform [0.01, 0.1]; min\_child\_weight [1.0, 3.0, 5.0, 10.0, 20.0]; subsample uniform [0.6, 1]; colsample\_bytree uniform [0.3, 1]; reg\_lambda log-uniform [0.1, 10] & early\_stopping\_rounds 100 \\
+XGBoost (raw) & cycle and current readings & 12 & max\_depth [3, 4, 5, 6, 8]; learning\_rate log-uniform [0.01, 0.1]; min\_child\_weight [1.0, 3.0, 5.0, 10.0, 20.0]; subsample uniform [0.6, 1]; colsample\_bytree uniform [0.3, 1]; reg\_lambda log-uniform [0.1, 10] & early\_stopping\_rounds 100 \\
+MLP & rolling features, scaled & 12 & hidden [[64], [128, 64], [256, 128], [256, 128, 64]]; dropout [0.0, 0.1, 0.2]; lr log-uniform [0.0003, 0.003]; weight\_decay [0.0, 1e-05, 0.0001] & batch\_size 256 \\
+LSTM & windows & 12 & hidden [32, 64, 128]; layers [1, 2, 3]; dropout [0.1, 0.2, 0.3, 0.5]; lr log-uniform [0.0003, 0.003]; window [20, 30, 40] & batch\_size 256, weight\_decay 0.0001 \\
+TCN & windows & 12 & channels [32, 64, 128]; kernel\_size [2, 3, 5]; dilations [[1, 2, 4], [1, 2, 4, 8], [1, 2, 4, 8, 16]]; dropout [0.1, 0.2, 0.3]; lr log-uniform [0.0003, 0.003]; window [20, 30, 40] & batch\_size 256, weight\_decay 0.0001 \\
+CNN & windows & 12 & filters [10, 16, 32]; kernel\_size [5, 10, 15]; conv\_layers [3, 4, 5]; fc [50, 100, 200]; dropout [0.2, 0.5]; lr log-uniform [0.0003, 0.003]; window [20, 30, 40] & batch\_size 512, weight\_decay 0.0001 \\
+transformer & windows & 12 & d\_model [32, 64, 128]; heads [2, 4]; layers [1, 2, 3]; ff [64, 128, 256]; dropout [0.1, 0.2]; lr log-uniform [0.0003, 0.003]; window [20, 30, 40] & batch\_size 256, weight\_decay 0.0001 \\
+\bottomrule
+\end{tabular}

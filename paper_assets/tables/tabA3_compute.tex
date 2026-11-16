@@ -1,0 +1,54 @@
+% paper_assets/data/compute.csv (sidecars of every archive, wall_seconds) and reports/research/compute_estimate.csv (hours_r3)
+% written by make paper-assets; do not edit
+\begin{tabular}{lllrrr}
+\toprule
+family & stream & device & fits & summed fit hours & median s per fit \\
+\midrule
+\multicolumn{6}{l}{\textit{confirmatory}} \\
+CNN & gpu & cuda & 720 & 4.66 & 19.9 \\
+forest & cpu & cpu & 720 & 4.55 & 15.6 \\
+k-NN & cpu & cpu & 720 & 1.02 & 4.2 \\
+LSTM & gpu & cuda & 720 & 2.77 & 13.0 \\
+MLP & gpu & cuda & 720 & 1.81 & 8.3 \\
+ridge & cpu & cpu & 300 & 0.03 & 0.3 \\
+TCN & gpu & cuda & 720 & 5.17 & 23.9 \\
+transformer & gpu & cuda & 720 & 6.94 & 31.0 \\
+XGBoost & gpu & cuda & 720 & 0.72 & 3.0 \\
+XGBoost (raw) & gpu & cuda & 720 & 0.34 & 1.3 \\
+total &  &  & 6780 & 28.00 &  \\
+\midrule
+\multicolumn{6}{l}{\textit{S4 nested}} \\
+CNN & gpu & cuda & 40 & 0.16 & 12.4 \\
+forest & cpu & cpu & 40 & 0.16 & 14.8 \\
+k-NN & cpu & cpu & 40 & 0.02 & 1.5 \\
+LSTM & gpu & cuda & 40 & 0.08 & 7.0 \\
+MLP & gpu & cuda & 40 & 0.05 & 4.8 \\
+ridge & cpu & cpu & 40 & 0.00 & 0.4 \\
+TCN & gpu & cuda & 40 & 0.24 & 19.5 \\
+transformer & gpu & cuda & 40 & 0.19 & 15.5 \\
+XGBoost & gpu & cuda & 40 & 0.03 & 2.8 \\
+XGBoost (raw) & gpu & cuda & 40 & 0.01 & 1.0 \\
+total &  &  & 400 & 0.94 &  \\
+\midrule
+\multicolumn{6}{l}{\textit{S5 caps}} \\
+LSTM & gpu & cuda & 80 & 0.25 & 11.0 \\
+XGBoost & gpu & cuda & 80 & 0.06 & 2.5 \\
+total &  &  & 160 & 0.30 &  \\
+\midrule
+\multicolumn{6}{l}{\textit{N-CMAPSS}} \\
+CNN & gpu & cuda & 180 & 0.35 & 6.3 \\
+forest & cpu & cpu & 180 & 0.30 & 5.9 \\
+k-NN & cpu & cpu & 180 & 0.02 & 0.3 \\
+LSTM & gpu & cuda & 180 & 0.11 & 1.9 \\
+MLP & gpu & cuda & 180 & 0.16 & 2.9 \\
+ridge & cpu & cpu & 75 & 0.00 & 0.2 \\
+TCN & gpu & cuda & 180 & 0.45 & 8.2 \\
+transformer & gpu & cuda & 180 & 0.46 & 9.3 \\
+XGBoost & gpu & cuda & 180 & 0.24 & 3.2 \\
+XGBoost (raw) & gpu & cuda & 180 & 0.18 & 3.2 \\
+total &  &  & 1695 & 2.27 &  \\
+\midrule
+projected (dry run), cpu &  &  &  & 12.55 &  \\
+projected (dry run), gpu &  &  &  & 51.15 &  \\
+\bottomrule
+\end{tabular}

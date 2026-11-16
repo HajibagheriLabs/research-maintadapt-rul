@@ -1,0 +1,123 @@
+% configs/research_pool.yaml (make research-pool); configuration 0 of each family is its reference configuration
+% written by make paper-assets; do not edit
+\begin{longtable}{lp{10cm}l}
+\toprule
+configuration & parameters & hash \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+ridge-00 & alpha 1.0 & \texttt{48bf3ac658e3a84a} \\
+ridge-01 & alpha 0.1 & \texttt{d3ccf501b0076ff9} \\
+ridge-02 & alpha 10.0 & \texttt{4979b3f4e21b91b8} \\
+ridge-03 & alpha 100.0 & \texttt{a63fede2878d7c8a} \\
+ridge-04 & alpha 1000.0 & \texttt{33ed07f459c0582f} \\
+knn-00 & n\_neighbors 30, weights uniform & \texttt{58c886046c63fabf} \\
+knn-01 & n\_neighbors 5, weights uniform & \texttt{18c36a9d2f3a0f1f} \\
+knn-02 & n\_neighbors 5, weights distance & \texttt{68b13cf8870261fa} \\
+knn-03 & n\_neighbors 10, weights uniform & \texttt{615ef1668d870256} \\
+knn-04 & n\_neighbors 10, weights distance & \texttt{1166eb0d9aee367d} \\
+knn-05 & n\_neighbors 20, weights uniform & \texttt{801174ef955d760b} \\
+knn-06 & n\_neighbors 20, weights distance & \texttt{0b24aace6a690d03} \\
+knn-07 & n\_neighbors 30, weights distance & \texttt{070b05ef4669e6fc} \\
+knn-08 & n\_neighbors 50, weights uniform & \texttt{99298ee5a7624109} \\
+knn-09 & n\_neighbors 50, weights distance & \texttt{15f16bfcb9956abb} \\
+knn-10 & n\_neighbors 100, weights uniform & \texttt{c426f193aac165d4} \\
+knn-11 & n\_neighbors 100, weights distance & \texttt{b843d0c235edeef2} \\
+forest-00 & max\_features 0.3, min\_samples\_leaf 5, max\_depth None, n\_estimators 200, max\_samples 0.5 & \texttt{f3efff3ac1fda024} \\
+forest-01 & max\_features 0.2, min\_samples\_leaf 1, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{c17d8350b857ed9f} \\
+forest-02 & max\_features 0.2, min\_samples\_leaf 20, max\_depth None, n\_estimators 200, max\_samples 0.5 & \texttt{0539810da3dd382a} \\
+forest-03 & max\_features 0.3, min\_samples\_leaf 10, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{8812619404049607} \\
+forest-04 & max\_features 0.1, min\_samples\_leaf 20, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{6dd3fea6174ff2a7} \\
+forest-05 & max\_features 0.2, min\_samples\_leaf 5, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{177832237785b53d} \\
+forest-06 & max\_features 0.1, min\_samples\_leaf 1, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{26749dfe52f9dfaf} \\
+forest-07 & max\_features 0.5, min\_samples\_leaf 10, max\_depth 12, n\_estimators 200, max\_samples 0.5 & \texttt{fa5fb16eae1e9420} \\
+forest-08 & max\_features 0.5, min\_samples\_leaf 5, max\_depth 20, n\_estimators 200, max\_samples 0.5 & \texttt{9eae053d575d7160} \\
+forest-09 & max\_features 0.3, min\_samples\_leaf 5, max\_depth 20, n\_estimators 200, max\_samples 0.5 & \texttt{ff631f9a72972a72} \\
+forest-10 & max\_features 0.3, min\_samples\_leaf 1, max\_depth None, n\_estimators 200, max\_samples 0.5 & \texttt{d024aec255710a1b} \\
+forest-11 & max\_features 0.2, min\_samples\_leaf 10, max\_depth 20, n\_estimators 200, max\_samples 0.5 & \texttt{05880db0ce0e82d3} \\
+xgboost-00 & max\_depth 5, learning\_rate 0.03, min\_child\_weight 5.0, subsample 0.8, colsample\_bytree 0.6, reg\_lambda 1.0, n\_estimators 2000, early\_stopping\_rounds 100 & \texttt{4b45d8c260cc717b} \\
+xgboost-01 & max\_depth 5, learning\_rate 0.0103, min\_child\_weight 10.0, subsample 0.685, colsample\_bytree 0.403, reg\_lambda 2.15, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{c23c0accb57b073b} \\
+xgboost-02 & max\_depth 6, learning\_rate 0.0131, min\_child\_weight 10.0, subsample 0.68, colsample\_bytree 0.725, reg\_lambda 2.82, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{397a1b7140d06619} \\
+xgboost-03 & max\_depth 4, learning\_rate 0.0704, min\_child\_weight 20.0, subsample 0.957, colsample\_bytree 0.772, reg\_lambda 1.69, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{533172cdbcd0fa01} \\
+xgboost-04 & max\_depth 8, learning\_rate 0.0102, min\_child\_weight 10.0, subsample 0.886, colsample\_bytree 0.494, reg\_lambda 0.199, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{13a2fbed5f2fd590} \\
+xgboost-05 & max\_depth 3, learning\_rate 0.0471, min\_child\_weight 3.0, subsample 0.717, colsample\_bytree 0.798, reg\_lambda 1.28, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{b02198226cf163d1} \\
+xgboost-06 & max\_depth 6, learning\_rate 0.0157, min\_child\_weight 5.0, subsample 0.82, colsample\_bytree 0.541, reg\_lambda 0.126, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{114e5a77399e00d8} \\
+xgboost-07 & max\_depth 3, learning\_rate 0.0158, min\_child\_weight 20.0, subsample 0.823, colsample\_bytree 0.712, reg\_lambda 3.7, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{01bdfe5b6615e345} \\
+xgboost-08 & max\_depth 8, learning\_rate 0.0796, min\_child\_weight 10.0, subsample 0.61, colsample\_bytree 0.447, reg\_lambda 1.93, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{ae9637bcc277254d} \\
+xgboost-09 & max\_depth 8, learning\_rate 0.0683, min\_child\_weight 3.0, subsample 0.768, colsample\_bytree 0.707, reg\_lambda 1.29, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{5e0791e37d1ed70e} \\
+xgboost-10 & max\_depth 5, learning\_rate 0.032, min\_child\_weight 5.0, subsample 0.664, colsample\_bytree 0.765, reg\_lambda 6.68, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{2704b4451d2d7ab1} \\
+xgboost-11 & max\_depth 3, learning\_rate 0.0802, min\_child\_weight 3.0, subsample 0.8, colsample\_bytree 0.561, reg\_lambda 1.39, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{cf67d019cc7d5d26} \\
+xgboost\_raw-00 & max\_depth 5, learning\_rate 0.03, min\_child\_weight 5.0, subsample 0.8, colsample\_bytree 0.6, reg\_lambda 1.0, n\_estimators 2000, early\_stopping\_rounds 100 & \texttt{3126556037d3812c} \\
+xgboost\_raw-01 & max\_depth 4, learning\_rate 0.0111, min\_child\_weight 20.0, subsample 0.968, colsample\_bytree 0.854, reg\_lambda 1.05, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{b849fc2fa4751337} \\
+xgboost\_raw-02 & max\_depth 3, learning\_rate 0.0127, min\_child\_weight 20.0, subsample 0.621, colsample\_bytree 0.513, reg\_lambda 0.173, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{7111ed86574dc321} \\
+xgboost\_raw-03 & max\_depth 3, learning\_rate 0.0292, min\_child\_weight 20.0, subsample 0.971, colsample\_bytree 0.729, reg\_lambda 0.872, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{55a3184ebef0ae7e} \\
+xgboost\_raw-04 & max\_depth 3, learning\_rate 0.0618, min\_child\_weight 20.0, subsample 0.789, colsample\_bytree 0.503, reg\_lambda 1.08, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{90fbb802e8baee47} \\
+xgboost\_raw-05 & max\_depth 4, learning\_rate 0.014, min\_child\_weight 20.0, subsample 0.802, colsample\_bytree 0.429, reg\_lambda 4.39, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{eee750cda2ed9d25} \\
+xgboost\_raw-06 & max\_depth 6, learning\_rate 0.0577, min\_child\_weight 5.0, subsample 0.841, colsample\_bytree 0.712, reg\_lambda 0.109, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{8a8a778e38f8ac81} \\
+xgboost\_raw-07 & max\_depth 4, learning\_rate 0.0557, min\_child\_weight 10.0, subsample 0.834, colsample\_bytree 0.992, reg\_lambda 8.3, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{5e4c072e2b33b2ae} \\
+xgboost\_raw-08 & max\_depth 8, learning\_rate 0.0348, min\_child\_weight 5.0, subsample 0.806, colsample\_bytree 0.834, reg\_lambda 4.95, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{ed71b8aba8825edd} \\
+xgboost\_raw-09 & max\_depth 3, learning\_rate 0.0767, min\_child\_weight 3.0, subsample 0.865, colsample\_bytree 0.796, reg\_lambda 1.25, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{d5255d00c1b9ae9d} \\
+xgboost\_raw-10 & max\_depth 3, learning\_rate 0.0264, min\_child\_weight 20.0, subsample 0.705, colsample\_bytree 0.983, reg\_lambda 0.983, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{93bfb785eccf55cd} \\
+xgboost\_raw-11 & max\_depth 6, learning\_rate 0.0119, min\_child\_weight 10.0, subsample 0.719, colsample\_bytree 0.449, reg\_lambda 0.159, n\_estimators 3000, early\_stopping\_rounds 100 & \texttt{9c2dc1ac8fe28e06} \\
+mlp-00 & hidden [128, 64], dropout 0.1, lr 0.001, weight\_decay 0.0001, batch\_size 256 & \texttt{96b28cb025ea1697} \\
+mlp-01 & hidden [64], dropout 0.0, lr 0.000374, weight\_decay 0.0, batch\_size 256 & \texttt{5ce34493e58fa53b} \\
+mlp-02 & hidden [128, 64], dropout 0.0, lr 0.000451, weight\_decay 0.0, batch\_size 256 & \texttt{5396b173263a0b86} \\
+mlp-03 & hidden [256, 128, 64], dropout 0.0, lr 0.000434, weight\_decay 0.0, batch\_size 256 & \texttt{dcc9873f5a2e4839} \\
+mlp-04 & hidden [64], dropout 0.1, lr 0.00198, weight\_decay 1e-05, batch\_size 256 & \texttt{39fdf07322b79615} \\
+mlp-05 & hidden [256, 128], dropout 0.0, lr 0.000558, weight\_decay 0.0, batch\_size 256 & \texttt{2239884787c1b2bf} \\
+mlp-06 & hidden [256, 128, 64], dropout 0.0, lr 0.00255, weight\_decay 0.0, batch\_size 256 & \texttt{709c5efc392f1f5c} \\
+mlp-07 & hidden [64], dropout 0.0, lr 0.000329, weight\_decay 0.0, batch\_size 256 & \texttt{e49fb47d2908304e} \\
+mlp-08 & hidden [256, 128, 64], dropout 0.2, lr 0.00212, weight\_decay 0.0001, batch\_size 256 & \texttt{96c6ecff193e07aa} \\
+mlp-09 & hidden [64], dropout 0.1, lr 0.00262, weight\_decay 0.0, batch\_size 256 & \texttt{9c2f9baf41399400} \\
+mlp-10 & hidden [256, 128], dropout 0.1, lr 0.000391, weight\_decay 1e-05, batch\_size 256 & \texttt{0ca24a006e143928} \\
+mlp-11 & hidden [128, 64], dropout 0.1, lr 0.00212, weight\_decay 0.0, batch\_size 256 & \texttt{b0c3553dc6cee3a8} \\
+lstm-00 & hidden 64, layers 2, dropout 0.2, lr 0.001, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{771d0eb7b86a3b22} \\
+lstm-01 & hidden 32, layers 1, dropout 0.5, lr 0.000646, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{786954ac2ef74c76} \\
+lstm-02 & hidden 32, layers 1, dropout 0.5, lr 0.00252, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{5426f67628415076} \\
+lstm-03 & hidden 128, layers 3, dropout 0.5, lr 0.00174, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{705f05b1358f809d} \\
+lstm-04 & hidden 64, layers 2, dropout 0.3, lr 0.000913, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{e863963c0f88e27f} \\
+lstm-05 & hidden 32, layers 1, dropout 0.1, lr 0.0012, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{101aca3090ded0b6} \\
+lstm-06 & hidden 32, layers 2, dropout 0.2, lr 0.000797, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{5b8db9feb625ff12} \\
+lstm-07 & hidden 64, layers 2, dropout 0.3, lr 0.00053, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{727a20f9ef353f0d} \\
+lstm-08 & hidden 64, layers 3, dropout 0.3, lr 0.000324, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{3880906618a6220d} \\
+lstm-09 & hidden 128, layers 2, dropout 0.3, lr 0.000779, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{7e1f81a64b1fa384} \\
+lstm-10 & hidden 32, layers 3, dropout 0.5, lr 0.00226, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{8ab3598456e889dd} \\
+lstm-11 & hidden 64, layers 3, dropout 0.3, lr 0.000589, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{4f12daa452bd949d} \\
+tcn-00 & channels 64, kernel\_size 3, dilations [1, 2, 4, 8], dropout 0.2, lr 0.001, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{3fe4c8dbb2045f46} \\
+tcn-01 & channels 64, kernel\_size 5, dilations [1, 2, 4], dropout 0.1, lr 0.00208, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{16ade50af891beb3} \\
+tcn-02 & channels 64, kernel\_size 5, dilations [1, 2, 4], dropout 0.3, lr 0.000734, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{541666b7d44f79fb} \\
+tcn-03 & channels 128, kernel\_size 3, dilations [1, 2, 4], dropout 0.1, lr 0.00191, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{fb27fc7e7c151d6f} \\
+tcn-04 & channels 128, kernel\_size 5, dilations [1, 2, 4, 8], dropout 0.2, lr 0.000357, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{5e4e66aa69d05d51} \\
+tcn-05 & channels 64, kernel\_size 5, dilations [1, 2, 4, 8, 16], dropout 0.1, lr 0.000376, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{3071f9ea8e361e66} \\
+tcn-06 & channels 32, kernel\_size 2, dilations [1, 2, 4, 8, 16], dropout 0.2, lr 0.00148, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{06735b17a10b1bc4} \\
+tcn-07 & channels 32, kernel\_size 3, dilations [1, 2, 4, 8], dropout 0.3, lr 0.00132, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{1a5085b72aa131db} \\
+tcn-08 & channels 32, kernel\_size 3, dilations [1, 2, 4, 8], dropout 0.3, lr 0.00104, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{f3a1bfbab5404f34} \\
+tcn-09 & channels 128, kernel\_size 3, dilations [1, 2, 4, 8], dropout 0.2, lr 0.000731, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{56eb8caee7a8770b} \\
+tcn-10 & channels 128, kernel\_size 3, dilations [1, 2, 4], dropout 0.1, lr 0.00185, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{823a1f0414f5d07d} \\
+tcn-11 & channels 64, kernel\_size 5, dilations [1, 2, 4, 8], dropout 0.3, lr 0.00101, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{170203109f9b8821} \\
+cnn-00 & filters 10, kernel\_size 10, conv\_layers 4, fc 100, dropout 0.5, lr 0.001, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{e80d2821243bfddf} \\
+cnn-01 & filters 16, kernel\_size 10, conv\_layers 3, fc 200, dropout 0.5, lr 0.00105, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{f063a568e63a7b03} \\
+cnn-02 & filters 16, kernel\_size 15, conv\_layers 3, fc 100, dropout 0.5, lr 0.000617, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{57ed599ba8ec034f} \\
+cnn-03 & filters 32, kernel\_size 5, conv\_layers 3, fc 50, dropout 0.5, lr 0.0014, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{53aa2591a5058fb9} \\
+cnn-04 & filters 10, kernel\_size 5, conv\_layers 5, fc 200, dropout 0.2, lr 0.00202, window 40, batch\_size 512, weight\_decay 0.0001 & \texttt{ddac395916e11146} \\
+cnn-05 & filters 32, kernel\_size 5, conv\_layers 3, fc 100, dropout 0.5, lr 0.00152, window 40, batch\_size 512, weight\_decay 0.0001 & \texttt{5d987fe03d011a70} \\
+cnn-06 & filters 16, kernel\_size 5, conv\_layers 5, fc 100, dropout 0.5, lr 0.0004, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{7df3cdf17780dfc2} \\
+cnn-07 & filters 10, kernel\_size 5, conv\_layers 3, fc 100, dropout 0.2, lr 0.00089, window 20, batch\_size 512, weight\_decay 0.0001 & \texttt{a8b2b098294979ae} \\
+cnn-08 & filters 10, kernel\_size 5, conv\_layers 5, fc 200, dropout 0.5, lr 0.00267, window 40, batch\_size 512, weight\_decay 0.0001 & \texttt{b32d0f4df84decec} \\
+cnn-09 & filters 32, kernel\_size 5, conv\_layers 5, fc 100, dropout 0.5, lr 0.00239, window 20, batch\_size 512, weight\_decay 0.0001 & \texttt{68bf32d9fb2e9817} \\
+cnn-10 & filters 32, kernel\_size 5, conv\_layers 5, fc 50, dropout 0.5, lr 0.00179, window 40, batch\_size 512, weight\_decay 0.0001 & \texttt{f2b2b01c734e90ba} \\
+cnn-11 & filters 16, kernel\_size 15, conv\_layers 3, fc 200, dropout 0.2, lr 0.000785, window 30, batch\_size 512, weight\_decay 0.0001 & \texttt{c7037c1b4d99b520} \\
+transformer-00 & d\_model 64, heads 4, layers 2, ff 128, dropout 0.1, lr 0.001, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{e6387cace8cd67c7} \\
+transformer-01 & d\_model 64, heads 4, layers 1, ff 256, dropout 0.2, lr 0.000842, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{f3499b33277ba33f} \\
+transformer-02 & d\_model 128, heads 4, layers 1, ff 256, dropout 0.1, lr 0.000327, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{be78c3b8f55efa3b} \\
+transformer-03 & d\_model 64, heads 2, layers 3, ff 256, dropout 0.2, lr 0.0019, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{398831df4f3c8b32} \\
+transformer-04 & d\_model 32, heads 2, layers 2, ff 128, dropout 0.1, lr 0.000925, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{b63d48c9369c8f9a} \\
+transformer-05 & d\_model 128, heads 2, layers 1, ff 256, dropout 0.2, lr 0.000338, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{ed492cc012681ebd} \\
+transformer-06 & d\_model 32, heads 4, layers 2, ff 256, dropout 0.2, lr 0.000318, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{57ce12671273d025} \\
+transformer-07 & d\_model 64, heads 2, layers 1, ff 256, dropout 0.1, lr 0.000664, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{21319f27e00cddd7} \\
+transformer-08 & d\_model 128, heads 4, layers 1, ff 128, dropout 0.1, lr 0.000498, window 40, batch\_size 256, weight\_decay 0.0001 & \texttt{00e84232656dc2cb} \\
+transformer-09 & d\_model 128, heads 4, layers 2, ff 64, dropout 0.1, lr 0.000831, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{6ac996c49cb7ff05} \\
+transformer-10 & d\_model 32, heads 4, layers 2, ff 64, dropout 0.1, lr 0.00145, window 30, batch\_size 256, weight\_decay 0.0001 & \texttt{5905007f39afad4b} \\
+transformer-11 & d\_model 128, heads 4, layers 1, ff 256, dropout 0.1, lr 0.00247, window 20, batch\_size 256, weight\_decay 0.0001 & \texttt{04689ff63164b0ee} \\
+\end{longtable}
