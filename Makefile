@@ -54,9 +54,10 @@ Targets (variables in brackets):
   research-ncmapss-report  N-CMAPSS E1-E3, secondary and descriptive; reports/research/ncmapss [RESEARCH_CONFIG, ROOT]
   paper-assets         figures, tables, numbers.tex and RESULTS_DIGEST.md into paper_assets [RESEARCH_CONFIG]
   paper-check          recompute E1-E3 of every fleet from the archives with independent code [RESEARCH_CONFIG]
+  research-package     prediction archives, folds, pool and manifest as one file in dist/ with checksums [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report paper-assets paper-check
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report paper-assets paper-check research-package
 
 help:
 	$(info $(HELP))
@@ -182,3 +183,6 @@ paper-assets:
 
 paper-check:
 	$(PY) scripts/research/check_numbers.py --config $(RESEARCH_CONFIG)
+
+research-package:
+	$(PY) scripts/research/package_archive.py --config $(RESEARCH_CONFIG)

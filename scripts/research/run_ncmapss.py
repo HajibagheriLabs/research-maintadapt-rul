@@ -22,7 +22,7 @@ from maintadapt.research.secondary import pool_order
 def status(archive: str, primary: bool) -> str:
     text = (
         "SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), "
-        "descriptive; not confirmatory"
+        "descriptive; not confirmatory; affected by the deviations in DEVIATIONS.md"
     )
     return text if primary else f"{text}; pipeline check on {archive}"
 

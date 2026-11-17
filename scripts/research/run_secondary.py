@@ -108,7 +108,6 @@ class Fleet:
         self.cfg, self.fleet, self.source = cfg, fleet, derived / fleet
         tables = read_tables(self.source)
         self.parts = split_by_setting(tables.pop("outcomes"))
-        # every use takes the outcomes of one setting from parts
         self.tables = tables
         self.configs = pool_order(
             list(outcomes_at(self.parts, cfg.decision.primary)["config_id"].unique())

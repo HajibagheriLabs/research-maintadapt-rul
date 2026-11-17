@@ -25,6 +25,57 @@ test engines rests on an extrapolation of truncated histories, and the ± values
 only. Details and the recomputed numbers, each with its source file, are in
 [docs/legacy/ERRATA.md](docs/legacy/ERRATA.md).
 
+## Research protocol
+
+A summary of the design, each choice with the section of [PREREGISTRATION.md](PREREGISTRATION.md)
+that fixes it; the entries below this one record how each was implemented and the details the
+pre-registration left open. Departures from it are listed in [DEVIATIONS.md](DEVIATIONS.md).
+- **Two estimands kept apart (sections 5.1, 5.2).** Leaderboard metrics are computed the way RUL
+  papers compute them, on the official test engines at their last observed cycle against truth
+  capped at 125. Maintenance value is computed only on complete run-to-failure trajectories
+  predicted out of fold, because a truncated test engine stops before it fails, so no alarm
+  policy can be run on it to the end of its life.
+- **Data and integrity (section 3).** C-MAPSS FD001-FD004 as published, checked against
+  `docs/research/data_manifest.json`, whose SHA-256 the pre-registration quotes.
+- **Folds (section 4.1).** Five outer folds over each fleet's training engines, stratified by
+  lifetime, and 25% inner_val engines in each outer-train set; `configs/research_folds.json` is
+  committed and hashed, so the partition can be checked and never drifts.
+- **Repeats (section 4.4).** R = 3, set by the registered compute rule from the dry run; repeats
+  are averaged, not treated as samples (section 6).
+- **Preparation fitted on inner_fit only (section 4.2).** Regimes, sensor screening and z-scores
+  never see an engine they will predict; the target is RUL capped at 125.
+- **Model pool (section 4.3).** Ten families and 113 configurations drawn before any fit, with
+  configuration 0 of each family as its reference; `configs/research_pool.yaml` is committed and
+  hashed. A pool rather than a single model per family is what makes a rank correlation across
+  models meaningful.
+- **Seeds and stored predictions (sections 4.3, 4.5).** Every fit has a seed derived from fleet,
+  repeat, fold and configuration, and stores a prediction for every cycle of its inner_val,
+  outer_test and official test engines, so that every metric is recomputed from one archive.
+- **Decision model (section 5.2).** An alarm at the first cycle whose score is at or below a
+  threshold, maintenance L cycles later, cost 1 for preventive maintenance and K for a failure,
+  and the renewal-reward cost rate. S scales it between age replacement tuned on outer-train
+  lifetimes (0) and perfect prognostics (1); D = 1 - S.
+- **Rules and tuning (sections 5.3, 5.4).** R1 alarms on the point prediction and R2 on its
+  causal EMA. Thresholds are inverted-CDF quantiles of the pooled tuning scores, so tuning is
+  invariant to strictly increasing transforms of the predictions; ties go to the median
+  minimiser. The primary tuning uses the fold's inner_val engines only.
+- **Settings (section 5.5).** K in {1.5, 2, 3, 5, 10, 20, 50} and L in {0, 10, 20}; the primary
+  setting K = 10, L = 10, R1, validation-tuned thresholds was fixed before any result.
+- **Maintenance value of a configuration (section 5.6).** Outcomes pooled over the five outer
+  folds of a repeat, then averaged over repeats.
+- **Proxies and validation metrics (sections 5.7, 5.8).** Jitter and late-phase errors on the
+  official test engines; validation RMSE and validation cost on inner_val engines for selection.
+- **Endpoints and verdict rules (section 6).** E1, E2 and E3 per fleet with 2,000 engine-bootstrap
+  replicates (training engines drawn once per fleet, official test engines independently) and
+  percentile intervals; the verdicts on H1-H3 follow rules written before the results.
+- **Secondary and N-CMAPSS analyses (sections 7, 8).** S1-S9 and the N-CMAPSS replication are
+  reported as secondary; anything else is labelled exploratory.
+- **Failures and stopping (section 9).** One retry with seed + 1000, then exclusion of the
+  configuration from that fleet; no test or decision metric before the analysis code was tagged
+  `analysis-frozen`.
+- **Deviations, software and hardware (sections 10, 11).** Every change after `prereg-v1` goes to
+  DEVIATIONS.md; package versions and hardware are stored with every fit.
+
 ## Model registry
 
 **One interface.** `fit(family, params, fold_data, seed, device, training)` in
@@ -280,7 +331,8 @@ booking evaluation (`configs/default.yaml`: thresholds 0-125, failure cost 100 c
 time) on the truncated official test engines and compares it with the trajectory evaluation at
 the same failure cost.
 
-None of this changes PREREGISTRATION.md, so DEVIATIONS.md stays empty.
+None of this changes a registered choice; the deviations that do exist concern N-CMAPSS and
+the description of the hardware, and are listed in DEVIATIONS.md.
 
 ## N-CMAPSS
 

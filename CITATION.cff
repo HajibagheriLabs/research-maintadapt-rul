@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or its prediction archive, please cite it as below, and cite the
+  pre-registration for the study design.
+type: software
+title: "Research-MaintAdapt-RUL: do remaining-useful-life leaderboards predict maintenance value?"
+abstract: >-
+  Companion repository of a pre-registered study that tests whether the accuracy metrics
+  remaining-useful-life papers rank models by (RMSE and NASA score at the last observed cycle of
+  the official C-MAPSS test engines) predict the maintenance value of the same models when their
+  predictions drive a tuned maintenance alarm. It holds the cross-fitting pipeline, the decision
+  layer, the confirmatory, secondary and exploratory analyses, the paper assets and an
+  independent recomputation of the primary endpoints.
+authors:
+  - family-names: Hajibagheri
+    given-names: Hadi
+    affiliation: Independent Researcher
+    orcid: "https://orcid.org/0009-0002-5404-911X"
+repository-code: "https://github.com/HajibagheriLabs/research-maintadapt-rul"
+license: MIT
+doi: "10.5281/zenodo.ZENODO-DOI-PLACEHOLDER"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.ZENODO-DOI-PLACEHOLDER"
+    description: Prediction archive (CC BY 4.0)
+  - type: doi
+    value: "10.17605/OSF.IO/MH9ZY"
+    description: Pre-registration on OSF
+keywords:
+  - remaining useful life
+  - predictive maintenance
+  - C-MAPSS
+  - N-CMAPSS
+  - model selection
+  - pre-registration

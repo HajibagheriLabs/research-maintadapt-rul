@@ -185,6 +185,13 @@ and N-CMAPSS from the archives, the fold files and the pool with
 `src/maintadapt/research/recheck.py`, which imports nothing from maintadapt. It fails on any
 difference above 1e-9 from the reports or from the macros of `numbers.tex`.
 
+`make research-package` writes `dist/research-maintadapt-rul-predictions.tar.gz`: the
+confirmatory archive, the archives of the nested, training-cap and N-CMAPSS fits, the fold files,
+the pool and the data manifest, with `README_ARCHIVE.md`, `LICENSE_ARCHIVE.md` (CC BY 4.0) and a
+SHA-256 for every file inside, plus `dist/<file>.sha256` and a copy of `README_ARCHIVE.md` beside
+it. The tarball carries no times or owners, so packaging the same files twice gives the same
+bytes. `dist/` is not committed; the file goes to Zenodo.
+
 ## Smoke test, dry run and leaderboard
 
 - `make research-smoke`: FD001, repeat 0, all five folds, configuration 0 of every family and the

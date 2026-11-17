@@ -1701,7 +1701,9 @@ def table_pool(cfg: ResearchConfig, out: Path) -> None:
 
 def table_compute(compute: pd.DataFrame, out: Path) -> None:
     estimate_csv = read("reports/research/compute_estimate.csv")
-    projected = estimate_csv.groupby("stream")["hours_r3"].sum()
+    # the file's own totals: rows with fleet "all"
+    totals = estimate_csv[estimate_csv["fleet"] == "all"]
+    projected = totals.set_index("stream")["hours_r3"]
     rows = []
     for archive, g in compute.groupby("archive", sort=False):
         rows.append(f"\\multicolumn{{6}}{{l}}{{\\textit{{{tex(archive)}}}}} \\\\")
@@ -1745,14 +1747,23 @@ def table_compute(compute: pd.DataFrame, out: Path) -> None:
     )
 
 
+def markdown_cell(text: str) -> str:
+    """A Markdown table cell as LaTeX: escaped text, `code` in typewriter."""
+    parts = text.split("`")
+    return "".join(
+        f"\\texttt{{{tex(part)}}}" if i % 2 else tex(part)
+        for i, part in enumerate(parts)
+    )
+
+
 def table_deviations(out: Path) -> None:
     text = Path("DEVIATIONS.md").read_text(encoding="utf-8")
+    table = [line for line in text.splitlines() if line.startswith("|")]
+    # the first two lines are the header and its rule
     entries = [
-        [c.strip() for c in line.strip().strip("|").split("|")]
-        for line in text.splitlines()
-        if line.startswith("|") and not line.startswith("|---") and "date" not in line
+        [c.strip() for c in line.strip().strip("|").split("|")] for line in table[2:]
     ]
-    rows = [[tex(c) for c in e] for e in entries] or [
+    rows = [[markdown_cell(c) for c in e] for e in entries] or [
         "\\multicolumn{5}{l}{none recorded in DEVIATIONS.md} \\\\"
     ]
     write(

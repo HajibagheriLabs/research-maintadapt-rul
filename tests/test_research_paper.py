@@ -137,3 +137,42 @@ def test_tables_escape_text_and_use_booktabs_rules() -> None:
         r"\bottomrule",
     ]
     assert "1 & 2 \\\\" in lines
+
+
+def _package_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "package_archive", ROOT / "scripts/research/package_archive.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_the_package_is_byte_reproducible_and_its_checksums_hold(tmp_path) -> None:
+    import hashlib
+    import tarfile
+
+    package = _package_module()
+    source = tmp_path / "fit.json"
+    source.write_text('{"status": "ok"}', encoding="utf-8")
+    files = {"archive/FD001/x/x-00/r0_f0.json": source}
+    sums = package.checksums([("a/b.json", "ff"), ("a/a.json", "00")])
+    assert sums == "00  a/a.json\nff  a/b.json\n"
+    extra = {
+        "SHA256SUMS": package.checksums(
+            [(n, package.sha256(p)) for n, p in files.items()]
+        ).encode()
+    }
+    first, second = tmp_path / "one.tar.gz", tmp_path / "two.tar.gz"
+    package.write_package(first, "pkg", files, extra)
+    package.write_package(second, "pkg", files, extra)
+    assert first.read_bytes() == second.read_bytes()
+    with tarfile.open(first) as tar:
+        names = tar.getnames()
+        data = tar.extractfile("pkg/archive/FD001/x/x-00/r0_f0.json").read()
+        listed = tar.extractfile("pkg/SHA256SUMS").read().decode()
+    assert names == ["pkg/SHA256SUMS", "pkg/archive/FD001/x/x-00/r0_f0.json"]
+    assert listed.split()[0] == hashlib.sha256(data).hexdigest()
+    assert package.fit_counts(files) == {"archive": {"ok": 1}}
