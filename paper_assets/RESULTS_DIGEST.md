@@ -1,6 +1,6 @@
 # Results digest
 
-Facts only. Every number below is a macro of `paper_assets/numbers.tex` (`\val{<analysis>.<fleet>.<quantity>}`), with its source file, column and the command that wrote the source. Intervals are percentile 95% bootstrap intervals; `_lo`, `_hi` and `_ci` macros exist for every number shown with one. Confirmatory numbers are `e1`, `e2`, `e3` and `verdict` on FD001-FD004; `s*` are pre-registered secondary analyses, NCMAPSS is secondary analysis S8 (descriptive), `x*` are exploratory, and `f1`, `f5`, `data` and `compute` are computed by `make paper-assets`. Written by make paper-assets at commit c520d0350eaaa8f5ca7abe7fdbb243b2d41714c9+dirty.
+Facts only. Every number below is a macro of `paper_assets/numbers.tex` (`\val{<analysis>.<fleet>.<quantity>}`), with its source file, column and the command that wrote the source. Intervals are percentile 95% bootstrap intervals; `_lo`, `_hi` and `_ci` macros exist for every number shown with one. Confirmatory numbers are `e1`, `e2`, `e3` and `verdict` on FD001-FD004; `s*` are pre-registered secondary analyses, NCMAPSS is secondary analysis S8 (descriptive), `x*` are exploratory, and `f1`, `f5`, `data` and `compute` are computed by `make paper-assets`. Written by make paper-assets at commit 867f2e4a6a051ce293e5d2e7f77bac818b4438c8+dirty.
 
 Definitions of the numbers computed here:
 

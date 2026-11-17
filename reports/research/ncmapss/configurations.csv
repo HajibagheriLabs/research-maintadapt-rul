@@ -1,4 +1,4 @@
-# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory; affected by the deviations in DEVIATIONS.md
 config_id,leaderboard_rmse,jitter,savings_share,decision_loss,fleet
 ridge-00,6.8902319812795465,1.2745313727567025,0.023717848754046367,0.9762821512459536,NCMAPSS
 ridge-01,7.0749578746494155,1.4010817754104148,-0.09273797168302056,1.0927379716830206,NCMAPSS

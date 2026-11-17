@@ -1,10 +1,10 @@
 # N-CMAPSS: E1-E3 (secondary, descriptive)
 
-**SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory.**
+**SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory; affected by the deviations in DEVIATIONS.md.**
 
 99 units pooled from the readable sub-datasets (`reports/research/ncmapss/inspection.md`), cap 50, 113 configurations. Primary setting: K = 10, L = 10 flights, rule R1, validation-tuned thresholds. Leaderboard RMSE is the RMSE over every flight of a fit's outer_test units against the capped truth, averaged over fits; jitter uses the same units. 2,000 bootstrap replicates draw the units once for D and the accuracy metrics alike; percentile 95% intervals (DECISIONS.md, N-CMAPSS).
 
-Sources: `runs/research/derived/archive_ncmapss/NCMAPSS/` (make research-ncmapss-derived); written by make research-ncmapss-report at commit ec69fec0f5e44194ad06d700039233631c39a491.
+Sources: `runs/research/derived/archive_ncmapss/NCMAPSS/` (make research-ncmapss-derived); written by make research-ncmapss-report at commit 867f2e4a6a051ce293e5d2e7f77bac818b4438c8+dirty.
 
 | endpoint | estimate [95% interval] |
 |---|---|

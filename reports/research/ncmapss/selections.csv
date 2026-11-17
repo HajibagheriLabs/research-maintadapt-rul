@@ -1,4 +1,4 @@
-# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory
+# SECONDARY S8: N-CMAPSS replication of E1-E3 (PREREGISTRATION.md section 8), descriptive; not confirmatory; affected by the deviations in DEVIATIONS.md
 repeat_index,fold,by_validation_cost,by_validation_rmse
 0,0,xgboost_raw-08,mlp-09
 0,1,xgboost_raw-06,transformer-10
