@@ -55,9 +55,11 @@ Targets (variables in brackets):
   paper-assets         figures, tables, numbers.tex and RESULTS_DIGEST.md into paper_assets [RESEARCH_CONFIG]
   paper-check          recompute E1-E3 of every fleet from the archives with independent code [RESEARCH_CONFIG]
   research-package     prediction archives, folds, pool and manifest as one file in dist/ with checksums [RESEARCH_CONFIG]
+  paper2-smoke         paper 2: the probabilistic families on FD001, repeat 0, fold 0, 3 epochs, into runs/research/smoke_prob [RESEARCH_CONFIG]
+  paper2-prob          paper 2: the probabilistic families in every (fleet, repeat, fold) into runs/research/archive_prob; resumable [RESEARCH_CONFIG]
 endef
 
-.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report paper-assets paper-check research-package
+.PHONY: help setup test lint format data legacy-train legacy-eval legacy-report research-data research-pool research-smoke research-dryrun research-crossfit research-leaderboard research-progress research-validate research-outcomes research-metrics research-sanity research-confirmatory research-nested research-caps research-extra-estimate research-extra-validate research-secondary research-exploratory research-ncmapss-inspect research-ncmapss-data research-ncmapss-smoke research-ncmapss-dryrun research-ncmapss research-ncmapss-validate research-ncmapss-derived research-ncmapss-report paper-assets paper-check research-package paper2-smoke paper2-prob
 
 help:
 	$(info $(HELP))
@@ -186,3 +188,9 @@ paper-check:
 
 research-package:
 	$(PY) scripts/research/package_archive.py --config $(RESEARCH_CONFIG)
+
+paper2-smoke:
+	$(PY) scripts/research/run_probabilistic.py --config $(RESEARCH_CONFIG) --smoke
+
+paper2-prob:
+	$(PY) scripts/research/run_probabilistic.py --config $(RESEARCH_CONFIG)

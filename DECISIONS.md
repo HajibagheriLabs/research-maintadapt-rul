@@ -408,6 +408,90 @@ the ends of T one unit at a time:
   (`runs/research/derived/archive_ncmapss/NCMAPSS/excluded.csv`). E1-E3 are in
   `reports/research/ncmapss/results.md` (`make research-ncmapss-report`).
 
+## Paper 2 (branch paper-2): calibrated distributions and a plug-in rule
+
+Everything in this section belongs to a second study, drafted in
+[PREREGISTRATION_2.md](PREREGISTRATION_2.md) and not yet registered. None of it reads or changes
+the confirmatory archive, the frozen analysis code or any output of the first study.
+
+**Calibration (`src/maintadapt/uncertainty.py`).** The legacy functions stay. The new ones fix
+the cause of the legacy failure (docs/legacy/ERRATA.md, a): conformal scores computed on every
+validation cycle, most of them at the cap where a clipped interval covers trivially.
+- *Truncation-matched points.* Calibration engines are scored at cycles drawn uniformly from
+  1..T with replacement (`cut_points`), the way the official test engines are cut, instead of
+  at every cycle.
+- *Equal weight per engine.* Every engine carries the same total weight, shared by its points
+  (`engine_weights`), so long engines do not dominate. The finite-sample correction
+  level x (1 + 1/E) counts the E calibration engines, the exchangeable unit, not the points
+  (`conformal_level`); with one point per engine `matched_margin` equals the legacy
+  split-conformal margin, which a test checks.
+- *Mondrian by predicted-RUL bin.* One margin per bin of the prediction, which is known at test
+  time; a bin with fewer than a set number of engines takes the pooled margin
+  (`mondrian_margins`).
+- *Conformalised quantile regression.* `matched_margin` on quantile-regression bounds is CQR
+  (Romano, Patterson and Candès, 2019). For the whole distribution, `quantile_shifts`
+  calibrates every stored quantile one-sidedly with the same weights; sorting each row after the
+  shift keeps the quantile function monotone.
+- *Coverage by true RUL.* `coverage_by_true_rul` reports coverage and width in bins of the true
+  RUL and for the late phase (true RUL <= 50), where decisions are made.
+
+**Probabilistic families (`src/maintadapt/research/probabilistic.py`).** Each is built on a
+configuration of the frozen pool, so its point model is known: `xgboost_quantile` is the legacy
+quantile XGBoost (one booster for all levels) on the settings of xgboost-00; `mc_dropout` is
+cnn-00 sampled 100 times with dropout on; `ensemble` is five fits of cnn-00 with seeds
+derived from the fit's seed, read as a normal distribution with the members' mean and standard
+deviation (the members are stored too). MC dropout and the ensemble share one architecture, so
+they differ only in how they express uncertainty. Every family stores the same 26 levels, dense
+in the lower tail (0.001, 0.0025, 0.005, 0.01, 0.025, 0.05 to 0.95 in steps of 0.05, 0.975,
+0.99), as float32 columns `q0010` ... `q9900` beside the usual archive columns; quantiles are
+clipped to [0, cap] and sorted per row. `make paper2-prob` fits them into
+`runs/research/archive_prob`, resumable; `make paper2-smoke` checks the pipeline on FD001,
+repeat 0, fold 0 with 3 epochs in about a minute and a quarter.
+
+**Rule R3** (`src/maintadapt/research/prob_rules.py`) is rule R1 applied to a lower quantile
+instead of the point prediction: the same 401 inverted-CDF candidates and median tie rule, tuned
+on complete trajectories. It inherits R1's invariance to strictly increasing transforms.
+
+**Paper 2: the plug-in probability of rule R4.** R4 alarms at the first cycle t with
+P(RUL_t <= L) >= p*, where the probability is read from the stored quantiles and p* comes from
+the cost model, with no threshold tuned. The derivation:
+1. *Renewal reward.* A policy reaches the lowest long-run cost rate g* exactly when it minimises
+   E[cost] - g* E[cycles used] per engine (Dinkelbach's argument), so every decision trades
+   expected cost against cycles at a price of g* per cycle.
+2. *Alarm now or one cycle later.* Alarming at t puts maintenance at t + L, and the engine fails
+   first if RUL_t < L. Alarming at t + 1 fails if RUL_t < L + 1. The two differ only when
+   RUL_t = L, where waiting turns a preventive action (cost 1) into a failure (cost K) over the
+   same cycles, and when RUL_t > L, where waiting uses one more cycle. Waiting therefore changes
+   E[cost] - g* E[cycles] by (K - 1) P(RUL_t = L) - g* P(RUL_t > L).
+3. *One-step look-ahead.* Alarm at the first t where waiting does not pay:
+   (K - 1) P(RUL_t = L) >= g* P(RUL_t > L). The one-step look-ahead rule is optimal when the
+   stopping problem is monotone, which holds when the failure rate rises as the engine wears;
+   otherwise it is a heuristic.
+4. *Plug-in approximations.* (a) P(RUL_t > L) is set to 1; near the alarm P(RUL_t <= L) is of
+   the order of p*, a few per cent or less. (b) The stored quantiles cannot resolve the single
+   value P(RUL_t = L), so it is replaced by the average mass over 0..L, P(RUL_t <= L) / (L + 1).
+   (c) g*, which needs the optimal policy, is replaced by the cost rate of perfect prognostics,
+   CR* = N / sum of T = 1 / mean life, on the outer-train lifetimes that age replacement also
+   uses. Together: **p\* = (L + 1) / ((K - 1) x mean life)**, capped at 1
+   (`plugin_probability`).
+5. *Direction of the errors.* CR* is the lowest attainable rate, so (c) makes p* smaller and the
+   alarm earlier. Near the alarm the predictive mass usually rises from 0 towards the predicted
+   RUL, which lies above L, so the mass at L exceeds the average over 0..L, and (b) makes the
+   alarm later; (a) also makes it later. PREREGISTRATION_2.md fixes p* in advance, reports the
+   realised failure rate next to S, and keeps the age-replacement rate in place of CR* as a
+   sensitivity analysis.
+6. *Values and the floor of the grid.* With the mean training life of FD001 (206.3 cycles,
+   `runs/research/derived/archive/FD001/engines.parquet`), p* is 0.0059 at K = 10 and L = 10,
+   0.107 at K = 1.5 and L = 10, and 0.0001 at K = 50 and L = 0. Below the lowest stored level,
+   0.001, `cdf_at` reads 0, so any p* under 0.001 acts as 0.001: on FD001 that happens at L = 0
+   for K >= 10. PREREGISTRATION_2.md keeps L = 10 for its primary settings, where p* stays above
+   the floor on every fleet except at K = 50 on FD003 and FD004 (0.0009), and reports the floor
+   wherever it binds.
+
+**Scarce failures.** `scarce_tuning_sets` draws subsets of n run-to-failure engines from a
+fold's inner_val engines; each engine is one observed failure, so tuning on n engines is tuning
+on n failures.
+
 ## Legacy log (engineering project, tag `fork-point`)
 
 Kept verbatim below.
