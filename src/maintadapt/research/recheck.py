@@ -3,7 +3,7 @@
 Written apart from the pipeline: it imports nothing from maintadapt, and reads only the
 prediction files and sidecars of an archive, the fold file and the pool file. Thresholds,
 outcomes, age replacement, savings shares, the selections and Kendall's tau-b are coded
-again here from the definitions in CLAUDE.md and PREREGISTRATION.md sections 5 and 6, so that
+again here from the definitions in PREREGISTRATION.md sections 5 and 6 and DECISIONS.md, so that
 an error in analysis.py, stats.py, policies.py, costs.py or derived.py cannot reproduce itself.
 """
 

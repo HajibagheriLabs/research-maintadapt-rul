@@ -1,6 +1,6 @@
 """Guards that keep test and decision metrics away from the confirmatory archive until frozen.
 
-CLAUDE.md, rule 8: before the tag analysis-frozen exists, no test or decision metric is computed
+PREREGISTRATION.md section 9: before the tag analysis-frozen exists, no test or decision metric is computed
 from runs/research/archive. The smoke and dry-run archives are not guarded.
 """
 
@@ -87,7 +87,7 @@ def require_frozen_archive(
     if not has_tag():
         raise GuardError(
             f"{root} is the confirmatory archive and the tag {FROZEN_TAG} does not exist; "
-            "no test or decision metric may be computed from it yet (CLAUDE.md, rule 8)"
+            "no test or decision metric may be computed from it yet (PREREGISTRATION.md section 9)"
         )
     if not unchanged():
         raise GuardError(

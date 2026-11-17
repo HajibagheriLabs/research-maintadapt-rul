@@ -3,7 +3,7 @@
 Everything here runs from the repository root. The runs fit every configuration of the frozen pool
 in every (fleet, repeat, outer fold) and store one prediction per cycle for every inner_val,
 outer_test and official test engine. They compute no test or decision metric; nothing may compute
-one from `runs/research/archive` before the tag `analysis-frozen` exists (CLAUDE.md, rule 8).
+one from `runs/research/archive` before the tag `analysis-frozen` exists (PREREGISTRATION.md section 9).
 
 ## The full order
 
